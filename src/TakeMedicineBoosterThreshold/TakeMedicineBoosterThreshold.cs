@@ -2,7 +2,7 @@
 using Klei.AI;
 using UnityEngine;
 
-namespace TakeMedicineBoosterThresholdMod
+namespace TakeMedicineBoosterThreshold
 {
 	public class TakeMedicineBoosterThreshold
 	{
@@ -11,20 +11,23 @@ namespace TakeMedicineBoosterThresholdMod
 		{
 			public static void Postfix(MedicinalPill __instance, ref GameObject consumer, ref bool __result)
 			{
+				Effects component = consumer.GetComponent<Effects>();
+				if ((Object)component == (Object)null || component.HasEffect(__instance.info.effect))
+				{
+					__result = false;
+					return;
+				}
+
 				if (__instance.info.medicineType == MedicineInfo.MedicineType.Booster)
 				{
 					AmountInstance amountInstance = Db.Get().Amounts.ImmuneLevel.Lookup(consumer);
 					if (amountInstance != null)
 					{
-						__result = (double)amountInstance.value < (double)amountInstance.GetMax() * 0.5f;
+						__result = (double)amountInstance.value < (double)amountInstance.GetMax() * 0.8f;
+						return;
 					}
-					else
-					{
-						__result = false;
-					}
-
+					__result = false;
 				}
-
 			}
 		}
 	}
