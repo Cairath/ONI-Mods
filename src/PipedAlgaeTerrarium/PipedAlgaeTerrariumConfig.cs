@@ -33,7 +33,6 @@ namespace PipedAlgaeTerrarium
 			buildingDef.AudioCategory = "HollowMetal";
 			buildingDef.UtilityInputOffset = new CellOffset(0, 0);
 			buildingDef.UtilityOutputOffset = new CellOffset(0, 0);
-			buildingDef.ExhaustKilowattsWhenActive = 0.25f;
 			buildingDef.OutputConduitType = ConduitType.Liquid;
 			buildingDef.ViewMode = SimViewMode.LiquidVentMap;
 			SoundEventVolumeCache.instance.AddVolume("algaefarm_kanim", "AlgaeHabitat_bubbles", NOISE_POLLUTION.NOISY.TIER0);
