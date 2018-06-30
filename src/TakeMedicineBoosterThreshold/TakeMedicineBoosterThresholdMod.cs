@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TakeMedicineBoosterThreshold
 {
-	public class TakeMedicineBoosterThreshold
+	public class TakeMedicineBoosterThresholdMod
 	{
 		[HarmonyPatch(typeof(MedicinalPill), "CanBeTakenBy", new[] { typeof(GameObject) })]
 		public static class TakeMedicineBoosterThresholdPatch

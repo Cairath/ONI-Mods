@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace WaterSieveFixedOutput
 {
-    public class WaterSieveFixedOutput
+    public class WaterSieveFixedOutputMod
     {
 	    [HarmonyPatch(typeof(WaterPurifierConfig), "ConfigureBuildingTemplate")]
 	    public static class WaterSieveFixedOutputPatch
