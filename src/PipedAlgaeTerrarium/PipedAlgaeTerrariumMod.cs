@@ -37,5 +37,18 @@ namespace PipedAlgaeTerrarium
 				Database.Techs.TECH_GROUPING["FarmingTech"] = ls.ToArray();
 			}
 		}
+
+		[HarmonyPatch(typeof(KSerialization.Manager), "GetType", new Type[] { typeof(string) })]
+		public static class PipedAlgaeTerrariumSerializationPatch
+		{
+			[HarmonyPostfix]
+			public static void GetType(string type_name, ref Type __result)
+			{
+				if (type_name == "PipedAlgaeTerrarium.PipedAlgaeTerrarium")
+				{
+					__result = typeof(PipedAlgaeTerrarium);
+				}
+			}
+		}
 	}
 }
