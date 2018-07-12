@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterSieveFixedOutput", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipedAlgaeTerrarium", "src\PipedAlgaeTerrarium\PipedAlgaeTerrarium.csproj", "{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorFilter", "src\ConveyorFilter\ConveyorFilter.csproj", "{19D2FF7C-0358-4A60-B02E-4B387CA632FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D2FF7C-0358-4A60-B02E-4B387CA632FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D2FF7C-0358-4A60-B02E-4B387CA632FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D2FF7C-0358-4A60-B02E-4B387CA632FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D2FF7C-0358-4A60-B02E-4B387CA632FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
