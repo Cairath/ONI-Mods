@@ -9,9 +9,6 @@ namespace PipedAlgaeTerrarium
 		public float lightBonusMultiplier = 1.1f;
 		public CellOffset pressureSampleOffset = CellOffset.none;
 
-		[MyCmpGet]
-		private Operational operational;
-
 		protected override void OnPrefabInit()
 		{
 			this.GetComponent<KBatchedAnimController>().randomiseLoopedOffset = true;
