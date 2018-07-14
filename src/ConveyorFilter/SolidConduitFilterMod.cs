@@ -12,7 +12,7 @@ namespace ConveyorFilter
 			private static void Prefix()
 			{
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.NAME", "Conveyor Belt Filter");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.DESC", "");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.DESC", "Filters incoming items on the Conveyor Belt. Filtered items (selected on the list) are put on the secondary output in the middle of the filter (icon not visible).");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.EFFECT", "");
 
 				List<string> conveyorBuildings =
