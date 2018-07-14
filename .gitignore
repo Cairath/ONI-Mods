@@ -5,6 +5,7 @@
 
 # Game libs
 lib/UnityEngine.UI.dll
+lib/UnityEngine.CoreModule.dll
 lib/UnityEngine.dll
 lib/Assembly-CSharp.dll
 lib/Assembly-CSharp-firstpass.dll
