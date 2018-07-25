@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using STRINGS;
 using TUNING;
 using UnityEngine;
+using BUILDINGS = TUNING.BUILDINGS;
 
-namespace ConveyorFilter
+namespace ConveyorShutoff
 {
-	public class SolidConduitFilterConfig : IBuildingConfig
+    public class SolidConduitShutoffConfig : IBuildingConfig
 	{
-		public const string ID = "SolidConduitFilter";
-		private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Solid, new CellOffset(0, 0));
+		private static readonly LogicPorts.Port[] INPUT_PORTS = new LogicPorts.Port[1]
+		{
+			LogicPorts.Port.InputPort(LogicOperationalController.PORT_ID, new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, true)
+		};
+
+		public const string ID = "SolidConduitShutoff";
 
 		public override BuildingDef CreateBuildingDef()
 		{
@@ -40,19 +45,8 @@ namespace ConveyorFilter
 			buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
 			buildingDef.UtilityOutputOffset = new CellOffset(1, 0);
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
-			GeneratedBuildings.RegisterWithOverlay(OverlayScreen.SolidConveyorIDs, ID);
+			GeneratedBuildings.RegisterWithOverlay(OverlayScreen.SolidConveyorIDs, id);
 			return buildingDef;
-		}
-
-		private void AttachPort(GameObject go)
-		{
-			go.AddComponent<ConduitSecondaryOutput>().portInfo = this.secondaryPort;
-		}
-
-		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-		{
-			base.DoPostConfigurePreview(def, go);
-			this.AttachPort(go);
 		}
 
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
@@ -64,42 +58,29 @@ namespace ConveyorFilter
 		public override void DoPostConfigureUnderConstruction(GameObject go)
 		{
 			base.DoPostConfigureUnderConstruction(go);
-			this.AttachPort(go);
+
+			GeneratedBuildings.RegisterLogicPorts(go, SolidConduitShutoffConfig.INPUT_PORTS);
 
 			Constructable component = go.GetComponent<Constructable>();
 			component.choreTags = GameTags.ChoreTypes.ConveyorChores;
 			component.requiredRolePerk = RoleManager.rolePerks.ConveyorBuild.id;
 		}
 
+		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
+		{
+			GeneratedBuildings.RegisterLogicPorts(go, SolidConduitShutoffConfig.INPUT_PORTS);
+		}
+
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			BuildingTemplates.DoPostConfigure(go);
-			go.AddOrGet<EnergyConsumer>();
-			Prioritizable.AddRef(go);
+			GeneratedBuildings.RegisterLogicPorts(go, SolidConduitShutoffConfig.INPUT_PORTS);
+
 			go.GetComponent<KPrefabID>().AddPrefabTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
-
-			List<Tag> tagList = new List<Tag>();
-			tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
-			tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.FOOD);
-
-			Storage storage = go.AddOrGet<Storage>();
-			storage.capacityKg = 0f;
-			storage.showInUI = true;
-			storage.showDescriptor = true;
-			storage.storageFilters = tagList;
-			storage.allowItemRemoval = false;
-			storage.onlyTransferFromLowerPriority = false;
-
-			go.AddOrGet<Automatable>();
-			go.AddOrGet<TreeFilterable>();
-
-			SolidConduitFilter filterLogic = go.AddOrGet<SolidConduitFilter>();
-			filterLogic.SecondaryPort = secondaryPort;
-
-			go.GetComponent<KPrefabID>().prefabInitFn += (KPrefabID.PrefabFn)(game_object => new PoweredActiveController.Instance((IStateMachineTarget)game_object.GetComponent<KPrefabID>())
-			{
-				ShowWorkingStatus = true
-			}.StartSM());
+			go.AddOrGet<SolidConduitShutoff>();
+			go.GetComponent<RequireInputs>().SetRequirements(true, false);
+			go.AddOrGet<LogicOperationalController>();
+			go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
+			BuildingTemplates.DoPostConfigure(go);
 		}
 	}
 }
