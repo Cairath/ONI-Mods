@@ -4,10 +4,14 @@ Oxygen Not Included Mods
 
 Mods descriptions
 ---
-* **Conveyor Belt Filter** (ConveyorFilter.dll)
+* **Conveyor Rail Filter** (ConveyorFilter.dll)
 
-  Adds a new object - a filter for conveyor belts. Allows filtering one or multiple items and sends them to a second output line.  
+  Adds a new object - a filter for conveyor rails. Allows filtering one or multiple items and sends them to a second output line.  
    Note: the second output icon for filtered line does not display, but the filtered output cell is between input and output.
+   
+ * **Conveyor Rail Shutoff** (ConveyorShutoff.dll)
+ 
+   Adds a new object - an automatable conveyor rail shutoff.
   
 * **Take Medicine Threshold** (TakeMedicineBoosterThresholdMod__.dll)
 
@@ -34,4 +38,4 @@ Download & installation
 ----
 To use the mods you need to install ONI-ModLoader using instructions available here: https://github.com/javisar/ONI-Modloader#installation
 
-Compiled mod files are available for download in the [dll folder](/dll).  Once the Modloader is installed the mod files (*.dll) should be placed in the Mods folder created by the Modloader in the game root directory.
+Compiled mod files are available for download in the [modfiles folder](/modfiles).  Once the Modloader is installed the mod files (*.dll) should be placed in the Mods folder created by the Modloader in the game root directory.
