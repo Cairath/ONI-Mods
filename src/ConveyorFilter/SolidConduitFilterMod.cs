@@ -11,9 +11,9 @@ namespace ConveyorFilter
 		{
 			private static void Prefix()
 			{
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.NAME", "Conveyor Belt Filter");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.DESC", "Filters incoming items on the Conveyor Belt. Filtered items (selected on the list) are put on the secondary output in the middle of the filter (icon not visible).");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.EFFECT", "");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.NAME", "Conveyor Rail Filter");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.DESC", "Filters incoming items on the Conveyor Rail. Filtered items (selected on the list) are put on the secondary output in the middle of the filter (icon not visible).");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.EFFECT", "Filters the Conveyor Rail by sending selected items to a separate output.");
 
 				List<string> conveyorBuildings =
 					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[12].data) { SolidConduitFilterConfig.ID };

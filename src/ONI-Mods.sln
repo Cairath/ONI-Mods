@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeMedicineBoosterThreshold", "src\TakeMedicineBoosterThreshold\TakeMedicineBoosterThreshold.csproj", "{56C0573F-6C39-4E14-A53F-7311032C9B44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeMedicineBoosterThreshold", "TakeMedicineBoosterThreshold\TakeMedicineBoosterThreshold.csproj", "{56C0573F-6C39-4E14-A53F-7311032C9B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterSieveFixedOutput", "src\WaterSieveFixedOutput\WaterSieveFixedOutput.csproj", "{442044B3-16D5-429D-94D8-9729315C07ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterSieveFixedOutput", "WaterSieveFixedOutput\WaterSieveFixedOutput.csproj", "{442044B3-16D5-429D-94D8-9729315C07ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipedAlgaeTerrarium", "src\PipedAlgaeTerrarium\PipedAlgaeTerrarium.csproj", "{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipedAlgaeTerrarium", "PipedAlgaeTerrarium\PipedAlgaeTerrarium.csproj", "{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorFilter", "src\ConveyorFilter\ConveyorFilter.csproj", "{19D2FF7C-0358-4A60-B02E-4B387CA632FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorFilter", "ConveyorFilter\ConveyorFilter.csproj", "{19D2FF7C-0358-4A60-B02E-4B387CA632FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CritterNumberSensor", "src\CritterNumberSensor\CritterNumberSensor.csproj", "{26732273-755E-410A-96CF-B8018CF5F526}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CritterNumberSensor", "CritterNumberSensor\CritterNumberSensor.csproj", "{26732273-755E-410A-96CF-B8018CF5F526}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorShutoff", "src\ConveyorShutoff\ConveyorShutoff.csproj", "{E8E7D56F-CB73-4CC1-8280-C621A79FF0E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorShutoff", "ConveyorShutoff\ConveyorShutoff.csproj", "{E8E7D56F-CB73-4CC1-8280-C621A79FF0E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

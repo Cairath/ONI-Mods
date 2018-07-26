@@ -35,7 +35,7 @@ namespace ConveyorShutoff
 			buildingDef.Entombable = false;
 			buildingDef.ViewMode = SimViewMode.SolidConveyorMap;
 			buildingDef.RequiresPowerInput = true;
-			buildingDef.EnergyConsumptionWhenActive = 120f;
+			buildingDef.EnergyConsumptionWhenActive = 10f;
 			buildingDef.ExhaustKilowattsWhenActive = 0.0f;
 			buildingDef.SelfHeatKilowattsWhenActive = 2f;
 			buildingDef.AudioCategory = "Metal";

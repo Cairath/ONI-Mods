@@ -11,9 +11,9 @@ namespace ConveyorShutoff
 		{
 			private static void Prefix()
 			{
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.NAME", "Conveyor Belt Shutoff");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.DESC", "Automatable shutoff for the conveyor belt. It has to be powered on and automated for stuff to go through.");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.EFFECT", "");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.NAME", "Conveyor Rail Shutoff");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.DESC", "Your items won't go anywhere unless you let them.");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.EFFECT", "Automatically turns flow of objects on the Conveyor Rail on or off using Automation technology.");
 
 				List<string> conveyorBuildings =
 					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[12].data) { SolidConduitShutoffConfig.ID };

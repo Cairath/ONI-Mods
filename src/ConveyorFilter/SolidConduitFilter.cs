@@ -14,9 +14,6 @@ namespace ConveyorFilter
 		private int filteredCell = -1;
 
 		[MyCmpReq]
-		private Storage storage;
-
-		[MyCmpReq]
 		private TreeFilterable treeFilterable;
 
 		[MyCmpReq]

@@ -4,11 +4,11 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Game libs
-lib/UnityEngine.UI.dll
-lib/UnityEngine.CoreModule.dll
-lib/UnityEngine.dll
-lib/Assembly-CSharp.dll
-lib/Assembly-CSharp-firstpass.dll
+src/lib/UnityEngine.UI.dll
+src/lib/UnityEngine.CoreModule.dll
+src/lib/UnityEngine.dll
+src/lib/Assembly-CSharp.dll
+src/lib/Assembly-CSharp-firstpass.dll
 
 # User-specific files
 *.suo
