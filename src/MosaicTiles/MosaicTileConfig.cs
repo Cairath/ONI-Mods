@@ -17,12 +17,15 @@ namespace MosaicTiles
 			int hitpoints = 100;
 			float construction_time = 50f;
 			float[] tieR3 = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
-			string[] allMetals = MATERIALS.ALL_METALS; //TODO: modify crafting materials
+			string[] construction_materials = new string[1]
+			{
+				SimHashes.Ceramic.ToString()
+			};
 			float melting_point = 800f;
 			BuildLocationRule build_location_rule = BuildLocationRule.Tile;
 			EffectorValues none = NOISE_POLLUTION.NONE;
 			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				tieR3, allMetals, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER4, none, 0.2f);
+				tieR3, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER4, none, 0.2f);
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
 			buildingDef.Overheatable = false;
