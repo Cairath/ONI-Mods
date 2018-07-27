@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorShutoff", "Conveyor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MosaicTiles", "MosaicTiles\MosaicTiles.csproj", "{49AAD1B7-5895-40C3-96AA-92F169F66B98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildableProps", "BuildableProps", "{453D4D6E-9E0D-4D8A-88A8-67F0CC06BACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelLadder", "SteelLadder\SteelLadder.csproj", "{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,9 +55,17 @@ Global
 		{49AAD1B7-5895-40C3-96AA-92F169F66B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49AAD1B7-5895-40C3-96AA-92F169F66B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49AAD1B7-5895-40C3-96AA-92F169F66B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49AAD1B7-5895-40C3-96AA-92F169F66B98} = {453D4D6E-9E0D-4D8A-88A8-67F0CC06BACF}
+		{8A9E219D-EF57-4493-92E4-5E509BFFA4E1} = {453D4D6E-9E0D-4D8A-88A8-67F0CC06BACF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A891E594-F383-4A36-B723-E43117F7F1B4}
