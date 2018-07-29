@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{49AAD1B7-5895-40C3-96AA-92F169F66B98}</ProjectGuid>
+    <ProjectGuid>{975D0A22-CD7F-47CD-8E5D-18FA092686BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MosaicTile</RootNamespace>
-    <AssemblyName>MosaicTile</AssemblyName>
+    <RootNamespace>PrettierConductiveHeavyWattWire</RootNamespace>
+    <AssemblyName>PrettierConductiveHeavyWattWire</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,12 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MosaicTileConfig.cs" />
-    <Compile Include="MosaicTileMod.cs" />
+    <Compile Include="PrettierConductiveHeavyWattWireMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\..\modfiles\BuildableProps\$(TargetName).dll"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\..\modfiles\$(TargetName).dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>
