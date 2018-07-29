@@ -17,7 +17,7 @@ Mods descriptions
 
   Drywall is rendered on top of all the ugly pipes for extra prettiness. Visual only - DOES NOT affect decor calculations.
 
-* **Prettier Conductive Heavy-Watt Wire** (DrywallHidesPipes.dll)
+* **Prettier Conductive Heavy-Watt Wire** (PrettierConductiveHeavyWattWire.dll)
 
   Reduces the decor penalty for Conductive Heavy-Watt Wire to -5 decor (radius unchanged -- 3)
   
