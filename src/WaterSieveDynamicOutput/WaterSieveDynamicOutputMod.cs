@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace WaterSieveFixedOutput
 {
-    public class WaterSieveFixedOutputMod
+    public class WaterSieveDynamicOutputMod
     {
 	    [HarmonyPatch(typeof(WaterPurifierConfig), "ConfigureBuildingTemplate")]
-	    public static class WaterSieveFixedOutputPatch
+	    public static class WaterSieveDynamicOutputPatch
 		{
 		    public static void Postfix(WaterPurifierConfig __instance, ref GameObject go)
 		    {

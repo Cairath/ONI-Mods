@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MosaicTiles")]
+[assembly: AssemblyTitle("ComputerDesk")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MosaicTiles")]
+[assembly: AssemblyProduct("ComputerDesk")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("49aad1b7-5895-40c3-96aa-92f169f66b98")]
+[assembly: Guid("62109e95-1568-4631-8743-3198fc05b43d")]
 
 // Version information for an assembly consists of the following four values:
 //

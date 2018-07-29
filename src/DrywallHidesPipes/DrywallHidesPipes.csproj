@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{49AAD1B7-5895-40C3-96AA-92F169F66B98}</ProjectGuid>
+    <ProjectGuid>{3C56DAA6-6B1A-4961-9D30-D49958873231}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MosaicTiles</RootNamespace>
-    <AssemblyName>MosaicTiles</AssemblyName>
+    <RootNamespace>DrywallHidesPipes</RootNamespace>
+    <AssemblyName>DrywallHidesPipes</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,9 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MosaicTileConfig.cs" />
-    <Compile Include="MosaicTileMod.cs" />
+    <Compile Include="DrywallHidesPipesMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\..\modfiles\$(TargetName).dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

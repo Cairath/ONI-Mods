@@ -25,7 +25,7 @@ namespace MosaicTiles
 			BuildLocationRule build_location_rule = BuildLocationRule.Tile;
 			EffectorValues none = NOISE_POLLUTION.NONE;
 			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				tieR3, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER4, none, 0.2f);
+				tieR3, construction_materials, melting_point, build_location_rule, new EffectorValues() { amount = 20, radius = 3 }, none, 0.2f);
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
 			buildingDef.Overheatable = false;

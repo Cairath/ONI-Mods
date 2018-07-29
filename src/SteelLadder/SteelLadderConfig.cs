@@ -21,7 +21,7 @@ namespace SteelLadder
 			float construction_time = 10f;
 			float[] construction_mass = new float[2]
 			{
-				BUILDINGS.CONSTRUCTION_MASS_KG.TIER1[0],
+				BUILDINGS.CONSTRUCTION_MASS_KG.TIER0[0],
 				BUILDINGS.CONSTRUCTION_MASS_KG.TIER0[0]
 			};
 			string[] construction_materials = new string[2]
