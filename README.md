@@ -13,11 +13,19 @@ Mods descriptions
  
    Adds a new object - an automatable conveyor rail shutoff.
   
-* **Take Medicine Threshold** (TakeMedicineBoosterThresholdMod__.dll)
+* **Drywall Hides Pipes** (DrywallHidesPipes.dll)
 
-  Sets the immunity at which dupes will start taking vitamins (immunity boosters) to not waste them at 99%. Number in the file is the threshold (eg. dupes will consume vitamins if they immunity drops to 80%)
+  Drywall is rendered on top of all the ugly pipes for extra prettiness. Visual only - DOES NOT affect decor calculations.
 
-* **Water Sieve Output** (WaterSieveFixedOutput.dll)
+* **Prettier Conductive Heavy-Watt Wire** (DrywallHidesPipes.dll)
+
+  Reduces the decor penalty for Conductive Heavy-Watt Wire to -5 decor (radius unchanged -- 3)
+  
+* **Take Medicine Threshold** (TakeMedicineBoosterThresholdMod.dll)
+
+  Sets the immunity at which dupes will start taking vitamins (immunity boosters) to 80, so they do not waste them at 99%.
+
+* **Water Sieve Output** (WaterSieveDynamicOutput.dll)
 
   Water sieve outputs water and dirt at their input temperature instead of at fixed 40C.
 
@@ -29,6 +37,11 @@ Mods descriptions
 
   Sets to active or inactive when the number of creatures (both alive critters and their eggs) is above/below certain threshold.  
   Original idea: R9MX4, adapted to Modloader by javisar and rewritten by me
+  
+* **Buildable props** (BuildableProps folder)
+
+  Buildable stuff that is in Points of Interest. Currently available: mosaic tiles, steel ladder, chairs, wall clock, computer desk, couch, gravitas monument, table with chairs. Requires luxury research and higher-end materials to build (steel, plastic).  
+  The tiles and steel ladder are fully functional, the other items are simply decorative.
 
 
 for more mods you can visit https://github.com/javisar/ONI-Modloader-Mods
