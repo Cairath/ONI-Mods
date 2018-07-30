@@ -9,7 +9,7 @@ namespace DrywallHidesPipes
 	    {
 		    public static void Postfix(ref BuildingDef __result)
 		    {
-			    __result.SceneLayer = Grid.SceneLayer.Paintings;
+			    __result.SceneLayer = Grid.SceneLayer.WireBridges;
 		    }
 	    }
 	}

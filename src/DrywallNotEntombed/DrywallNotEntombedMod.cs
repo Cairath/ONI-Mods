@@ -12,5 +12,14 @@ namespace DrywallNotEntombed
 				__result.Entombable = false;
 			}
 		}
+
+		[HarmonyPatch(typeof(FacilityBackWallWindowConfig), "CreateBuildingDef")]
+		public static class FacilityWindowNotEntombedPatch
+		{
+			public static void Postfix(ref BuildingDef __result)
+			{
+				__result.Entombable = false;
+			}
+		}
 	}
 }
