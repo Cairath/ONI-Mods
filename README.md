@@ -12,6 +12,10 @@ Mods descriptions
  * **Conveyor Rail Shutoff** (ConveyorShutoff.dll)
  
    Adds a new object - an automatable conveyor rail shutoff.
+   
+* **Drywall Not Entombed** (DrywallNotEntombed.dll)
+
+  No more 'Entombed (160)'! Drywalls no longed are considered entombed.
   
 * **Drywall Hides Pipes** (DrywallHidesPipes.dll)
 
@@ -20,6 +24,10 @@ Mods descriptions
 * **Prettier Conductive Heavy-Watt Wire** (PrettierConductiveHeavyWattWire.dll)
 
   Reduces the decor penalty for Conductive Heavy-Watt Wire to -5 decor (radius unchanged -- 3)
+  
+* **Polluted water heat capacity** (PWaterToWaterHeatCapacity.dll)
+
+  Sets Polluted Water heat capacity to the same value as clean water.
   
 * **Take Medicine Threshold** (TakeMedicineBoosterThresholdMod.dll)
 
