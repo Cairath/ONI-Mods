@@ -1,6 +1,8 @@
 Oxygen Not Included Mods
 ====
 
+master branch last updated to game version **EU-279899**
+
 
 Mods descriptions
 ---
@@ -15,7 +17,7 @@ Mods descriptions
    
 * **Drywall Not Entombed** (DrywallNotEntombed.dll)
 
-  No more 'Entombed (160)'! Drywalls no longed are considered entombed.
+  No more 'Entombed (160)'! Drywalls and facility windows no longed are considered entombed.
   
 * **Drywall Hides Pipes** (DrywallHidesPipes.dll)
 
