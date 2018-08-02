@@ -7,8 +7,8 @@
     <ProjectGuid>{26732273-755E-410A-96CF-B8018CF5F526}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CritterNumberSensor</RootNamespace>
-    <AssemblyName>CritterNumberSensor</AssemblyName>
+    <RootNamespace>RanchingSensors</RootNamespace>
+    <AssemblyName>RanchingSensors</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -57,9 +57,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CritterNumberSensor.cs" />
-    <Compile Include="CritterNumberSensorConfig.cs" />
-    <Compile Include="CritterNumberSensorMod.cs" />
+    <Compile Include="EggsSensorConfig.cs" />
+    <Compile Include="EggsSensor.cs" />
+    <Compile Include="CrittersSensor.cs" />
+    <Compile Include="CrittersAndEggsSensor.cs" />
+    <Compile Include="CrittersSensorConfig.cs" />
+    <Compile Include="CrittersAndEggsSensorConfig.cs" />
+    <Compile Include="RanchingSensorsMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

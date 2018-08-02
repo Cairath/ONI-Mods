@@ -2,14 +2,11 @@
 using STRINGS;
 using UnityEngine;
 
-namespace CritterNumberSensor
+namespace RanchingSensors
 {
 	[SerializationConfig(MemberSerialization.OptIn)]
-	public class CritterNumberSensor : Switch, ISaveLoadable, IThresholdSwitch, ISim200ms
+	public class CrittersAndEggsSensor : Switch, ISaveLoadable, IThresholdSwitch, ISim200ms
 	{
-		private static readonly HashedString[] ON_ANIMS = new HashedString[2] { "on_pre", "on_loop" };
-		private static readonly HashedString[] OFF_ANIMS = new HashedString[2] { "on_pst", "off" };
-
 		[SerializeField]
 		[Serialize]
 		private float threshold;
@@ -21,11 +18,11 @@ namespace CritterNumberSensor
 		private int currentCritters = 0;
 
 		public float CurrentValue => currentCritters;
-		public LocString Title => "Critter Number Sensor";
+		public LocString Title => "Critters and Eggs Sensor";
 		public LocString ThresholdValueName => UI.CODEX.CATEGORYNAMES.CREATURES;
 		public LocString ThresholdValueUnits() => "";
-		public string AboveToolTip => "Sensor will be on if the number of critters is above {0}";
-		public string BelowToolTip => "Sensor will be on if the number of critters is below {0}";
+		public string AboveToolTip => "Sensor will be on if the number of critters and eggs is above {0}";
+		public string BelowToolTip => "Sensor will be on if the number of critters and eggs is below {0}";
 		public float RangeMin => 0.0f;
 		public float RangeMax => 50.0f;
 		public float GetRangeMinInputField() => 0.0f;
@@ -43,7 +40,9 @@ namespace CritterNumberSensor
 
 		public void Sim200ms(float dt)
 		{
-			currentCritters = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).creatures.Count;
+			var list = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).creatures;
+
+			currentCritters = list.Count;
 
 			if (activateAboveThreshold)
 			{
@@ -77,15 +76,13 @@ namespace CritterNumberSensor
 
 		private void UpdateVisualState(bool force = false)
 		{
-			if (wasOn == switchedOn && !force)
+
+			if (this.wasOn == this.switchedOn && !force)
 				return;
-
-			wasOn = switchedOn;
-
-			if (switchedOn)
-				animController.Play(ON_ANIMS, KAnim.PlayMode.Loop);	
-			else
-				animController.Play(OFF_ANIMS, KAnim.PlayMode.Once);
+			this.wasOn = this.switchedOn;
+			KBatchedAnimController component = this.GetComponent<KBatchedAnimController>();
+			component.Play((HashedString)(!this.switchedOn ? "on_pst" : "on_pre"), KAnim.PlayMode.Once, 1f, 0.0f);
+			component.Queue((HashedString)(!this.switchedOn ? "off" : "on"), KAnim.PlayMode.Once, 1f, 0.0f);
 		}
 
 		public float Threshold

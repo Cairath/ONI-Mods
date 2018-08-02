@@ -2,30 +2,22 @@
 using TUNING;
 using UnityEngine;
 
-namespace CritterNumberSensor
+namespace RanchingSensors
 {
-	public class CritterNumberSensorConfig : IBuildingConfig
+	public class OvercrowdedSensorConfig : IBuildingConfig
 	{
-		public static string ID = "LogicCritterNumberSensor";
+		public static string ID = "OvercrowdedSensor";
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = CritterNumberSensorConfig.ID;
+			string id = ID;
 			int width = 1;
 			int height = 1;
-			string anim = "diseasesensor_kanim";
+			string anim = "switchtimeofday_kanim";
 			int hitpoints = 30;
 			float construction_time = 30f;
-			float[] construction_mass = new float[2]
-			{
-				BUILDINGS.CONSTRUCTION_MASS_KG.TIER0[0],
-				BUILDINGS.CONSTRUCTION_MASS_KG.TIER1[0]
-			};
-			string[] construction_materials = new string[2]
-			{
-				"RefinedMetal",
-				"Plastic"
-			};
+			float[] construction_mass = BUILDINGS.CONSTRUCTION_MASS_KG.TIER1;
+			string[] construction_materials = MATERIALS.REFINED_METALS;
 			float melting_point = 1600f;
 			BuildLocationRule build_location_rule = BuildLocationRule.Anywhere;
 			EffectorValues none = NOISE_POLLUTION.NONE;
@@ -36,9 +28,9 @@ namespace CritterNumberSensor
 			buildingDef.ViewMode = SimViewMode.Logic;
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
-			SoundEventVolumeCache.instance.AddVolume("diseasesensor_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER3);
-			SoundEventVolumeCache.instance.AddVolume("diseasesensor_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER3);
-			GeneratedBuildings.RegisterWithOverlay(Logic.HighlightItemIDs, CritterNumberSensorConfig.ID);
+			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER3);
+			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER3);
+			GeneratedBuildings.RegisterWithOverlay(Logic.HighlightItemIDs, ID);
 
 			return buildingDef;
 		}
@@ -57,10 +49,9 @@ namespace CritterNumberSensor
 		{
 			GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 			GeneratedBuildings.RegisterLogicPorts(go, LogicSwitchConfig.OUTPUT_PORT);
-			CritterNumberSensor critterNumberSensor = go.AddOrGet<CritterNumberSensor>();
-			critterNumberSensor.Threshold = 0.0f;
-			critterNumberSensor.ActivateAboveThreshold = true;
-			critterNumberSensor.manuallyControlled = false;
+			CrittersAndEggsSensor crittersAndEggsSensor = go.AddOrGet<CrittersAndEggsSensor>();
+			crittersAndEggsSensor.ActivateAboveThreshold = false;
+			crittersAndEggsSensor.manuallyControlled = false;
 		}
 	}
 }
