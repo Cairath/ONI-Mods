@@ -1,5 +1,12 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Reflection.Emit;
 using Harmony;
+using Klei;
+using STRINGS;
+using UnityEngine;
 
 namespace PWaterToWaterHeatCapacity
 {
@@ -10,7 +17,8 @@ namespace PWaterToWaterHeatCapacity
 		{
 			public static void Prefix(ref ElementLoader.LiquidEntry[] liquid_entries)
 			{
-				MethodInfo method = typeof(ElementLoader).GetMethod("SetupElementsTable", BindingFlags.NonPublic | BindingFlags.Static);
+				MethodInfo method =
+					typeof(ElementLoader).GetMethod("SetupElementsTable", BindingFlags.NonPublic | BindingFlags.Static);
 
 				if (method == null || liquid_entries == null)
 				{
@@ -29,6 +37,6 @@ namespace PWaterToWaterHeatCapacity
 					}
 				}
 			}
-		}
+		}	
 	}
 }

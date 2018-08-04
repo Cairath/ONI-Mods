@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWaterToWaterHeatCapacity",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerCameraZoomOut", "BiggerCameraZoomOut\BiggerCameraZoomOut.csproj", "{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RanchingRebalanced", "RanchingRebalanced\RanchingRebalanced.csproj", "{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "DebugDoesNotDiscoverMap\DebugDoesNotDiscoverMap.csproj", "{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +129,14 @@ Global
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
