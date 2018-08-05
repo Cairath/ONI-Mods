@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9A735721-FA62-494C-A4CA-80C90D97CF4A}</ProjectGuid>
+    <ProjectGuid>{26766715-4733-45CB-BDFE-4A544091AEBC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PWaterToWaterHeatCapacity</RootNamespace>
-    <AssemblyName>PWaterToWaterHeatCapacity</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>FlowSplitters</RootNamespace>
+    <AssemblyName>FlowSplitters</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
@@ -57,7 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PWaterToWaterHeatCapacityMod.cs" />
+    <Compile Include="FlowSplitter.cs" />
+    <Compile Include="FlowSplittersMod.cs" />
+    <Compile Include="GasSplitterConfig.cs" />
+    <Compile Include="LiquidSplitterConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

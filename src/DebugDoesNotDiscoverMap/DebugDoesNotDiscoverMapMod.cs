@@ -7,36 +7,36 @@ using UnityEngine;
 
 namespace DebugDoesNotDiscoverMap
 {
-    public class DebugDoesNotDiscoverMapMod
-    {
-	    [HarmonyPatch(typeof(DebugHandler), "OnKeyDown")]
-	    public static class DebugDoesNotDiscoverMapDebugHandlerPatch
+	public class DebugDoesNotDiscoverMapMod
+	{
+		[HarmonyPatch(typeof(DebugHandler), "OnKeyDown")]
+		public static class DebugDoesNotDiscoverMapDebugHandlerPatch
 		{
-		    public static bool Prefix(ref DebugHandler __instance, KButtonEvent e)
-		    {
-			    if (!DebugHandler.enabled)
-				    return false;
+			public static bool Prefix(ref DebugHandler __instance, KButtonEvent e)
+			{
+				if (!DebugHandler.enabled)
+					return false;
 
-			    if (e.TryConsume(Action.DebugToggle))
-			    {
-				    if ((UnityEngine.Object)CameraController.Instance != null)
-					    CameraController.Instance.FreeCameraEnabled = !CameraController.Instance.FreeCameraEnabled;
+				if (e.TryConsume(Action.DebugToggle))
+				{
+					if ((UnityEngine.Object)CameraController.Instance != null)
+						CameraController.Instance.FreeCameraEnabled = !CameraController.Instance.FreeCameraEnabled;
 
-				    if ((UnityEngine.Object)DebugPaintElementScreen.Instance != null)
-				    {
-					    bool activeSelf = DebugPaintElementScreen.Instance.gameObject.activeSelf;
-					    DebugPaintElementScreen.Instance.gameObject.SetActive(!activeSelf);
-					    if (DebugElementMenu.Instance && DebugElementMenu.Instance.root.activeSelf)
-						    DebugElementMenu.Instance.root.SetActive(false);
-					    DebugBaseTemplateButton.Instance.gameObject.SetActive(!activeSelf);
-				    }
+					if ((UnityEngine.Object)DebugPaintElementScreen.Instance != null)
+					{
+						bool activeSelf = DebugPaintElementScreen.Instance.gameObject.activeSelf;
+						DebugPaintElementScreen.Instance.gameObject.SetActive(!activeSelf);
+						if (DebugElementMenu.Instance && DebugElementMenu.Instance.root.activeSelf)
+							DebugElementMenu.Instance.root.SetActive(false);
+						DebugBaseTemplateButton.Instance.gameObject.SetActive(!activeSelf);
+					}
 
-				    return false;
-			    }
+					return false;
+				}
 
-			    return true;
-		    }
+				return true;
+			}
 
-	    }
+		}
 	}
 }

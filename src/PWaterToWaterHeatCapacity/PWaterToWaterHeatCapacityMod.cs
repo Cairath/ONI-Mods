@@ -37,6 +37,37 @@ namespace PWaterToWaterHeatCapacity
 					}
 				}
 			}
-		}	
+		}
+
+		[HarmonyPatch(typeof(SeasonManager))]
+		public static class ElementLoaderLoadPatch2
+		{
+			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instr)
+			{
+				int foundIndex = 0;
+				var codes = new List<CodeInstruction>(instr);
+				Debug.Log("kupa1 instr count:" + codes.Count);
+
+				int idxDefaultLenght = 0;
+				int idxMeteorLenght = 0;
+				int idxSecondsBombardmentOff = 0;
+				int idxSecondsBombardmentOn = 0;
+				int idxSecondsBetweenBombardments = 0;
+
+				for (int j = 0; j< codes.Count; j++)
+				{
+					Debug.Log(codes[j].opcode.Name + " " + codes[j].operand);
+					if (codes[j].opcode == OpCodes.Ldc_I4_4)
+					{
+						idxDefaultLenght = j;
+						break;
+					}
+				}
+
+				codes[idxDefaultLenght].opcode = OpCodes.Ldc_I4_1;
+
+				return codes.AsEnumerable();
+			}
+		}
 	}
 }
