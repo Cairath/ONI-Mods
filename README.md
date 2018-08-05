@@ -1,7 +1,7 @@
 Oxygen Not Included Mods
 ====
 
-master branch last updated to game version **EU-279899**
+master branch last updated to game version **EU-280450**
 
 
 Mods descriptions
@@ -15,6 +15,10 @@ Mods descriptions
  
    Adds a new object - an automatable conveyor rail shutoff.
    
+* **Debug does not discover map** (DebugDoesNotDiscoverMap.dll)
+
+  Enabling debug mode (backspace) does not discover the map and prevents creatures on the entire map from spawning
+   
 * **Drywall Not Entombed** (DrywallNotEntombed.dll)
 
   No more 'Entombed (160)'! Drywalls and facility windows no longed are considered entombed.
@@ -22,6 +26,10 @@ Mods descriptions
 * **Drywall Hides Pipes** (DrywallHidesPipes.dll)
 
   Drywall is rendered on top of all the ugly pipes for extra prettiness. Visual only - DOES NOT affect decor calculations.
+  
+ * **Flow Splitters** (FlowSplitters.dll)
+
+  Adds (does not override the existing one) a new Algae Terrarium that functions like the basic one, except it has a piped polluted water output.
 
 * **Prettier Conductive Heavy-Watt Wire** (PrettierConductiveHeavyWattWire.dll)
 
@@ -43,10 +51,9 @@ Mods descriptions
 
   Adds (does not override the existing one) a new Algae Terrarium that functions like the basic one, except it has a piped polluted water output.
 
-* **Critter Number Sensor** (CritterNumberSensor.dll)
+* **Ranching Sensors** (RanchingSensors.dll)
 
-  Sets to active or inactive when the number of creatures (both alive critters and their eggs) is above/below certain threshold.  
-  Original idea: R9MX4, adapted to Modloader by javisar and rewritten by me
+  Three sensors, each sets to active or inactive when the number of creatures/eggs/creatures+eggs is above/below certain threshold.
   
 * **Buildable props** (BuildableProps folder)
 
