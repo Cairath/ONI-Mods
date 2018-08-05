@@ -6,14 +6,14 @@ namespace FlowSplitters
 	public class LiquidSplitterConfig : IBuildingConfig
 	{
 		public const string ID = "LiquidSplitter";
-		private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(-1, 0));
+		private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(1, 1));
 
 		public override BuildingDef CreateBuildingDef()
 		{
 			string id = ID;
-			int width = 3;
-			int height = 1;
-			string anim = "filter_liquid_kanim";
+			int width = 2;
+			int height = 2;
+			string anim = "utilityliquidsplitter_kanim";
 			int hitpoints = 10;
 			float construction_time = 3f;
 			float[] tieR3 = BUILDINGS.CONSTRUCTION_MASS_KG.TIER2;
