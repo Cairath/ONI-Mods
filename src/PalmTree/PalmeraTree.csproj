@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9A735721-FA62-494C-A4CA-80C90D97CF4A}</ProjectGuid>
+    <ProjectGuid>{C884CE09-9A83-4154-B94F-2B692CA43C38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PWaterToWaterHeatCapacity</RootNamespace>
-    <AssemblyName>PWaterToWaterHeatCapacity</AssemblyName>
+    <RootNamespace>PalmeraTree</RootNamespace>
+    <AssemblyName>PalmeraTree</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
@@ -57,7 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PWaterToWaterHeatCapacityMod.cs" />
+    <Compile Include="PalmeraBerryConfig.cs" />
+    <Compile Include="PalmeraTreeMod.cs" />
+    <Compile Include="PalmeraTree.cs" />
+    <Compile Include="PalmeraTreeConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

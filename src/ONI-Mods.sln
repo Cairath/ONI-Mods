@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowSplitters", "FlowSplitters\FlowSplitters.csproj", "{26766715-4733-45CB-BDFE-4A544091AEBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalmeraTree", "PalmTree\PalmeraTree.csproj", "{C884CE09-9A83-4154-B94F-2B692CA43C38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
