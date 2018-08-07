@@ -29,7 +29,7 @@ Mods descriptions
   
  * **Flow Splitters** (FlowSplitters.dll)
 
-  Adds (does not override the existing one) a new Algae Terrarium that functions like the basic one, except it has a piped polluted water output.
+  Adds a Liquid and Gas Flow Splitters, which have an input and two outputs. The splitter splits incoming gas/liquid into two packets of the same sizes and sends them to outputs. If one output gets clogged, the second output will receive more flow.
 
 * **Prettier Conductive Heavy-Watt Wire** (PrettierConductiveHeavyWattWire.dll)
 
