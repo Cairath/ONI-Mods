@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace PalmeraTree
+namespace RanchingRebalanced.PalmeraTree
 {
 	public class PalmeraBerryConfig : IEntityConfig
 	{
@@ -10,8 +9,8 @@ namespace PalmeraTree
 		public GameObject CreatePrefab()
 		{
 			var entity = EntityTemplates.CreateLooseEntity(ID, "Palmera Berry", "A toxic, non-edible bud that emits hydrogen.", 1f, false,
-				Assets.GetAnim((HashedString) "palmeraberry_kanim"), "object", Grid.SceneLayer.Front,
-				EntityTemplates.CollisionShape.RECTANGLE, 0.77f, 0.48f, true, SimHashes.Creature, (List<Tag>)null);
+				Assets.GetAnim("palmeraberry_kanim"), "object", Grid.SceneLayer.Front,
+				EntityTemplates.CollisionShape.RECTANGLE, 0.77f, 0.48f, true);
 
 			var foodEntity = EntityTemplates.ExtendEntityToFood(entity, new EdiblesManager.FoodInfo(ID, 0.0f, -1, 255.15f, 277.15f, 2400f, true));
 

@@ -29,13 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWaterToWaterHeatCapacity",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerCameraZoomOut", "BiggerCameraZoomOut\BiggerCameraZoomOut.csproj", "{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RanchingRebalanced", "RanchingRebalanced\RanchingRebalanced.csproj", "{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "DebugDoesNotDiscoverMap\DebugDoesNotDiscoverMap.csproj", "{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowSplitters", "FlowSplitters\FlowSplitters.csproj", "{26766715-4733-45CB-BDFE-4A544091AEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalmeraTree", "PalmTree\PalmeraTree.csproj", "{C884CE09-9A83-4154-B94F-2B692CA43C38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RanchingRebalanced", "RanchingRebalanced\RanchingRebalanced.csproj", "{C884CE09-9A83-4154-B94F-2B692CA43C38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildablePOIProps", "BuildablePOIProps\BuildablePOIProps.csproj", "{172D2D02-9391-4913-92CE-2E77EE5980BB}"
 EndProject
@@ -97,10 +95,6 @@ Global
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A52F8C8F-2BB8-4495-A3D1-BA5ADA9D3FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}.Release|Any CPU.ActiveCfg = Release|Any CPU

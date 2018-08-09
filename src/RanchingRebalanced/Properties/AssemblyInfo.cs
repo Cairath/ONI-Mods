@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RanchingRebalanced")]
+[assembly: AssemblyTitle("PalmTree")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RanchingRebalanced")]
+[assembly: AssemblyProduct("PalmTree")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a52f8c8f-2bb8-4495-a3d1-ba5ada9d3fa2")]
+[assembly: Guid("c884ce09-9a83-4154-b94f-2b692ca43c38")]
 
 // Version information for an assembly consists of the following four values:
 //
