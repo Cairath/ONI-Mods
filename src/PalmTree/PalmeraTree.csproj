@@ -58,11 +58,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameTagsRanching.cs" />
     <Compile Include="PalmeraBerryConfig.cs" />
     <Compile Include="PalmeraTreeMod.cs" />
     <Compile Include="PalmeraTree.cs" />
     <Compile Include="PalmeraTreeConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrellisConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

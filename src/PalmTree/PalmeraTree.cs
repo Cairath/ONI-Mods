@@ -7,26 +7,24 @@ namespace PalmeraTree
 {
 	public class PalmeraTree : StateMachineComponent<PalmeraTree.StatesInstance>
 	{
-		[MyCmpReq] private Crop crop;
-		[MyCmpReq] private WiltCondition wiltCondition;
-		[MyCmpReq] private Growing growing;
-		[MyCmpReq] private Harvestable harvestable;
-		[MyCmpReq] private KAnimControllerBase animController;
-
-		private static void RefreshPositionPercent(PalmeraTree.StatesInstance smi, float dt)
-		{
-			PalmeraTree.RefreshPositionPercent(smi);
-		}
-
-		private static void RefreshPositionPercent(PalmeraTree.StatesInstance smi)
-		{
-			smi.master.animController.SetPositionPercent(smi.master.growing.PercentOfCurrentHarvest());
-		}
+		[MyCmpReq]
+		private Crop crop;
+		[MyCmpReq]
+		private WiltCondition wiltCondition;
+		[MyCmpReq]
+		private Growing growing;
+		[MyCmpReq]
+		private Harvestable harvestable;
+		[MyCmpReq]
+		private KAnimControllerBase animController;
+		[MyCmpReq]
+		private ElementEmitter elementEmitter;
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
 			this.smi.Get<KBatchedAnimController>().randomiseLoopedOffset = true;
+			this.smi.master.elementEmitter.SetEmitting(false);
 			this.smi.StartSM();
 		}
 
@@ -43,20 +41,6 @@ namespace PalmeraTree
 				(Func<List<Notification>, object, string>) ((notificationList, data) =>
 					(string) CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false)),
 				(object) ("/t• " + this.gameObject.GetProperName()), true, 0.0f, (Notification.ClickCallback) null, (object) null);
-		}
-
-		private static string ToolTipResolver(List<Notification> notificationList, object data)
-		{
-			string empty = string.Empty;
-			for (int index = 0; index < notificationList.Count; ++index)
-			{
-				Notification notification = notificationList[index];
-				empty += (string) notification.tooltipData;
-				if (index < notificationList.Count - 1)
-					empty += "\n";
-			}
-
-			return string.Format((string) CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP, (object) empty);
 		}
 
 		public class StatesInstance : GameStateMachine<PalmeraTree.States, PalmeraTree.StatesInstance, PalmeraTree, object>.
@@ -116,14 +100,10 @@ namespace PalmeraTree
 					.EventTransition(GameHashes.Wilt, this.alive.wilting_pre, smi => smi.master.wiltCondition.IsWilting())
 					.EventTransition(GameHashes.Grow, this.alive.pre_fruiting, smi => smi.master.growing.ReachedNextHarvest())
 					.PlayAnim("idle_loop", KAnim.PlayMode.Loop);
-				//	.Enter(RefreshPositionPercent)
-				//	.Update(RefreshPositionPercent, UpdateRate.SIM_4000ms)
-				//	.EventHandler(GameHashes.ConsumePlant, RefreshPositionPercent);
 
 				this.alive.pre_fruiting
 					.PlayAnim("grow", KAnim.PlayMode.Once)
 					.EventTransition(GameHashes.AnimQueueComplete, this.alive.fruiting);
-
 
 				this.alive.fruiting_lost
 					.Enter(smi => smi.master.harvestable.SetCanBeHarvested(false))
@@ -147,12 +127,14 @@ namespace PalmeraTree
 
 				this.alive.fruiting.fruiting_idle.PlayAnim("idle_bloom_loop", KAnim.PlayMode.Loop)
 					.Enter(smi => smi.master.harvestable.SetCanBeHarvested(true))
+					.Enter(smi => smi.master.elementEmitter.SetEmitting(true))
 					.Update("fruiting_idle", (smi, dt) =>
 					{
 						if (!smi.IsOld())
 							return;
 						smi.GoTo(this.alive.fruiting.fruiting_old);
-					}, UpdateRate.SIM_4000ms);
+					}, UpdateRate.SIM_4000ms)
+					.Exit(smi => smi.master.elementEmitter.SetEmitting(false));
 
 				this.alive.fruiting.fruiting_old
 					.PlayAnim("wilt", KAnim.PlayMode.Loop)
