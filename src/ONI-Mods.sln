@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowSplitters", "FlowSplitters\FlowSplitters.csproj", "{26766715-4733-45CB-BDFE-4A544091AEBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefinedMetalsUsableAsRawMetals", "RefinedMetalsUsableAsRawMetals\RefinedMetalsUsableAsRawMetals.csproj", "{B732436D-6C87-487B-86D2-10E3F270E4B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
