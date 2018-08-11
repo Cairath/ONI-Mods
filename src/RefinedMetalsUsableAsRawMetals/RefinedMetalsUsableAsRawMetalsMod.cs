@@ -27,7 +27,7 @@ namespace RefinedMetalsUsableAsRawMetals
 
 				foreach (var e in solid_entries)
 				{
-					if (e.materialCategory.Contains("RefinedMetal"))
+					if (e.materialCategory.Contains("RefinedMetal") || e.tags.Contains("RefinedMetal"))
 					{
 						e.tags += " | Metal";
 					}
