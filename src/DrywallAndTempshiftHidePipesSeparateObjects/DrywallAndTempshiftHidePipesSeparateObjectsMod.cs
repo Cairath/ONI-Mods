@@ -1,9 +1,9 @@
 ﻿using Harmony;
-using System.Collections.Generic;
 using STRINGS;
 using System;
+using System.Collections.Generic;
 
-namespace DrywallHidesPipes
+namespace DrywallAndTempshiftHidePipesSeparateObjects
 {
 	public class DrywallAndTempshiftHidePipesSeparateObjectsMod
 	{
@@ -48,6 +48,18 @@ namespace DrywallHidesPipes
 				List<string> ro = new List<string>(Database.Techs.TECH_GROUPING["RefinedObjects"]) { TempshiftHidesPipesConfig.ID };
 				Database.Techs.TECH_GROUPING["RefinedObjects"] = ro.ToArray();
 
+			}
+		}
+
+		public static class DrywallAndTempshiftHidePipesSeparateObjectsSerializationPatch
+		{
+			[HarmonyPostfix]
+			public static void GetType(string type_name, ref Type __result)
+			{
+				if (type_name == "DrywallHidesPipes.ZoneTileClone" || type_name == "DrywallAndTempshiftHidePipesSeparateObjects.ZoneTileClone")
+				{
+					__result = typeof(ZoneTileClone);
+				}
 			}
 		}
 	}

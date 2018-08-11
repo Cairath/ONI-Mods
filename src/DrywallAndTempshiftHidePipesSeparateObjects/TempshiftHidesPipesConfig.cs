@@ -1,7 +1,7 @@
 ﻿using TUNING;
 using UnityEngine;
 
-namespace DrywallHidesPipes
+namespace DrywallAndTempshiftHidePipesSeparateObjects
 {
 	public class TempshiftHidesPipesConfig : IBuildingConfig
 	{

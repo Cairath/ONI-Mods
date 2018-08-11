@@ -1,6 +1,6 @@
 ﻿using ProcGen;
 
-namespace DrywallHidesPipes
+namespace DrywallAndTempshiftHidePipesSeparateObjects
 {
 	public class ZoneTileClone : KMonoBehaviour
 	{
