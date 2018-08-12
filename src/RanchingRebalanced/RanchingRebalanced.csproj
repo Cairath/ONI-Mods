@@ -66,6 +66,7 @@
     <Compile Include="PalmeraTree\PalmeraTree.cs" />
     <Compile Include="PalmeraTree\PalmeraTreeConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shinebugs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BehavioralChanges\" />
