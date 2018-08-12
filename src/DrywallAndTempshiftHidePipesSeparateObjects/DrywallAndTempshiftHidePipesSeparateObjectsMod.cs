@@ -51,10 +51,10 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 			}
 		}
 
+		[HarmonyPatch(typeof(KSerialization.Manager), "GetType", new Type[] { typeof(string) })]
 		public static class DrywallAndTempshiftHidePipesSeparateObjectsSerializationPatch
 		{
-			[HarmonyPostfix]
-			public static void GetType(string type_name, ref Type __result)
+			public static void Postfix(string type_name, ref Type __result)
 			{
 				if (type_name == "DrywallHidesPipes.ZoneTileClone" || type_name == "DrywallAndTempshiftHidePipesSeparateObjects.ZoneTileClone")
 				{
