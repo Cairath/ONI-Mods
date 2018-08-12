@@ -33,17 +33,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowSplitters", "FlowSplitters\FlowSplitters.csproj", "{26766715-4733-45CB-BDFE-4A544091AEBC}"
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefinedMetalsUsableAsRawMetals", "RefinedMetalsUsableAsRawMetals\RefinedMetalsUsableAsRawMetals.csproj", "{B732436D-6C87-487B-86D2-10E3F270E4B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrywallAndTempshiftHidePipesSeparateObjects", "DrywallAndTempshiftHidePipesSeparateObjects\DrywallAndTempshiftHidePipesSeparateObjects.csproj", "{E10C6860-6BEB-451A-A973-469E948BE7E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecorLights", "DecorLights\DecorLights.csproj", "{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}"
-=======
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RanchingRebalanced", "RanchingRebalanced\RanchingRebalanced.csproj", "{C884CE09-9A83-4154-B94F-2B692CA43C38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildablePOIProps", "BuildablePOIProps\BuildablePOIProps.csproj", "{172D2D02-9391-4913-92CE-2E77EE5980BB}"
->>>>>>> dev
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgaeGrower", "AlgaeGrower\AlgaeGrower.csproj", "{5260D58E-F491-4BDD-B05C-EB545EE5F89A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,7 +111,6 @@ Global
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26766715-4733-45CB-BDFE-4A544091AEBC}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B732436D-6C87-487B-86D2-10E3F270E4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -124,7 +123,6 @@ Global
 		{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -133,7 +131,10 @@ Global
 		{172D2D02-9391-4913-92CE-2E77EE5980BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{172D2D02-9391-4913-92CE-2E77EE5980BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{172D2D02-9391-4913-92CE-2E77EE5980BB}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> dev
+		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
