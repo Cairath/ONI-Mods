@@ -53,7 +53,7 @@ namespace DecorLights
 			light2D.Range = 4f;
 			light2D.Angle = 0f;
 			light2D.Direction = LIGHT2D.FLOORLAMP_DIRECTION;
-			light2D.Offset = new Vector2(0, 0);
+			light2D.Offset = new Vector2(0f, 0.5f);
 			light2D.shape = LightShape.Circle;
 			light2D.drawOverlay = true;
 			light2D.Lux = 1800;

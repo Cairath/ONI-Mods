@@ -51,7 +51,7 @@ namespace DecorLights
 			light2D.Lux = 1500;
 			light2D.Angle = 0.0f;
 			light2D.Direction = LIGHT2D.FLOORLAMP_DIRECTION;
-			light2D.Offset = new Vector2(0.05f, 0.5f);
+			light2D.Offset = new Vector2(0.05f, 1f);
 			light2D.shape = LightShape.Circle;
 			light2D.drawOverlay = true;
 			BuildingTemplates.DoPostConfigure(go);
