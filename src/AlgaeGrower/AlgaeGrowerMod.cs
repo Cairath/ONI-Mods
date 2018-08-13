@@ -17,7 +17,7 @@ namespace AlgaeGrower
 			{
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEGROWER.NAME", "Algae Grower");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEGROWER.DESC", "Algae colony, Duplicant colony... we're more alike than we are different.");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEGROWER.EFFECT", "Consumes " + ELEMENTS.FERTILIZER.NAME + " to produce " + ELEMENTS.OXYGEN.NAME + ", " + ELEMENTS.ALGAE.NAME + " and remove some " + ELEMENTS.CARBONDIOXIDE.NAME + ".\n\nRequires " + UI.FormatAsLink("Light", "LIGHT") + " to grow.");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEGROWER.EFFECT", "Consumes " + ELEMENTS.FERTILIZER.NAME + ", " + ELEMENTS.CARBONDIOXIDE.NAME + " and " + ELEMENTS.WATER.NAME + " to grow " +  ELEMENTS.ALGAE.NAME + " and emit some " + ELEMENTS.OXYGEN.NAME + ".\n\nRequires " + UI.FormatAsLink("Light", "LIGHT") + " to grow.");
 
 				List<string> oxygenBuildings = new List<string>((string[]) BUILDINGS.PLANORDER[1].data) {AlgaeGrowerConfig.ID};
 				BUILDINGS.PLANORDER[1].data = oxygenBuildings.ToArray();

@@ -55,7 +55,7 @@ namespace AlgaeGrower
 			storage2.showInUI = true;
 			storage2.SetDefaultStoredItemModifiers(PollutedWaterStorageModifiers);
 			storage2.allowItemRemoval = false;
-			storage2.storageFilters = new List<Tag> { SimHashes.DirtyWater.CreateTag(), SimHashes.Algae.CreateTag() };
+			storage2.storageFilters = new List<Tag> { SimHashes.Algae.CreateTag(), SimHashes.CarbonDioxide.CreateTag() };
 
 			ManualDeliveryKG manualDeliveryKg1 = go.AddOrGet<ManualDeliveryKG>();
 			manualDeliveryKg1.SetStorage(storage1);
@@ -76,15 +76,15 @@ namespace AlgaeGrower
 			algaeHabitat.pressureSampleOffset = new CellOffset(0, 1);
 
 			ElementConverter elementConverter = go.AddComponent<ElementConverter>();
-			elementConverter.consumedElements = new ElementConverter.ConsumedElement[2]
+			elementConverter.consumedElements = new ElementConverter.ConsumedElement[3]
 			{
-				new ElementConverter.ConsumedElement(SimHashes.Fertilizer.CreateTag(), 0.03f),
-				new ElementConverter.ConsumedElement(SimHashes.Water.CreateTag(), 0.3f)
+				new ElementConverter.ConsumedElement(SimHashes.CarbonDioxide.CreateTag(), 0.01375f),
+				new ElementConverter.ConsumedElement(SimHashes.Fertilizer.CreateTag(), 0.000625f),
+				new ElementConverter.ConsumedElement(SimHashes.Water.CreateTag(), 0.005625f)
 			};
-			elementConverter.outputElements = new ElementConverter.OutputElement[3]
+			elementConverter.outputElements = new ElementConverter.OutputElement[2]
 			{
-				new ElementConverter.OutputElement(0.04f, SimHashes.Oxygen, 303.15f, false, 0.0f, 1f),
-				new ElementConverter.OutputElement(0.3f, SimHashes.DirtyWater, 303.15f, true, 0.0f, 1f),
+				new ElementConverter.OutputElement(0.005f, SimHashes.Oxygen, 303.15f, false, 0.0f, 1f),
 				new ElementConverter.OutputElement(0.015f, SimHashes.Algae, 303.15f, true, 0.0f, 1f)
 			};
 
@@ -102,11 +102,12 @@ namespace AlgaeGrower
 
 			ElementConsumer elementConsumer = go.AddOrGet<ElementConsumer>();
 			elementConsumer.elementToConsume = SimHashes.CarbonDioxide;
-			elementConsumer.consumptionRate = 0.0003333333f;
+			elementConsumer.consumptionRate = 0.01375f;
 			elementConsumer.consumptionRadius = 3;
 			elementConsumer.showInStatusPanel = true;
+			elementConsumer.storeOnConsume = true;
 			elementConsumer.sampleCellOffset = new Vector3(0.0f, 1f, 0.0f);
-			elementConsumer.isRequired = false;
+			elementConsumer.isRequired = true;
 
 			PassiveElementConsumer passiveElementConsumer = go.AddComponent<PassiveElementConsumer>();
 			passiveElementConsumer.elementToConsume = SimHashes.Water;
