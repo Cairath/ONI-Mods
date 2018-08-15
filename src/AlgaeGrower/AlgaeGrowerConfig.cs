@@ -35,7 +35,6 @@ namespace AlgaeGrower
 			buildingDef.AudioCategory = "HollowMetal";
 			buildingDef.UtilityInputOffset = new CellOffset(0, 0);
 			buildingDef.UtilityOutputOffset = new CellOffset(0, 0);
-			buildingDef.OutputConduitType = ConduitType.Liquid;
 			buildingDef.ViewMode = SimViewMode.LiquidVentMap;
 
 			SoundEventVolumeCache.instance.AddVolume("algaefarm_kanim", "AlgaeHabitat_bubbles", NOISE_POLLUTION.NOISY.TIER0);
@@ -91,14 +90,6 @@ namespace AlgaeGrower
 			ElementDropper elementDropper = go.AddComponent<ElementDropper>();
 			elementDropper.emitMass = 5;
 			elementDropper.emitTag = SimHashes.Algae.CreateTag();
-
-			ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
-			conduitDispenser.conduitType = ConduitType.Liquid;
-			conduitDispenser.invertElementFilter = true;
-			conduitDispenser.elementFilter = new SimHashes[1]
-			{
-				SimHashes.Water
-			};
 
 			ElementConsumer elementConsumer = go.AddOrGet<ElementConsumer>();
 			elementConsumer.elementToConsume = SimHashes.CarbonDioxide;

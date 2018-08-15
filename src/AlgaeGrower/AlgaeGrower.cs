@@ -26,14 +26,12 @@ namespace AlgaeGrower
 		{
 			private Operational operational;
 			public ElementConverter converter;
-			private ConduitDispenser dispenser;
 
 			public SMInstance(AlgaeGrower master)
 			  : base(master)
 			{
 				operational = master.GetComponent<Operational>();
 				converter = master.GetComponent<ElementConverter>();
-				dispenser = master.GetComponent<ConduitDispenser>();
 			}
 
 			public bool HasEnoughMass(Tag tag)
@@ -45,7 +43,7 @@ namespace AlgaeGrower
 			{
 				get
 				{
-					if (operational.IsOperational && dispenser.IsConnected)
+					if (operational.IsOperational)
 						return true;
 					return false;
 				}
