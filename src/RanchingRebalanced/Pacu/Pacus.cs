@@ -1,16 +1,43 @@
-﻿using Harmony;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Harmony;
 using UnityEngine;
 
 namespace RanchingRebalanced.Pacu
 {
-	public class TropicalPacuMods
+	public class Pacus
 	{
-		/***
-		 *  Adds Water->PWater conversion
-		 */
+		[HarmonyPatch(typeof(BasePacuConfig), "CreatePrefab")]
+		public class BasePacuConfigCreatePrefab
+		{
+			private static void Postfix(ref GameObject __result)
+			{
+				__result.AddOrGet<OutOfLiquidMonitor>();
+			}
+		}
+
+		[HarmonyPatch(typeof(PacuConfig), "CreatePacu")]
+		public class PacuConfigCreatePacu
+		{
+			private static void Postfix(ref GameObject __result)
+			{
+				
+			}
+		}
+
+		[HarmonyPatch(typeof(PacuCleanerConfig), "CreatePacu")]
+		public class PacuCleanerConfigCreatePacu
+		{
+			private static void Postfix(ref GameObject __result)
+			{
+				
+			}
+		}
+
 		[HarmonyPatch(typeof(PacuTropicalConfig), "CreatePacu")]
-		public class CreatePacu
+		public class PacuTropicalConfigCreatePacu
 		{
 			private static void Postfix(ref GameObject __result, bool is_baby)
 			{
@@ -46,27 +73,12 @@ namespace RanchingRebalanced.Pacu
 		}
 
 		[HarmonyPatch(typeof(PacuTropicalConfig), "OnSpawn")]
-		public class OnSpawn
+		public class PacuTropicalConfigOnSpawn
 		{
 			private static void Postfix(ref GameObject inst)
 			{
 				ElementConsumer component = inst.GetComponent<ElementConsumer>();
 				if (component != null) component.EnableConsumption(true);
-			}
-		}
-
-		[HarmonyPatch(typeof(BaseHatchConfig), "VeggieDiet")]
-		public class PoopPatch
-		{
-			private static void Postfix(ref List<Diet.Info> __result)
-			{
-				var dietInfo = __result[0];
-				TagBits consumed_tag_bits = new TagBits();
-				consumed_tag_bits.SetTag(TagManager.Create("ColdBreatherSeed",
-					(string) STRINGS.CREATURES.SPECIES.SEEDS.COLDBREATHER.NAME));
-				var newDiet = new Diet.Info(consumed_tag_bits, SimHashes.Lime.CreateTag(), dietInfo.caloriesPerKg, dietInfo.producedConversionRate);
-				__result.Clear();
-				__result.Add(newDiet);
 			}
 		}
 	}

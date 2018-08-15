@@ -11,10 +11,10 @@ namespace RanchingRebalanced
 	public class Shinebugs
 	{
 		public static readonly Color LIGHTBUG_COLOR = new Color(2f, 2f, 0f);
-		public static readonly Color LIGHTBUG_COLOR_ORANGE = new Color(2f, 1.5f, 0f);
-		public static readonly Color LIGHTBUG_COLOR_PURPLE = new Color(1f, 0.5f, 2f);
+		public static readonly Color LIGHTBUG_COLOR_ORANGE = new Color(2f, 1.2f, 0f);
+		public static readonly Color LIGHTBUG_COLOR_PURPLE = new Color(1.3f, 0.85f, 2.2f);
 		public static readonly Color LIGHTBUG_COLOR_PINK = new Color(2f, 1.2f, 2f);
-		public static readonly Color LIGHTBUG_COLOR_BLUE = new Color(0.8f, 1.2f, 2f);
+		public static readonly Color LIGHTBUG_COLOR_BLUE = new Color(1f, 1.6f, 2.2f);
 		public static readonly Color LIGHTBUG_COLOR_CRYSTAL = new Color(2f, 2f, 2f);
 
 		[HarmonyPatch(typeof(LightBugConfig), "CreateLightBug")]
@@ -28,6 +28,7 @@ namespace RanchingRebalanced
 				light2D.Range = 5;
 			}
 		}
+		
 
 		[HarmonyPatch(typeof(LightBugOrangeConfig), "CreateLightBug")]
 		public class CreateLightBugT2

@@ -1,18 +1,18 @@
 ﻿using System;
 using KSerialization;
 using UnityEngine;
-using KSerialization;
 using STRINGS;
-using System;
-using UnityEngine;
 
 namespace RanchingRebalanced.Pacu
 {
 	public class OutOfLiquidMonitor : KMonoBehaviour, ISim1000ms
 	{
-		[Serialize] [SerializeField] private float timeToSuffocate;
+		[Serialize]
+		[SerializeField]
+		private float timeToSuffocate;
 
-		[Serialize] private bool suffocated;
+		[Serialize]
+		private bool suffocated;
 		private bool suffocating;
 
 		protected const float MaxSuffocateTime = 50f;

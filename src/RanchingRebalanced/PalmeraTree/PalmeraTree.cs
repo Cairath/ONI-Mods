@@ -13,8 +13,6 @@ namespace RanchingRebalanced.PalmeraTree
 		[MyCmpReq]
 		private Harvestable harvestable;
 		[MyCmpReq]
-		private KAnimControllerBase animController;
-		[MyCmpReq]
 		private ElementEmitter elementEmitter;
 		[MyCmpReq]
 		private ElementConsumer elementConsumer;

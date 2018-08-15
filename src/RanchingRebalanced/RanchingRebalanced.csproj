@@ -57,19 +57,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DietUtils.cs" />
     <Compile Include="GameTagsRanching.cs" />
-    <Compile Include="Pacu\BasePacuMods.cs" />
+    <Compile Include="Hatches\Hatches.cs" />
+    <Compile Include="Pacu\Pacus.cs" />
     <Compile Include="Pacu\OutOfLiquidMonitor.cs" />
-    <Compile Include="Pacu\TropicalPacuMods.cs" />
     <Compile Include="PalmeraTree\PalmeraBerryConfig.cs" />
     <Compile Include="PalmeraTree\PalmeraTreeMod.cs" />
     <Compile Include="PalmeraTree\PalmeraTree.cs" />
     <Compile Include="PalmeraTree\PalmeraTreeConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shinebugs.cs" />
+    <Compile Include="Shinebugs\Shinebugs.cs" />
+    <Compile Include="Slicksters\Slicksters.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BehavioralChanges\" />
+    <Folder Include="Volgus\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
