@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Harmony;
+using Klei.AI;
+using TUNING;
 using UnityEngine;
 
 namespace RanchingRebalanced.Pacu
@@ -12,6 +14,11 @@ namespace RanchingRebalanced.Pacu
 		[HarmonyPatch(typeof(BasePacuConfig), "CreatePrefab")]
 		public class BasePacuConfigCreatePrefab
 		{
+			private static void Prefix()
+			{
+				PacuTuning.STANDARD_CALORIES_PER_CYCLE = 1000000f;
+			}
+
 			private static void Postfix(ref GameObject __result)
 			{
 				__result.AddOrGet<OutOfLiquidMonitor>();
@@ -23,7 +30,16 @@ namespace RanchingRebalanced.Pacu
 		{
 			private static void Postfix(ref GameObject __result)
 			{
-				
+				float algaeKgPerDay = 50f;
+				float kgPerDay = 150f;
+				float calPerDay = PacuTuning.STANDARD_CALORIES_PER_CYCLE;
+
+				var dietList = new List<Diet.Info>();
+				DietUtils.AddToDiet(dietList, SimHashes.Algae.CreateTag(), SimHashes.ToxicSand.CreateTag(), calPerDay, algaeKgPerDay, 0.75f);
+				DietUtils.AddToDiet(dietList, SimHashes.Phosphorite.CreateTag(), SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay, 0.5f);
+				DietUtils.AddToDiet(dietList, SimHashes.Fertilizer.CreateTag(), SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay, 0.5f);
+
+				__result = DietUtils.SetupDiet(__result, dietList, calPerDay / kgPerDay, 25f);
 			}
 		}
 
@@ -32,7 +48,13 @@ namespace RanchingRebalanced.Pacu
 		{
 			private static void Postfix(ref GameObject __result)
 			{
-				
+				float algaeKgPerDay = 50f;
+				float calPerDay = PacuTuning.STANDARD_CALORIES_PER_CYCLE;
+
+				var dietList = new List<Diet.Info>();
+				DietUtils.AddToDiet(dietList, SimHashes.Algae.CreateTag(), SimHashes.ToxicSand.CreateTag(), calPerDay, algaeKgPerDay, 0.75f);
+
+				__result = DietUtils.SetupDiet(__result, dietList, calPerDay / algaeKgPerDay, 25f);
 			}
 		}
 
@@ -41,6 +63,18 @@ namespace RanchingRebalanced.Pacu
 		{
 			private static void Postfix(ref GameObject __result, bool is_baby)
 			{
+				float algaeKgPerDay = 50f;
+				float kgPerDay = 150f;
+				float calPerDay = PacuTuning.STANDARD_CALORIES_PER_CYCLE;
+
+				var dietList = new List<Diet.Info>();
+				DietUtils.AddToDiet(dietList, SimHashes.Algae.CreateTag(), SimHashes.ToxicSand.CreateTag(), calPerDay, algaeKgPerDay, 0.75f);
+				DietUtils.AddToDiet(dietList, SimHashes.SlimeMold.CreateTag(), SimHashes.Algae.CreateTag(), calPerDay, kgPerDay, 0.33f);
+				DietUtils.AddToDiet(dietList, FOOD.FOOD_TYPES.MEAT, SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay);
+				DietUtils.AddToDiet(dietList, FOOD.FOOD_TYPES.COOKEDMEAT, SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay);
+
+				__result = DietUtils.SetupDiet(__result, dietList, calPerDay / kgPerDay, 25f);
+
 				if (is_baby) return;
 
 				__result.AddComponent<Storage>().capacityKg = 10f;
@@ -81,5 +115,37 @@ namespace RanchingRebalanced.Pacu
 				if (component != null) component.EnableConsumption(true);
 			}
 		}
+
+		//[HarmonyPatch(typeof(FishFeederConfig), "ConfigureBuildingTemplate")]
+		//public class FishFeederConfigConfigureBuildingTemplate
+		//{
+		//	private static bool Prefix(ref GameObject go)
+		//	{
+		//		//Prioritizable.AddRef(go);
+		//		//go.GetComponent<KPrefabID>().AddPrefabTag(RoomConstraints.ConstraintTags.CreatureFeeder);
+		//		//Storage storage1 = go.AddOrGet<Storage>();
+		//		//storage1.capacityKg = 200f;
+		//		//storage1.showInUI = true;
+		//		//storage1.showDescriptor = true;
+		//		//storage1.allowItemRemoval = false;
+		//		//storage1.allowSettingOnlyFetchMarkedItems = false;
+		//		//storage1.allowSublimation = false;
+		//		//Storage storage2 = go.AddComponent<Storage>();
+		//		//storage2.capacityKg = 200f;
+		//		//storage2.showInUI = true;
+		//		//storage2.showDescriptor = true;
+		//		//storage2.allowItemRemoval = false;
+		//		//storage2.allowSublimation = false;
+		//		//go.AddOrGet<StorageLocker>();
+		//		//Effect resource = new Effect("AteFromFeeder", (string)STRINGS.CREATURES.MODIFIERS.ATE_FROM_FEEDER.NAME, (string)STRINGS.CREATURES.MODIFIERS.ATE_FROM_FEEDER.TOOLTIP, 600f, true, false, false, (string)null, 0.0f);
+		//		//resource.Add(new AttributeModifier(Db.Get().Amounts.Wildness.deltaAttribute.Id, -0.03333334f, (string)STRINGS.CREATURES.MODIFIERS.ATE_FROM_FEEDER.NAME, false, false, true));
+		//		//resource.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, 2f, (string)STRINGS.CREATURES.MODIFIERS.ATE_FROM_FEEDER.NAME, false, false, true));
+		//		//Db.Get().effects.Add(resource);
+		//		//go.AddOrGet<TreeFilterable>();
+		//		//go.AddOrGet<CreatureFeeder>().effectId = resource.Id;
+
+		//		//return false;
+		//	}
+		//}
 	}
 }
