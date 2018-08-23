@@ -51,7 +51,7 @@ namespace ConveyorShutoff
 
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 		{
-			go.GetComponent<KPrefabID>().AddPrefabTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
+			go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
 			BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 		}
 
@@ -75,7 +75,7 @@ namespace ConveyorShutoff
 		{
 			GeneratedBuildings.RegisterLogicPorts(go, SolidConduitShutoffConfig.INPUT_PORTS);
 
-			go.GetComponent<KPrefabID>().AddPrefabTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
+			go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
 			go.AddOrGet<SolidConduitShutoff>();
 			go.GetComponent<RequireInputs>().SetRequirements(true, false);
 			go.AddOrGet<LogicOperationalController>();

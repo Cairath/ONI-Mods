@@ -45,7 +45,7 @@ namespace RanchingSensors
 
 			foreach (var prefab in list)
 			{
-				if (prefab.HasPrefabTag(GameTags.Egg))
+				if (prefab.HasTag(GameTags.Egg))
 				{
 					selected.Add(prefab);
 				}

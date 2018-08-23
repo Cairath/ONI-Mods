@@ -19,7 +19,7 @@
 				.ToggleStatusItem(Db.Get().BuildingStatusItems.EmittingLight, null);
 		}
 
-		public class Instance : GameInstance
+		public new class Instance : GameInstance
 		{
 			public Instance(IStateMachineTarget master)
 				: base(master)

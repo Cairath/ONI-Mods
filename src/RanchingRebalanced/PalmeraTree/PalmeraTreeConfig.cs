@@ -15,7 +15,7 @@ namespace RanchingRebalanced.PalmeraTree
 		{
 			GameObject placedEntity = EntityTemplates.CreatePlacedEntity(ID, CREATURES.SPECIES.JUNGLEGASPLANT.NAME,CREATURES.SPECIES.JUNGLEGASPLANT.DESC, 1f,
 				Assets.GetAnim("palmeratree_kanim"), "idle_loop", Grid.SceneLayer.BuildingFront, 1, 3, DECOR.BONUS.TIER2);
-			EntityTemplates.ExtendEntityToBasicPlant(placedEntity, 268.15f, 278.15f, 293.15f, 296.15f, 308.15f, 318.15f, new SimHashes[1] { SimHashes.ChlorineGas }, true, 0.0f, 0.15f, PalmeraBerryConfig.ID);
+			EntityTemplates.ExtendEntityToBasicPlant(placedEntity, 258.15f, 278.15f, 308.15f, 318.15f, new SimHashes[1] { SimHashes.ChlorineGas }, true, 0.0f, 0.15f, PalmeraBerryConfig.ID);
 
 			placedEntity.AddOrGet<PalmeraTree>();
 			var consumer = placedEntity.AddOrGet<ElementConsumer>();
