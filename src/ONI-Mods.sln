@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildablePOIProps", "Builda
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgaeGrower", "AlgaeGrower\AlgaeGrower.csproj", "{5260D58E-F491-4BDD-B05C-EB545EE5F89A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTFO DTU", "GTFODTU\GTFO DTU.csproj", "{6EE6C979-8F0D-4460-917E-797A651D1FB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5260D58E-F491-4BDD-B05C-EB545EE5F89A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE6C979-8F0D-4460-917E-797A651D1FB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE6C979-8F0D-4460-917E-797A651D1FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE6C979-8F0D-4460-917E-797A651D1FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE6C979-8F0D-4460-917E-797A651D1FB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
