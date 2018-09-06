@@ -1,10 +1,14 @@
 Oxygen Not Included Mods
 ====
 
-master branch last updated to game version **EU-280450**
+master branch last updated to game version **RU-284634**
+
+Forum thread
+---
+https://forums.kleientertainment.com/forums/topic/94120-mods-bunch-of-various-mods-usable-with-the-modloader/
 
 
-Mods descriptions
+Mods descriptions (some)
 ---
 * **Conveyor Rail Filter** (ConveyorFilter.dll)
 
@@ -34,10 +38,6 @@ Mods descriptions
 * **Prettier Conductive Heavy-Watt Wire** (PrettierConductiveHeavyWattWire.dll)
 
   Reduces the decor penalty for Conductive Heavy-Watt Wire to -5 decor (radius unchanged -- 3)
-  
-* **Polluted water heat capacity** (PWaterToWaterHeatCapacity.dll)
-
-  Sets Polluted Water heat capacity to the same value as clean water.
   
 * **Take Medicine Threshold** (TakeMedicineBoosterThresholdMod.dll)
 
