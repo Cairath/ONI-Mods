@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Harmony;
-using TUNING;
+﻿using Harmony;
 using UnityEngine;
 
-namespace RanchingRebalanced
+namespace RanchingRebalanced.Shinebugs
 {
 	public class Shinebugs
 	{
@@ -90,5 +85,4 @@ namespace RanchingRebalanced
 			}
 		}
 	}
-
 }

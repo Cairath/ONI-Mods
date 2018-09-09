@@ -15,8 +15,8 @@ namespace RanchingRebalanced.Slicksters
 			{
 				var dailyCalories = OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE;
 
-				 var dietList = new List<Diet.Info>();
-				dietList.Add(new Diet.Info(new TagBits(SimHashes.Oxygen.CreateTag()), Tag.Invalid, dailyCalories / 20f));
+				var dietList = new List<Diet.Info>();
+				dietList.Add(new Diet.Info(new HashSet<Tag>((IEnumerable<Tag>)new Tag[] { SimHashes.Oxygen.CreateTag() }), Tag.Invalid, dailyCalories / 20f));
 
 				__result = DietUtils.SetupPooplessDiet(__result, dietList);
 			}

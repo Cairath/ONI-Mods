@@ -6,7 +6,7 @@ namespace RanchingRebalanced
 {
 	public class DietUtils
 	{
-		public static void AddToDiet(List<Diet.Info> dietInfos, TagBits consumedTags, Tag poopTag, float dailyCalories,
+		public static void AddToDiet(List<Diet.Info> dietInfos, HashSet<Tag> consumedTags, Tag poopTag, float dailyCalories,
 			float dailyKilograms, float conversionRate = 1.0f, string diseaseId = "", float diseasePerKg = 0.0f)
 		{
 			dietInfos.Add(String.IsNullOrEmpty(diseaseId)
@@ -17,7 +17,7 @@ namespace RanchingRebalanced
 		public static void AddToDiet(List<Diet.Info> dietInfos, Tag consumedTag, Tag poopTag, float dailyCalories,
 			float dailyKilograms, float conversionRate = 1.0f, string diseaseId = "", float diseasePerKg = 0.0f)
 		{
-			AddToDiet(dietInfos, (TagBits)consumedTag, poopTag, dailyCalories, dailyKilograms, conversionRate, diseaseId, diseasePerKg);
+			AddToDiet(dietInfos, new HashSet<Tag>((IEnumerable<Tag>)new Tag[] { consumedTag }), poopTag, dailyCalories, dailyKilograms, conversionRate, diseaseId, diseasePerKg);
 		}
 
 		public static void AddToDiet(List<Diet.Info> dietInfos, EdiblesManager.FoodInfo foodInfo, Tag poopTag, float dailyCalories,
@@ -30,11 +30,11 @@ namespace RanchingRebalanced
 
 			if (String.IsNullOrEmpty(diseaseId))
 			{
-				dietInfos.Add(new Diet.Info(new TagBits(new Tag[] { new Tag(foodInfo.Id) }), poopTag, caloriesInKgOfFood, conversionRatio));
+				dietInfos.Add(new Diet.Info(new HashSet<Tag>((IEnumerable<Tag>)new Tag[] { new Tag(foodInfo.Id) }), poopTag, caloriesInKgOfFood, conversionRatio));
 			}
 			else
 			{
-				dietInfos.Add(new Diet.Info(new TagBits(new Tag[] { new Tag(foodInfo.Id) }), poopTag, caloriesInKgOfFood, conversionRatio, diseaseId, diseasePerKg));
+				dietInfos.Add(new Diet.Info(new HashSet<Tag>((IEnumerable<Tag>)new Tag[] { new Tag(foodInfo.Id) }), poopTag, caloriesInKgOfFood, conversionRatio, diseaseId, diseasePerKg));
 			}
 		}
 

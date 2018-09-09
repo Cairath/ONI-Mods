@@ -1,4 +1,5 @@
 ﻿using System;
+using Harmony;
 using KSerialization;
 using UnityEngine;
 using STRINGS;
@@ -93,7 +94,17 @@ namespace RanchingRebalanced.Pacu
 				this.timeToSuffocate = Mathf.Clamp(this.timeToSuffocate, 0.0f, MaxSuffocateTime);
 			}
 		}
+	}
 
-
+	[HarmonyPatch(typeof(Manager), "GetType", new[] { typeof(string) })]
+	public static class OutOfLiquidMonitorSerializationPatch
+	{
+		public static void Postfix(string type_name, ref Type __result)
+		{
+			if (type_name == "RanchingRebalanced.Pacu.OutOfLiquidMonitor")
+			{
+				__result = typeof(OutOfLiquidMonitor);
+			}
+		}
 	}
 }

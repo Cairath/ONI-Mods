@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C884CE09-9A83-4154-B94F-2B692CA43C38}</ProjectGuid>
+    <ProjectGuid>{E0E13C69-5124-446D-AE9A-81C844C49830}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RanchingRebalanced</RootNamespace>
-    <AssemblyName>RanchingRebalanced</AssemblyName>
+    <RootNamespace>PalmeraTree</RootNamespace>
+    <AssemblyName>PalmeraTree</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,15 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DietUtils.cs" />
-    <Compile Include="Hatches\Hatches.cs" />
-    <Compile Include="Pacu\Pacus.cs" />
-    <Compile Include="Pacu\OutOfLiquidMonitor.cs" />
+    <Compile Include="PalmeraBerryConfig.cs" />
+    <Compile Include="PalmeraTree.cs" />
+    <Compile Include="PalmeraTreeConfig.cs" />
+    <Compile Include="PalmeraTreeMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shinebugs\Shinebugs.cs" />
-    <Compile Include="Slicksters\Slicksters.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\..\modfiles\$(TargetName).dll"</PostBuildEvent>

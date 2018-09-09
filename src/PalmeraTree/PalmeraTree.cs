@@ -1,6 +1,6 @@
 ﻿using STRINGS;
 
-namespace RanchingRebalanced.PalmeraTree
+namespace PalmeraTree
 {
 	public class PalmeraTree : StateMachineComponent<PalmeraTree.StatesInstance>
 	{
