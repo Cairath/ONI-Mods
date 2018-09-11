@@ -67,9 +67,9 @@ namespace FlowSplitters
 
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			Object.DestroyImmediate((Object)go.GetComponent<RequireInputs>());
-			Object.DestroyImmediate((Object)go.GetComponent<ConduitConsumer>());
-			Object.DestroyImmediate((Object)go.GetComponent<ConduitDispenser>());
+			Object.DestroyImmediate(go.GetComponent<RequireInputs>());
+			Object.DestroyImmediate(go.GetComponent<ConduitConsumer>());
+			Object.DestroyImmediate(go.GetComponent<ConduitDispenser>());
 			BuildingTemplates.DoPostConfigure(go);
 		}
 	}
