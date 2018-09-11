@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTFO DTU", "GTFODTU\GTFO DT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RanchingRebalanced", "RanchingRebalanced\RanchingRebalanced.csproj", "{C884CE09-9A83-4154-B94F-2B692CA43C38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalmeraTree", "PalmeraTree\PalmeraTree.csproj", "{E0E13C69-5124-446D-AE9A-81C844C49830}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C884CE09-9A83-4154-B94F-2B692CA43C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0E13C69-5124-446D-AE9A-81C844C49830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0E13C69-5124-446D-AE9A-81C844C49830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E13C69-5124-446D-AE9A-81C844C49830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0E13C69-5124-446D-AE9A-81C844C49830}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
