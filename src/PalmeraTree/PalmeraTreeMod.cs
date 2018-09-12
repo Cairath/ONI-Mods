@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Harmony;
 using KSerialization;
 using TUNING;
-using UnityEngine;
 
 namespace PalmeraTree
 {
@@ -19,6 +17,13 @@ namespace PalmeraTree
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.TRELLIS.DESC", "Used to plant trees.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.TRELLIS.EFFECT", "For when you want to grow your very own tree.");
 
+				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.PALMERATREEPLANT.NAME", PalmeraTreeConfig.SeedName);
+				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.PALMERATREEPLANT.DESC", PalmeraTreeConfig.SeedDesc);
+
+				Strings.Add("STRINGS.CREATURES.SPECIES.PALMERATREEPLANT.NAME", PalmeraTreeConfig.Name);
+				Strings.Add("STRINGS.CREATURES.SPECIES.PALMERATREEPLANT.DESC", PalmeraTreeConfig.Desc);
+				Strings.Add("STRINGS.CREATURES.SPECIES.PALMERATREEPLANT.DOMESTICATEDDESC", PalmeraTreeConfig.DomesticatedDesc);
+
 				Strings.Add("STRINGS.ITEMS.FOOD." + SteamedPalmeraBerryConfig.ID.ToUpper() + ".NAME",
 					SteamedPalmeraBerryConfig.NameStr);
 				Strings.Add("STRINGS.ITEMS.FOOD." + SteamedPalmeraBerryConfig.ID.ToUpper() + ".DESC",
@@ -30,7 +35,7 @@ namespace PalmeraTree
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".DESC", PalmeraBerryConfig.Desc);
 
 				List<string> farm =
-					new List<string>((string[]) TUNING.BUILDINGS.PLANORDER[3].data) {TrellisConfig.ID};
+					new List<string>((string[]) BUILDINGS.PLANORDER[3].data) {TrellisConfig.ID};
 				BUILDINGS.PLANORDER[3].data = farm.ToArray();
 				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(TrellisConfig.ID);
 
