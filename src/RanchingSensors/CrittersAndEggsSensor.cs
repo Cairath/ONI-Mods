@@ -40,9 +40,7 @@ namespace RanchingSensors
 
 		public void Sim200ms(float dt)
 		{
-			var list = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).creatures;
-
-			currentCritters = list.Count;
+			currentCritters = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).creatures.Count + Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).eggs.Count;
 
 			if (activateAboveThreshold)
 			{

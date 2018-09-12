@@ -40,19 +40,7 @@ namespace RanchingSensors
 
 		public void Sim200ms(float dt)
 		{
-			var list = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).creatures;
-			var selected = new List<KPrefabID>();
-
-			foreach (var prefab in list)
-			{
-				if (prefab.HasTag(GameTags.Egg))
-				{
-					selected.Add(prefab);
-				}
-
-			}
-
-			currentEggs = selected.Count;
+			currentEggs = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).eggs.Count;
 
 			if (activateAboveThreshold)
 			{
