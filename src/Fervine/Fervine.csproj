@@ -57,8 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fervine.cs" />
     <Compile Include="FervineConfig.cs" />
     <Compile Include="FervineMod.cs" />
+    <Compile Include="MiniSun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

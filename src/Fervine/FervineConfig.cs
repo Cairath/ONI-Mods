@@ -20,16 +20,20 @@ namespace Fervine
 		public GameObject CreatePrefab()
 		{
 			GameObject placedEntity = EntityTemplates.CreatePlacedEntity(ID, CREATURES.SPECIES.HEATBULB.NAME, CREATURES.SPECIES.HEATBULB.DESC, 1f,
-				Assets.GetAnim("plantheatbulb_kanim"), "open", Grid.SceneLayer.BuildingFront, 1, 1, DECOR.BONUS.TIER2, defaultTemperature: 350f);
-			EntityTemplates.ExtendEntityToBasicPlant(placedEntity, 258.15f, 268.15f, 363.15f, 373.15f, new[] { SimHashes.Oxygen, SimHashes.ContaminatedOxygen, SimHashes.CarbonDioxide });
+				Assets.GetAnim("plantheatbulb_kanim"), "close", Grid.SceneLayer.BuildingFront, 1, 1, DECOR.BONUS.TIER3, defaultTemperature: 350f);
+			EntityTemplates.ExtendEntityToBasicPlant(placedEntity, 258.15f, 288.15f, 363.15f, 373.15f, pressure_sensitive: false);
 
-			//placedEntity.AddOrGet<PalmeraTree>();
+			Light2D light2D = placedEntity.AddOrGet<Light2D>();
+			light2D.Color = new Color(1f, 1f, 0f);
+			light2D.Lux = 1800;
+			light2D.Range = 5;
+			placedEntity.AddOrGet<Fervine>();
 
 			EntityTemplates.CreateAndRegisterPreviewForPlant(
 				EntityTemplates.CreateAndRegisterSeedForPlant(placedEntity, SeedProducer.ProductionType.Hidden, SEED_ID,
-					SeedName, SeedDesc, Assets.GetAnim("plantheatbulb_kanim"), "misc", 0, new List<Tag> { GameTags.DecorSeed },
+					SeedName, SeedDesc, Assets.GetAnim("plantheatbulb_kanim"), "seedling_ground", 0, new List<Tag> { GameTags.DecorSeed },
 					SingleEntityReceptacle.ReceptacleDirection.Top, new Tag(), 6, "",
-					EntityTemplates.CollisionShape.CIRCLE, 0.33f, 0.33f, null, string.Empty), "PalmeraTree_preview", Assets.GetAnim("palmeratree_kanim"), "idle_wilt_loop", 1, 1);
+					EntityTemplates.CollisionShape.CIRCLE, 0.33f, 0.33f, null, string.Empty), "Heatbulb_preview", Assets.GetAnim("plantheatbulb_kanim"), "close", 1, 1);
 
 			SoundEventVolumeCache.instance.AddVolume("bristleblossom_kanim", "PrickleFlower_harvest", NOISE_POLLUTION.CREATURES.TIER3);
 			SoundEventVolumeCache.instance.AddVolume("bristleblossom_kanim", "PrickleFlower_harvest", NOISE_POLLUTION.CREATURES.TIER3);
