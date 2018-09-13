@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleSweeperRange", "Doubl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorfulShinebugs", "ColorfulShinebugs\ColorfulShinebugs.csproj", "{2D9FE5B8-ABA8-4689-A3FE-398CF3291A2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fervine", "Fervine\Fervine.csproj", "{CABB3EF6-E62F-4932-9544-6B852143230A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{2D9FE5B8-ABA8-4689-A3FE-398CF3291A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D9FE5B8-ABA8-4689-A3FE-398CF3291A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D9FE5B8-ABA8-4689-A3FE-398CF3291A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CABB3EF6-E62F-4932-9544-6B852143230A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CABB3EF6-E62F-4932-9544-6B852143230A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CABB3EF6-E62F-4932-9544-6B852143230A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CABB3EF6-E62F-4932-9544-6B852143230A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
