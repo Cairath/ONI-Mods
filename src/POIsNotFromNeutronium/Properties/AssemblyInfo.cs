@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ComputerDesk")]
+[assembly: AssemblyTitle("POIsNotFromNeutronium")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ComputerDesk")]
+[assembly: AssemblyProduct("POIsNotFromNeutronium")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("62109e95-1568-4631-8743-3198fc05b43d")]
+[assembly: Guid("df997c2b-81ab-4f1d-b6db-ff9d941b356c")]
 
 // Version information for an assembly consists of the following four values:
 //

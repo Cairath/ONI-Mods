@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E83812F8-FCBD-4538-B082-4001EE1BB61D}</ProjectGuid>
+    <ProjectGuid>{DF997C2B-81AB-4F1D-B6DB-FF9D941B356C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DNAStatue</RootNamespace>
-    <AssemblyName>DNAStatue</AssemblyName>
+    <RootNamespace>POIsNotFromNeutronium</RootNamespace>
+    <AssemblyName>POIsNotFromNeutronium</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,12 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DNAStatueConfig.cs" />
-    <Compile Include="DNAStatueMod.cs" />
+    <Compile Include="POIsNotFromNeutroniumMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\..\modfiles\BuildableProps\$(TargetName).dll"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)\..\modfiles\$(TargetName).dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>
