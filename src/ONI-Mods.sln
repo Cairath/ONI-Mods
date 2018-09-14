@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POIsNotFromNeutronium", "PO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteorFrequency", "MeteorFrequency\MeteorFrequency.csproj", "{728FA98E-B2AF-4AE0-A92B-A57BF77DF5D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeyserCalculatedAvgOutputTooltip", "GeyserCalculatedAvgOutputTooltip\GeyserCalculatedAvgOutputTooltip.csproj", "{B046A213-8AF8-4CA1-8024-B3F8209D24CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{728FA98E-B2AF-4AE0-A92B-A57BF77DF5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{728FA98E-B2AF-4AE0-A92B-A57BF77DF5D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{728FA98E-B2AF-4AE0-A92B-A57BF77DF5D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B046A213-8AF8-4CA1-8024-B3F8209D24CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B046A213-8AF8-4CA1-8024-B3F8209D24CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B046A213-8AF8-4CA1-8024-B3F8209D24CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B046A213-8AF8-4CA1-8024-B3F8209D24CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
