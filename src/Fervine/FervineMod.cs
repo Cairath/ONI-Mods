@@ -14,13 +14,7 @@ namespace Fervine
 			private static void Prefix()
 			{
 				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.HEATBULB.NAME", FervineConfig.SeedName);
-				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.HEATBULB.DESC", FervineConfig.SeedDesc);
-
-				var a = Assets.GetAnim("plantheatbulb_kanim");
-				for (int i = 0; i < a.GetData().animCount; i++)
-				{
-					Debug.Log(a.GetData().GetAnim(i).name);
-				}
+				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.HEATBULB.DESC", FervineConfig.SeedDesc);			
 			}
 
 			private static void Postfix()
