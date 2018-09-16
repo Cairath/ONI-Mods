@@ -13,13 +13,20 @@ namespace WoundedGoToMedBed
 		{
 			private static void Postfix(ref WoundMonitor __instance)
 			{
-				__instance.wounded.light
-					.ToggleUrge(Db.Get().Urges.RestDueToDisease)
-					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms)
+				__instance.wounded
 					.Exit(smi => UnassignClinic(smi));
 
-				__instance.wounded.medium.ToggleAnims("anim_loco_wounded_kanim", 1f);
-				__instance.wounded.heavy.ToggleAnims("anim_loco_wounded_kanim", 3f);
+				__instance.wounded.light
+					.ToggleUrge(Db.Get().Urges.RestDueToDisease)
+					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms);
+
+				__instance.wounded.medium
+					.ToggleUrge(Db.Get().Urges.RestDueToDisease)
+					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms);
+
+				__instance.wounded.heavy.ToggleAnims("anim_loco_wounded_kanim", 3f)
+					.ToggleUrge(Db.Get().Urges.RestDueToDisease)
+					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms);
 			}
 
 
