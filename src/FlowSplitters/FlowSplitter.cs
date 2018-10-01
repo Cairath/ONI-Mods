@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Harmony;
 using UnityEngine;
 
 namespace FlowSplitters
@@ -73,7 +74,7 @@ namespace FlowSplitters
 				ConduitFlow.ConduitContents contentOutput1 = flowManager.GetContents(outputCell);
 				ConduitFlow.ConduitContents contentOutput2 = flowManager.GetContents(secondaryOutputCell);
 
-				var maxMass = type == ConduitType.Liquid ? 10f : 1f;
+				var maxMass = Traverse.Create(flowManager).Field("MaxMass").GetValue<float>();  //type == ConduitType.Liquid ? 10f : 1f;
 				var halfMass = contents.mass / 2f;
 
 				var willFitInOutput1 = maxMass - contentOutput1.mass;
