@@ -18,7 +18,6 @@ namespace ConveyorFilter
 				List<string> conveyorBuildings =
 					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[12].data) { SolidConduitFilterConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[12].data = conveyorBuildings.ToArray();
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(SolidConduitFilterConfig.ID);
 			}
 
 			private static void Postfix()

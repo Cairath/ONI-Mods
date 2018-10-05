@@ -17,7 +17,6 @@ namespace BuildablePOIProps.ComputerDesk
 				
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { ComputerDeskConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(ComputerDeskConfig.ID);
 			}
 
 			private static void Postfix()

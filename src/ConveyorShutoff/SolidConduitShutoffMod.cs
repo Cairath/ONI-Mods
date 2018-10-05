@@ -18,7 +18,6 @@ namespace ConveyorShutoff
 				List<string> conveyorBuildings =
 					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[12].data) { SolidConduitShutoffConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[12].data = conveyorBuildings.ToArray();
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(SolidConduitShutoffConfig.ID);
 			}
 
 			private static void Postfix()

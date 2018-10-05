@@ -31,11 +31,6 @@ namespace DecorLights
 
 				List<string> buldings = new List<string>((string[])BUILDINGS.PLANORDER[8].data) { LavaLampConfig.ID, SaltLampConfig.ID, CeilingLampConfig.ID, WallLampConfig.ID };
 				BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-
-				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(LavaLampConfig.ID);
-				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(SaltLampConfig.ID);
-				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(CeilingLampConfig.ID);
-				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(WallLampConfig.ID);
 			}
 
 			private static void Postfix()

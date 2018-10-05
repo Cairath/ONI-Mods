@@ -10,7 +10,8 @@ namespace DoubleSweeperRange
 		{
 		    private static void Postfix(ref GameObject go)
 		    {
-			    go.GetComponent<StationaryChoreRangeVisualizer>().range = 8;
+			    go.GetComponent<StationaryChoreRangeVisualizer>().width = 8;
+			    go.GetComponent<StationaryChoreRangeVisualizer>().height = 8;
 			}
 	    }
 
@@ -19,7 +20,8 @@ namespace DoubleSweeperRange
 		{
 		    private static void Postfix(ref GameObject go)
 		    {
-			    go.GetComponent<StationaryChoreRangeVisualizer>().range = 8;
+			    go.GetComponent<StationaryChoreRangeVisualizer>().width = 8;
+			    go.GetComponent<StationaryChoreRangeVisualizer>().height = 8;
 			    go.GetComponent<SolidTransferArm>().pickupRange = 8;
 			}
 	    }

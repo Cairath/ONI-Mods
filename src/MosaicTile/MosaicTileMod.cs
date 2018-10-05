@@ -17,8 +17,6 @@ namespace MosaicTiles
 				
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[0].data) { MosaicTileConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[0].data = buldings.ToArray();
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(MosaicTileConfig.ID);
 			}
 
 		    private static void Postfix()

@@ -58,7 +58,7 @@ namespace DecorLights
 			light2D.drawOverlay = true;
 			light2D.Lux = 1800;
 			BuildingTemplates.DoPostConfigure(go);
-			go.GetComponent<KPrefabID>().prefabInitFn += game_object => new LightController.Instance(game_object.GetComponent<KPrefabID>()).StartSM();
+			go.AddOrGetDef<LightController.Def>();
 		}
 	}
 }

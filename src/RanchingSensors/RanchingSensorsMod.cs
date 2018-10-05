@@ -29,10 +29,6 @@ namespace RanchingSensors
 			    buildings.Add(CrittersSensorConfig.ID);
 			    buildings.Add(EggsSensorConfig.ID);
 			    TUNING.BUILDINGS.PLANORDER[11].data = buildings.ToArray();
-
-			    TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(CrittersAndEggsSensorConfig.ID);
-			    TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(CrittersSensorConfig.ID);
-			    TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(EggsSensorConfig.ID);
 		    }
 
 		    private static void Postfix()

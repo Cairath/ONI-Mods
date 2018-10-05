@@ -22,9 +22,6 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 
 				List<string> ls = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[10].data) { DrywallHidePipesConfig.ID, TempshiftHidesPipesConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[10].data = ls.ToArray();
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(DrywallHidePipesConfig.ID);
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(TempshiftHidesPipesConfig.ID);
 			}
 
 			private static void Postfix()

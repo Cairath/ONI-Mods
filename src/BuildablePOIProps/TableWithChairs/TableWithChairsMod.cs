@@ -17,8 +17,6 @@ namespace BuildablePOIProps.TableWithChairs
 
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { TableWithChairsConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(TableWithChairsConfig.ID);
 			}
 
 			private static void Postfix()

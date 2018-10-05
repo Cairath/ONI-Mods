@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Database;
 using Harmony;
 using KSerialization;
 using TUNING;
@@ -29,7 +31,30 @@ namespace Fervine
 		{
 			public static void Postfix(ref SpacecraftManager __instance)
 			{
-				__instance.destinations.Add(new MiniSun(21, 4, 0.6f, ROCKETRY.DESTINATION_THRUST_COSTS.HIGH));
+				SpaceDestinationType MiniSun;
+				MiniSun = new SpaceDestinationType(nameof(MiniSun), null, "Mini Sun", "CAUTION: HOT", 16, "sun", new Dictionary<SimHashes, MathUtil.MinMax>()
+				{
+					{
+						SimHashes.Hydrogen,
+						new MathUtil.MinMax(98f, 99f)
+					},
+					{
+						SimHashes.GoldAmalgam,
+						new MathUtil.MinMax(1f, 2f)
+					}
+				}, new Dictionary<string, int>
+				{
+					{
+						FervineConfig.SEED_ID,
+						1
+					},
+					{
+						LightBugConfig.EGG_ID,
+						1
+					},
+				});
+
+				__instance.destinations.Add(new SpaceDestination(__instance.destinations.Count, MiniSun.Id, 15));
 			}
 		}
 

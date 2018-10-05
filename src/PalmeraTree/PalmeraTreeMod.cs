@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Database;
 using Harmony;
 using KSerialization;
+using STRINGS;
 using TUNING;
+using BUILDINGS = TUNING.BUILDINGS;
 
 namespace PalmeraTree
 {
@@ -35,9 +38,8 @@ namespace PalmeraTree
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".DESC", PalmeraBerryConfig.Desc);
 
 				List<string> farm =
-					new List<string>((string[]) BUILDINGS.PLANORDER[3].data) {TrellisConfig.ID};
+					new List<string>((string[])BUILDINGS.PLANORDER[3].data) { TrellisConfig.ID };
 				BUILDINGS.PLANORDER[3].data = farm.ToArray();
-				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(TrellisConfig.ID);
 
 				CROPS.CROP_TYPES.Add(new Crop.CropVal(PalmeraBerryConfig.ID, 12000f, 10));
 			}
@@ -92,9 +94,32 @@ namespace PalmeraTree
 		[HarmonyPatch(typeof(SpacecraftManager), "OnPrefabInit")]
 		public static class SpaceManagerPatch
 		{
-			public static void Postfix(ref  SpacecraftManager __instance)
+			public static void Postfix(ref SpacecraftManager __instance)
 			{
-				__instance.destinations.Add(new GassyDwarf(20, 1, 0.5f, ROCKETRY.DESTINATION_THRUST_COSTS.LOW));
+				SpaceDestinationType GassyDwarf;
+				GassyDwarf = new SpaceDestinationType(nameof(GassyDwarf), null, "Gassy Dwarf", "A hot, gassy dwarf. Under many layers of gas there is some hot soil, home to the native Palmera Tree.", 16, "gasGiant", new Dictionary<SimHashes, MathUtil.MinMax>()
+				{
+					{
+						SimHashes.ChlorineGas,
+						new MathUtil.MinMax(200f, 300f)
+					},
+					{
+						SimHashes.Hydrogen,
+						new MathUtil.MinMax(50f, 100f)
+					},
+					{
+						SimHashes.Dirt,
+						new MathUtil.MinMax(100f, 200f)
+					}
+				}, new Dictionary<string, int>
+				{
+					{
+						PalmeraTreeConfig.SEED_ID,
+						1
+					}
+				});
+
+				__instance.destinations.Add(new SpaceDestination(__instance.destinations.Count, GassyDwarf.Id, 20));
 			}
 		}
 	}

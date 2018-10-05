@@ -55,8 +55,7 @@ namespace DecorLights
 			light2D.shape = LightShape.Circle;
 			light2D.drawOverlay = true;
 			BuildingTemplates.DoPostConfigure(go);
-			go.GetComponent<KPrefabID>().prefabInitFn += (KPrefabID.PrefabFn)(game_object =>
-			   new LightController.Instance(game_object.GetComponent<KPrefabID>()).StartSM());
+			go.AddOrGetDef<LightController.Def>();
 		}
 	}
 }

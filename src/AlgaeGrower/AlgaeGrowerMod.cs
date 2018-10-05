@@ -21,7 +21,6 @@ namespace AlgaeGrower
 
 				List<string> oxygenBuildings = new List<string>((string[]) BUILDINGS.PLANORDER[1].data) {AlgaeGrowerConfig.ID};
 				BUILDINGS.PLANORDER[1].data = oxygenBuildings.ToArray();
-				BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(AlgaeGrowerConfig.ID);
 			}
 
 			private static void Postfix()

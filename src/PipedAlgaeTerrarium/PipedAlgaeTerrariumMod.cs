@@ -18,7 +18,6 @@ namespace PipedAlgaeTerrarium
 
 				List<string> oxygenBuildings = new List<string>((string[]) TUNING.BUILDINGS.PLANORDER[1].data) {PipedAlgaeTerrariumConfig.ID};
 				TUNING.BUILDINGS.PLANORDER[1].data = oxygenBuildings.ToArray();
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(PipedAlgaeTerrariumConfig.ID);
 			}
 
 			private static void Postfix()

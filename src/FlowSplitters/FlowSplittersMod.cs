@@ -26,10 +26,6 @@ namespace FlowSplitters
 				List<string> gas =
 					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[5].data) {  GasSplitterConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[5].data = gas.ToArray();
-
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(LiquidSplitterConfig.ID);
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(GasSplitterConfig.ID);
 			}
 
 			private static void Postfix()

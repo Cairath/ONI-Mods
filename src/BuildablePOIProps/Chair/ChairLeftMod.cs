@@ -21,8 +21,6 @@ namespace BuildablePOIProps.Chair
 
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { ChairLeftConfig.ID, ChairRightConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(ChairLeftConfig.ID);
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(ChairRightConfig.ID);
 			}
 
 			private static void Postfix()

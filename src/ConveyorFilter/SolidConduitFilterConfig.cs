@@ -96,10 +96,7 @@ namespace ConveyorFilter
 			SolidConduitFilter filterLogic = go.AddOrGet<SolidConduitFilter>();
 			filterLogic.SecondaryPort = secondaryPort;
 
-			go.GetComponent<KPrefabID>().prefabInitFn += (KPrefabID.PrefabFn)(game_object => new PoweredActiveController.Instance((IStateMachineTarget)game_object.GetComponent<KPrefabID>())
-			{
-				ShowWorkingStatus = true
-			}.StartSM());
+			go.AddOrGetDef<PoweredActiveController.Def>().showWorkingStatus = true;
 		}
 	}
 }

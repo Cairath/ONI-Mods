@@ -17,8 +17,6 @@ namespace BuildablePOIProps.Clock
 
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { ClockConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(ClockConfig.ID);
 			}
 
 			private static void Postfix()

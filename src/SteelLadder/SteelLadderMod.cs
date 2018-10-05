@@ -17,8 +17,6 @@ namespace SteelLadder
 
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[0].data) { SteelLadderConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[0].data = buldings.ToArray();
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(SteelLadderConfig.ID);
 			}
 
 			private static void Postfix()

@@ -5,7 +5,6 @@ using STRINGS;
 
 namespace GTFODTU
 {
-
 	public class GTFODTU
 	{
 		[HarmonyPatch(typeof(Building), "EffectDescriptors")]

@@ -17,8 +17,6 @@ namespace BuildablePOIProps.Couch
 
 				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { CouchConfig.ID };
 				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-
-				TUNING.BUILDINGS.COMPONENT_DESCRIPTION_ORDER.Add(CouchConfig.ID);
 			}
 
 			private static void Postfix()
