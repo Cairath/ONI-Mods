@@ -1,41 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿using System.Collections.Generic;
 using Harmony;
 
 namespace RefinedMetalsUsableAsRawMetals
 {
 	public class RefinedMetalsUsableAsRawMetalsMod
 	{
-		[HarmonyPatch(typeof(ElementLoader), "Load")]
+		[HarmonyPatch(typeof(ElementLoader), "LoadUserElementData")]
 		public static class ElementLoaderLoadPatch
 		{
-			public static void Prefix(ref ElementLoader.SolidEntry[] solid_entries)
+			public static void Postfix()
 			{
-				MethodInfo method =
-					typeof(ElementLoader).GetMethod("SetupElementsTable", BindingFlags.NonPublic | BindingFlags.Static);
+				Element copper = ElementLoader.FindElementByHash(SimHashes.Copper);
+				Element iron = ElementLoader.FindElementByHash(SimHashes.Iron);
+				Element tungsten = ElementLoader.FindElementByHash(SimHashes.Tungsten);
+				Element steel = ElementLoader.FindElementByHash(SimHashes.Steel);
+				Element gold = ElementLoader.FindElementByHash(SimHashes.Gold);
 
-				if (method == null || solid_entries == null)
+				var basic = new Element[] { copper, iron, gold };
+
+				foreach (var element in basic)
 				{
-					Debug.Log("[MOD] RefinedMetalsUsableAsRawMetals: could not initialize elements table, abort");
-					return;
+					element.oreTags = CreateTags(element.materialCategory, new[] { "Burns", "BuildableAny", "RefinedMetal", "Metal" });
+					GameTags.SolidElements.Add(element.tag);
 				}
 
-				method.Invoke(null, null);
+				tungsten.oreTags =
+					CreateTags(tungsten.materialCategory, new[] { "Plumbable", "BuildableAny", "RefinedMetal", "Metal" });
+				GameTags.SolidElements.Add(tungsten.tag);
 
-				foreach (var e in solid_entries)
+				steel.oreTags =
+					CreateTags(steel.materialCategory, new[] { "RefinedMetal", "BuildableAny", "Metal" });
+				GameTags.SolidElements.Add(steel.tag);
+			}
+		}
+
+		public static Tag[] CreateTags(Tag materialCategory, string[] tags)
+		{
+			List<Tag> tagList = new List<Tag>();
+			if (tags != null)
+			{
+				foreach (string tag_string in tags)
 				{
-					if (e.materialCategory.Contains("RefinedMetal")) 
-					{
-						e.tags += " | RefinedMetal | Metal";
-					} else if (e.tags.Contains("RefinedMetal"))
-					{
-						e.tags += " | Metal";
-					}
+					if (!string.IsNullOrEmpty(tag_string))
+						tagList.Add(TagManager.Create(tag_string));
 				}
 			}
+
+			tagList.Add(TagManager.Create(Element.State.Solid.ToString()));
+
+			if (materialCategory.IsValid && !tagList.Contains(materialCategory))
+				tagList.Add(materialCategory);
+
+			return tagList.ToArray();
 		}
 	}
 }
