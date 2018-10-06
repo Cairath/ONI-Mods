@@ -3,27 +3,31 @@ using UnityEngine;
 
 namespace DoubleSweeperRange
 {
-    public class DoubleSweeperRangeMod
-    {
-	    [HarmonyPatch(typeof(SolidTransferArmConfig), "DoPostConfigurePreview")]
-	    public class DoPostConfigurePreviewPatch
+	public class DoubleSweeperRangeMod
+	{
+		[HarmonyPatch(typeof(SolidTransferArmConfig), "DoPostConfigurePreview")]
+		public class DoPostConfigurePreviewPatch
 		{
-		    private static void Postfix(ref GameObject go)
-		    {
-			    go.GetComponent<StationaryChoreRangeVisualizer>().width = 8;
-			    go.GetComponent<StationaryChoreRangeVisualizer>().height = 8;
+			private static void Postfix(ref GameObject go)
+			{
+				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 19;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 19;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
 			}
-	    }
+		}
 
 		[HarmonyPatch(typeof(SolidTransferArmConfig), "DoPostConfigureComplete")]
-	    public class DoPostConfigureCompletePatch
+		public class DoPostConfigureCompletePatch
 		{
-		    private static void Postfix(ref GameObject go)
-		    {
-			    go.GetComponent<StationaryChoreRangeVisualizer>().width = 8;
-			    go.GetComponent<StationaryChoreRangeVisualizer>().height = 8;
-			    go.GetComponent<SolidTransferArm>().pickupRange = 8;
+			private static void Postfix(ref GameObject go)
+			{
+				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 19;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 19;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
+				go.AddOrGet<SolidTransferArm>().pickupRange = 8;
 			}
-	    }
+		}
 	}
 }
