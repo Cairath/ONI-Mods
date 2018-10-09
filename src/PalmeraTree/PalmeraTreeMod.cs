@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Database;
 using Harmony;
 using KSerialization;
@@ -11,6 +12,28 @@ namespace PalmeraTree
 {
 	public class PalmeraTreeMod
 	{
+		public static SpaceDestinationType GassyDwarf = new SpaceDestinationType(nameof(GassyDwarf), null, "Gassy Dwarf", "A hot, gassy dwarf. Under many layers of gas there is some hot soil, home to the native Palmera Tree.", 16, "gasGiant", new Dictionary<SimHashes, MathUtil.MinMax>()
+		{
+			{
+				SimHashes.ChlorineGas,
+				new MathUtil.MinMax(200f, 300f)
+			},
+			{
+				SimHashes.Hydrogen,
+				new MathUtil.MinMax(50f, 100f)
+			},
+			{
+				SimHashes.Dirt,
+				new MathUtil.MinMax(100f, 200f)
+			}
+		}, new Dictionary<string, int>
+		{
+			{
+				PalmeraTreeConfig.SEED_ID,
+				1
+			}
+		});
+
 		[HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
 		public class PalmeraTreeEntityConfigManagerPatch
 		{
@@ -60,66 +83,70 @@ namespace PalmeraTree
 			}
 		}
 
-		[HarmonyPatch(typeof(BuildingLoader), "Add2DComponents")]
-		public class Add2DComponentsPatch
-		{
-			private static void Prefix(ref string initialAnimState, BuildingDef def)
-			{
-				if (initialAnimState == "place" && def.Name == TrellisConfig.ID) initialAnimState = "place_1";
-			}
-		}
-
-		[HarmonyPatch(typeof(Db), "Initialize")]
-		public class PalmeraTreeDbPatch
-		{
-			private static void Prefix()
-			{
-				List<string> tech = new List<string>(Database.Techs.TECH_GROUPING["FarmingTech"]) { TrellisConfig.ID };
-				Database.Techs.TECH_GROUPING["FarmingTech"] = tech.ToArray();
-			}
-		}
-
-		[HarmonyPatch(typeof(Manager), "GetType", new[] { typeof(string) })]
-		public static class PalmeraTreeEntitySerializationPatch
-		{
-			public static void Postfix(string type_name, ref Type __result)
-			{
-				if (type_name == "PalmeraTree.PalmeraTree")
-				{
-					__result = typeof(PalmeraTree);
-				}
-			}
-		}
-
 		[HarmonyPatch(typeof(SpacecraftManager), "OnPrefabInit")]
 		public static class SpaceManagerPatch
 		{
 			public static void Postfix(ref SpacecraftManager __instance)
 			{
-				SpaceDestinationType GassyDwarf;
-				GassyDwarf = new SpaceDestinationType(nameof(GassyDwarf), null, "Gassy Dwarf", "A hot, gassy dwarf. Under many layers of gas there is some hot soil, home to the native Palmera Tree.", 16, "gasGiant", new Dictionary<SimHashes, MathUtil.MinMax>()
-				{
-					{
-						SimHashes.ChlorineGas,
-						new MathUtil.MinMax(200f, 300f)
-					},
-					{
-						SimHashes.Hydrogen,
-						new MathUtil.MinMax(50f, 100f)
-					},
-					{
-						SimHashes.Dirt,
-						new MathUtil.MinMax(100f, 200f)
-					}
-				}, new Dictionary<string, int>
-				{
-					{
-						PalmeraTreeConfig.SEED_ID,
-						1
-					}
-				});
+				if (__instance.destinations == null)
+					return;
 
-				__instance.destinations.Add(new SpaceDestination(__instance.destinations.Count, GassyDwarf.Id, 20));
+				Db.Get().SpaceDestinationTypes.Add(GassyDwarf);
+
+				var destination = new SpaceDestination(__instance.destinations.Count, GassyDwarf.Id, 2);
+				__instance.destinations.Add(destination);
+				destination.startAnalyzed = true;
+				SpacecraftManager.instance.EarnDestinationAnalysisPoints(destination.id, 10000f);
+			}
+		}
+
+		[HarmonyPatch(typeof(SpacecraftManager), "OnSpawn")]
+		public static class SpaceManagerSpawnPatch
+		{
+			public static void Postfix(ref SpacecraftManager __instance)
+			{
+				if (__instance.destinationsGenerated && __instance.destinations != null &&
+					__instance.destinations.All(d => d.type != nameof(GassyDwarf)))
+				{
+					Db.Get().SpaceDestinationTypes.Add(GassyDwarf);
+
+					var destination = new SpaceDestination(__instance.destinations.Count, GassyDwarf.Id, 2);
+					__instance.destinations.Add(destination);
+					destination.startAnalyzed = true;
+					destination.startingOrbitPercentage = 0.15f;
+					SpacecraftManager.instance.EarnDestinationAnalysisPoints(destination.id, 10000f);
+				}
+			}
+		}
+	}
+
+	[HarmonyPatch(typeof(BuildingLoader), "Add2DComponents")]
+	public class Add2DComponentsPatch
+	{
+		private static void Prefix(ref string initialAnimState, BuildingDef def)
+		{
+			if (initialAnimState == "place" && def.Name == TrellisConfig.ID) initialAnimState = "place_1";
+		}
+	}
+
+	[HarmonyPatch(typeof(Db), "Initialize")]
+	public class PalmeraTreeDbPatch
+	{
+		private static void Prefix()
+		{
+			List<string> tech = new List<string>(Database.Techs.TECH_GROUPING["FarmingTech"]) { TrellisConfig.ID };
+			Database.Techs.TECH_GROUPING["FarmingTech"] = tech.ToArray();
+		}
+	}
+
+	[HarmonyPatch(typeof(Manager), "GetType", new[] { typeof(string) })]
+	public static class PalmeraTreeEntitySerializationPatch
+	{
+		public static void Postfix(string type_name, ref Type __result)
+		{
+			if (type_name == "PalmeraTree.PalmeraTree")
+			{
+				__result = typeof(PalmeraTree);
 			}
 		}
 	}

@@ -92,6 +92,11 @@ namespace FlowSplitters
 					delta1 = flowManager.AddElement(outputCell, contents.element, contents.mass, contents.temperature,
 						contents.diseaseIdx, contents.diseaseCount);
 				}
+				else if (!flowManager.HasConduit(outputCell))
+				{
+					delta2 = flowManager.AddElement(secondaryOutputCell, contents.element, contents.mass, contents.temperature,
+						contents.diseaseIdx, contents.diseaseCount);
+				}
 				else if (willFitInOutput1 >= halfMass && willFitInOutput2 >= halfMass)
 				{
 					delta1 = flowManager.AddElement(outputCell, contents.element, halfMass, contents.temperature,
