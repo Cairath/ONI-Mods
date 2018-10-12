@@ -2,6 +2,7 @@
 using STRINGS;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DrywallAndTempshiftHidePipesSeparateObjects
 {
@@ -20,17 +21,9 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.THERMALBLOCKHIDESPIPES.DESC", BUILDINGS.PREFABS.THERMALBLOCK.DESC);
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.THERMALBLOCKHIDESPIPES.EFFECT", BUILDINGS.PREFABS.THERMALBLOCK.EFFECT);
 
-				List<string> ls = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[10].data) { DrywallHidePipesConfig.ID, TempshiftHidesPipesConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[10].data = ls.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(DrywallHidePipesConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
-
-				object obj2 = Activator.CreateInstance(typeof(TempshiftHidesPipesConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj2 as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Utilities).data;
+				category.Add(DrywallHidePipesConfig.ID);
+				category.Add(TempshiftHidesPipesConfig.ID);
 			}
 		}
 

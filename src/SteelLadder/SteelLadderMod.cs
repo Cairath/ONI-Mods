@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace SteelLadder
@@ -15,14 +16,8 @@ namespace SteelLadder
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.STEELLADDER.DESC", "Durable steel ladder with plastic handles, combining usefulness and aesthetics.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.STEELLADDER.EFFECT", "Increases Duplicant climbing speed.");
 
-				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[0].data) { SteelLadderConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[0].data = buldings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(SteelLadderConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Base).data;
+				category.Add(SteelLadderConfig.ID);
 			}
 		}
 

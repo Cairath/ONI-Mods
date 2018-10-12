@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace BuildablePOIProps.Clock
@@ -15,14 +16,8 @@ namespace BuildablePOIProps.Clock
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CLOCK.DESC", "A simple wall clock.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CLOCK.EFFECT", "A pretty clock for your wall.");
 
-				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { ClockConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(ClockConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
+				category.Add(ClockConfig.ID);
 			}
 		}
 

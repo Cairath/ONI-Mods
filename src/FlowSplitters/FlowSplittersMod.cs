@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace FlowSplitters
@@ -19,22 +20,11 @@ namespace FlowSplitters
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.GASSPLITTER.DESC", "Splits gases equally in two pipes. If one the output pipes can't handle half to the input, the emtpier pipe will receive it.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.GASSPLITTER.EFFECT", "Have you ever wanted to have your gases in two places at once?");
 
-				List<string> liquid =
-					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[4].data) { LiquidSplitterConfig.ID};
-				TUNING.BUILDINGS.PLANORDER[4].data = liquid.ToArray();
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Plumbing).data;
+				category.Add(LiquidSplitterConfig.ID);
 
-				List<string> gas =
-					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[5].data) {  GasSplitterConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[5].data = gas.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(LiquidSplitterConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
-
-				object obj2 = Activator.CreateInstance(typeof(GasSplitterConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj2 as IBuildingConfig);
+				List<string> category2 = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.HVAC).data;
+				category2.Add(GasSplitterConfig.ID);
 			}
 		}
 

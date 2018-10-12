@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace BuildablePOIProps.TableWithChairs
@@ -15,14 +16,8 @@ namespace BuildablePOIProps.TableWithChairs
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.TABLEWITHCHAIRS.DESC", "A table and some chairs.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.TABLEWITHCHAIRS.EFFECT", "Perfect for a break.");
 
-				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { TableWithChairsConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(TableWithChairsConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
+				category.Add(TableWithChairsConfig.ID);
 			}
 		}
 

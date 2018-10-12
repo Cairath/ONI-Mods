@@ -2,6 +2,7 @@
 using Harmony;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TUNING;
 
 namespace DecorLights
@@ -29,23 +30,11 @@ namespace DecorLights
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.WALLLAMP.DESC", "Light: now in Wall Edition. Ceiling hook not included.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.WALLLAMP.EFFECT", STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC);
 
-				List<string> buldings = new List<string>((string[])BUILDINGS.PLANORDER[8].data) { LavaLampConfig.ID, SaltLampConfig.ID, CeilingLampConfig.ID, WallLampConfig.ID };
-				BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object lava = Activator.CreateInstance(typeof(LavaLampConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(lava as IBuildingConfig);
-
-				object salt = Activator.CreateInstance(typeof(SaltLampConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(salt as IBuildingConfig);
-
-				object ceiling = Activator.CreateInstance(typeof(CeilingLampConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(ceiling as IBuildingConfig);
-
-				object wall = Activator.CreateInstance(typeof(WallLampConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(wall as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
+				category.Add(LavaLampConfig.ID);
+				category.Add(SaltLampConfig.ID);
+				category.Add(CeilingLampConfig.ID);
+				category.Add(WallLampConfig.ID);
 			}
 		}
 

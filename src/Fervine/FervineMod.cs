@@ -41,12 +41,6 @@ namespace Fervine
 				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.HEATBULB.NAME", FervineConfig.SeedName);
 				Strings.Add("STRINGS.CREATURES.SPECIES.SEEDS.HEATBULB.DESC", FervineConfig.SeedDesc);
 			}
-
-			private static void Postfix()
-			{
-				object heatbulb = Activator.CreateInstance(typeof(FervineConfig));
-				EntityConfigManager.Instance.RegisterEntity(heatbulb as IEntityConfig);
-			}
 		}
 
 		[HarmonyPatch(typeof(SpacecraftManager), "OnPrefabInit")]

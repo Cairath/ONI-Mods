@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace ConveyorFilter
@@ -15,15 +16,8 @@ namespace ConveyorFilter
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.DESC", "Filters incoming items on the Conveyor Rail. Filtered items (selected on the list) are put on the secondary output in the middle of the filter (icon not visible).");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITFILTER.EFFECT", "Filters the Conveyor Rail by sending selected items to a separate output.");
 
-				List<string> conveyorBuildings =
-					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[12].data) { SolidConduitFilterConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[12].data = conveyorBuildings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(SolidConduitFilterConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Conveyance).data;
+				category.Add(SolidConduitFilterConfig.ID);
 			}
 		}
 

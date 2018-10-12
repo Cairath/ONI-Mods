@@ -60,26 +60,10 @@ namespace PalmeraTree
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".NAME", PalmeraBerryConfig.NameStr);
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".DESC", PalmeraBerryConfig.Desc);
 
-				List<string> farm =
-					new List<string>((string[])BUILDINGS.PLANORDER[3].data) { TrellisConfig.ID };
-				BUILDINGS.PLANORDER[3].data = farm.ToArray();
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Food).data;
+				category.Add(TrellisConfig.ID);
 
 				CROPS.CROP_TYPES.Add(new Crop.CropVal(PalmeraBerryConfig.ID, 12000f, 10));
-			}
-
-			private static void Postfix()
-			{
-				object berry = Activator.CreateInstance(typeof(PalmeraBerryConfig));
-				EntityConfigManager.Instance.RegisterEntity(berry as IEntityConfig);
-
-				object cookedBerry = Activator.CreateInstance(typeof(SteamedPalmeraBerryConfig));
-				EntityConfigManager.Instance.RegisterEntity(cookedBerry as IEntityConfig);
-
-				object tree = Activator.CreateInstance(typeof(PalmeraTreeConfig));
-				EntityConfigManager.Instance.RegisterEntity(tree as IEntityConfig);
-
-				object trellis = Activator.CreateInstance(typeof(TrellisConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(trellis as IBuildingConfig);
 			}
 		}
 

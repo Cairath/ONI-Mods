@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace ConveyorShutoff
@@ -15,15 +16,8 @@ namespace ConveyorShutoff
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.DESC", "Your items won't go anywhere unless you let them.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.EFFECT", "Automatically turns flow of objects on the Conveyor Rail on or off using Automation technology.");
 
-				List<string> conveyorBuildings =
-					new List<string>((string[])TUNING.BUILDINGS.PLANORDER[12].data) { SolidConduitShutoffConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[12].data = conveyorBuildings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(SolidConduitShutoffConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Conveyance).data;
+				category.Add(SolidConduitShutoffConfig.ID);
 			}
 		}
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using BuildablePOIProps.DNAStatue;
 using Harmony;
 
 namespace BuildablePOIProps.Chair
@@ -19,17 +21,9 @@ namespace BuildablePOIProps.Chair
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.DESC", "A comfy chair.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.EFFECT", "So comfy!");
 
-				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { ChairLeftConfig.ID, ChairRightConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(ChairLeftConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
-
-				obj = Activator.CreateInstance(typeof(ChairRightConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
+				category.Add(ChairLeftConfig.ID);
+				category.Add(ChairRightConfig.ID);
 			}
 		}
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using BuildablePOIProps.TableWithChairs;
 using Harmony;
 
 namespace BuildablePOIProps.DNAStatue
@@ -15,14 +17,8 @@ namespace BuildablePOIProps.DNAStatue
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.DNASTATUE.DESC", "An enormous statue of a DNA chain.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.DNASTATUE.EFFECT", "Big and difficult to build.");
 
-				List<string> buldings = new List<string>((string[])TUNING.BUILDINGS.PLANORDER[8].data) { DNAStatueConfig.ID };
-				TUNING.BUILDINGS.PLANORDER[8].data = buldings.ToArray();
-			}
-
-			private static void Postfix()
-			{
-				object obj = Activator.CreateInstance(typeof(DNAStatueConfig));
-				BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
+				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
+				category.Add(DNAStatueConfig.ID);
 			}
 		}
 
