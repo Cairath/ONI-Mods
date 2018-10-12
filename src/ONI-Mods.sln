@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuitDockStores75Kg", "SuitD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoundedGoToMedBed", "WoundedGoToMedBed\WoundedGoToMedBed.csproj", "{EDBF0868-C3C5-4EDA-833E-541C7550CA5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FasterJetpacks", "FasterJetpacks\FasterJetpacks.csproj", "{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{08786776-9753-48DC-B59A-F2FDC8F69EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08786776-9753-48DC-B59A-F2FDC8F69EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08786776-9753-48DC-B59A-F2FDC8F69EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
