@@ -4,7 +4,7 @@ namespace PrettierConductiveHeavyWattWire
 {
     public class PrettierConductiveHeavyWattWireMod
     {
-	    [HarmonyPatch(typeof(WireRefinedHighWattageConfig), "CreateBuildingDef")]
+	    [HarmonyPatch(typeof(WireRefinedHighWattageConfig), "CreateBuildingDef", new System.Type[]{})]
 	    public static class PrettierConductiveHeavyWattWirePatch
 		{
 		    public static void Postfix(ref BuildingDef __result)
