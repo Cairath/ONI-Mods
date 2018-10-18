@@ -1,7 +1,7 @@
 Oxygen Not Included Mods
 ====
 
-master branch last updated to game version **RU-284856**
+master branch last updated to game version **SU-290261**
 
 Forum thread
 ---
@@ -78,10 +78,6 @@ Mods descriptions (some)
 * **Bigger Camera Zoomout** (BiggerCameraZoomout.dll)
 
   Allows playing with much bigger camera zoom.
-  
-* **GTFO DTU** (GTFO-DTU.dll)
-
-  Shows old watt/joule values instead of DTU.
   
 * **Refined Metals Usable As Raw Metals** (RefinedMetalsUsableAsRawMetals.dll)
 
