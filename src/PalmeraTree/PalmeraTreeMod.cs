@@ -1,39 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Database;
 using Harmony;
 using KSerialization;
-using STRINGS;
 using TUNING;
-using BUILDINGS = TUNING.BUILDINGS;
 
 namespace PalmeraTree
 {
 	public class PalmeraTreeMod
 	{
-		public static SpaceDestinationType GassyDwarf = new SpaceDestinationType(nameof(GassyDwarf), null, "Gassy Dwarf", "A hot, gassy dwarf. Under many layers of gas there is some hot soil, home to the native Palmera Tree.", 16, "gasGiant", new Dictionary<SimHashes, MathUtil.MinMax>()
-		{
-			{
-				SimHashes.ChlorineGas,
-				new MathUtil.MinMax(200f, 300f)
-			},
-			{
-				SimHashes.Hydrogen,
-				new MathUtil.MinMax(50f, 100f)
-			},
-			{
-				SimHashes.Dirt,
-				new MathUtil.MinMax(100f, 200f)
-			}
-		}, new Dictionary<string, int>
-		{
-			{
-				PalmeraTreeConfig.SEED_ID,
-				1
-			}
-		});
-
 		[HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
 		public class PalmeraTreeEntityConfigManagerPatch
 		{
@@ -60,77 +35,75 @@ namespace PalmeraTree
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".NAME", PalmeraBerryConfig.NameStr);
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".DESC", PalmeraBerryConfig.Desc);
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Food).data;
+				List<string> category =
+					(List<string>) TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Food).data;
 				category.Add(TrellisConfig.ID);
 
 				CROPS.CROP_TYPES.Add(new Crop.CropVal(PalmeraBerryConfig.ID, 12000f, 10));
 			}
 		}
 
-		[HarmonyPatch(typeof(SpacecraftManager), "OnPrefabInit")]
-		public static class SpaceManagerPatch
+		[HarmonyPatch(typeof(SupermaterialRefineryConfig), "ConfigureBuildingTemplate")]
+		public class SupermaterialRefineryConfigPatch
 		{
-			public static void Postfix(ref SpacecraftManager __instance)
+			private static void Postfix()
 			{
-				if (__instance.destinations == null)
-					return;
-
-				Db.Get().SpaceDestinationTypes.Add(GassyDwarf);
-
-				var destination = new SpaceDestination(__instance.destinations.Count, GassyDwarf.Id, 2);
-				__instance.destinations.Add(destination);
-				destination.startAnalyzed = true;
-				SpacecraftManager.instance.EarnDestinationAnalysisPoints(destination.id, 10000f);
-			}
-		}
-
-		[HarmonyPatch(typeof(SpacecraftManager), "OnSpawn")]
-		public static class SpaceManagerSpawnPatch
-		{
-			public static void Postfix(ref SpacecraftManager __instance)
-			{
-				if (__instance.destinationsGenerated && __instance.destinations != null &&
-					__instance.destinations.All(d => d.type != nameof(GassyDwarf)))
+				var ingredients = new[]
 				{
-					Db.Get().SpaceDestinationTypes.Add(GassyDwarf);
+					new ComplexRecipe.RecipeElement(TagManager.Create("BasicSingleHarvestPlantSeed"), 10f),
+					new ComplexRecipe.RecipeElement(BasicFabricConfig.ID.ToTag(), 10f)
+				};
 
-					var destination = new SpaceDestination(__instance.destinations.Count, GassyDwarf.Id, 2);
-					__instance.destinations.Add(destination);
-					destination.startAnalyzed = true;
-					destination.startingOrbitPercentage = 0.15f;
-					SpacecraftManager.instance.EarnDestinationAnalysisPoints(destination.id, 10000f);
-				}
+				var result = new[]
+				{
+					new ComplexRecipe.RecipeElement(TagManager.Create(PalmeraTreeConfig.SEED_ID), 1f)
+				};
+
+				new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("SupermaterialRefinery", ingredients, result), ingredients,
+					result)
+				{
+					time = 50f,
+					description = "What will happen if you mash some organic mass together?",
+					useResultAsDescription = true
+				}.fabricators = new List<Tag>()
+				{
+					TagManager.Create("SupermaterialRefinery")
+				};
 			}
 		}
-	}
 
-	[HarmonyPatch(typeof(BuildingLoader), "Add2DComponents")]
-	public class Add2DComponentsPatch
-	{
-		private static void Prefix(ref string initialAnimState, BuildingDef def)
+		[HarmonyPatch(typeof(BuildingLoader), "Add2DComponents")]
+		public class Add2DComponentsPatch
 		{
-			if (initialAnimState == "place" && def.Name == TrellisConfig.ID) initialAnimState = "place_1";
-		}
-	}
-
-	[HarmonyPatch(typeof(Db), "Initialize")]
-	public class PalmeraTreeDbPatch
-	{
-		private static void Prefix()
-		{
-			List<string> tech = new List<string>(Database.Techs.TECH_GROUPING["FarmingTech"]) { TrellisConfig.ID };
-			Database.Techs.TECH_GROUPING["FarmingTech"] = tech.ToArray();
-		}
-	}
-
-	[HarmonyPatch(typeof(Manager), "GetType", new[] { typeof(string) })]
-	public static class PalmeraTreeEntitySerializationPatch
-	{
-		public static void Postfix(string type_name, ref Type __result)
-		{
-			if (type_name == "PalmeraTree.PalmeraTree")
+			private static void Prefix(ref string initialAnimState, BuildingDef def)
 			{
-				__result = typeof(PalmeraTree);
+				if (initialAnimState == "place" && def.Name.ToLower().Contains("trellis"))
+				{
+					initialAnimState = "place_1";
+				}
+				
+			}
+		}
+
+		[HarmonyPatch(typeof(Db), "Initialize")]
+		public class PalmeraTreeDbPatch
+		{
+			private static void Prefix()
+			{
+				List<string> tech = new List<string>(Database.Techs.TECH_GROUPING["FarmingTech"]) {TrellisConfig.ID};
+				Database.Techs.TECH_GROUPING["FarmingTech"] = tech.ToArray();
+			}
+		}
+
+		[HarmonyPatch(typeof(Manager), "GetType", new[] {typeof(string)})]
+		public static class PalmeraTreeEntitySerializationPatch
+		{
+			public static void Postfix(string type_name, ref Type __result)
+			{
+				if (type_name == "PalmeraTree.PalmeraTree")
+				{
+					__result = typeof(PalmeraTree);
+				}
 			}
 		}
 	}

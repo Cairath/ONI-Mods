@@ -26,7 +26,7 @@ namespace DoubleSweeperRange
 				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 19;
 				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
 				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
-				go.AddOrGet<SolidTransferArm>().pickupRange = 8;
+				go.AddOrGet<SolidTransferArm>().pickupRange = 15;
 			}
 		}
 	}

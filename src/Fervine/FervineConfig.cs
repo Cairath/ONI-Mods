@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using STRINGS;
 using TUNING;
 using UnityEngine;
@@ -31,7 +28,7 @@ namespace Fervine
 
 			EntityTemplates.CreateAndRegisterPreviewForPlant(
 				EntityTemplates.CreateAndRegisterSeedForPlant(placedEntity, SeedProducer.ProductionType.Hidden, SEED_ID,
-					SeedName, SeedDesc, Assets.GetAnim("plantheatbulb_kanim"), "seedling_ground", 0, new List<Tag> { GameTags.DecorSeed },
+					SeedName, SeedDesc, Assets.GetAnim("plantheatbulb_kanim"), "seed_swamplily", 0, new List<Tag> { GameTags.DecorSeed },
 					SingleEntityReceptacle.ReceptacleDirection.Top, new Tag(), 6, "",
 					EntityTemplates.CollisionShape.CIRCLE, 0.33f, 0.33f, null, string.Empty), "Heatbulb_preview", Assets.GetAnim("plantheatbulb_kanim"), "close", 1, 1);
 
