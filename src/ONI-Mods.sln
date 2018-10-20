@@ -59,8 +59,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuitDockStores75Kg", "SuitD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoundedGoToMedBed", "WoundedGoToMedBed\WoundedGoToMedBed.csproj", "{EDBF0868-C3C5-4EDA-833E-541C7550CA5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeedSharing", "SeedSharing\SeedSharing.csproj", "{F3BBA32A-1F8E-49FC-AFC1-9D18CACDBA86}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FasterJetpacks", "FasterJetpacks\FasterJetpacks.csproj", "{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessWasteFromJetpacks", "LessWasteFromJetpacks\LessWasteFromJetpacks.csproj", "{185032E8-0A01-47AC-890D-25281FDDC646}"
@@ -183,10 +181,6 @@ Global
 		{EDBF0868-C3C5-4EDA-833E-541C7550CA5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDBF0868-C3C5-4EDA-833E-541C7550CA5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDBF0868-C3C5-4EDA-833E-541C7550CA5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3BBA32A-1F8E-49FC-AFC1-9D18CACDBA86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3BBA32A-1F8E-49FC-AFC1-9D18CACDBA86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3BBA32A-1F8E-49FC-AFC1-9D18CACDBA86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3BBA32A-1F8E-49FC-AFC1-9D18CACDBA86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}.Release|Any CPU.ActiveCfg = Release|Any CPU
