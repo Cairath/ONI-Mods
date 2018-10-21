@@ -23,7 +23,7 @@ namespace RanchingRebalanced.Shinebugs
 				light2D.Range = 5;
 			}
 		}
-		
+
 
 		[HarmonyPatch(typeof(LightBugOrangeConfig), "CreateLightBug")]
 		public class CreateLightBugT2

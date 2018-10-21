@@ -33,10 +33,10 @@ namespace RanchingRebalanced.Hatches
 				float calPerDay = HatchTuning.STANDARD_CALORIES_PER_CYCLE;
 
 				var dietList = new List<Diet.Info>();
-				dietList.AddRange(BaseHatchConfig.VeggieDiet(SimHashes.Lime.CreateTag(), calPerDay / kgPerDay, 1f, (string) null, 0.0f));
+				dietList.AddRange(BaseHatchConfig.VeggieDiet(SimHashes.Lime.CreateTag(), calPerDay / kgPerDay, 1f, (string)null, 0.0f));
 				dietList.AddRange(DietUtils.CreateFoodDiet(SimHashes.Lime.CreateTag(), calPerDay, kgPerDay));
 
-				__result = DietUtils.SetupDiet(__result, dietList, calPerDay/kgPerDay, 25f);
+				__result = DietUtils.SetupDiet(__result, dietList, calPerDay / kgPerDay, 25f);
 			}
 		}
 

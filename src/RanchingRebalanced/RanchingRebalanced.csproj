@@ -63,7 +63,6 @@
     <Compile Include="Pacu\OutOfLiquidMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shinebugs\Shinebugs.cs" />
-    <Compile Include="Slicksters\Slicksters.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

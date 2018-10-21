@@ -42,17 +42,17 @@ namespace RanchingRebalanced.Pacu
 				if (!this.suffocating)
 				{
 					this.suffocating = true;
-					this.Trigger((int) GameHashes.DryingOut);
+					this.Trigger((int)GameHashes.DryingOut);
 				}
 
-				if ((double) this.timeToSuffocate > 0.0)
+				if ((double)this.timeToSuffocate > 0.0)
 					return;
 
 				DeathMonitor.Instance smi = this.GetSMI<DeathMonitor.Instance>();
 				if (smi != null)
 					smi.Kill(Db.Get().Deaths.Suffocation);
 
-				this.Trigger((int) GameHashes.DriedOut);
+				this.Trigger((int)GameHashes.DriedOut);
 				this.suffocated = true;
 			}
 			else
@@ -61,7 +61,7 @@ namespace RanchingRebalanced.Pacu
 					return;
 
 				this.suffocating = false;
-				this.Trigger((int) GameHashes.EnteredWetArea, (object) null);
+				this.Trigger((int)GameHashes.EnteredWetArea, (object)null);
 			}
 		}
 
@@ -83,7 +83,7 @@ namespace RanchingRebalanced.Pacu
 
 				this.timeToSuffocate -= dt;
 
-				if ((double) this.timeToSuffocate > 0.0)
+				if ((double)this.timeToSuffocate > 0.0)
 					return;
 
 				this.CheckDryingOut();
