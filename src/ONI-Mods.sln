@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueprintium", "Blueprintiu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawBuildingsWithoutMaterials", "DrawBuildingsWithoutMaterials\DrawBuildingsWithoutMaterials.csproj", "{75BDFADD-CE37-42C3-869D-F3EB2C064170}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorDropoff", "ConveyorDropoff\ConveyorDropoff.csproj", "{AD782B5E-A168-440F-AA84-11C32CCD92D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -207,6 +209,10 @@ Global
 		{75BDFADD-CE37-42C3-869D-F3EB2C064170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75BDFADD-CE37-42C3-869D-F3EB2C064170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75BDFADD-CE37-42C3-869D-F3EB2C064170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD782B5E-A168-440F-AA84-11C32CCD92D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD782B5E-A168-440F-AA84-11C32CCD92D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD782B5E-A168-440F-AA84-11C32CCD92D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD782B5E-A168-440F-AA84-11C32CCD92D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
