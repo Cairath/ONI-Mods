@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorDropoff", "Conveyor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilWellAnyWater", "OilWellAnyWater\OilWellAnyWater.csproj", "{C8970347-23A9-4950-839F-A8ECE55E25CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerBuildingMenu", "BiggerBuildingMenu\BiggerBuildingMenu.csproj", "{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,10 @@ Global
 		{C8970347-23A9-4950-839F-A8ECE55E25CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8970347-23A9-4950-839F-A8ECE55E25CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8970347-23A9-4950-839F-A8ECE55E25CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
