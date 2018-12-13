@@ -27,7 +27,7 @@ namespace FlowSplitters
 			buildingDef.OutputConduitType = ConduitType.Gas;
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
-			buildingDef.ViewMode = SimViewMode.GasVentMap;
+			buildingDef.ViewMode = OverlayModes.GasConduits.ID;
 			buildingDef.ObjectLayer = ObjectLayer.GasConduitConnection;
 			buildingDef.SceneLayer = Grid.SceneLayer.GasConduitBridges;
 			buildingDef.AudioCategory = "Metal";

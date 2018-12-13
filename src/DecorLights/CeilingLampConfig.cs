@@ -23,9 +23,9 @@ namespace DecorLights
 			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
 				tieR1, allMetals, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, none, 0.2f);
 			buildingDef.RequiresPowerInput = true;
-			buildingDef.EnergyConsumptionWhenActive = 10f;
-			buildingDef.SelfHeatKilowattsWhenActive = 0.5f;
-			buildingDef.ViewMode = SimViewMode.Light;
+			buildingDef.EnergyConsumptionWhenActive = 2f;
+			buildingDef.SelfHeatKilowattsWhenActive = 0.25f;
+			buildingDef.ViewMode = OverlayModes.Light.ID;
 			buildingDef.AudioCategory = "Metal";
 			return buildingDef;
 		}

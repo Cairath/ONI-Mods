@@ -20,8 +20,7 @@ namespace AlgaeGrower
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEGROWER.DESC", "Algae colony, Duplicant colony... we're more alike than we are different.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEGROWER.EFFECT", "Consumes " + ELEMENTS.FERTILIZER.NAME + ", " + ELEMENTS.CARBONDIOXIDE.NAME + " and " + ELEMENTS.WATER.NAME + " to grow " +  ELEMENTS.ALGAE.NAME + " and emit some " + ELEMENTS.OXYGEN.NAME + ".\n\nRequires " + UI.FormatAsLink("Light", "LIGHT") + " to grow.");
 				
-				List<string> category = (List<string>)BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Oxygen).data;
-				category.Add(AlgaeGrowerConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Oxygen", AlgaeGrowerConfig.ID);
 			}
 		}
 

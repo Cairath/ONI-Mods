@@ -60,9 +60,7 @@
     <Compile Include="EggsSensorConfig.cs" />
     <Compile Include="EggsSensor.cs" />
     <Compile Include="CrittersSensor.cs" />
-    <Compile Include="CrittersAndEggsSensor.cs" />
     <Compile Include="CrittersSensorConfig.cs" />
-    <Compile Include="CrittersAndEggsSensorConfig.cs" />
     <Compile Include="RanchingSensorsMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

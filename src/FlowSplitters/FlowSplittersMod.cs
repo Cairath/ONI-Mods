@@ -20,11 +20,8 @@ namespace FlowSplitters
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.GASSPLITTER.DESC", "Splits gases equally in two pipes. If one the output pipes can't handle half to the input, the emtpier pipe will receive it.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.GASSPLITTER.EFFECT", "Have you ever wanted to have your gases in two places at once?");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Plumbing).data;
-				category.Add(LiquidSplitterConfig.ID);
-
-				List<string> category2 = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.HVAC).data;
-				category2.Add(GasSplitterConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Plumbing", LiquidSplitterConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("HVAC", GasSplitterConfig.ID);
 			}
 		}
 

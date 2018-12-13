@@ -17,8 +17,7 @@ namespace ConveyorDropoff
 			    Strings.Add($"STRINGS.BUILDINGS.PREFABS.{ConveyorDropoffConfig.ID.ToUpper()}.DESC", "A garbage collector!");
 			    Strings.Add($"STRINGS.BUILDINGS.PREFABS.{ConveyorDropoffConfig.ID.ToUpper()}.EFFECT", "A place for the Auto-Sweepers to drop stuff on the ground.");
 
-			    List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Conveyance).data;
-			    category.Add(ConveyorDropoffConfig.ID);
+			    ModUtil.AddBuildingToPlanScreen("Conveyance", ConveyorDropoffConfig.ID);
 		    }
 	    }
 

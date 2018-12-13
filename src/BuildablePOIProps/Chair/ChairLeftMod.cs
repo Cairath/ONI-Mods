@@ -20,10 +20,9 @@ namespace BuildablePOIProps.Chair
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.NAME", "Chair (right)");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.DESC", "A comfy chair.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.EFFECT", "So comfy!");
-
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
-				category.Add(ChairLeftConfig.ID);
-				category.Add(ChairRightConfig.ID);
+				
+				ModUtil.AddBuildingToPlanScreen("Furniture", ChairLeftConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Furniture", ChairRightConfig.ID);
 			}
 		}
 

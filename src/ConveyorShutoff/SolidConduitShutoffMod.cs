@@ -16,8 +16,7 @@ namespace ConveyorShutoff
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.DESC", "Your items won't go anywhere unless you let them.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.SOLIDCONDUITSHUTOFF.EFFECT", "Automatically turns flow of objects on the Conveyor Rail on or off using Automation technology.");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Conveyance).data;
-				category.Add(SolidConduitShutoffConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Conveyance", SolidConduitShutoffConfig.ID);
 			}
 		}
 

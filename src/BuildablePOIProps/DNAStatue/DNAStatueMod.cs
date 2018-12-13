@@ -17,8 +17,7 @@ namespace BuildablePOIProps.DNAStatue
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.DNASTATUE.DESC", "An enormous statue of a DNA chain.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.DNASTATUE.EFFECT", "Big and difficult to build.");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
-				category.Add(DNAStatueConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Furniture", DNAStatueConfig.ID);
 			}
 		}
 
