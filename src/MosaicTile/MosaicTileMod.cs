@@ -16,8 +16,7 @@ namespace MosaicTiles
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.MOSAICTILE.DESC", String.Empty);
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.MOSAICTILE.EFFECT", "Used as floor and wall tile to build rooms.\n\nSignificantly increases Duplicant runspeed.");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Base).data;
-				category.Add(MosaicTileConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Furniture", MosaicTileConfig.ID);
 			}
 		}
 

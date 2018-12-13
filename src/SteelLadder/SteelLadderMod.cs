@@ -13,11 +13,10 @@ namespace SteelLadder
 			private static void Prefix()
 			{
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.STEELLADDER.NAME", "Steel Ladder");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.STEELLADDER.DESC", "Durable steel ladder with plastic handles, combining usefulness and aesthetics.");
+				Strings.Add("STRINGS.BUILDINGS.PREFABS.STEELLADDER.DESC", "Durable steel ladder.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.STEELLADDER.EFFECT", "Increases Duplicant climbing speed.");
-
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Base).data;
-				category.Add(SteelLadderConfig.ID);
+				
+				ModUtil.AddBuildingToPlanScreen("Furniture", SteelLadderConfig.ID);
 			}
 		}
 

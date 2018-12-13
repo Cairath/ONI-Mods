@@ -16,8 +16,7 @@ namespace BuildablePOIProps.Couch
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.COUCH.DESC", "Comfier than it looks!");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.COUCH.EFFECT", "Perfect for some relaxation.");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
-				category.Add(CouchConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Furniture", CouchConfig.ID);
 			}
 		}
 

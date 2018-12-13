@@ -10,8 +10,8 @@ namespace DoubleSweeperRange
 		{
 			private static void Postfix(ref GameObject go)
 			{
-				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 19;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 19;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 16;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 16;
 				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
 				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
 			}
@@ -22,11 +22,11 @@ namespace DoubleSweeperRange
 		{
 			private static void Postfix(ref GameObject go)
 			{
-				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 19;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 19;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 16;
+				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 16;
 				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
 				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
-				go.AddOrGet<SolidTransferArm>().pickupRange = 15;
+				go.AddOrGet<SolidTransferArm>().pickupRange = 8;
 			}
 		}
 	}

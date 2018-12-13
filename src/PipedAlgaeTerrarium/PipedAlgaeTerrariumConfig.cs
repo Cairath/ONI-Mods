@@ -34,7 +34,7 @@ namespace PipedAlgaeTerrarium
 			buildingDef.UtilityInputOffset = new CellOffset(0, 0);
 			buildingDef.UtilityOutputOffset = new CellOffset(0, 0);
 			buildingDef.OutputConduitType = ConduitType.Liquid;
-			buildingDef.ViewMode = SimViewMode.LiquidVentMap;
+			buildingDef.ViewMode = OverlayModes.LiquidConduits.ID;
 			SoundEventVolumeCache.instance.AddVolume("algaefarm_kanim", "AlgaeHabitat_bubbles", NOISE_POLLUTION.NOISY.TIER0);
 			SoundEventVolumeCache.instance.AddVolume("algaefarm_kanim", "AlgaeHabitat_algae_in", NOISE_POLLUTION.NOISY.TIER0);
 			SoundEventVolumeCache.instance.AddVolume("algaefarm_kanim", "AlgaeHabitat_algae_out", NOISE_POLLUTION.NOISY.TIER0);

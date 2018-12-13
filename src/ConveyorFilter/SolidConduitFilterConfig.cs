@@ -28,7 +28,7 @@ namespace ConveyorFilter
 			buildingDef.OutputConduitType = ConduitType.Solid;
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
-			buildingDef.ViewMode = SimViewMode.SolidConveyorMap;
+			buildingDef.ViewMode = OverlayModes.SolidConveyor.ID;
 			buildingDef.RequiresPowerInput = true;
 			buildingDef.EnergyConsumptionWhenActive = 120f;
 			buildingDef.ExhaustKilowattsWhenActive = 0.0f;

@@ -27,7 +27,7 @@ namespace FlowSplitters
 			buildingDef.OutputConduitType = ConduitType.Liquid;
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
-			buildingDef.ViewMode = SimViewMode.LiquidVentMap;
+			buildingDef.ViewMode = OverlayModes.LiquidConduits.ID;
 			buildingDef.ObjectLayer = ObjectLayer.LiquidConduitConnection;
 			buildingDef.SceneLayer = Grid.SceneLayer.LiquidConduitBridges;
 			buildingDef.AudioCategory = "Metal";

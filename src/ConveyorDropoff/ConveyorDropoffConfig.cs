@@ -22,7 +22,7 @@ namespace ConveyorDropoff
 			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(ID, width, height, anim, hitpoints, construction_time, tieR3, allMetals, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER1, none, 0.2f);
 			buildingDef.Floodable = false;
 			buildingDef.Overheatable = false;
-			buildingDef.ViewMode = SimViewMode.SolidConveyorMap;
+			buildingDef.ViewMode = OverlayModes.SolidConveyor.ID;
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.InputConduitType = ConduitType.Solid;
 			buildingDef.UtilityInputOffset = new CellOffset(0, 1);

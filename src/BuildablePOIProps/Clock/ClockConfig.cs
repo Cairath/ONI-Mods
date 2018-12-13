@@ -29,7 +29,7 @@ namespace BuildablePOIProps.Clock
 			buildingDef.AudioCategory = "Plastic";
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
-			buildingDef.ViewMode = SimViewMode.Decor;
+			buildingDef.ViewMode = OverlayModes.Decor.ID;
 			buildingDef.SceneLayer = Grid.SceneLayer.Paintings;
 			buildingDef.DefaultAnimState = "off";
 			return buildingDef;

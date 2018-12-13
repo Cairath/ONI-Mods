@@ -15,9 +15,8 @@ namespace BuildablePOIProps.ComputerDesk
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.COMPUTERDESK.NAME", "Computer desk");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.COMPUTERDESK.DESC", "An intact office desk, decorated with several personal belongings and a barely functioning computer.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.COMPUTERDESK.EFFECT", "Does it work? Who knows.");
-				
-				List<string> category = (List<string>) TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
-				category.Add(ComputerDeskConfig.ID);
+
+				ModUtil.AddBuildingToPlanScreen("Furniture", ComputerDeskConfig.ID);
 			}
 		}
 

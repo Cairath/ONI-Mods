@@ -16,8 +16,7 @@ namespace BuildablePOIProps.Clock
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CLOCK.DESC", "A simple wall clock.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CLOCK.EFFECT", "A pretty clock for your wall.");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
-				category.Add(ClockConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Furniture", ClockConfig.ID);
 			}
 		}
 

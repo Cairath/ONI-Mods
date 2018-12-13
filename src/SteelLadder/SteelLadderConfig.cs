@@ -19,15 +19,13 @@ namespace SteelLadder
 			string anim = "ladder_poi_kanim";
 			int hitpoints = 10;
 			float construction_time = 10f;
-			float[] construction_mass = new float[2]
+			float[] construction_mass = new float[]
 			{
-				BUILDINGS.CONSTRUCTION_MASS_KG.TIER0[0],
 				BUILDINGS.CONSTRUCTION_MASS_KG.TIER0[0]
 			};
-			string[] construction_materials = new string[2]
+			string[] construction_materials = new string[]
 			{
-				SimHashes.Steel.ToString(),
-				MATERIALS.PLASTIC
+				SimHashes.Steel.ToString()
 			};
 			float melting_point = 1600f;
 			BuildLocationRule build_location_rule = BuildLocationRule.Anywhere;
@@ -49,8 +47,8 @@ namespace SteelLadder
 		{
 			GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 			Ladder ladder = go.AddOrGet<Ladder>();
-			ladder.upwardsMovementSpeedMultiplier = 1.2f;
-			ladder.downwardsMovementSpeedMultiplier = 1.2f;
+			ladder.upwardsMovementSpeedMultiplier = 1.5f;
+			ladder.downwardsMovementSpeedMultiplier = 1.5f;
 			go.AddOrGet<AnimTileable>();
 		}
 

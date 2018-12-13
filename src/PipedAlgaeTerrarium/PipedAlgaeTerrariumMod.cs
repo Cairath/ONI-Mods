@@ -17,8 +17,7 @@ namespace PipedAlgaeTerrarium
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEHABITATPIPED.DESC", "Algae colony, Duplicant colony... we're more alike than we are different.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.ALGAEHABITATPIPED.EFFECT", "Consumes " + (string) ELEMENTS.ALGAE.NAME + " to produce " + (string) ELEMENTS.OXYGEN.NAME + " and remove some " + (string) ELEMENTS.CARBONDIOXIDE.NAME + ".\n\nGains a 10 % efficiency boost in direct " + UI.FormatAsLink("Light", "LIGHT") + ".");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Oxygen).data;
-				category.Add(PipedAlgaeTerrariumConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Oxygen", PipedAlgaeTerrariumConfig.ID);
 			}
 		}
 

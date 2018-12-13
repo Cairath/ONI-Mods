@@ -21,9 +21,8 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.THERMALBLOCKHIDESPIPES.DESC", BUILDINGS.PREFABS.THERMALBLOCK.DESC);
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.THERMALBLOCKHIDESPIPES.EFFECT", BUILDINGS.PREFABS.THERMALBLOCK.EFFECT);
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Utilities).data;
-				category.Add(DrywallHidePipesConfig.ID);
-				category.Add(TempshiftHidesPipesConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Utilities", DrywallHidePipesConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Utilities", TempshiftHidesPipesConfig.ID);
 			}
 		}
 

@@ -16,8 +16,7 @@ namespace BuildablePOIProps.TableWithChairs
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.TABLEWITHCHAIRS.DESC", "A table and some chairs.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.TABLEWITHCHAIRS.EFFECT", "Perfect for a break.");
 
-				List<string> category = (List<string>)TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Furniture).data;
-				category.Add(TableWithChairsConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Furniture", TableWithChairsConfig.ID);
 			}
 		}
 

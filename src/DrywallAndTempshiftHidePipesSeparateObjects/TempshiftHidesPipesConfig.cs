@@ -34,7 +34,7 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 			buildingDef.Overheatable = false;
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.BaseTimeUntilRepair = -1f;
-			buildingDef.ViewMode = SimViewMode.TemperatureMap;
+			buildingDef.ViewMode = OverlayModes.Temperature.ID;
 			buildingDef.DefaultAnimState = "off";
 			buildingDef.ObjectLayer = ObjectLayer.Backwall;
 			buildingDef.SceneLayer = Grid.SceneLayer.Paintings;
@@ -54,10 +54,10 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 			go.GetComponent<KPrefabID>().prefabSpawnFn += (KPrefabID.PrefabFn) (game_object =>
 			{
 				HandleVector<int>.Handle handle = GameComps.StructureTemperatures.GetHandle(game_object);
-				StructureTemperatureData data = GameComps.StructureTemperatures.GetData(handle);
+				StructureTemperaturePayload payload = GameComps.StructureTemperatures.GetPayload(handle);
 				int cell = Grid.PosToCell(game_object);
-				data.OverrideExtents(new Extents(cell, overrideOffsets));
-				GameComps.StructureTemperatures.SetData(handle, data);
+				payload.OverrideExtents(new Extents(cell, overrideOffsets));
+				GameComps.StructureTemperatures.SetPayload(handle, ref payload);
 			});
 		}
 	}

@@ -65,7 +65,7 @@ namespace PalmeraTree
 				string tooltip = CREATURES.STATUSITEMS.DEAD.TOOLTIP;
 				StatusItemCategory main = Db.Get().StatusItemCategories.Main;
 
-				dead.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, SimViewMode.None, 0, null,
+				dead.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, 0, null,
 						null, main)
 					.Enter(smi =>
 					{

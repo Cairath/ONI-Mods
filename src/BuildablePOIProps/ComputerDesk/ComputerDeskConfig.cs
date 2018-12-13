@@ -32,7 +32,7 @@ namespace BuildablePOIProps.ComputerDesk
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
-			buildingDef.ViewMode = SimViewMode.Decor;
+			buildingDef.ViewMode = OverlayModes.Decor.ID;
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 			buildingDef.DefaultAnimState = "off";
 			return buildingDef;

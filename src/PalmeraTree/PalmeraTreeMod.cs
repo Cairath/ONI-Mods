@@ -35,9 +35,7 @@ namespace PalmeraTree
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".NAME", PalmeraBerryConfig.NameStr);
 				Strings.Add("STRINGS.ITEMS.FOOD." + PalmeraBerryConfig.ID.ToUpper() + ".DESC", PalmeraBerryConfig.Desc);
 
-				List<string> category =
-					(List<string>) TUNING.BUILDINGS.PLANORDER.First(po => po.category == PlanScreen.PlanCategory.Food).data;
-				category.Add(TrellisConfig.ID);
+				ModUtil.AddBuildingToPlanScreen("Food", TrellisConfig.ID);
 
 				CROPS.CROP_TYPES.Add(new Crop.CropVal(PalmeraBerryConfig.ID, 12000f, 10));
 			}
