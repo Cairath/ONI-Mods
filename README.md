@@ -1,7 +1,7 @@
 Oxygen Not Included Mods
 ====
 
-master branch last updated to game version **SU-290261**
+master branch last updated to game version **Q1-299550**
 
 Forum thread
 ---
@@ -98,4 +98,4 @@ Download & installation
 ----
 To use the mods you need to install ONI-ModLoader using instructions available here: https://github.com/javisar/ONI-Modloader#installation
 
-Compiled mod files are available for download in the [modfiles folder](/modfiles).  Once the Modloader is installed the mod files (*.dll) should be placed in the Mods folder created by the Modloader in the game root directory.
+Compiled mod files are available for download in the [modfiles folder](/modfiles).  Once the Modloader is installed the mod files (*.dll) should be placed in the Mods folder (you need to create one manually) in the game root directory.
