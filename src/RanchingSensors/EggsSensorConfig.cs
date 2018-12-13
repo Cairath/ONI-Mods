@@ -12,7 +12,7 @@ namespace RanchingSensors
 			string id = EggsSensorConfig.ID;
 			int width = 1;
 			int height = 1;
-			string anim = "switchtimeofday_kanim";
+			string anim = "critter_sensor_kanim";
 			int hitpoints = 30;
 			float construction_time = 30f;
 			float[] construction_mass = BUILDINGS.CONSTRUCTION_MASS_KG.TIER1;

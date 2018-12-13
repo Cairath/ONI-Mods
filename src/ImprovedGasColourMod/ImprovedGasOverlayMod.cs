@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace ImprovedGasColourMod
 {
-   
     public static class HarmonyPatches
     {
         private static readonly Color NotGasColor = new Color(0.6f, 0.6f, 0.6f);
@@ -15,9 +14,7 @@ namespace ImprovedGasColourMod
 
             public static bool Prefix(int cell, ref Color __result)
             {
-                //  ModSettings settings = ONI_Common.ModdyMcModscreen
-                //float maxMass = StateManager.ConfiguratorState.GasPressureEnd;
-                float maxMass = ImprovedGasOverlayState.GasPressureEnd;
+                float maxMass = ImprovedGasOverlayConfig.GasPressureEnd;
 
                 Element element = Grid.Element[cell];
 
@@ -42,17 +39,10 @@ namespace ImprovedGasColourMod
                 ColorHSV colorHSV = primaryColor.ToHSV();
 
                 colorHSV = ScaleColorToPressure(colorHSV, pressureFraction, elementID);
-
-                //if (StateManager.ConfiguratorState.ShowEarDrumPopMarker)
-                if (ImprovedGasOverlayState.ShowEarDrumPopMarker)
+				
+                if (ImprovedGasOverlayConfig.ShowEarDrumPopMarker)
                 {
                     colorHSV = MarkEarDrumPopPressure(colorHSV, mass, elementID);
-                }
-
-                //if (StateManager.ConfiguratorState.AdvancedGasOverlayDebugging)
-                if (ImprovedGasOverlayState.AdvancedGasOverlayDebugging)
-                {
-                    colorHSV.CheckAndLogOverflow(elementID, pressureFraction);
                 }
 
                 colorHSV = colorHSV.Clamp();
@@ -64,14 +54,12 @@ namespace ImprovedGasColourMod
             {
                 if (elementID == SimHashes.CarbonDioxide)
                 {
-					//color.V *= (1 - fraction) * 2;
-					color.V *= (1 - fraction) * ImprovedGasOverlayState.FactorValueHSVCarbonDioxide;
+					color.V *= (1 - fraction) * ImprovedGasOverlayConfig.FactorValueHSVCarbonDioxide;
 				}
                 else
                 {
                     color.S *= fraction * 1.25f;
-					//color.V -= (1 - fraction) / 2;
-					color.V -= (1 - fraction) * ImprovedGasOverlayState.FactorValueHSVGases;
+					color.V -= (1 - fraction) * ImprovedGasOverlayConfig.FactorValueHSVGases;
 				}
 
                 return color;
@@ -82,7 +70,7 @@ namespace ImprovedGasColourMod
                 Element element = Grid.Element[cellIndex];
                 Substance substance = element.substance;
 
-                Color32 overlayColor = substance.overlayColour;
+                Color32 overlayColor = substance.conduitColour;
 
                 overlayColor.a = byte.MaxValue;
 
@@ -91,9 +79,7 @@ namespace ImprovedGasColourMod
 
             private static float GetPressureFraction(float mass, float maxMass)
             {
-                //float minFraction = StateManager.ConfiguratorState.MinimumGasColorIntensity;
-                float minFraction = ImprovedGasOverlayState.MinimumGasColorIntensity;
-
+                float minFraction = ImprovedGasOverlayConfig.MinimumGasColorIntensity;
                 float fraction = mass / maxMass;
 
                 fraction = Mathf.Lerp(minFraction, 1, fraction);
@@ -101,9 +87,6 @@ namespace ImprovedGasColourMod
                 return fraction;
             }
 
-            /// <summary>
-            /// Add flat value to color hue when pressure reaches EarPopFloat
-            /// </summary>
             private static ColorHSV MarkEarDrumPopPressure(ColorHSV color, float mass, SimHashes elementID)
             {
                 if (mass > EarPopFloat)
@@ -115,7 +98,6 @@ namespace ImprovedGasColourMod
                     }
                     else
                     {
-                        // TODO: make hue change customizable in config
                         color.H += 0.1f;
                     }
                 }

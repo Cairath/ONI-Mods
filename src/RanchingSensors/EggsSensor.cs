@@ -24,6 +24,9 @@ namespace RanchingSensors
 		public LocString ThresholdValueUnits() => "";
 		public string AboveToolTip => "Sensor will be on if the number of eggs is above {0}";
 		public string BelowToolTip => "Sensor will be on if the number of eggs is below {0}";
+		public ThresholdScreenLayoutType LayoutType => ThresholdScreenLayoutType.InputField;
+		public int IncrementScale => 1;
+		public NonLinearSlider.Range[] GetRanges { get; }
 		public float RangeMin => 0.0f;
 		public float RangeMax => 50.0f;
 		public float GetRangeMinInputField() => 0.0f;

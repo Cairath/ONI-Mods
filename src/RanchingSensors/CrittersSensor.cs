@@ -19,11 +19,14 @@ namespace RanchingSensors
 		private int currentCritters = 0;
 
 		public float CurrentValue => currentCritters;
-		public LocString Title => "Critters Sensor";
+		public LocString Title => "Live Critters Sensor";
 		public LocString ThresholdValueName => UI.CODEX.CATEGORYNAMES.CREATURES;
 		public LocString ThresholdValueUnits() => "";
 		public string AboveToolTip => "Sensor will be on if the number of critters is above {0}";
 		public string BelowToolTip => "Sensor will be on if the number of critters is below {0}";
+		public ThresholdScreenLayoutType LayoutType => ThresholdScreenLayoutType.InputField;
+		public int IncrementScale => 1;
+		public NonLinearSlider.Range[] GetRanges { get; }
 		public float RangeMin => 0.0f;
 		public float RangeMax => 50.0f;
 		public float GetRangeMinInputField() => 0.0f;

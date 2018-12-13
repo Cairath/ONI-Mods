@@ -13,13 +13,13 @@ namespace RanchingSensors
 		{
 		    private static void Prefix()
 		    {
-			    Strings.Add("STRINGS.BUILDINGS.PREFABS.CRITTERSSENSOR.NAME", "Critters Sensor");
+			    Strings.Add("STRINGS.BUILDINGS.PREFABS.CRITTERSSENSOR.NAME", "Live Critters Sensor");
 			    Strings.Add("STRINGS.BUILDINGS.PREFABS.CRITTERSSENSOR.DESC", "Counts up the number of critters in the room.");
-			    Strings.Add("STRINGS.BUILDINGS.PREFABS.CRITTERSSENSOR.EFFECT", "Becomes " + UI.FormatAsLink("Active", "LOGIC") + " or on " + UI.FormatAsLink("Standby", "LOGIC") + " when the number of critters in the room enters the chosen range.");
+			    Strings.Add("STRINGS.BUILDINGS.PREFABS.CRITTERSSENSOR.EFFECT", "Becomes " + UI.FormatAsLink("Active", "LOGIC") + " or on " + UI.FormatAsLink("Standby", "LOGIC") + " depending on the number of live critters (no eggs) in a room.");
 
-			    Strings.Add("STRINGS.BUILDINGS.PREFABS.EGGSSENSOR.NAME", "Eggs Sensor");
+			    Strings.Add("STRINGS.BUILDINGS.PREFABS.EGGSSENSOR.NAME", "Egg Sensor");
 			    Strings.Add("STRINGS.BUILDINGS.PREFABS.EGGSSENSOR.DESC", "Counts up the number of eggs in the room.");
-			    Strings.Add("STRINGS.BUILDINGS.PREFABS.EGGSSENSOR.EFFECT", "Becomes " + UI.FormatAsLink("Active", "LOGIC") + " or on " + UI.FormatAsLink("Standby", "LOGIC") + " when the number of eggs in the room enters the chosen range.");
+			    Strings.Add("STRINGS.BUILDINGS.PREFABS.EGGSSENSOR.EFFECT", "Becomes " + UI.FormatAsLink("Active", "LOGIC") + " or on " + UI.FormatAsLink("Standby", "LOGIC") + " depending on the number of eggs in a room.");
 
 			    ModUtil.AddBuildingToPlanScreen("Automation", CrittersSensorConfig.ID);
 			    ModUtil.AddBuildingToPlanScreen("Automation", EggsSensorConfig.ID);
