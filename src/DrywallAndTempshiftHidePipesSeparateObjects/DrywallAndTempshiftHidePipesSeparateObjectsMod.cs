@@ -51,5 +51,15 @@ namespace DrywallAndTempshiftHidePipesSeparateObjects
 				}
 			}
 		}
+
+		[HarmonyPatch(typeof(CrownMouldingConfig), "CreateBuildingDef")]
+		public static class CrownMouldingConfigPatch
+		{
+			public static void Postfix(ref BuildingDef __result)
+			{
+				__result.ObjectLayer = ObjectLayer.Building;
+				__result.SceneLayer = Grid.SceneLayer.BuildingBack;
+			}
+		}
 	}
 }
