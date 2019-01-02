@@ -27,6 +27,7 @@ namespace FlowSplitters
 			buildingDef.OutputConduitType = ConduitType.Liquid;
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
+			buildingDef.Overheatable = false;
 			buildingDef.ViewMode = OverlayModes.LiquidConduits.ID;
 			buildingDef.ObjectLayer = ObjectLayer.LiquidConduitConnection;
 			buildingDef.SceneLayer = Grid.SceneLayer.LiquidConduitBridges;
