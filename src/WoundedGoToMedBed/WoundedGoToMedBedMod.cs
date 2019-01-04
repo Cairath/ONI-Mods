@@ -30,25 +30,24 @@ namespace WoundedGoToMedBed
 
 				__instance.wounded.light
 					.ToggleUrge(Db.Get().Urges.Heal)
-					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_1000ms);
+					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms);
 
 				__instance.wounded.medium
 					.ToggleUrge(Db.Get().Urges.Heal)
-					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_1000ms);
+					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms);
 
-				__instance.wounded.heavy.ToggleAnims("anim_loco_wounded_kanim", 3f)
+				__instance.wounded.heavy
 					.ToggleUrge(Db.Get().Urges.Heal)
-					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_1000ms);
+					.Update("AutoAssignClinic", ((smi, dt) => AutoAssignClinic(smi)), UpdateRate.SIM_4000ms);
 			}
 
 
 			public static void AutoAssignClinic(WoundMonitor.Instance smi)
 			{
-				Ownables soleOwner = smi.sm.masterTarget.Get(smi).GetComponent<MinionIdentity>().GetSoleOwner();
-				UnityEngine.Debug.Log(soleOwner.name);
-				AssignableSlot clinic = Db.Get().AssignableSlots.Clinic;
-				AssignableSlotInstance slot = soleOwner.GetSlot(clinic);
-				if (slot == null || (UnityEngine.Object) slot.assignable != (UnityEngine.Object) null)
+				var soleOwner = smi.sm.masterTarget.Get(smi).GetComponent<MinionIdentity>().GetSoleOwner();
+				var clinic = Db.Get().AssignableSlots.Clinic;
+				var slot = soleOwner.GetSlot(clinic);
+				if (slot == null || slot.assignable != null)
 				{
 					return;
 				}
