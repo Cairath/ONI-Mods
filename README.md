@@ -1,7 +1,7 @@
 Oxygen Not Included Mods
 ====
 
-master branch last updated to game version **Q1-299550**
+master branch last updated to game version **Q1-300556**
 
 Forum thread
 ---
