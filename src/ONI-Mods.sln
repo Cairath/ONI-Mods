@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerBuildingMenu", "Bigge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedGasOverlay", "ImprovedGasColourMod\ImprovedGasOverlay.csproj", "{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintDrywall", "PaintDrywall\PaintDrywall.csproj", "{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,10 @@ Global
 		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
