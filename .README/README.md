@@ -1,19 +1,16 @@
 [![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/jcZ4M4e)  
 
-<a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc"></a>
-# Cairath&#39;s Mods for Oxygen Not Included <!-- omit in toc -->
+# Cairath's Mods for Oxygen Not Included <!-- omit in toc -->
 master branch last updated to game version **Q1-302293**
 
 - [List of mods](#list-of-mods)
-- [Download &amp; installation](#download-amp-installation)
+- [Download & installation](#download--installation)
 - [Special thanks](#special-thanks)
 
-<a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc-forum-discord"></a>
-## Forum &amp; Discord
+## Forum & Discord
 Klei Forum thread: https://forums.kleientertainment.com/forums/topic/94120-mods-cairaths-mod-corner  
 Discord: https://discord.gg/jcZ4M4e
 
-<a name="list-of-mods"></a>
 # List of mods
 | **Cat.**  | **Name**                            | **Description**                                                                                                                                                                 |        **Preview**         |
 | :-------: | ----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------: |
@@ -41,12 +38,10 @@ Discord: https://discord.gg/jcZ4M4e
 | **Build** | Palmera Tree                        | A new plant - Palmera Tree, includes a new food ingredient: Palmera Berry and its cooked, edible version: Steamed Palmera Berry                                                 | [here](https://google.com) |
 | **Build** | Ranching Sensors                    | Two new sensors: live critters & egg count.                                                                                                                                     | [here](https://google.com) |
 
-<a name="download-installation"></a>
-# Download &amp; installation
+# Download & installation
 To use the mods you need to install ONI-ModLoader using instructions available here: https://github.com/javisar/ONI-Modloader#installation  
 Compiled mod files are available for download in the [modfiles folder](/modfiles).  Once the Modloader is installed the mod files (*.dll) should be placed in the Mods folder (you need to create one manually) in the game root directory.  
 Please make sure you update mods and remove ones that are not up to date or archived - they are likely to crash the game.
 
-<a name="special-thanks"></a>
 # Special thanks
 To Andreas Pardeike ([@pardeike](https://github.com/pardeike)), creator of [Harmony](https://github.com/pardeike/Harmony), the library that made these mods possible.
