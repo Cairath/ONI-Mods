@@ -4,7 +4,7 @@ using UnityEngine;
 namespace PaintDrywall
 {
 	[HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
-	public static class PaintDrywallBuildingCompleteOnSpawnPatch
+	public static class BuildingComplete_OnSpawn_Patch
 	{
 		public static void Postfix(BuildingComplete __instance)
 		{

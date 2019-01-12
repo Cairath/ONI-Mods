@@ -3,10 +3,10 @@ using Harmony;
 
 namespace Wallpaper
 {
-	public class WallpaperPatches
+	public static class WallpaperPatches
 	{
 		[HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
-		public class WallpaperGeneratedBuildingsLoadGeneratedBuildingsPatch
+		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			private static void Prefix()
 			{
@@ -19,7 +19,7 @@ namespace Wallpaper
 		}
 
 		[HarmonyPatch(typeof(Db), "Initialize")]
-		public class WallpaperDbInitializePatch
+		public static class Db_Initialize_Patch
 		{
 			private static void Prefix()
 			{
