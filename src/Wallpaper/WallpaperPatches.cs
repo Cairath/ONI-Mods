@@ -5,7 +5,8 @@ namespace Wallpaper
 {
 	public static class WallpaperPatches
 	{
-		[HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
+		[HarmonyPatch(typeof(GeneratedBuildings))]
+		[HarmonyPatch("LoadGeneratedBuildings")]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			private static void Prefix()
@@ -18,7 +19,8 @@ namespace Wallpaper
 			}
 		}
 
-		[HarmonyPatch(typeof(Db), "Initialize")]
+		[HarmonyPatch(typeof(Db))]
+		[HarmonyPatch("Initialize")]
 		public static class Db_Initialize_Patch
 		{
 			private static void Prefix()

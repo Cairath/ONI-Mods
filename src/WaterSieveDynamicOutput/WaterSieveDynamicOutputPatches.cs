@@ -5,7 +5,8 @@ namespace WaterSieveDynamicOutput
 {
     public static class WaterSieveDynamicOutputPatches
     {
-	    [HarmonyPatch(typeof(WaterPurifierConfig), "ConfigureBuildingTemplate")]
+	    [HarmonyPatch(typeof(WaterPurifierConfig))]
+	    [HarmonyPatch("ConfigureBuildingTemplate")]
 	    public static class WaterPurifierConfig_ConfigureBuildingTemplate_Patch
 		{
 		    public static void Postfix(WaterPurifierConfig __instance, ref GameObject go)

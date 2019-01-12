@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Harmony;
+﻿using Harmony;
 using UnityEngine;
 
 namespace WoundedGoToMedBed
 {
-	public class WoundedGoToMedBedMod
+	public static class WoundedGoToMedBedPatches
 	{
-		[HarmonyPatch(typeof(MedicalBedConfig), "DoPostConfigureComplete")]
-		public class MedicalBedConfigDoPostConfigureComplete
+		[HarmonyPatch(typeof(MedicalBedConfig))]
+		[HarmonyPatch("DoPostConfigureComplete")]
+		public static class MedicalBedConfig_DoPostConfigureComplete_Patch
 		{
 			private static void Postfix(ref GameObject go)
 			{
@@ -20,8 +17,9 @@ namespace WoundedGoToMedBed
 			}
 		}
 
-		[HarmonyPatch(typeof(WoundMonitor), "InitializeStates")]
-		public class WoundMonitorInitializeStates
+		[HarmonyPatch(typeof(WoundMonitor))]
+		[HarmonyPatch("InitializeStates")]
+		public static class WoundMonitor_InitializeStates_Patch
 		{
 			private static void Postfix(ref WoundMonitor __instance)
 			{
@@ -42,7 +40,7 @@ namespace WoundedGoToMedBed
 			}
 
 
-			public static void AutoAssignClinic(WoundMonitor.Instance smi)
+			private static void AutoAssignClinic(WoundMonitor.Instance smi)
 			{
 				var soleOwner = smi.sm.masterTarget.Get(smi).GetComponent<MinionIdentity>().GetSoleOwner();
 				var clinic = Db.Get().AssignableSlots.Clinic;
@@ -55,7 +53,7 @@ namespace WoundedGoToMedBed
 				soleOwner.AutoAssignSlot(clinic);
 			}
 
-			public static void UnassignClinic(WoundMonitor.Instance smi)
+			private static void UnassignClinic(WoundMonitor.Instance smi)
 			{
 				smi.sm.masterTarget.Get(smi).GetComponent<MinionIdentity>().GetSoleOwner().GetSlot(Db.Get().AssignableSlots.Clinic)?.Unassign();
 			}
