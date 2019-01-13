@@ -5,25 +5,27 @@ namespace BuildablePOIProps.Couch
 {
     public class CouchConfig : IBuildingConfig
 	{
-		public const string ID = "Couch";
+		public const string Id = "Couch";
+		public const string DisplayName = "Couch";
+		public const string Description = "Comfier than it looks!";
+		public const string Effect = "Perfect for some relaxation.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 4;
-			int height = 2;
-			string anim = "gravitas_couch_kanim";
-			int hitpoints = 50;
-			float construction_time = 20f;
-			float[] construction_mass = new[] {200f, 20f};
-			string[] construction_materials = new[] {MATERIALS.PLASTIC, GameTags.BuildingFiber.ToString()};
-			float melting_point = 1600f;
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 4,
+				height: 2,
+				anim: "gravitas_couch_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER2,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
+				construction_mass: new[] { 200f, 20f },
+				construction_materials: new[] { MATERIALS.PLASTIC, GameTags.BuildingFiber.ToString() },
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
+				build_location_rule: BuildLocationRule.OnFloor,
+				decor: BUILDINGS.DECOR.BONUS.TIER3,
+				noise: NOISE_POLLUTION.NONE);
 
-			BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				construction_mass, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER3, none);
 			buildingDef.Floodable = true;
 			buildingDef.Overheatable = false;
 			buildingDef.AudioCategory = "Plastic";
@@ -32,6 +34,7 @@ namespace BuildablePOIProps.Couch
 			buildingDef.ViewMode = OverlayModes.Decor.ID;
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 			buildingDef.DefaultAnimState = "off";
+
 			return buildingDef;
 		}
 

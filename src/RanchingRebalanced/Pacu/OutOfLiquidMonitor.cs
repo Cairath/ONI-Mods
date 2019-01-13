@@ -96,6 +96,7 @@ namespace RanchingRebalanced.Pacu
 
 	[HarmonyPatch(typeof(KSerialization.Manager))]
 	[HarmonyPatch("GetType")]
+	[HarmonyPatch(new[] { typeof(string) })]
 	public static class OutOfLiquidMonitorSerializationPatch
 	{
 		public static void Postfix(string type_name, ref Type __result)

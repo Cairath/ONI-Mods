@@ -5,25 +5,27 @@ namespace BuildablePOIProps.DNAStatue
 {
     public class DNAStatueConfig : IBuildingConfig
 	{
-		public const string ID = "DNAStatue";
+		public const string Id = "DNAStatue";
+		public const string DisplayName = "DNA Statue";
+		public const string Description = "An enormous statue of a DNA chain.";
+		public const string Effect = "Big and difficult to build.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 5;
-			int height = 9;
-			string anim = "gravitas_statue_kanim";
-			int hitpoints = 500;
-			float construction_time = 500f;
-			float[] construction_mass = BUILDINGS.CONSTRUCTION_MASS_KG.TIER7;
-			string[] construction_materials = MATERIALS.RAW_MINERALS;
-			float melting_point = 800f;
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 5,
+				height: 9,
+				anim: "gravitas_statue_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER4,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER6,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER7,
+				construction_materials: MATERIALS.RAW_MINERALS,
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
+				build_location_rule: BuildLocationRule.OnFloor,
+				decor: DECOR.BONUS.TIER7,
+				noise: NOISE_POLLUTION.NONE);
 
-			BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				construction_mass, construction_materials, melting_point, build_location_rule, new EffectorValues { amount = 100, radius = 7 }, none);
 			buildingDef.Floodable = true;
 			buildingDef.Overheatable = false;
 			buildingDef.AudioCategory = "Metal";
@@ -32,6 +34,7 @@ namespace BuildablePOIProps.DNAStatue
 			buildingDef.ViewMode = OverlayModes.Decor.ID;
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 			buildingDef.DefaultAnimState = "off";
+
 			return buildingDef;
 		}
 

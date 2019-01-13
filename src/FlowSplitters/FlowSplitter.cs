@@ -11,42 +11,43 @@ namespace FlowSplitters
 		public ConduitPortInfo SecondaryPort;
 
 		[SerializeField]
-		public ConduitType type;
+		public ConduitType Type;
 
 		[MyCmpReq]
-		private Operational operational;
+		private Operational _operational;
 
-		private HandleVector<int>.Handle accumulator = HandleVector<int>.InvalidHandle;
-		private int inputCell;
-		private int outputCell;
-		private int secondaryOutputCell;
+		private HandleVector<int>.Handle _accumulator = HandleVector<int>.InvalidHandle;
+		private int _inputCell;
+		private int _outputCell;
+		private int _secondaryOutputCell;
 
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
-			accumulator = Game.Instance.accumulators.Add("Flow", (KMonoBehaviour)this);
+			_accumulator = Game.Instance.accumulators.Add("Flow", (KMonoBehaviour)this);
 		}
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
-			Building component = GetComponent<Building>();
-			inputCell = component.GetUtilityInputCell();
-			outputCell = component.GetUtilityOutputCell();
 
-			secondaryOutputCell = Grid.OffsetCell(Grid.PosToCell(transform.GetPosition()), component.GetRotatedOffset(SecondaryPort.offset));
-			var secondOutput = new FlowUtilityNetwork.NetworkItem(SecondaryPort.conduitType, Endpoint.Source, secondaryOutputCell, gameObject);
+			var building = GetComponent<Building>();
+			_inputCell = building.GetUtilityInputCell();
+			_outputCell = building.GetUtilityOutputCell();
 
-			IUtilityNetworkMgr networkManager = Conduit.GetNetworkManager(SecondaryPort.conduitType);
-			networkManager.AddToNetworks(secondaryOutputCell, (object)secondOutput, true);
+			_secondaryOutputCell = Grid.OffsetCell(Grid.PosToCell(transform.GetPosition()), building.GetRotatedOffset(SecondaryPort.offset));
+			var secondOutput = new FlowUtilityNetwork.NetworkItem(SecondaryPort.conduitType, Endpoint.Source, _secondaryOutputCell, gameObject);
 
-			Conduit.GetFlowManager(type).AddConduitUpdater(ConduitUpdate);
+			var networkManager = Conduit.GetNetworkManager(SecondaryPort.conduitType);
+			networkManager.AddToNetworks(_secondaryOutputCell, secondOutput, true);
+
+			Conduit.GetFlowManager(Type).AddConduitUpdater(ConduitUpdate);
 		}
 
 		protected override void OnCleanUp()
 		{
-			Conduit.GetFlowManager(type).RemoveConduitUpdater(ConduitUpdate);
-			Game.Instance.accumulators.Remove(accumulator);
+			Conduit.GetFlowManager(Type).RemoveConduitUpdater(ConduitUpdate);
+			Game.Instance.accumulators.Remove(_accumulator);
 			base.OnCleanUp();
 		}
 
@@ -54,25 +55,23 @@ namespace FlowSplitters
 		{
 			get
 			{
-				ConduitFlow flowManager = Conduit.GetFlowManager(type);
-				return flowManager.HasConduit(outputCell) || flowManager.HasConduit(secondaryOutputCell);
+				var flowManager = Conduit.GetFlowManager(Type);
+				return flowManager.HasConduit(_outputCell) || flowManager.HasConduit(_secondaryOutputCell);
 			}
 		}
 
 		private void ConduitUpdate(float dt)
 		{
-			ConduitFlow flowManager = Conduit.GetFlowManager(type);
-			if (!flowManager.HasConduit(inputCell))
+			var flowManager = Conduit.GetFlowManager(Type);
+			if (!flowManager.HasConduit(_inputCell) || !IsOperational)
 				return;
-
-			if (IsOperational)
-			{
-				ConduitFlow.ConduitContents contents = flowManager.GetContents(inputCell);
+		
+				var contents = flowManager.GetContents(_inputCell);
 				if (contents.mass <= 0.0)
 					return;
 
-				ConduitFlow.ConduitContents contentOutput1 = flowManager.GetContents(outputCell);
-				ConduitFlow.ConduitContents contentOutput2 = flowManager.GetContents(secondaryOutputCell);
+				var contentOutput1 = flowManager.GetContents(_outputCell);
+				var contentOutput2 = flowManager.GetContents(_secondaryOutputCell);
 
 				var maxMass = Traverse.Create(flowManager).Field("MaxMass").GetValue<float>();  //type == ConduitType.Liquid ? 10f : 1f;
 				var halfMass = contents.mass / 2f;
@@ -87,85 +86,79 @@ namespace FlowSplitters
 				{
 					//do nothing
 				}
-				else if (!flowManager.HasConduit(secondaryOutputCell))
+				else if (!flowManager.HasConduit(_secondaryOutputCell))
 				{
-					delta1 = flowManager.AddElement(outputCell, contents.element, contents.mass, contents.temperature,
+					delta1 = flowManager.AddElement(_outputCell, contents.element, contents.mass, contents.temperature,
 						contents.diseaseIdx, contents.diseaseCount);
 				}
-				else if (!flowManager.HasConduit(outputCell))
+				else if (!flowManager.HasConduit(_outputCell))
 				{
-					delta2 = flowManager.AddElement(secondaryOutputCell, contents.element, contents.mass, contents.temperature,
+					delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, contents.mass, contents.temperature,
 						contents.diseaseIdx, contents.diseaseCount);
 				}
 				else if (willFitInOutput1 >= halfMass && willFitInOutput2 >= halfMass)
 				{
-					delta1 = flowManager.AddElement(outputCell, contents.element, halfMass, contents.temperature,
+					delta1 = flowManager.AddElement(_outputCell, contents.element, halfMass, contents.temperature,
 						contents.diseaseIdx, contents.diseaseCount / 2);
-					delta2 = flowManager.AddElement(secondaryOutputCell, contents.element, halfMass, contents.temperature,
+					delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass, contents.temperature,
 						contents.diseaseIdx, contents.diseaseCount / 2);
 				}
 				else if (willFitInOutput1 < halfMass)
 				{
 					var overflowOutput1 = halfMass - willFitInOutput1;
 					var ratio = (halfMass - overflowOutput1) / halfMass;
-					delta1 = flowManager.AddElement(outputCell, contents.element, halfMass - overflowOutput1,
+					delta1 = flowManager.AddElement(_outputCell, contents.element, halfMass - overflowOutput1,
 						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * ratio));
-					delta2 = flowManager.AddElement(secondaryOutputCell, contents.element, halfMass + overflowOutput1,
+					delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass + overflowOutput1,
 						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * (1f / ratio)));
 				}
 				else
 				{
 					var overflowOutput2 = halfMass - willFitInOutput2;
 					var ratio = (halfMass - overflowOutput2) / halfMass;
-					delta1 = flowManager.AddElement(secondaryOutputCell, contents.element, halfMass - overflowOutput2,
+					delta1 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass - overflowOutput2,
 						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * ratio));
-					delta2 = flowManager.AddElement(outputCell, contents.element, halfMass + overflowOutput2,
+					delta2 = flowManager.AddElement(_outputCell, contents.element, halfMass + overflowOutput2,
 						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * (1f / ratio)));
 				}
 
-				flowManager.RemoveElement(inputCell, delta1);
-				flowManager.RemoveElement(inputCell, delta2);
+				flowManager.RemoveElement(_inputCell, delta1);
+				flowManager.RemoveElement(_inputCell, delta2);
 
-				Game.Instance.accumulators.Accumulate(accumulator, contents.mass);
-			}
-
+				Game.Instance.accumulators.Accumulate(_accumulator, contents.mass);
 		}
 
-		public ConduitType GetSecondaryConduitType()
-		{
-			return SecondaryPort.conduitType;
-		}
+		public ConduitType GetSecondaryConduitType() => SecondaryPort.conduitType;
 
-		public CellOffset GetSecondaryConduitOffset()
-		{
-			return SecondaryPort.offset;
-		}
+		public CellOffset GetSecondaryConduitOffset() => SecondaryPort.offset;
 
 		public void AddNetworks(ICollection<UtilityNetwork> networks)
 		{
-			IUtilityNetworkMgr networkManager = Conduit.GetNetworkManager(type);
-			UtilityNetwork networkForCell1 = networkManager.GetNetworkForCell(inputCell);
+			var networkManager = Conduit.GetNetworkManager(Type);
+
+			var networkForCell1 = networkManager.GetNetworkForCell(_inputCell);
 			if (networkForCell1 != null)
 				networks.Add(networkForCell1);
-			UtilityNetwork networkForCell2 = networkManager.GetNetworkForCell(outputCell);
+
+			var networkForCell2 = networkManager.GetNetworkForCell(_outputCell);
 			if (networkForCell2 != null)
 				networks.Add(networkForCell2);
-			UtilityNetwork networkForCell3 = networkManager.GetNetworkForCell(secondaryOutputCell);
+
+			var networkForCell3 = networkManager.GetNetworkForCell(_secondaryOutputCell);
 			if (networkForCell3 != null)
 				networks.Add(networkForCell3);
 		}
 
 		public bool IsConnectedToNetworks(ICollection<UtilityNetwork> networks)
 		{
-			bool flag = false;
-			IUtilityNetworkMgr networkManager = Conduit.GetNetworkManager(type);
-			return flag || networks.Contains(networkManager.GetNetworkForCell(inputCell)) || networks.Contains(networkManager.GetNetworkForCell(outputCell))
-				   || networks.Contains(networkManager.GetNetworkForCell(secondaryOutputCell));
+			var networkManager = Conduit.GetNetworkManager(Type);
+			return networks.Contains(networkManager.GetNetworkForCell(_inputCell)) || networks.Contains(networkManager.GetNetworkForCell(_outputCell))
+				   || networks.Contains(networkManager.GetNetworkForCell(_secondaryOutputCell));
 		}
 
 		public int GetNetworkCell()
 		{
-			return inputCell;
+			return _inputCell;
 		}
 	}
 }

@@ -5,25 +5,27 @@ namespace BuildablePOIProps.TableWithChairs
 {
     public class TableWithChairsConfig : IBuildingConfig
 	{
-		public const string ID = "TableWithChairs";
+		public const string Id = "TableWithChairs";
+		public const string DisplayName = "Table";
+		public const string Description = "A table and some chairs.";
+		public const string Effect = "Perfect for a break.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 3;
-			int height = 1;
-			string anim = "table_breakroom_kanim";
-			int hitpoints = 50;
-			float construction_time = 20f;
-			float[] construction_mass = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
-			string[] construction_materials = MATERIALS.PLASTICS;
-			float melting_point = 1600f;
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 3,
+				height: 1,
+				anim: "table_breakroom_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER1,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER1,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER2,
+				construction_materials: MATERIALS.PLASTICS,
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
+				build_location_rule: BuildLocationRule.OnFloor,
+				decor: DECOR.BONUS.TIER3,
+				noise: NOISE_POLLUTION.NONE);
 
-			BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				construction_mass, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER3, none);
 			buildingDef.Floodable = true;
 			buildingDef.Overheatable = false;
 			buildingDef.AudioCategory = "Plastic";
@@ -32,6 +34,7 @@ namespace BuildablePOIProps.TableWithChairs
 			buildingDef.ViewMode = OverlayModes.Decor.ID;
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 			buildingDef.DefaultAnimState = "off";
+
 			return buildingDef;
 		}
 

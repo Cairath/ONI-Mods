@@ -1,141 +1,109 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PipedAlgaeTerrarium
 {
 	public class PipedAlgaeTerrarium : StateMachineComponent<PipedAlgaeTerrarium.SMInstance>
 	{
 		[SerializeField]
-		public float lightBonusMultiplier = 1.1f;
-		public CellOffset pressureSampleOffset = CellOffset.none;
+		public float LightBonusMultiplier = 1.1f;
+		public CellOffset PressureSampleOffset = CellOffset.none;
 
 		[MyCmpGet]
-		private Operational operational;
+		private Operational _operational;
 
 		protected override void OnPrefabInit()
 		{
-			this.GetComponent<KBatchedAnimController>().randomiseLoopedOffset = true;
+			GetComponent<KBatchedAnimController>().randomiseLoopedOffset = true;
 			base.OnPrefabInit();
 		}
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
-			this.smi.StartSM();
+			smi.StartSM();
 		}
 
-		public class SMInstance : GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.GameInstance
+		public class SMInstance : GameStateMachine<States, SMInstance, PipedAlgaeTerrarium, object>.GameInstance
 		{
-			private Operational operational;
-			public ElementConverter converter;
-			private ConduitDispenser dispenser;
+			public readonly ElementConverter Converter;
 
-			public SMInstance(PipedAlgaeTerrarium master)
-			  : base(master)
+			private readonly Operational _operational;
+			private readonly ConduitDispenser _dispenser;
+
+			public SMInstance(PipedAlgaeTerrarium master) : base(master)
 			{
-				this.operational = master.GetComponent<Operational>();
-				this.converter = master.GetComponent<ElementConverter>();
-				this.dispenser = master.GetComponent<ConduitDispenser>();
+				Converter = master.GetComponent<ElementConverter>();
+				_operational = master.GetComponent<Operational>();
+				_dispenser = master.GetComponent<ConduitDispenser>();
 			}
 
-			public bool HasEnoughMass(Tag tag)
-			{
-				return this.converter.HasEnoughMass(tag);
-			}
+			public bool HasEnoughMass(Tag tag) => Converter.HasEnoughMass(tag);
 
-			public bool IsOperational
-			{
-				get
-				{
-					if (this.operational.IsOperational && this.dispenser.IsConnected)
-						return true;
-					return false;
-				}
-			}
+			public bool IsOperational => _operational.IsOperational && _dispenser.IsConnected;
 		}
 
-		public class States : GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium>
+		public class States : GameStateMachine<States, SMInstance, PipedAlgaeTerrarium>
 		{
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State generatingOxygen;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State stoppedGeneratingOxygen;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State stoppedGeneratingOxygenTransition;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State noWater;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State noAlgae;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State gotAlgae;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State gotWater;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State lostAlgae;
-			public GameStateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State notoperational;
+			public State GeneratingOxygen;
+			public State StoppedGeneratingOxygen;
+			public State StoppedGeneratingOxygenTransition;
+			public State NoWater;
+			public State NoAlgae;
+			public State GotAlgae;
+			public State GotWater;
+			public State LostAlgae;
+			public State NotOperational;
 
-			public override void InitializeStates(out StateMachine.BaseState default_state)
+			public override void InitializeStates(out BaseState defaultState)
 			{
-				default_state = (StateMachine.BaseState)this.notoperational;
+				defaultState = NotOperational;
 
-				this.root
-					.EventTransition(GameHashes.OperationalChanged, this.notoperational, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi => !smi.IsOperational));
+				root
+					.EventTransition(GameHashes.OperationalChanged, NotOperational, smi => !smi.IsOperational);
 
-				this.notoperational
-					.QueueAnim("off", false, (Func<PipedAlgaeTerrarium.SMInstance, string>)null)
-					.EventTransition(GameHashes.OperationalChanged, this.noAlgae, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-					(smi => smi.IsOperational));
+				NotOperational
+					.QueueAnim("off")
+					.EventTransition(GameHashes.OperationalChanged, NoAlgae, smi => smi.IsOperational);
 
-				this.gotAlgae.PlayAnim("on_pre").OnAnimQueueComplete(this.noWater);
-				this.lostAlgae.PlayAnim("on_pst").OnAnimQueueComplete(this.noAlgae);
+				GotAlgae
+					.PlayAnim("on_pre").OnAnimQueueComplete(NoWater);
 
-				this.noAlgae
-					.QueueAnim("off", false, (Func<PipedAlgaeTerrarium.SMInstance, string>)null)
-					.EventTransition(GameHashes.OnStorageChange, this.gotAlgae, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi => smi.HasEnoughMass(GameTags.Algae)))
-					.Enter((StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State.Callback)
-						(smi => smi.master.operational.SetActive(false, false)));
+				LostAlgae
+					.PlayAnim("on_pst").OnAnimQueueComplete(NoAlgae);
 
+				NoAlgae
+					.QueueAnim("off")
+					.EventTransition(GameHashes.OnStorageChange, GotAlgae, smi => smi.HasEnoughMass(GameTags.Algae))
+					.Enter(smi => smi.master._operational.SetActive(false));
 
-				this.noWater
-					.QueueAnim("on", false, (Func<PipedAlgaeTerrarium.SMInstance, string>)null)
-					.Enter((StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State.Callback)
-						(smi => smi.master.GetComponent<PassiveElementConsumer>().EnableConsumption(true)))
-					.EventTransition(GameHashes.OnStorageChange, this.lostAlgae, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi => !smi.HasEnoughMass(GameTags.Algae)))
-					.EventTransition(GameHashes.OnStorageChange, this.gotWater, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi =>
-						{
-							if (smi.HasEnoughMass(GameTags.Algae))
-								return smi.HasEnoughMass(GameTags.Water);
-							return false;
-						}));
+				NoWater
+					.QueueAnim("on")
+					.Enter(smi => smi.master.GetComponent<PassiveElementConsumer>().EnableConsumption(true))
+					.EventTransition(GameHashes.OnStorageChange, LostAlgae, smi => !smi.HasEnoughMass(GameTags.Algae))
+					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Algae) && smi.HasEnoughMass(GameTags.Water));
 
-				this.gotWater.PlayAnim("working_pre").OnAnimQueueComplete(this.generatingOxygen);
+				GotWater
+					.PlayAnim("working_pre").OnAnimQueueComplete(GeneratingOxygen);
 
-				this.generatingOxygen
-					.Enter((StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State.Callback)
-						(smi => smi.master.operational.SetActive(true, false)))
-					.Exit((StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.State.Callback)
-						(smi => smi.master.operational.SetActive(false, false)))
-					.Update("GeneratingOxygen", (System.Action<PipedAlgaeTerrarium.SMInstance, float>)
-						((smi, dt) =>
-						{
-							int cell = Grid.PosToCell(smi.master.transform.GetPosition());
-							smi.converter.OutputMultiplier = Grid.LightCount[cell] <= 0 ? 1f : smi.master.lightBonusMultiplier;
-						}), UpdateRate.SIM_200ms, false).QueueAnim("working_loop", true, (Func<PipedAlgaeTerrarium.SMInstance, string>)null)
-					.EventTransition(GameHashes.OnStorageChange, this.stoppedGeneratingOxygen, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Algae)));
+				GeneratingOxygen
+					.Enter(smi => smi.master._operational.SetActive(true))
+					.Exit(smi => smi.master._operational.SetActive(false))
+					.Update("GeneratingOxygen", (smi, dt) =>
+					{
+						var cell = Grid.PosToCell(smi.master.transform.GetPosition());
+						smi.Converter.OutputMultiplier = Grid.LightCount[cell] <= 0 ? 1f : smi.master.LightBonusMultiplier;
+					})
+					.QueueAnim("working_loop", true)
+					.EventTransition(GameHashes.OnStorageChange, StoppedGeneratingOxygen, smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Algae));
 
-				this.stoppedGeneratingOxygen
+				StoppedGeneratingOxygen
 					.PlayAnim("working_pst")
-					.OnAnimQueueComplete(this.stoppedGeneratingOxygenTransition);
+					.OnAnimQueueComplete(StoppedGeneratingOxygenTransition);
 
-				this.stoppedGeneratingOxygenTransition
-					.EventTransition(GameHashes.OnStorageChange, this.noWater, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi => !smi.HasEnoughMass(GameTags.Water)))
-					.EventTransition(GameHashes.OnStorageChange, this.lostAlgae, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi => !smi.HasEnoughMass(GameTags.Algae)))
-					.EventTransition(GameHashes.OnStorageChange, this.gotWater, (StateMachine<PipedAlgaeTerrarium.States, PipedAlgaeTerrarium.SMInstance, PipedAlgaeTerrarium, object>.Transition.ConditionCallback)
-						(smi =>
-						{
-							if (smi.HasEnoughMass(GameTags.Water))
-								return smi.HasEnoughMass(GameTags.Algae);
-							return false;
-						}));
+				StoppedGeneratingOxygenTransition
+					.EventTransition(GameHashes.OnStorageChange, NoWater, smi => !smi.HasEnoughMass(GameTags.Water))
+					.EventTransition(GameHashes.OnStorageChange, LostAlgae, smi => !smi.HasEnoughMass(GameTags.Algae))
+					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Water) && smi.HasEnoughMass(GameTags.Algae));
 			}
 		}
 	}

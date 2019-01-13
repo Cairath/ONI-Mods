@@ -5,24 +5,29 @@ namespace FlowSplitters
 {
 	public class LiquidSplitterConfig : IBuildingConfig
 	{
-		public const string ID = "LiquidSplitter";
-		private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(1, 1));
+		public const string Id = "LiquidSplitter";
+		public const string DisplayName = "Liquid Splitter";
+		public const string Description = "Splits liquids equally in two pipes. If one the output pipes can't handle half of the input, the other pipe will receive it.";
+		public const string Effect = "Have you ever wanted to have your liquids in two places at once?";
+
+		private readonly ConduitPortInfo _secondaryPort = new ConduitPortInfo(ConduitType.Liquid, new CellOffset(1, 1));
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 2;
-			int height = 2;
-			string anim = "utilityliquidsplitter_kanim";
-			int hitpoints = 10;
-			float construction_time = 3f;
-			float[] tieR3 = BUILDINGS.CONSTRUCTION_MASS_KG.TIER2;
-			string[] refinedMetals = MATERIALS.RAW_MINERALS;
-			float melting_point = 1600f;
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 2,
+				height: 2,
+				anim: "utilityliquidsplitter_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER0,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER0,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER2,
+				construction_materials: MATERIALS.RAW_MINERALS,
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER0,
+				build_location_rule: BuildLocationRule.Conduit,
+				decor: DECOR.NONE,
+				noise: NOISE_POLLUTION.NONE);
 
-			BuildLocationRule build_location_rule = BuildLocationRule.Conduit;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tieR3, refinedMetals, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, none, 0.2f);
 			buildingDef.InputConduitType = ConduitType.Liquid;
 			buildingDef.OutputConduitType = ConduitType.Liquid;
 			buildingDef.Floodable = false;
@@ -37,33 +42,36 @@ namespace FlowSplitters
 			buildingDef.PermittedRotations = PermittedRotations.R360;
 			buildingDef.UtilityInputOffset = new CellOffset(0, 0);
 			buildingDef.UtilityOutputOffset = new CellOffset(1, 0);
-			GeneratedBuildings.RegisterWithOverlay(OverlayScreen.LiquidVentIDs, ID);
+
+			GeneratedBuildings.RegisterWithOverlay(OverlayScreen.LiquidVentIDs, Id);
+
 			return buildingDef;
 		}
 
 		private void AttachPort(GameObject go)
 		{
-			go.AddComponent<ConduitSecondaryOutput>().portInfo = this.secondaryPort;
+			go.AddComponent<ConduitSecondaryOutput>().portInfo = _secondaryPort;
 		}
 
 		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 		{
 			base.DoPostConfigurePreview(def, go);
-			this.AttachPort(go);
+			AttachPort(go);
 		}
 
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 		{
 			BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
+
 			var logic = go.AddOrGet<FlowSplitter>();
-			logic.type = ConduitType.Liquid;
-			logic.SecondaryPort = secondaryPort;
+			logic.Type = ConduitType.Liquid;
+			logic.SecondaryPort = _secondaryPort;
 		}
 
 		public override void DoPostConfigureUnderConstruction(GameObject go)
 		{
 			base.DoPostConfigureUnderConstruction(go);
-			this.AttachPort(go);
+			AttachPort(go);
 		}
 
 		public override void DoPostConfigureComplete(GameObject go)
@@ -71,6 +79,7 @@ namespace FlowSplitters
 			Object.DestroyImmediate(go.GetComponent<RequireInputs>());
 			Object.DestroyImmediate(go.GetComponent<ConduitConsumer>());
 			Object.DestroyImmediate(go.GetComponent<ConduitDispenser>());
+
 			BuildingTemplates.DoPostConfigure(go);
 		}
 	}

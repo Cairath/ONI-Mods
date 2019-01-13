@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="PipedAlgaeTerrarium.cs" />
     <Compile Include="PipedAlgaeTerrariumConfig.cs" />
-    <Compile Include="PipedAlgaeTerrariumMod.cs" />
+    <Compile Include="PipedAlgaeTerrariumPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -49,19 +49,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chair\ChairLeftConfig.cs" />
-    <Compile Include="Chair\ChairLeftMod.cs" />
+    <Compile Include="Chair\ChairConfig.cs" />
+    <Compile Include="Chair\ChairPatches.cs" />
     <Compile Include="Clock\ClockConfig.cs" />
-    <Compile Include="Clock\ClockMod.cs" />
+    <Compile Include="Clock\ClockPatches.cs" />
     <Compile Include="ComputerDesk\ComputerDeskConfig.cs" />
-    <Compile Include="ComputerDesk\ComputerDeskMod.cs" />
+    <Compile Include="ComputerDesk\ComputerDeskPatches.cs" />
     <Compile Include="Couch\CouchConfig.cs" />
-    <Compile Include="Couch\CouchMod.cs" />
+    <Compile Include="Couch\CouchPatches.cs" />
     <Compile Include="DNAStatue\DNAStatueConfig.cs" />
-    <Compile Include="DNAStatue\DNAStatueMod.cs" />
+    <Compile Include="DNAStatue\DNAStatuePatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableWithChairs\TableWithChairsConfig.cs" />
-    <Compile Include="TableWithChairs\TableWithChairsMod.cs" />
+    <Compile Include="TableWithChairs\TableWithChairsPatches.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

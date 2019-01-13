@@ -3,30 +3,29 @@ using UnityEngine;
 
 namespace BuildablePOIProps.ComputerDesk
 {
-    public class ComputerDeskConfig : IBuildingConfig
+	public class ComputerDeskConfig : IBuildingConfig
 	{
-		public const string ID = "ComputerDesk";
+		public const string Id = "ComputerDesk";
+		public const string DisplayName = "Computer desk";
+		public const string Description = "An intact office desk, decorated with several personal belongings and a barely functioning computer.";
+		public const string Effect = "Does it work? Who knows.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 3;
-			int height = 2;
-			string anim = "setpiece_desk_kanim";
-			int hitpoints = 50;
-			float construction_time = 20f;
-			float[] construction_mass = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
-			string[] construction_materials = new string[]
-			{
-				SimHashes.Steel.ToString()
-			};
-			float melting_point = 800f;
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 3,
+				height: 2,
+				anim: "setpiece_desk_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER1,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER0,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER3,
+				construction_materials: new[] { SimHashes.Steel.ToString() },
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
+				build_location_rule: BuildLocationRule.OnFloor,
+				decor: BUILDINGS.DECOR.BONUS.TIER5,
+				noise: NOISE_POLLUTION.NONE);
 
-			BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				construction_mass, construction_materials, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER5, none);
 			buildingDef.Floodable = true;
 			buildingDef.Overheatable = false;
 			buildingDef.AudioCategory = "Metal";
@@ -35,6 +34,7 @@ namespace BuildablePOIProps.ComputerDesk
 			buildingDef.ViewMode = OverlayModes.Decor.ID;
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 			buildingDef.DefaultAnimState = "off";
+
 			return buildingDef;
 		}
 

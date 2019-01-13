@@ -3,7 +3,7 @@ using Harmony;
 
 namespace FasterJetpacks
 {
-	public class FasterJetpacksMod
+	public class FasterJetpacksPatches
 	{
 		[HarmonyPatch(typeof(BipedTransitionLayer), "BeginTransition")]
 		public static class BipedTransitionLayerPatch

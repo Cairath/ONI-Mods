@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlowSplitter.cs" />
-    <Compile Include="FlowSplittersMod.cs" />
+    <Compile Include="FlowSplittersPatches.cs" />
     <Compile Include="GasSplitterConfig.cs" />
     <Compile Include="LiquidSplitterConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

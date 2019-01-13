@@ -5,10 +5,15 @@ namespace AlgaeGrower
 	public class AlgaeGrower : StateMachineComponent<AlgaeGrower.SMInstance>
 	{
 		[SerializeField]
-		public CellOffset pressureSampleOffset = CellOffset.none;
+		public CellOffset PressureSampleOffset = CellOffset.none;
 
 		[MyCmpGet]
-		private Operational operational;
+		private readonly Operational _operational;
+
+		public AlgaeGrower(Operational operational)
+		{
+			_operational = operational;
+		}
 
 		protected override void OnPrefabInit()
 		{
@@ -24,117 +29,96 @@ namespace AlgaeGrower
 
 		public class SMInstance : GameStateMachine<States, SMInstance, AlgaeGrower, object>.GameInstance
 		{
-			private Operational operational;
-			public ElementConverter converter;
+			private readonly Operational _operational;
+			private readonly ElementConverter _converter;
 
-			public SMInstance(AlgaeGrower master)
-			  : base(master)
+			public SMInstance(AlgaeGrower master) : base(master)
 			{
-				operational = master.GetComponent<Operational>();
-				converter = master.GetComponent<ElementConverter>();
+				_operational = master.GetComponent<Operational>();
+				_converter = master.GetComponent<ElementConverter>();
 			}
 
-			public bool HasEnoughMass(Tag tag)
-			{
-				return converter.HasEnoughMass(tag);
-			}
+			public bool HasEnoughMass(Tag tag) => _converter.HasEnoughMass(tag);
 
-			public bool IsOperational
-			{
-				get
-				{
-					if (operational.IsOperational)
-						return true;
-					return false;
-				}
-			}
+			public bool IsOperational => _operational.IsOperational;
 
 			public bool HasLight()
 			{
-				int cell = Grid.PosToCell(smi.master.transform.GetPosition());
+				var cell = Grid.PosToCell(smi.master.transform.GetPosition());
 				return Grid.LightCount[cell] > 0;
 			}
 		}
 
 		public class States : GameStateMachine<States, SMInstance, AlgaeGrower>
 		{
-			public State generatingOxygen;
-			public State stoppedGeneratingOxygen;
-			public State stoppedGeneratingOxygenTransition;
-			public State noWater;
-			public State noFert;
-			public State gotFert;
-			public State gotWater;
-			public State lostFert;
-			public State notoperational;
-			public State noLight;
+			public State GeneratingOxygen;
+			public State StoppedGeneratingOxygen;
+			public State StoppedGeneratingOxygenTransition;
+			public State NoWater;
+			public State NoFert;
+			public State GotFert;
+			public State GotWater;
+			public State LostFert;
+			public State NotOperational;
+			public State NoLight;
 
-			public override void InitializeStates(out BaseState default_state)
+			public override void InitializeStates(out BaseState defaultState)
 			{
-				default_state = notoperational;
+				defaultState = NotOperational;
 
 				root
-					.EventTransition(GameHashes.OperationalChanged, notoperational, smi => !smi.IsOperational);
+					.EventTransition(GameHashes.OperationalChanged, NotOperational, smi => !smi.IsOperational);
 
-				notoperational
+				NotOperational
 					.QueueAnim("off")
-					.EventTransition(GameHashes.OperationalChanged, noLight, smi => smi.IsOperational);
+					.EventTransition(GameHashes.OperationalChanged, NoLight, smi => smi.IsOperational);
 
-				noLight
+				NoLight
 					.QueueAnim("off")
-					.Enter(smi => smi.master.operational.SetActive(false))
-					.Update("NoLight", (smi, dt) => { if (smi.HasLight() && smi.HasEnoughMass(GameTags.Fertilizer)) smi.GoTo(gotFert); }, UpdateRate.SIM_1000ms);
+					.Enter(smi => smi.master._operational.SetActive(false))
+					.Update("NoLight", (smi, dt) => { if (smi.HasLight() && smi.HasEnoughMass(GameTags.Fertilizer)) smi.GoTo(GotFert); }, UpdateRate.SIM_1000ms);
 
-				gotFert
+				GotFert
 					.PlayAnim("on_pre")
-					.OnAnimQueueComplete(noWater);
+					.OnAnimQueueComplete(NoWater);
 
-				lostFert
+				LostFert
 					.PlayAnim("on_pst")
-					.OnAnimQueueComplete(noFert);
+					.OnAnimQueueComplete(NoFert);
 
-				noFert
+				NoFert
 					.QueueAnim("off")
-					.EventTransition(GameHashes.OnStorageChange, gotFert, smi => smi.HasEnoughMass(GameTags.Fertilizer))
-					.Enter(smi => smi.master.operational.SetActive(false));
+					.EventTransition(GameHashes.OnStorageChange, GotFert, smi => smi.HasEnoughMass(GameTags.Fertilizer))
+					.Enter(smi => smi.master._operational.SetActive(false));
 
-				noWater
+				NoWater
 					.QueueAnim("on")
 					.Enter(smi => smi.master.GetComponent<PassiveElementConsumer>().EnableConsumption(true))
-					.EventTransition(GameHashes.OnStorageChange, lostFert, smi => !smi.HasEnoughMass(GameTags.Fertilizer))
-					.EventTransition(GameHashes.OnStorageChange, gotWater, smi =>
-					{
-						if (smi.HasEnoughMass(GameTags.Fertilizer))
-							return smi.HasEnoughMass(GameTags.Water);
-						return false;
-					});
+					.EventTransition(GameHashes.OnStorageChange, LostFert, smi => !smi.HasEnoughMass(GameTags.Fertilizer))
+					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Fertilizer) && smi.HasEnoughMass(GameTags.Water));
 
-				gotWater
+				GotWater
 					.PlayAnim("working_pre")
-					.OnAnimQueueComplete(generatingOxygen);
+					.OnAnimQueueComplete(GeneratingOxygen);
 
-				generatingOxygen
-					.Enter(smi => smi.master.operational.SetActive(true))
-					.Exit(smi => smi.master.operational.SetActive(false))
+				GeneratingOxygen
+					.Enter(smi => smi.master._operational.SetActive(true))
+					.Exit(smi => smi.master._operational.SetActive(false))
 					.QueueAnim("working_loop", true)
-					.EventTransition(GameHashes.OnStorageChange, stoppedGeneratingOxygen,
+					.EventTransition(GameHashes.OnStorageChange, StoppedGeneratingOxygen,
 						smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Fertilizer))
-					.Update("GeneratingOxygen", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(stoppedGeneratingOxygen); }, UpdateRate.SIM_1000ms);
+					.Update("GeneratingOxygen", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(StoppedGeneratingOxygen); }, UpdateRate.SIM_1000ms);
 
-				stoppedGeneratingOxygen
+				StoppedGeneratingOxygen
 					.PlayAnim("working_pst")
-					.OnAnimQueueComplete(stoppedGeneratingOxygenTransition);
+					.OnAnimQueueComplete(StoppedGeneratingOxygenTransition);
 
-				stoppedGeneratingOxygenTransition
-					.Update("StoppedGeneratingOxygenTransition", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(noLight); }, UpdateRate.SIM_200ms)
-					.EventTransition(GameHashes.OnStorageChange, noWater, smi => !smi.HasEnoughMass(GameTags.Water) && smi.HasLight())
-					.EventTransition(GameHashes.OnStorageChange, lostFert, smi => !smi.HasEnoughMass(GameTags.Fertilizer) && smi.HasLight())
-					.EventTransition(GameHashes.OnStorageChange, gotWater, smi =>
-					{
-						if (smi.HasEnoughMass(GameTags.Water) && smi.HasLight())
-							return smi.HasEnoughMass(GameTags.Fertilizer);
-						return false;
-					});
+				StoppedGeneratingOxygenTransition
+					.Update("StoppedGeneratingOxygenTransition", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(NoLight); }, UpdateRate.SIM_200ms)
+					.EventTransition(GameHashes.OnStorageChange, NoWater, smi => !smi.HasEnoughMass(GameTags.Water) && smi.HasLight())
+					.EventTransition(GameHashes.OnStorageChange, LostFert, smi => !smi.HasEnoughMass(GameTags.Fertilizer) && smi.HasLight())
+					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Water) && smi.HasLight() &&
+					                                                              smi.HasEnoughMass(GameTags.Fertilizer));
 			}
 		}
 	}

@@ -10,7 +10,7 @@ namespace RanchingSensors
 		public static string Id = "CrittersSensor";
 		public const string DisplayName = "Live Critters Sensor";
 		public const string Description = "Counts up the number of critters in the room.";
-		public static string Effect = "Becomes " + UI.FormatAsLink("Active", "LOGIC") + " or on " + UI.FormatAsLink("Standby", "LOGIC") + " depending on the number of live critters (no eggs) in a room.";
+		public static string Effect = $"Becomes {UI.FormatAsLink("Active", "LOGIC")} or on {UI.FormatAsLink("Standby", "LOGIC")} depending on the number of live critters (no eggs) in a room.";
 
 		public override BuildingDef CreateBuildingDef()
 		{

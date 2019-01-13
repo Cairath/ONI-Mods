@@ -5,46 +5,51 @@ namespace DecorLights
 {
 	public class LavaLampConfig : IBuildingConfig
 	{
-		public const string ID = "LavaLamp";
+		public const string Id = "LavaLamp";
+		public const string DisplayName = "Lava Lamp";
+		public const string Description = "It's not real lava, is it?";
+		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC;
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 1;
-			int height = 2;
-			string anim = "lava_lamp_kanim";
-			int hitpoints = 10;
-			float construction_time = 10f;
-			float[] tieR1 = BUILDINGS.CONSTRUCTION_MASS_KG.TIER1;
-			string[] allMetals = MATERIALS.TRANSPARENTS;
-			float melting_point = 800f;
-			BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time,
-				tieR1, allMetals, melting_point, build_location_rule, BUILDINGS.DECOR.BONUS.TIER5, none, 0.2f);
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 1,
+				height: 2,
+				anim: "lava_lamp_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER0,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER1,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER1,
+				construction_materials: MATERIALS.TRANSPARENTS,
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER0,
+				build_location_rule: BuildLocationRule.OnFloor,
+				decor: DECOR.BONUS.TIER5,
+				noise: NOISE_POLLUTION.NONE);
+
 			buildingDef.RequiresPowerInput = true;
 			buildingDef.EnergyConsumptionWhenActive = 4f;
 			buildingDef.SelfHeatKilowattsWhenActive = 0.3f;
 			buildingDef.ViewMode = OverlayModes.Light.ID;
 			buildingDef.AudioCategory = "Metal";
+
 			return buildingDef;
 		}
 
 		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 		{
-			LightShapePreview lightShapePreview = go.AddComponent<LightShapePreview>();
+			var lightShapePreview = go.AddComponent<LightShapePreview>();
 			lightShapePreview.lux = 1500;
 			lightShapePreview.radius = 5f;
 			lightShapePreview.shape = LightShape.Circle;
-			lightShapePreview.offset = new CellOffset((int) def.BuildingComplete.GetComponent<Light2D>().Offset.x,
-				(int) def.BuildingComplete.GetComponent<Light2D>().Offset.y);
+			lightShapePreview.offset = new CellOffset((int)def.BuildingComplete.GetComponent<Light2D>().Offset.x, (int)def.BuildingComplete.GetComponent<Light2D>().Offset.y);
 		}
 
 		public override void DoPostConfigureComplete(GameObject go)
 		{
 			go.AddOrGet<EnergyConsumer>();
 			go.AddOrGet<LoopingSounds>();
-			Light2D light2D = go.AddOrGet<Light2D>();
+
+			var light2D = go.AddOrGet<Light2D>();
 			light2D.overlayColour = LIGHT2D.FLOORLAMP_OVERLAYCOLOR;
 			light2D.Color = new Color(2, 0, 0);
 			light2D.Range = 5f;
@@ -54,9 +59,10 @@ namespace DecorLights
 			light2D.Offset = new Vector2(0.05f, 1f);
 			light2D.shape = LightShape.Circle;
 			light2D.drawOverlay = true;
+
 			BuildingTemplates.DoPostConfigure(go);
-			go.GetComponent<KPrefabID>().prefabInitFn += (KPrefabID.PrefabFn) (game_object =>
-				new LavaLamp.Instance(game_object.GetComponent<KPrefabID>()).StartSM());
+
+			go.GetComponent<KPrefabID>().prefabInitFn += gameObject => new LavaLamp.Instance(gameObject.GetComponent<KPrefabID>()).StartSM();
 		}
 	}
 }

@@ -2,28 +2,33 @@
 using TUNING;
 using UnityEngine;
 
-namespace ConveyorFilter
+namespace ConveyorRailUtilities.Filter
 {
-	public class SolidConduitFilterConfig : IBuildingConfig
+	public class ConveyorFilterConfig : IBuildingConfig
 	{
-		public const string ID = "SolidConduitFilter";
-		private ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Solid, new CellOffset(0, 0));
+		public const string Id = "ConveyorFilter";
+		public const string DisplayName = "Conveyor Rail Filter";
+		public const string Description = "Filters incoming items on the Conveyor Rail. Filtered items (selected on the list) are put on the secondary output in the middle of the filter (icon not visible).";
+		public const string Effect = "Filters the Conveyor Rail by sending selected items to a separate output.";
+
+		private readonly ConduitPortInfo _secondaryPort = new ConduitPortInfo(ConduitType.Solid, new CellOffset(0, 0));
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			string id = ID;
-			int width = 3;
-			int height = 1;
-			string anim = "utilities_conveyorbridge_kanim";
-			int hitpoints = 100;
-			float construction_time = 60f;
-			float[] tieR3 = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
-			string[] refinedMetals = MATERIALS.REFINED_METALS;
-			float melting_point = 1600f;
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
+				id: Id,
+				width: 3,
+				height: 1,
+				anim: "utilities_conveyorbridge_kanim",
+				hitpoints: BUILDINGS.HITPOINTS.TIER2,
+				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER3,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER3,
+				construction_materials: MATERIALS.REFINED_METALS,
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
+				build_location_rule: BuildLocationRule.Conduit,
+				decor: BUILDINGS.DECOR.NONE,
+				noise: NOISE_POLLUTION.NONE);
 
-			BuildLocationRule build_location_rule = BuildLocationRule.Conduit;
-			EffectorValues none = NOISE_POLLUTION.NONE;
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tieR3, refinedMetals, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, none, 0.2f);
 			buildingDef.InputConduitType = ConduitType.Solid;
 			buildingDef.OutputConduitType = ConduitType.Solid;
 			buildingDef.Floodable = false;
@@ -40,19 +45,21 @@ namespace ConveyorFilter
 			buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
 			buildingDef.UtilityOutputOffset = new CellOffset(1, 0);
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
-			GeneratedBuildings.RegisterWithOverlay(OverlayScreen.SolidConveyorIDs, ID);
+
+			GeneratedBuildings.RegisterWithOverlay(OverlayScreen.SolidConveyorIDs, Id);
+
 			return buildingDef;
 		}
 
 		private void AttachPort(GameObject go)
 		{
-			go.AddComponent<ConduitSecondaryOutput>().portInfo = this.secondaryPort;
+			go.AddComponent<ConduitSecondaryOutput>().portInfo = _secondaryPort;
 		}
 
 		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
 		{
 			base.DoPostConfigurePreview(def, go);
-			this.AttachPort(go);
+			AttachPort(go);
 		}
 
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
@@ -64,9 +71,9 @@ namespace ConveyorFilter
 		public override void DoPostConfigureUnderConstruction(GameObject go)
 		{
 			base.DoPostConfigureUnderConstruction(go);
-			this.AttachPort(go);
+			AttachPort(go);
 
-			Constructable component = go.GetComponent<Constructable>();
+			var component = go.GetComponent<Constructable>();
 			component.choreTags = GameTags.ChoreTypes.ConveyorChores;
 			component.requiredRolePerk = RoleManager.rolePerks.ConveyorBuild.id;
 		}
@@ -74,15 +81,16 @@ namespace ConveyorFilter
 		public override void DoPostConfigureComplete(GameObject go)
 		{
 			BuildingTemplates.DoPostConfigure(go);
-			go.AddOrGet<EnergyConsumer>();
 			Prioritizable.AddRef(go);
+
+			go.AddOrGet<EnergyConsumer>();
 			go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
 
-			List<Tag> tagList = new List<Tag>();
-			tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
-			tagList.AddRange((IEnumerable<Tag>)STORAGEFILTERS.FOOD);
+			var tagList = new List<Tag>();
+			tagList.AddRange(STORAGEFILTERS.NOT_EDIBLE_SOLIDS);
+			tagList.AddRange(STORAGEFILTERS.FOOD);
 
-			Storage storage = go.AddOrGet<Storage>();
+			var storage = go.AddOrGet<Storage>();
 			storage.capacityKg = 0f;
 			storage.showInUI = true;
 			storage.showDescriptor = true;
@@ -93,8 +101,8 @@ namespace ConveyorFilter
 			go.AddOrGet<Automatable>();
 			go.AddOrGet<TreeFilterable>();
 
-			SolidConduitFilter filterLogic = go.AddOrGet<SolidConduitFilter>();
-			filterLogic.SecondaryPort = secondaryPort;
+			var filterLogic = go.AddOrGet<ConveyorFilter>();
+			filterLogic.SecondaryPort = _secondaryPort;
 
 			go.AddOrGetDef<PoweredActiveController.Def>().showWorkingStatus = true;
 		}

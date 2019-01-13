@@ -37,10 +37,10 @@ namespace RanchingSensors
 
 			[HarmonyPatch(typeof(KSerialization.Manager))]
 			[HarmonyPatch("GetType")]
+			[HarmonyPatch(new[] { typeof(string) })]
 			public static class KSerializationManager_GetType_Patch
 			{
-				[HarmonyPostfix]
-				public static void GetType(string type_name, ref Type __result)
+				public static void Postfix(string type_name, ref Type __result)
 				{
 					if (type_name == "RanchingSensors.CrittersSensor")
 					{

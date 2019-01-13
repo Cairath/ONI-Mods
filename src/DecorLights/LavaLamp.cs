@@ -2,39 +2,37 @@
 {
 	public class LavaLamp : GameStateMachine<LavaLamp, LavaLamp.Instance>
 	{
-		public State off;
-		public State on;
-		public State on_pre;
-		public State on_pst;
+		public State Off;
+		public State On;
+		public State OnPre;
+		public State OnPst;
 
-		public override void InitializeStates(out BaseState default_state)
+		public override void InitializeStates(out BaseState defaultState)
 		{
-			default_state = off;
+			defaultState = Off;
 
-			off
+			Off
 				.PlayAnim("off")
-				.EventTransition(GameHashes.OperationalChanged, on_pre, smi => smi.GetComponent<Operational>().IsOperational);
-			on_pre
+				.EventTransition(GameHashes.OperationalChanged, OnPre, smi => smi.GetComponent<Operational>().IsOperational);
+
+			OnPre
 				.PlayAnim("working_pre")
-				.OnAnimQueueComplete(on);
-			on
-				.Enter("SetActive", smi => smi.GetComponent<Operational>().SetActive(true, false))
+				.OnAnimQueueComplete(On);
+
+			On
+				.Enter("SetActive", smi => smi.GetComponent<Operational>().SetActive(true))
 				.PlayAnim("working_loop", KAnim.PlayMode.Loop)
-				.EventTransition(GameHashes.OperationalChanged, on_pst, smi => !smi.GetComponent<Operational>().IsOperational)
+				.EventTransition(GameHashes.OperationalChanged, OnPst, smi => !smi.GetComponent<Operational>().IsOperational)
 				.ToggleStatusItem(Db.Get().BuildingStatusItems.EmittingLight, null);
-			on_pst
+
+			OnPst
 				.PlayAnim("working_pst")
-				.OnAnimQueueComplete(off);
-
-
+				.OnAnimQueueComplete(Off);
 		}
 
 		public new class Instance : GameInstance
 		{
-			public Instance(IStateMachineTarget master)
-				: base(master)
-			{
-			}
+			public Instance(IStateMachineTarget master) : base(master) { }
 		}
 	}
 }

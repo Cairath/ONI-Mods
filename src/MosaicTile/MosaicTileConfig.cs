@@ -22,7 +22,7 @@ namespace MosaicTile
 				hitpoints: BUILDINGS.HITPOINTS.TIER2,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER3,
-				construction_materials: new string[] { SimHashes.Ceramic.ToString() },
+				construction_materials: new[] { SimHashes.Ceramic.ToString() },
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER2,
 				build_location_rule: BuildLocationRule.Tile,
 				decor: DECOR.BONUS.TIER2,

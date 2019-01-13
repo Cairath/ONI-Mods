@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="CeilingLamp.cs" />
     <Compile Include="CeilingLampConfig.cs" />
-    <Compile Include="DecorLightsMod.cs" />
+    <Compile Include="DecorLightsPatches.cs" />
     <Compile Include="LavaLamp.cs" />
     <Compile Include="LavaLampConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
