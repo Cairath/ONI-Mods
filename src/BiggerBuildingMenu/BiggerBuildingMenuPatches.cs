@@ -9,7 +9,7 @@ namespace BiggerBuildingMenu
 		{
 		    public static void Postfix(PlanScreen __instance)
 		    {
-			    Traverse.Create(__instance).Field("buildGrid_maxRowsBeforeScroll").SetValue(6);
+			    Traverse.Create(__instance).Field("buildGrid_maxRowsBeforeScroll").SetValue(8);
 		    }
 	    }
 	}

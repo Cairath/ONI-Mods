@@ -7,8 +7,8 @@
     <ProjectGuid>{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PaintDrywall</RootNamespace>
-    <AssemblyName>PaintDrywall</AssemblyName>
+    <RootNamespace>PaintWalls</RootNamespace>
+    <AssemblyName>PaintWalls</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -46,7 +46,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PaintDrywallPatches.cs" />
+    <Compile Include="PaintWallsPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

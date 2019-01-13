@@ -1,6 +1,6 @@
 ﻿using Harmony;
 
-namespace PaintDrywall
+namespace PaintWalls
 {
 	[HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
 	public static class BuildingComplete_OnSpawn_Patch
@@ -8,7 +8,6 @@ namespace PaintDrywall
 		public static void Postfix(BuildingComplete __instance)
 		{
 			if (__instance.name == "ExteriorWallComplete"
-				|| __instance.name == "WallpaperComplete"
 				|| __instance.name == "ThermalBlockComplete")
 
 			{

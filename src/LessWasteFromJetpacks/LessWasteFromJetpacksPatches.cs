@@ -18,7 +18,7 @@ namespace LessWasteFromJetpacks
 			    {
 					if (codes[i].opcode == OpCodes.Ldc_R4 && (float)codes[i].operand == 3f)
 				    {
-					    codes[i].operand = 0f;
+					    codes[i].operand = 1f;
 					    break;
 				    }
 			    }
