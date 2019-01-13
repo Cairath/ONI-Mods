@@ -2,7 +2,6 @@
 using Harmony;
 using KSerialization;
 using UnityEngine;
-using STRINGS;
 
 namespace RanchingRebalanced.Pacu
 {
@@ -10,11 +9,11 @@ namespace RanchingRebalanced.Pacu
 	{
 		[Serialize]
 		[SerializeField]
-		private float timeToSuffocate;
+		private float _timeToSuffocate;
 
 		[Serialize]
-		private bool suffocated;
-		private bool suffocating;
+		private bool _suffocated;
+		private bool _suffocating;
 
 		protected const float MaxSuffocateTime = 50f;
 		protected const float RegenRate = 5f;
@@ -23,49 +22,48 @@ namespace RanchingRebalanced.Pacu
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
-			this.timeToSuffocate = 15f;
+			_timeToSuffocate = 15f;
 		}
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
-			this.CheckDryingOut();
+			CheckDryingOut();
 		}
 
 		private void CheckDryingOut()
 		{
-			if (this.suffocated || this.GetComponent<KPrefabID>().HasTag(GameTags.Trapped))
+			if (_suffocated || GetComponent<KPrefabID>().HasTag(GameTags.Trapped))
 				return;
 
-			if (!IsInWater(Grid.PosToCell(this.gameObject.transform.GetPosition())))
+			if (!IsInWater(Grid.PosToCell(gameObject.transform.GetPosition())))
 			{
-				if (!this.suffocating)
+				if (!_suffocating)
 				{
-					this.suffocating = true;
-					this.Trigger((int)GameHashes.DryingOut);
+					_suffocating = true;
+					Trigger((int)GameHashes.DryingOut);
 				}
 
-				if ((double)this.timeToSuffocate > 0.0)
+				if ((double)_timeToSuffocate > 0.0)
 					return;
 
 				DeathMonitor.Instance smi = this.GetSMI<DeathMonitor.Instance>();
-				if (smi != null)
-					smi.Kill(Db.Get().Deaths.Suffocation);
+				smi?.Kill(Db.Get().Deaths.Suffocation);
 
-				this.Trigger((int)GameHashes.DriedOut);
-				this.suffocated = true;
+				Trigger((int)GameHashes.DriedOut);
+				_suffocated = true;
 			}
 			else
 			{
-				if (!this.suffocating)
+				if (!_suffocating)
 					return;
 
-				this.suffocating = false;
-				this.Trigger((int)GameHashes.EnteredWetArea, (object)null);
+				_suffocating = false;
+				Trigger((int)GameHashes.EnteredWetArea, (object)null);
 			}
 		}
 
-		public bool Suffocating => this.suffocating;
+		public bool Suffocating => _suffocating;
 
 		private static bool IsInWater(int cell)
 		{
@@ -74,29 +72,30 @@ namespace RanchingRebalanced.Pacu
 
 		public void Sim1000ms(float dt)
 		{
-			this.CheckDryingOut();
+			CheckDryingOut();
 
-			if (this.suffocating)
+			if (_suffocating)
 			{
-				if (this.suffocated)
+				if (_suffocated)
 					return;
 
-				this.timeToSuffocate -= dt;
+				_timeToSuffocate -= dt;
 
-				if ((double)this.timeToSuffocate > 0.0)
+				if (_timeToSuffocate > 0.0)
 					return;
 
-				this.CheckDryingOut();
+				CheckDryingOut();
 			}
 			else
 			{
-				this.timeToSuffocate += dt * RegenRate;
-				this.timeToSuffocate = Mathf.Clamp(this.timeToSuffocate, 0.0f, MaxSuffocateTime);
+				_timeToSuffocate += dt * RegenRate;
+				_timeToSuffocate = Mathf.Clamp(_timeToSuffocate, 0.0f, MaxSuffocateTime);
 			}
 		}
 	}
 
-	[HarmonyPatch(typeof(Manager), "GetType", new[] { typeof(string) })]
+	[HarmonyPatch(typeof(KSerialization.Manager))]
+	[HarmonyPatch("GetType")]
 	public static class OutOfLiquidMonitorSerializationPatch
 	{
 		public static void Postfix(string type_name, ref Type __result)

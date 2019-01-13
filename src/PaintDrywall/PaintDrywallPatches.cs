@@ -1,5 +1,4 @@
 ﻿using Harmony;
-using UnityEngine;
 
 namespace PaintDrywall
 {
@@ -13,12 +12,12 @@ namespace PaintDrywall
 				|| __instance.name == "ThermalBlockComplete")
 
 			{
-				PrimaryElement primaryElement = __instance.GetComponent<PrimaryElement>();
-				KAnimControllerBase kAnimBase = __instance.GetComponent<KAnimControllerBase>();
+				var primaryElement = __instance.GetComponent<PrimaryElement>();
+				var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
 
 				if (primaryElement != null && kAnimBase != null)
 				{
-					Color color = primaryElement.Element.substance.colour;
+					var color = primaryElement.Element.substance.colour;
 					color.a = 1;
 
 					kAnimBase.TintColour = color;

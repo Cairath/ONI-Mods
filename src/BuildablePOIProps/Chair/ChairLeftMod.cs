@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BuildablePOIProps.DNAStatue;
+﻿using System.Collections.Generic;
 using Harmony;
 
 namespace BuildablePOIProps.Chair
@@ -16,13 +13,8 @@ namespace BuildablePOIProps.Chair
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRLEFT.NAME", "Chair (left)");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRLEFT.DESC", "A comfy chair.");
 				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRLEFT.EFFECT", "So comfy!");
-
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.NAME", "Chair (right)");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.DESC", "A comfy chair.");
-				Strings.Add("STRINGS.BUILDINGS.PREFABS.CHAIRRIGHT.EFFECT", "So comfy!");
 				
 				ModUtil.AddBuildingToPlanScreen("Furniture", ChairLeftConfig.ID);
-				ModUtil.AddBuildingToPlanScreen("Furniture", ChairRightConfig.ID);
 			}
 		}
 
@@ -31,7 +23,7 @@ namespace BuildablePOIProps.Chair
 		{
 			private static void Prefix()
 			{
-				List<string> ls = new List<string>(Database.Techs.TECH_GROUPING["Luxury"]) { ChairLeftConfig.ID, ChairRightConfig.ID };
+				List<string> ls = new List<string>(Database.Techs.TECH_GROUPING["Luxury"]) { ChairLeftConfig.ID};
 				Database.Techs.TECH_GROUPING["Luxury"] = ls.ToArray();
 			}
 		}

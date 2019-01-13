@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Database;
 using Harmony;
 using KSerialization;
 using STRINGS;
-using BUILDINGS = TUNING.BUILDINGS;
 
 namespace AlgaeGrower
 {

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ConveyorShutoff
+﻿namespace ConveyorShutoff
 {
 	public class SolidConduitShutoff : KMonoBehaviour
 	{

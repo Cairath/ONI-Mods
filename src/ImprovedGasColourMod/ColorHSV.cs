@@ -49,11 +49,12 @@
  * */
 
 // ReSharper disable All
-namespace ImprovedGasColourMod
-{
-    using UnityEngine;
 
-    public struct ColorHSV
+using UnityEngine;
+
+namespace ImprovedGasOverlay
+{
+	public struct ColorHSV
     {
         public float H;
 
@@ -209,7 +210,7 @@ namespace ImprovedGasColourMod
 
             if (error)
             {
-                Debug.LogError($"Gas color {message.Trim()} under/overflow for <{elementID}> at intensity [{fraction}]");
+                UnityEngine.Debug.LogError($"Gas color {message.Trim()} under/overflow for <{elementID}> at intensity [{fraction}]");
             }
         }
 

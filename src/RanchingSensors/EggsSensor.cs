@@ -1,24 +1,24 @@
 ﻿using KSerialization;
 using STRINGS;
 using UnityEngine;
-using System;
-using System.Collections.Generic;
 
 namespace RanchingSensors
 {
 	[SerializationConfig(MemberSerialization.OptIn)]
-	public class EggsSensor : Switch, ISaveLoadable, IThresholdSwitch, ISim200ms
+	public class EggsSensor : Switch, IThresholdSwitch, ISim200ms
 	{
 		[SerializeField]
 		[Serialize]
-		private float threshold;
+		private float _threshold;
+
 		[SerializeField]
 		[Serialize]
-		private bool activateAboveThreshold = true;
-		private bool wasOn;
-		private int currentEggs = 0;
+		private bool _activateAboveThreshold = true;
 
-		public float CurrentValue => currentEggs;
+		private bool _wasOn;
+		private int _currentEggs;
+
+		public float CurrentValue => _currentEggs;
 		public LocString Title => "Eggs Sensor";
 		public LocString ThresholdValueName => UI.CODEX.CATEGORYNAMES.CREATURES;
 		public LocString ThresholdValueUnits() => "";
@@ -38,38 +38,38 @@ namespace RanchingSensors
 			OnToggle += OnSwitchToggled;
 			UpdateLogicCircuit();
 			UpdateVisualState(true);
-			wasOn = IsSwitchedOn;
+			_wasOn = IsSwitchedOn;
 		}
 
 		public void Sim200ms(float dt)
 		{
-			currentEggs = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).eggs.Count;
+			_currentEggs = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).eggs.Count;
 
-			if (activateAboveThreshold)
+			if (_activateAboveThreshold)
 			{
-				if (currentEggs > threshold && !IsSwitchedOn)
+				if (_currentEggs > _threshold && !IsSwitchedOn)
 				{
 					Toggle();
 				}
-				else if (currentEggs <= threshold && IsSwitchedOn)
+				else if (_currentEggs <= _threshold && IsSwitchedOn)
 				{
 					Toggle();
 				}
 			}
-			else if (!activateAboveThreshold)
+			else if (!_activateAboveThreshold)
 			{
-				if (currentEggs < threshold && !IsSwitchedOn)
+				if (_currentEggs < _threshold && !IsSwitchedOn)
 				{
 					Toggle();
 				}
-				else if (currentEggs >= threshold && IsSwitchedOn)
+				else if (_currentEggs >= _threshold && IsSwitchedOn)
 				{
 					Toggle();
 				}
 			}
 		}
 
-		private void OnSwitchToggled(bool toggled_on)
+		private void OnSwitchToggled(bool toggledOn)
 		{
 			UpdateLogicCircuit();
 			UpdateVisualState();
@@ -78,29 +78,30 @@ namespace RanchingSensors
 		private void UpdateVisualState(bool force = false)
 		{
 
-			if (this.wasOn == this.switchedOn && !force)
+			if (_wasOn == switchedOn && !force)
 				return;
-			this.wasOn = this.switchedOn;
-			KBatchedAnimController component = this.GetComponent<KBatchedAnimController>();
-			component.Play((HashedString)(!this.switchedOn ? "on_pst" : "on_pre"), KAnim.PlayMode.Once, 1f, 0.0f);
-			component.Queue((HashedString)(!this.switchedOn ? "off" : "on"), KAnim.PlayMode.Once, 1f, 0.0f);
+			_wasOn = switchedOn;
+
+			var component = GetComponent<KBatchedAnimController>();
+			component.Play(!switchedOn ? "on_pst" : "on_pre");
+			component.Queue(!switchedOn ? "off" : "on");
 		}
 
 		public float Threshold
 		{
-			get => threshold;
-			set => threshold = value;
+			get => _threshold;
+			set => _threshold = value;
 		}
 
 		public bool ActivateAboveThreshold
 		{
-			get => activateAboveThreshold;
-			set => activateAboveThreshold = value;
+			get => _activateAboveThreshold;
+			set => _activateAboveThreshold = value;
 		}
 
 		private void UpdateLogicCircuit()
 		{
-			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, !switchedOn ? 0 : 1);
+			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, switchedOn ? 1 : 0);
 		}	
 
 		public string Format(float value, bool units)

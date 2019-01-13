@@ -40,12 +40,7 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\lib\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\lib\UnityEngine.dll</HintPath>
     </Reference>
@@ -61,7 +56,7 @@
     <Compile Include="EggsSensor.cs" />
     <Compile Include="CrittersSensor.cs" />
     <Compile Include="CrittersSensorConfig.cs" />
-    <Compile Include="RanchingSensorsMod.cs" />
+    <Compile Include="RanchingSensorsPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

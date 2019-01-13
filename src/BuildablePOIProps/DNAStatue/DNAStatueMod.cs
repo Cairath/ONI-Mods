@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BuildablePOIProps.TableWithChairs;
+﻿using System.Collections.Generic;
 using Harmony;
 
 namespace BuildablePOIProps.DNAStatue

@@ -7,12 +7,12 @@ namespace Wallpaper
 	{
 		public const string Id = "Wallpaper";
 		public const string DisplayName = "Wallpaper";
-		public const string Description = "Wallpaper";
-		public const string Effect = "Wallpaper";
+		public const string Description = "Bring a little more variety to your base.";
+		public const string Effect = "Wallpapers are purely visual and do not bring the same insulation as drywalls.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
-			BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(
+			var buildingDef = BuildingTemplates.CreateBuildingDef(
 				id: Id,
 				width: 1,
 				height: 1,

@@ -15,8 +15,8 @@ namespace BuildablePOIProps.Couch
 			string anim = "gravitas_couch_kanim";
 			int hitpoints = 50;
 			float construction_time = 20f;
-			float[] construction_mass = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
-			string[] construction_materials = MATERIALS.PLASTICS;
+			float[] construction_mass = new[] {200f, 20f};
+			string[] construction_materials = new[] {MATERIALS.PLASTIC, GameTags.BuildingFiber.ToString()};
 			float melting_point = 1600f;
 
 			BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;

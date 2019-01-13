@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelLadder", "SteelLadder\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrettierConductiveHeavyWattWire", "PrettierConductiveHeavyWattWire\PrettierConductiveHeavyWattWire.csproj", "{975D0A22-CD7F-47CD-8E5D-18FA092686BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrywallNotEntombed", "DrywallNotEntombed\DrywallNotEntombed.csproj", "{FC271357-6D79-443C-ABE6-18BFD9992C03}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerCameraZoomOut", "BiggerCameraZoomOut\BiggerCameraZoomOut.csproj", "{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "DebugDoesNotDiscoverMap\DebugDoesNotDiscoverMap.csproj", "{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}"
@@ -117,10 +115,6 @@ Global
 		{975D0A22-CD7F-47CD-8E5D-18FA092686BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975D0A22-CD7F-47CD-8E5D-18FA092686BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975D0A22-CD7F-47CD-8E5D-18FA092686BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC271357-6D79-443C-ABE6-18BFD9992C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC271357-6D79-443C-ABE6-18BFD9992C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC271357-6D79-443C-ABE6-18BFD9992C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC271357-6D79-443C-ABE6-18BFD9992C03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
