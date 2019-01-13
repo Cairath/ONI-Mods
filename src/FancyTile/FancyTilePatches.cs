@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Harmony;
 using TUNING;
 
-namespace MosaicTile
+namespace FancyTile
 {
-	public static class MosaicTilePatches
+	public static class FancyTilePatches
 	{
 		[HarmonyPatch(typeof(GeneratedBuildings))]
 		[HarmonyPatch("LoadGeneratedBuildings")]
@@ -12,11 +13,11 @@ namespace MosaicTile
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{MosaicTileConfig.Id.ToUpperInvariant()}.NAME", MosaicTileConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{MosaicTileConfig.Id.ToUpperInvariant()}.DESC", MosaicTileConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{MosaicTileConfig.Id.ToUpperInvariant()}.EFFECT", MosaicTileConfig.Effect);
+				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{FancyTileConfig.Id.ToUpperInvariant()}.NAME", FancyTileConfig.DisplayName);
+				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{FancyTileConfig.Id.ToUpperInvariant()}.DESC", FancyTileConfig.Description);
+				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{FancyTileConfig.Id.ToUpperInvariant()}.EFFECT", FancyTileConfig.Effect);
 
-				AddBuildingToPlanScreen("Base", MosaicTileConfig.Id);
+				AddBuildingToPlanScreen("Base", FancyTileConfig.Id);
 			}
 		}
 
@@ -26,7 +27,7 @@ namespace MosaicTile
 		{
 			public static void Prefix()
 			{
-				var luxuryTech = new List<string>(Database.Techs.TECH_GROUPING["Luxury"]) { MosaicTileConfig.Id };
+				var luxuryTech = new List<string>(Database.Techs.TECH_GROUPING["Luxury"]) { FancyTileConfig.Id };
 				Database.Techs.TECH_GROUPING["Luxury"] = luxuryTech.ToArray();
 			}
 		}

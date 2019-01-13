@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Harmony;
+using TUNING;
 
 namespace SteelLadder
 {
@@ -15,7 +16,7 @@ namespace SteelLadder
 				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SteelLadderConfig.Id.ToUpperInvariant()}.DESC", SteelLadderConfig.Description);
 				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SteelLadderConfig.Id.ToUpperInvariant()}.EFFECT", SteelLadderConfig.Effect);
 
-				ModUtil.AddBuildingToPlanScreen("Furniture", SteelLadderConfig.Id);
+				AddBuildingToPlanScreen("Base", SteelLadderConfig.Id);
 			}
 		}
 
@@ -27,6 +28,16 @@ namespace SteelLadder
 				var luxuryTech = new List<string>(Database.Techs.TECH_GROUPING["Luxury"]) { SteelLadderConfig.Id };
 				Database.Techs.TECH_GROUPING["Luxury"] = luxuryTech.ToArray();
 			}
+		}
+
+		private static void AddBuildingToPlanScreen(HashedString category, string buildingId)
+		{
+			var index = BUILDINGS.PLANORDER.FindIndex(x => x.category == category);
+
+			if (index == -1)
+				return;
+
+			(BUILDINGS.PLANORDER[index].data as IList<string>)?.Add(buildingId);
 		}
 	}
 }

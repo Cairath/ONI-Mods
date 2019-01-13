@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintDrywall", "PaintDrywal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallpaper", "Wallpaper\Wallpaper.csproj", "{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyTile", "FancyTile\FancyTile.csproj", "{B6886803-1704-40F7-81F1-0F6BEFF776A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,10 @@ Global
 		{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
