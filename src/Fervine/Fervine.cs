@@ -11,16 +11,22 @@ namespace Fervine
 
 		[SerializeField]
 		private float _openEnergyThreshold;
+
 		[SerializeField]
 		private float _minTemperature;
+
 		[SerializeField]
 		private float _kjConsumptionRate;
+
 		[SerializeField]
 		private float _lightKjConsumptionRate;
+
 		[SerializeField]
 		private Vector2I _minCheckOffset;
+
 		[SerializeField]
 		private Vector2I _maxCheckOffset;
+
 		[Serialize]
 		private float _kjConsumed;
 
@@ -49,8 +55,10 @@ namespace Fervine
 
 		public Notification CreateDeathNotification()
 		{
-			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad, HashedString.Invalid, (notificationList, data) =>
-					 CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), "/t• " + gameObject.GetProperName());
+			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad,
+				HashedString.Invalid, (notificationList, data) =>
+					 CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + 
+					 notificationList.ReduceMessages(false), "/t• " + gameObject.GetProperName());
 		}
 
 		public class StatesInstance : GameStateMachine<States, StatesInstance, Fervine, object>.GameInstance
@@ -70,13 +78,13 @@ namespace Fervine
 			{
 				serializable = true;
 				defaultState = Alive;
+				
+				var plantname = CREATURES.STATUSITEMS.DEAD.NAME;
+				var tooltip = CREATURES.STATUSITEMS.DEAD.TOOLTIP;
+				var main = Db.Get().StatusItemCategories.Main;
 
-				string plantname = CREATURES.STATUSITEMS.DEAD.NAME;
-				string tooltip = CREATURES.STATUSITEMS.DEAD.TOOLTIP;
-				StatusItemCategory main = Db.Get().StatusItemCategories.Main;
-
-				Dead.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, 0, null,
-						null, main)
+				Dead
+					.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, 0, null, null, main)
 					.Enter(smi =>
 					{
 						if (!UprootedMonitor.IsObjectUprooted(masterTarget.Get(smi)))
@@ -127,20 +135,24 @@ namespace Fervine
 
 			private static void AbsorbHeat(StatesInstance smi, float dt)
 			{
-				float num1 = smi.master._kjConsumptionRate * dt;
-				Vector2I vector2I = smi.master._maxCheckOffset - smi.master._minCheckOffset + 1;
-				int num2 = vector2I.x * vector2I.y;
-				float num3 = num1 / num2;
+				var consumedSinceLastUpdate = smi.master._kjConsumptionRate * dt;
+
+				var vector2I = smi.master._maxCheckOffset - smi.master._minCheckOffset + 1;
+
+				var affectedCells = vector2I.x * vector2I.y;
+				var consumptionPerCell = consumedSinceLastUpdate / affectedCells;
+
 				Grid.PosToXY(smi.master.transform.position, out var x1, out var y1);
-				for (int y2 = smi.master._minCheckOffset.y; y2 <= smi.master._maxCheckOffset.y; ++y2)
+
+				for (var y2 = smi.master._minCheckOffset.y; y2 <= smi.master._maxCheckOffset.y; ++y2)
 				{
-					for (int x2 = smi.master._minCheckOffset.x; x2 <= smi.master._maxCheckOffset.x; ++x2)
+					for (var x2 = smi.master._minCheckOffset.x; x2 <= smi.master._maxCheckOffset.x; ++x2)
 					{
-						int cell = Grid.XYToCell(x1 + x2, y1 + y2);
-						if (Grid.IsValidCell(cell) && Grid.Temperature[cell] > (double)smi.master._minTemperature)
+						var cell = Grid.XYToCell(x1 + x2, y1 + y2);
+						if (Grid.IsValidCell(cell) && Grid.Temperature[cell] > smi.master._minTemperature)
 						{
-							smi.master._kjConsumed += num3;
-							SimMessages.ModifyEnergy(cell, -num3, 3000f, SimMessages.EnergySourceID.HeatBulb);
+							smi.master._kjConsumed += consumptionPerCell;
+							SimMessages.ModifyEnergy(cell, -consumptionPerCell, 3000f, SimMessages.EnergySourceID.HeatBulb);
 						}
 					}
 				}

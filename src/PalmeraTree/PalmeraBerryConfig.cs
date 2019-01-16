@@ -5,23 +5,46 @@ namespace PalmeraTree
 {
 	public class PalmeraBerryConfig : IEntityConfig
 	{
-		public static string ID = "PalmeraBerry";
-		public static string NameStr = "Palmera Berry";
-
-		public static LocString Name = (LocString)UI.FormatAsLink(NameStr, ID.ToUpper());
-		public static LocString Desc = (LocString)"A toxic, non-edible bud that emits hydrogen.";
+		public static string Id = "PalmeraBerry";
+		public static string Name = "Palmera Berry";
+		public static string Description = "A toxic, non-edible bud that emits hydrogen.";
+		public static LocString NameWithLink = UI.FormatAsLink(Name, Id.ToUpper());
 
 		public GameObject CreatePrefab()
 		{
-			var entity = EntityTemplates.CreateLooseEntity(ID, Name, Desc, 1f, false,
-				Assets.GetAnim("palmeraberry_kanim"), "object", Grid.SceneLayer.Front,
-				EntityTemplates.CollisionShape.RECTANGLE, 0.77f, 0.48f, true);
+			var entity = EntityTemplates.CreateLooseEntity(
+				id: Id,
+				name: NameWithLink,
+				desc: Description,
+				mass: 1f,
+				unitMass: false,
+				anim: Assets.GetAnim("palmeraberry_kanim"),
+				initialAnim: "object",
+				sceneLayer: Grid.SceneLayer.Front,
+				collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
+				width: 0.77f,
+				height: 0.48f,
+				isPickupable: true);
 
-			var foodEntity = EntityTemplates.ExtendEntityToFood(entity, new EdiblesManager.FoodInfo(ID, 0.0f, TUNING.FOOD.FOOD_QUALITY_AWFUL, 255.15f, 277.15f, TUNING.FOOD.SPOIL_TIME.SLOW, true));
+			var foodInfo = new EdiblesManager.FoodInfo(
+				id: Id,
+				caloriesPerUnit: 0.0f,
+				quality: TUNING.FOOD.FOOD_QUALITY_AWFUL,
+				preserveTemperatue: 255.15f,
+				rotTemperature: 277.15f,
+				spoilTime: TUNING.FOOD.SPOIL_TIME.SLOW,
+				can_rot: true);
 
-			Sublimates sublimates = foodEntity.AddOrGet<Sublimates>();
+			var foodEntity = EntityTemplates.ExtendEntityToFood(entity, foodInfo);
+
+			var sublimates = foodEntity.AddOrGet<Sublimates>();
 			sublimates.spawnFXHash = SpawnFXHashes.OxygenEmissionBubbles;
-			sublimates.info = new Sublimates.Info(0.001f, 0f, 1.8f, 0.0f, SimHashes.Hydrogen);
+			sublimates.info = new Sublimates.Info(
+				rate: 0.001f,
+				min_amount: 0f,
+				max_destination_mass: 1.8f,
+				mass_power: 0.0f,
+				element: SimHashes.Hydrogen);
 
 			return foodEntity;
 		}

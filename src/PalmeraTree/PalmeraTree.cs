@@ -5,24 +5,31 @@ namespace PalmeraTree
 	public class PalmeraTree : StateMachineComponent<PalmeraTree.StatesInstance>
 	{
 		[MyCmpReq]
-		private Crop crop;
+		private Crop _crop;
+
 		[MyCmpReq]
-		private WiltCondition wiltCondition;
+		private WiltCondition _wiltCondition;
+
 		[MyCmpReq]
-		private Growing growing;
+		private Growing _growing;
+
 		[MyCmpReq]
-		private Harvestable harvestable;
+		private Harvestable _harvestable;
+
 		[MyCmpReq]
-		private ElementEmitter elementEmitter;
+		private ElementEmitter _elementEmitter;
+
 		[MyCmpReq]
-		private ElementConsumer elementConsumer;
+		private ElementConsumer _elementConsumer;
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
+
 			smi.Get<KBatchedAnimController>().randomiseLoopedOffset = true;
-			smi.master.elementEmitter.SetEmitting(false);
-			smi.master.elementConsumer.EnableConsumption(false);
+			smi.master._elementEmitter.SetEmitting(false);
+			smi.master._elementConsumer.EnableConsumption(false);
+
 			smi.StartSM();
 		}
 
@@ -40,36 +47,30 @@ namespace PalmeraTree
 
 		public class StatesInstance : GameStateMachine<States, StatesInstance, PalmeraTree, object>.GameInstance
 		{
-			public StatesInstance(PalmeraTree master)
-				: base(master)
-			{
-			}
+			public StatesInstance(PalmeraTree master) : base(master) { }
 
-			public bool IsOld()
-			{
-				return master.growing.PercentOldAge() > 0.5;
-			}
+			public bool IsOld() => master._growing.PercentOldAge() > 0.5;
 		}
 
 		public class States : GameStateMachine<States, StatesInstance, PalmeraTree>
 		{
-			public AliveStates alive;
-			public State dead;
+			public AliveStates Alive;
+			public State Dead;
 
-			public override void InitializeStates(out BaseState default_state)
+			public override void InitializeStates(out BaseState defaultState)
 			{
 				serializable = true;
-				default_state = alive;
+				defaultState = Alive;
 
-				string plantname = CREATURES.STATUSITEMS.DEAD.NAME;
-				string tooltip = CREATURES.STATUSITEMS.DEAD.TOOLTIP;
-				StatusItemCategory main = Db.Get().StatusItemCategories.Main;
+				var dead = CREATURES.STATUSITEMS.DEAD.NAME;
+				var tooltip = CREATURES.STATUSITEMS.DEAD.TOOLTIP;
+				var main = Db.Get().StatusItemCategories.Main;
 
-				dead.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, 0, null,
-						null, main)
+				Dead
+					.ToggleStatusItem(dead, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, 0, category: main)
 					.Enter(smi =>
 					{
-						if (smi.master.growing.Replanted && !UprootedMonitor.IsObjectUprooted(masterTarget.Get(smi)))
+						if (smi.master._growing.Replanted && !UprootedMonitor.IsObjectUprooted(masterTarget.Get(smi)))
 						{
 							smi.master.gameObject.AddOrGet<Notifier>().Add(smi.master.CreateDeathNotification(), string.Empty);
 						}
@@ -82,98 +83,95 @@ namespace PalmeraTree
 						smi.Schedule(0.5f, smi.master.DestroySelf);
 					});
 
-				alive
-					.InitializeStates(masterTarget, dead)
-					.DefaultState(alive.seed_grow).ToggleComponent<Growing>();
+				Alive
+					.InitializeStates(masterTarget, Dead)
+					.DefaultState(Alive.SeedGrow).ToggleComponent<Growing>();
 
-				alive.seed_grow
+				Alive.SeedGrow
 					.QueueAnim("seed_grow")
-					.OnAnimQueueComplete(alive.idle);
+					.OnAnimQueueComplete(Alive.Idle);
 
-				alive.idle
-					.Enter(smi => smi.master.elementConsumer.EnableConsumption(true))
-					.EventTransition(GameHashes.Wilt, alive.wilting_pre, smi => smi.master.wiltCondition.IsWilting())
-					.EventTransition(GameHashes.Grow, alive.pre_fruiting, smi => smi.master.growing.ReachedNextHarvest())
+				Alive.Idle
+					.Enter(smi => smi.master._elementConsumer.EnableConsumption(true))
+					.EventTransition(GameHashes.Wilt, Alive.WiltingPre, smi => smi.master._wiltCondition.IsWilting())
+					.EventTransition(GameHashes.Grow, Alive.PreFruiting, smi => smi.master._growing.ReachedNextHarvest())
 					.PlayAnim("idle_loop", KAnim.PlayMode.Loop)
-					.Exit(smi => smi.master.elementConsumer.EnableConsumption(false));
+					.Exit(smi => smi.master._elementConsumer.EnableConsumption(false));
 
-				alive.pre_fruiting
+				Alive.PreFruiting
 					.PlayAnim("grow", KAnim.PlayMode.Once)
-					.EventTransition(GameHashes.AnimQueueComplete, alive.fruiting);
+					.EventTransition(GameHashes.AnimQueueComplete, Alive.Fruiting);
 
-				alive.fruiting_lost
-					.Enter(smi => smi.master.harvestable.SetCanBeHarvested(false))
-					.GoTo(alive.idle);
+				Alive.FruitingLost
+					.Enter(smi => smi.master._harvestable.SetCanBeHarvested(false))
+					.GoTo(Alive.Idle);
 
-				alive.wilting_pre
+				Alive.WiltingPre
 					.QueueAnim("wilt_pre")
-					.OnAnimQueueComplete(alive.wilting);
+					.OnAnimQueueComplete(Alive.Wilting);
 
-				alive.wilting
+				Alive.Wilting
 					.PlayAnim("idle_wilt_loop", KAnim.PlayMode.Loop)
-					.EventTransition(GameHashes.WiltRecover, alive.idle, smi => !smi.master.wiltCondition.IsWilting())
-					.EventTransition(GameHashes.Harvest, alive.harvest);
+					.EventTransition(GameHashes.WiltRecover, Alive.Idle, smi => !smi.master._wiltCondition.IsWilting())
+					.EventTransition(GameHashes.Harvest, Alive.Harvest);
 
+				Alive.Fruiting
+					.DefaultState(Alive.Fruiting.FruitingIdle)
+					.EventTransition(GameHashes.Wilt, Alive.WiltingPre)
+					.EventTransition(GameHashes.Harvest, Alive.Harvest)
+					.EventTransition(GameHashes.Grow, Alive.FruitingLost, smi => !smi.master._growing.ReachedNextHarvest());
 
-				alive.fruiting
-					.DefaultState(alive.fruiting.fruiting_idle)
-					.EventTransition(GameHashes.Wilt, alive.wilting_pre)
-					.EventTransition(GameHashes.Harvest, alive.harvest)
-					.EventTransition(GameHashes.Grow, alive.fruiting_lost, smi => !smi.master.growing.ReachedNextHarvest());
-
-				alive.fruiting.fruiting_idle.PlayAnim("idle_bloom_loop", KAnim.PlayMode.Loop)
-					.Enter(smi => smi.master.harvestable.SetCanBeHarvested(true))
-					.Enter(smi => smi.master.elementConsumer.EnableConsumption(true))
-					.Enter(smi => smi.master.elementEmitter.SetEmitting(true))
+				Alive.Fruiting.FruitingIdle.PlayAnim("idle_bloom_loop", KAnim.PlayMode.Loop)
+					.Enter(smi => smi.master._harvestable.SetCanBeHarvested(true))
+					.Enter(smi => smi.master._elementConsumer.EnableConsumption(true))
+					.Enter(smi => smi.master._elementEmitter.SetEmitting(true))
 					.Update("fruiting_idle", (smi, dt) =>
 					{
 						if (!smi.IsOld())
 							return;
-						smi.GoTo(alive.fruiting.fruiting_old);
+						smi.GoTo(Alive.Fruiting.FruitingOld);
 					}, UpdateRate.SIM_4000ms)
-					.Exit(smi => smi.master.elementEmitter.SetEmitting(false))
-					.Exit(smi => smi.master.elementConsumer.EnableConsumption(false));
+					.Exit(smi => smi.master._elementEmitter.SetEmitting(false))
+					.Exit(smi => smi.master._elementConsumer.EnableConsumption(false));
 
-				alive.fruiting.fruiting_old
+				Alive.Fruiting.FruitingOld
 					.PlayAnim("wilt", KAnim.PlayMode.Loop)
-					.Enter(smi => smi.master.harvestable.SetCanBeHarvested(true))
+					.Enter(smi => smi.master._harvestable.SetCanBeHarvested(true))
 					.Update("fruiting_old", (smi, dt) =>
 					{
 						if (smi.IsOld())
 							return;
-						smi.GoTo(alive.fruiting.fruiting_idle);
+						smi.GoTo(Alive.Fruiting.FruitingIdle);
 					}, UpdateRate.SIM_4000ms);
 
-				alive.harvest
+				Alive.Harvest
 					.PlayAnim("harvest", KAnim.PlayMode.Once)
 					.Enter(smi =>
 					{
-						if (GameScheduler.Instance != null && smi.master != null)
-							GameScheduler.Instance.Schedule("SpawnFruit", 0.2f, smi.master.crop.SpawnFruit);
-						smi.master.harvestable.SetCanBeHarvested(false);
+						if (GameScheduler.Instance == null || smi.master == null) return;
+
+						GameScheduler.Instance.Schedule("SpawnFruit", 0.2f, smi.master._crop.SpawnFruit);
+						smi.master._harvestable.SetCanBeHarvested(false);
 					})
-					.OnAnimQueueComplete(alive.idle);
+					.OnAnimQueueComplete(Alive.Idle);
 			}
 
 			public class AliveStates : PlantAliveSubState
 			{
-				public State idle;
-				public State seed_grow;
-				public State pre_fruiting;
-				public State fruiting_lost;
-				public State barren;
-				public State wilting;
-				public State wilting_pre;
-				public State wilting_pst;
-				public State destroy;
-				public State harvest;
-				public FruitingState fruiting;
+				public State Idle;
+				public State SeedGrow;
+				public State PreFruiting;
+				public State FruitingLost;
+				public State Wilting;
+				public State WiltingPre;
+				public State Harvest;
+				public FruitingState Fruiting;
 			}
 
 			public class FruitingState : State
 			{
-				public State fruiting_idle;
-				public State fruiting_old;
+				public State FruitingIdle;
+				public State FruitingOld;
 			}
 		}
 	}

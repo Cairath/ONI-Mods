@@ -8,34 +8,68 @@ namespace Fervine
 {
 	public class FervineConfig : IEntityConfig
 	{
-		public const string ID = "Heatbulb";
-		public const string SEED_ID = "HeatbulbSeed";
+		public const string Id = "Heatbulb";
+		public const string SeedId = "HeatbulbSeed";
 
 		public const string SeedName = "Fervine Seed";
-		public static string SeedDesc = "The " + UI.FormatAsLink("Seed", "PLANTS") + " of a " + CREATURES.SPECIES.HEATBULB.NAME + ".";
+		public static string SeedDesc = $"The {UI.FormatAsLink("Seed", "PLANTS")} of a {CREATURES.SPECIES.HEATBULB.NAME}.";
 
 		public GameObject CreatePrefab()
 		{
-			GameObject placedEntity = EntityTemplates.CreatePlacedEntity(ID, CREATURES.SPECIES.HEATBULB.NAME, CREATURES.SPECIES.HEATBULB.DESC, 1f,
-				Assets.GetAnim("plantheatbulb_kanim"), "close", Grid.SceneLayer.BuildingFront, 1, 1, DECOR.BONUS.TIER3, defaultTemperature: 350f);
-			EntityTemplates.ExtendEntityToBasicPlant(placedEntity, 258.15f, 288.15f, 363.15f, 373.15f, pressure_sensitive: false);
+			var plantEntityTemplate = EntityTemplates.CreatePlacedEntity(
+				id: Id,
+				name: CREATURES.SPECIES.HEATBULB.NAME,
+				desc: CREATURES.SPECIES.HEATBULB.DESC,
+				width: 1,
+				height: 1,
+				mass: 1f,
+				anim: Assets.GetAnim("plantheatbulb_kanim"),
+				initialAnim: "close",
+				sceneLayer: Grid.SceneLayer.BuildingFront,
+				decor: DECOR.BONUS.TIER3,
+				defaultTemperature: 350f);
 
-			Light2D light2D = placedEntity.AddOrGet<Light2D>();
+			EntityTemplates.ExtendEntityToBasicPlant(
+				template: plantEntityTemplate,
+				temperature_lethal_low: 258.15f,
+				temperature_warning_low: 288.15f,
+				temperature_warning_high: 363.15f,
+				temperature_lethal_high: 373.15f,
+				pressure_sensitive: false,
+				can_tinker: false);
+
+			var light2D = plantEntityTemplate.AddOrGet<Light2D>();
 			light2D.Color = new Color(1f, 1f, 0f);
 			light2D.Lux = 1800;
 			light2D.Range = 5;
-			placedEntity.AddOrGet<Fervine>();
+
+			plantEntityTemplate.AddOrGet<Fervine>();
+
+			var seed = EntityTemplates.CreateAndRegisterSeedForPlant(
+				plant: plantEntityTemplate,
+				id: SeedId,
+				name: SeedName,
+				desc: SeedDesc,
+				productionType: SeedProducer.ProductionType.Hidden,
+				anim: Assets.GetAnim("plantheatbulb_kanim"),
+				initialAnim: "seed_swamplily",
+				numberOfSeeds: 0,
+				additionalTags: new List<Tag> { GameTags.DecorSeed },
+				sortOrder: 6,
+				width: 0.33f,
+				height: 0.33f);
 
 			EntityTemplates.CreateAndRegisterPreviewForPlant(
-				EntityTemplates.CreateAndRegisterSeedForPlant(placedEntity, SeedProducer.ProductionType.Hidden, SEED_ID,
-					SeedName, SeedDesc, Assets.GetAnim("plantheatbulb_kanim"), "seed_swamplily", 0, new List<Tag> { GameTags.DecorSeed },
-					SingleEntityReceptacle.ReceptacleDirection.Top, new Tag(), 6, "",
-					EntityTemplates.CollisionShape.CIRCLE, 0.33f, 0.33f, null, string.Empty), "Heatbulb_preview", Assets.GetAnim("plantheatbulb_kanim"), "close", 1, 1);
+				seed: seed,
+				id: "Heatbulb_preview",
+				anim: Assets.GetAnim("plantheatbulb_kanim"),
+				initialAnim: "close",
+				width: 1,
+				height: 1);
 
 			SoundEventVolumeCache.instance.AddVolume("bristleblossom_kanim", "PrickleFlower_harvest", NOISE_POLLUTION.CREATURES.TIER3);
-			SoundEventVolumeCache.instance.AddVolume("bristleblossom_kanim", "PrickleFlower_harvest", NOISE_POLLUTION.CREATURES.TIER3);
 
-			return placedEntity;
+			return plantEntityTemplate;
 		}
 
 		public void OnPrefabInit(GameObject inst)

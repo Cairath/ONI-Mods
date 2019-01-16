@@ -10,6 +10,8 @@ src/lib/UnityEngine.dll
 src/lib/Assembly-CSharp.dll
 src/lib/Assembly-CSharp-firstpass.dll
 
+**/ModCounter/
+
 # User-specific files
 *.suo
 *.user
