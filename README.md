@@ -11,7 +11,7 @@ master branch last updated to game version **Q1-303707**
   - [Download](#download)
   - [Installation](#installation)
   - [Updates](#updates)
-- [<a href="https://toolsnotincluded.net">Tools Not Included</a>](#a-hrefhttpstoolsnotincludednettools-not-includeda)
+- [Tools Not Included](#tools-not-included)
 - [Special thanks](#special-thanks)
 
 <a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc-forum-discord"></a>
@@ -62,6 +62,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 |        **Mech**         | Less Needy Critters                 | The Ranched effect from grooming critters lasts 3 cycles instead of 1.                                                                                                                                                                                                                                                     |  [soon]   |
 |  **QoL**<br/>**Mech**   | Less Waste From Jetpacks            | The default CO<sub>2</sub> emission is 3x fuel used. This mod brings it down to x1.                                                                                                                                                                                                                                        |  [soon]   |
 | **Build**<br/>**Decor** | Mosaic Tile                         | Fully functional mosaic tile (like the ones Points of Interests are built from) built from ceramic.                                                                                                                                                                                                                        |  [soon]   |
+|         **QoL**         | No Auto Save                        | Disables auto saving.                                                                                                                                                                                                                                                                                                      |  [soon]   |
 |  **QoL**<br/>**Mech**   | Oil Well - any water                | Oil Wells can use polluted water in addition to clear water.                                                                                                                                                                                                                                                               |  [soon]   |
 |        **Decor**        | Paint Walls                         | Drywalls and Tempshifts are colored with the color of the material used to built them.  Check out the Wallpaper mod for a cheap decorative wallpaper that hides pipes.                                                                                                                                                     |  [soon]   |
 | **Build**<br/>**Mech**  | Palmera Tree                        | **Warning: this is my only mod that once added cannot be removed from a save.** A new plant - Palmera Tree, includes a new food ingredient: Palmera Berry and its cooked, edible version: Steamed Palmera Berry                                                                                                            |  [soon]   |
@@ -104,4 +105,4 @@ To ([@pardeike](https://github.com/pardeike)), creator of [Harmony](https://gith
 \
 \
 \
-Last readme update: Thursday, 17th January 2019, 1:26 am
+Last readme update: Thursday, 17th January 2019, 1:40 am

@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyTile", "FancyTile\Fanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorRailUtilities", "ConveyorRailUtilities\ConveyorRailUtilities.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoAutoSave", "NoAutoSave\NoAutoSave.csproj", "{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,10 @@ Global
 		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
