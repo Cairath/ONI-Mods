@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using System;
+using Harmony;
 
 namespace PrettierConductiveHeavyWattWire
 {
@@ -6,6 +7,7 @@ namespace PrettierConductiveHeavyWattWire
     {
 	    [HarmonyPatch(typeof(WireRefinedHighWattageConfig))]
 	    [HarmonyPatch("CreateBuildingDef")]
+	    [HarmonyPatch(new Type[]{})]
 	    public static class WireRefinedHighWattageConfig_CreateBuildingDef_Patch
 		{
 		    public static void Postfix(ref BuildingDef __result)

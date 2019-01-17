@@ -1,7 +1,7 @@
 [![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/jcZ4M4e)  
 
 # Cairath's Mods for Oxygen Not Included <!-- omit in toc -->
-master branch last updated to game version **Q1-302293**
+master branch last updated to game version **Q1-303707**
 
 - [List of mods](#list-of-mods)
     - [Categories - legend](#categories---legend)
