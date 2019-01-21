@@ -61,8 +61,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilWellAnyWater", "OilWellA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerBuildingMenu", "BiggerBuildingMenu\BiggerBuildingMenu.csproj", "{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedGasOverlay", "ImprovedGasColourMod\ImprovedGasOverlay.csproj", "{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintWalls", "PaintWalls\PaintWalls.csproj", "{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallpaper", "Wallpaper\Wallpaper.csproj", "{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}"
@@ -72,6 +70,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorRailUtilities", "ConveyorRailUtilities\ConveyorRailUtilities.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoAutoSave", "NoAutoSave\NoAutoSave.csproj", "{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedGasOverlay", "ImprovedGasOverlay\ImprovedGasOverlay.csproj", "{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,10 +195,6 @@ Global
 		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -219,6 +215,10 @@ Global
 		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
