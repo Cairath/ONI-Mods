@@ -20,6 +20,7 @@ namespace FlowSplitters
 		private int _inputCell;
 		private int _outputCell;
 		private int _secondaryOutputCell;
+		private FlowUtilityNetwork.NetworkItem _secondOutputItem;
 
 		protected override void OnPrefabInit()
 		{
@@ -36,16 +37,17 @@ namespace FlowSplitters
 			_outputCell = building.GetUtilityOutputCell();
 
 			_secondaryOutputCell = Grid.OffsetCell(Grid.PosToCell(transform.GetPosition()), building.GetRotatedOffset(SecondaryPort.offset));
-			var secondOutput = new FlowUtilityNetwork.NetworkItem(SecondaryPort.conduitType, Endpoint.Source, _secondaryOutputCell, gameObject);
+			_secondOutputItem = new FlowUtilityNetwork.NetworkItem(SecondaryPort.conduitType, Endpoint.Source, _secondaryOutputCell, gameObject);
 
 			var networkManager = Conduit.GetNetworkManager(SecondaryPort.conduitType);
-			networkManager.AddToNetworks(_secondaryOutputCell, secondOutput, true);
-
+			networkManager.AddToNetworks(_secondaryOutputCell, _secondOutputItem, true);
+			
 			Conduit.GetFlowManager(Type).AddConduitUpdater(ConduitUpdate);
 		}
 
 		protected override void OnCleanUp()
 		{
+			Conduit.GetNetworkManager(Type).RemoveFromNetworks(_secondaryOutputCell, _secondOutputItem, true);
 			Conduit.GetFlowManager(Type).RemoveConduitUpdater(ConduitUpdate);
 			Game.Instance.accumulators.Remove(_accumulator);
 			base.OnCleanUp();
