@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using UnityEngine;
 
 namespace PaintWalls
 {
@@ -17,7 +18,6 @@ namespace PaintWalls
 				if (primaryElement != null && kAnimBase != null)
 				{
 					var color = primaryElement.Element.substance.colour;
-					color.a = 1;
 
 					kAnimBase.TintColour = color;
 				}

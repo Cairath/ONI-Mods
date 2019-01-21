@@ -43,7 +43,6 @@ namespace Wallpaper
 					if (primaryElement != null && kAnimBase != null)
 					{
 						var color = primaryElement.Element.substance.colour;
-						color.a = 1;
 
 						kAnimBase.TintColour = color;
 					}
