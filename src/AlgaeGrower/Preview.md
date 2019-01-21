@@ -21,6 +21,6 @@ The Algae Grower is a new building that can be used to grow small amounts of **A
 * Algae: 15 g/s *(automatically dropped on the ground once 5kg is produced)*
 * Oxygen: 5 g/s
 
-**Constructed from:** 
+**Constructed with:** 
 * 400 Farmable (Dirt, Clay)
 
