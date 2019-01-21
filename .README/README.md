@@ -3,7 +3,6 @@
 <div align="center">
 
 [![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/jcZ4M4e)\
-\
 master branch last updated to game version **Q1-303707**
 
 </div>
@@ -42,7 +41,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 ### Mods
 |        **Cat.**         | **Name**                            | **Description**                                                                                                                                                                                                                                                                                                            | **Preview** |
 | :---------------------: | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
-|        **Build**        | Algae Grower                        | Adds a building that uses water, carbon dioxide and fertilizer to produce algae and some O<sub>2</sub>.                                                                                                                                                                                                                    |  [soon]   |
+|        **Build**        | Algae Grower                        | Adds a building that uses water, carbon dioxide and fertilizer to produce algae and some O<sub>2</sub>.                                                                                                                                                                                                                    |  [click](/src/AlgaeGrower/Preview.md) |
 |         **QoL**         | Bigger Building Menu                | The building menu will be max 8 rows tall (default 5), which reduces scrolling. May be not suitable for players with low screen resolution.                                                                                                                                                                                |  [soon]   |
 |         **QoL**         | Bigger Camera Zoomout               | Allows playing with much bigger camera zoom.                                                                                                                                                                                                                                                                               |  [soon]   |
 | **Build**<br/>**Decor** | Buildable POI Props                 | Allows building some decorative props that are in Points of Interest. Currently available: chairs, wall clock, computer desk, couch, gravitas monument, table with chairs.                                                                                                                                                 |  [soon]   |
@@ -98,7 +97,7 @@ The directory tree should look like this:
 Please make sure you update mods and remove ones that are not up to date or archived - they are likely to crash the game.
 
 # [Tools Not Included](https://toolsnotincluded.net)
-I am also an author of [Tools Not Included](https://toolsnotincluded.net) - a website with game tools, currently featuring a seed database with over 18 000 seeds uploaded. Check it out!
+I am also an author of [Tools Not Included](https://toolsnotincluded.net) - a website with game tools, currently featuring a seed database with over 22 000 seeds uploaded. Check it out!
 
 # Special thanks
 To [@pardeike](https://github.com/pardeike), creator of [Harmony](https://github.com/pardeike/Harmony), the library that made these mods possible.  
