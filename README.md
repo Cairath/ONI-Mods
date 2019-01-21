@@ -1,8 +1,13 @@
-[![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/jcZ4M4e)  
 
 <a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc"></a>
 # Cairath&#39;s Mods for Oxygen Not Included <!-- omit in toc -->
+<div align="center">
+
+[![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/jcZ4M4e)\
+\
 master branch last updated to game version **Q1-303707**
+
+</div>
 
 - [List of mods](#list-of-mods)
     - [Categories - legend](#categories---legend)
@@ -41,7 +46,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 
 <a name="list-of-mods-mods"></a>
 ### Mods
-|        **Cat.**         | **Name**                            | **Description**                                                                                                                                                                                                                                                                                                            | **Prev.** |
+|        **Cat.**         | **Name**                            | **Description**                                                                                                                                                                                                                                                                                                            | **Preview** |
 | :---------------------: | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
 |        **Build**        | Algae Grower                        | Adds a building that uses water, carbon dioxide and fertilizer to produce algae and some O<sub>2</sub>.                                                                                                                                                                                                                    |  [soon]   |
 |         **QoL**         | Bigger Building Menu                | The building menu will be max 8 rows tall (default 5), which reduces scrolling. May be not suitable for players with low screen resolution.                                                                                                                                                                                |  [soon]   |
@@ -84,11 +89,19 @@ Some mods have more than one category, for example mod with categories `Decor, B
 <a name="instructions-download"></a>
 ## Download
 To use the mods you need to install ONI-ModLoader using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)
-Compiled mod files are available for download in the [modfiles folder](/modfiles).    
+
+Compiled mod files are available for download in the [Mods folder](/Mods). You can download separate mods or the or alternatively the [entire zipped pack](https://github.com/Cairath/ONI-Mods/blob/master/Mods/%5ECompletePack.zip) at once.
 
 <a name="instructions-installation"></a>
 ## Installation
-Once the Modloader is installed the mod files (*.dll) should be placed in the Mods folder (you need to create one manually) in the game root directory.
+Unzip the downloaded mod archives, then place the mods (in their respective folders) inside the Mods folder (you need to create one manually) in the game root directory.
+The directory tree should look like this:
+* .../OxygenNotIncluded/
+  * Mods/
+    * SomeMod/
+      * SomeMod.dll
+    * AnotherMod/
+      * AnotherMod.dll
 
 <a name="instructions-updates"></a>
 ## Updates
@@ -113,4 +126,4 @@ For more mods check out:
 \
 \
 \
-Last readme update: Monday, 21st January 2019, 8:27 pm
+Last readme update: Monday, 21st January 2019, 8:37 pm
