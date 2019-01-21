@@ -17,7 +17,7 @@ namespace PaintWalls
 
 				if (primaryElement != null && kAnimBase != null)
 				{
-					var color = primaryElement.Element.substance.colour;
+					var color = primaryElement.Element.substance.uiColour;
 
 					kAnimBase.TintColour = color;
 				}
