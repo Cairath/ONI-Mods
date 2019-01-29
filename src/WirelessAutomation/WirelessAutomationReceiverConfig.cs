@@ -64,7 +64,7 @@ namespace WirelessAutomation
 		{
 			GeneratedBuildings.RegisterLogicPorts(go, OutputPort);
 
-			go.AddOrGet<WirelessAutomationReceiver>();
+			go.AddOrGet<WirelessAutomationReceiver>().ReceiveChannel = 0;
 		}
 	}
 }

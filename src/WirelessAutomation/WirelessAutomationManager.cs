@@ -54,5 +54,15 @@ namespace WirelessAutomation
 				emitter.Signal = signal;
 			}
 		}
+
+		public static void ChangeEmitterChannel(int emitterId, int channel)
+		{
+			var emitter = Emitters.FirstOrDefault(e => e.Id == emitterId);
+
+			if (emitter != null)
+			{
+				emitter.EmitChannel = channel;
+			}
+		}
 	}
 }

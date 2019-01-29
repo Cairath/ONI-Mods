@@ -66,7 +66,7 @@ namespace WirelessAutomation
 			GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 			GeneratedBuildings.RegisterLogicPorts(go, new[] { InputPort });
 
-			go.AddOrGet<WirelessAutomationEmitter>();
+			go.AddOrGet<WirelessAutomationEmitter>().EmitChannel = 0;
 	//		go.GetComponent<RequireInputs>().SetRequirements(true, false);
 			go.AddOrGet<LogicOperationalController>();
 			go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
