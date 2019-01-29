@@ -1,5 +1,4 @@
-﻿using System;
-using STRINGS;
+﻿using STRINGS;
 using TUNING;
 using UnityEngine;
 using BUILDINGS = TUNING.BUILDINGS;
@@ -10,8 +9,8 @@ namespace WirelessAutomation
 	{
 		public static string Id = "WirelessAutomationEmitter";
 		public const string DisplayName = "Wireless Automation Emitter";
-		public const string Description = "Counts up the number of critters in the room.";
-		public static string Effect = $"Becomes {UI.FormatAsLink("Active", "LOGIC")} or on {UI.FormatAsLink("Standby", "LOGIC")} depending on the number of live critters (no eggs) in a room.";
+		public const string Description = "Emits received signal that can be listened to by Wireless Receivers.";
+		public const string Effect = "The emitter transmits received signal wirelessly on the chosen channel.";
 
 		private static readonly LogicPorts.Port InputPort = LogicPorts.Port.InputPort(LogicOperationalController.PORT_ID, new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, true);
 
@@ -38,6 +37,11 @@ namespace WirelessAutomation
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 
+			buildingDef.RequiresPowerInput = true; 
+			buildingDef.EnergyConsumptionWhenActive = 100f;
+			buildingDef.SelfHeatKilowattsWhenActive = 0f;
+			buildingDef.PowerInputOffset = new CellOffset(0, 0);
+
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER3);
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER3);
 
@@ -63,12 +67,9 @@ namespace WirelessAutomation
 
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			GeneratedBuildings.MakeBuildingAlwaysOperational(go);
 			GeneratedBuildings.RegisterLogicPorts(go, new[] { InputPort });
 
 			go.AddOrGet<WirelessAutomationEmitter>().EmitChannel = 0;
-	//		go.GetComponent<RequireInputs>().SetRequirements(true, false);
-			go.AddOrGet<LogicOperationalController>();
 			go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
 		}
 	}

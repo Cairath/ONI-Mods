@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Harmony;
 
 namespace WirelessAutomation
@@ -30,6 +28,9 @@ namespace WirelessAutomation
 				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationReceiverConfig.Id.ToUpperInvariant()}.NAME", WirelessAutomationReceiverConfig.DisplayName);
 				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationReceiverConfig.Id.ToUpperInvariant()}.DESC", WirelessAutomationReceiverConfig.Description);
 				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationReceiverConfig.Id.ToUpperInvariant()}.EFFECT", WirelessAutomationReceiverConfig.Effect);
+
+				Strings.Add(WirelessAutomationManager.SliderTooltipKey, WirelessAutomationManager.SliderTooltip);
+				Strings.Add(WirelessAutomationManager.SliderTitleKey, WirelessAutomationManager.SliderTitle);
 
 				ModUtil.AddBuildingToPlanScreen("Automation", WirelessAutomationEmitterConfig.Id);
 				ModUtil.AddBuildingToPlanScreen("Automation", WirelessAutomationReceiverConfig.Id);

@@ -9,8 +9,8 @@ namespace WirelessAutomation
 	{
 		public static string Id = "WirelessAutomationReceiver";
 		public const string DisplayName = "Wireless Automation Receiver";
-		public const string Description = "Counts up the number of critters in the room.";
-		public static string Effect = $"Becomes {UI.FormatAsLink("Active", "LOGIC")} or on {UI.FormatAsLink("Standby", "LOGIC")} depending on the number of live critters (no eggs) in a room.";
+		public const string Description = "Listens to signals emitted by Wireless Automation Emitters.";
+		public const string Effect = "The receiver listens to signals transmitted wirelessly on the chosen channel.";
 
 		private static readonly LogicPorts.Port OutputPort = LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, true);
 
@@ -36,6 +36,11 @@ namespace WirelessAutomation
 			buildingDef.ViewMode = OverlayModes.Logic.ID;
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
+
+			buildingDef.RequiresPowerInput = true;
+			buildingDef.EnergyConsumptionWhenActive = 100f;
+			buildingDef.SelfHeatKilowattsWhenActive = 0f;
+			buildingDef.PowerInputOffset = new CellOffset(0, 0);
 
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER3);
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER3);
