@@ -6,7 +6,7 @@ namespace WirelessAutomation
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class WirelessAutomationEmitter : KMonoBehaviour, IIntSliderControl
 	{
-		private static readonly EventSystem.IntraObjectHandler<WirelessAutomationEmitter> OnOperationalChangedDelegate = 
+		private static readonly EventSystem.IntraObjectHandler<WirelessAutomationEmitter> OnOperationalChangedDelegate =
 			new EventSystem.IntraObjectHandler<WirelessAutomationEmitter>((component, data) => component.OnOperationalChanged(data));
 
 		[MyCmpAdd]
@@ -34,22 +34,21 @@ namespace WirelessAutomation
 		{
 			OnOperationalChanged(_operational.IsOperational);
 			base.OnSpawn();
-			
+
 			_emitterId = WirelessAutomationManager.RegisterEmitter(new SignalEmitter(_emitChannel, _operational.IsOperational));
 		}
 
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();
-			Unsubscribe((int)GameHashes.OperationalChanged, OnOperationalChangedDelegate, false);	
+			Unsubscribe((int)GameHashes.OperationalChanged, OnOperationalChangedDelegate, false);
 			WirelessAutomationManager.UnregisterEmitter(_emitterId);
 		}
 
 		private void OnOperationalChanged(object data)
 		{
-			var isOn = (bool) data;
-			Debug.Log(isOn);
-			
+			var isOn = (bool)data;
+
 			UpdateVisualState(isOn);
 			WirelessAutomationManager.SetEmitterSignal(_emitterId, isOn);
 		}
@@ -85,8 +84,8 @@ namespace WirelessAutomation
 			ChangeEmitChannel(Mathf.RoundToInt(value));
 		}
 
-		public string GetSliderTooltipKey(int index) => "TOOLTIP";
-		public string SliderTitleKey => "CHANNEL";
+		public string GetSliderTooltipKey(int index) => WirelessAutomationManager.SliderTooltipKey;
+		public string SliderTitleKey => WirelessAutomationManager.SliderTitleKey;
 		public string SliderUnits => string.Empty;
 	}
 }

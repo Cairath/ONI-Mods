@@ -30,7 +30,7 @@ namespace WirelessAutomation
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
-			
+
 			OnOperationalChanged(WirelessAutomationManager.GetSignalForChannel(_receiveChannel));
 			UpdateVisualState(IsSwitchedOn);
 			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, IsSwitchedOn ? 1 : 0); ;
@@ -44,7 +44,7 @@ namespace WirelessAutomation
 
 		private void OnOperationalChanged(object data)
 		{
-			
+
 
 		}
 
@@ -56,7 +56,7 @@ namespace WirelessAutomation
 		public void Sim200ms(float dt)
 		{
 			var signal = WirelessAutomationManager.GetSignalForChannel(_receiveChannel);
-	
+
 			if (IsSwitchedOn != signal)
 			{
 				ChangeState(signal);
@@ -65,9 +65,6 @@ namespace WirelessAutomation
 
 		private void ChangeState(bool isOn)
 		{
-			Debug.Log("receiver change state");
-			Debug.Log(isOn);
-
 			UpdateVisualState(isOn);
 			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, isOn ? 1 : 0);
 			Toggle();
@@ -98,8 +95,8 @@ namespace WirelessAutomation
 			ChangeListeningChannel(Mathf.RoundToInt(value));
 		}
 
-		public string GetSliderTooltipKey(int index) => "TOOLTIP";
-		public string SliderTitleKey => "CHANNEL";
+		public string GetSliderTooltipKey(int index) => WirelessAutomationManager.SliderTooltipKey;
+		public string SliderTitleKey => WirelessAutomationManager.SliderTitleKey;
 		public string SliderUnits => string.Empty;
 	}
 }
