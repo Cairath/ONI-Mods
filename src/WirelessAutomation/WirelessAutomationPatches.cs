@@ -53,15 +53,15 @@ namespace WirelessAutomation
 			{
 				public static void Postfix(string type_name, ref Type __result)
 				{
-					//if (type_name == "RanchingSensors.CrittersSensor")
-					//{
-					//	__result = typeof(CrittersSensor);
-					//}
+					if (type_name == "WirelessAutomation.WirelessAutomationReceiver")
+					{
+						__result = typeof(WirelessAutomationReceiver);
+					}
 
-					//if (type_name == "RanchingSensors.EggsSensor")
-					//{
-					//	__result = typeof(EggsSensor);
-					//}
+					if (type_name == "WirelessAutomation.WirelessAutomationEmitter")
+					{
+						__result = typeof(WirelessAutomationEmitter);
+					}
 				}
 			}
 		}
