@@ -42,7 +42,13 @@ namespace Wallpaper
 
 					if (primaryElement != null && kAnimBase != null)
 					{
-						var color = primaryElement.Element.substance.uiColour;
+						var element = primaryElement.Element;
+						var color = element.substance.uiColour;
+
+						if (element.id == SimHashes.Granite)
+						{
+							color.a = byte.MaxValue;
+						}
 
 						kAnimBase.TintColour = color;
 					}

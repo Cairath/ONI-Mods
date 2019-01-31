@@ -7,7 +7,7 @@ namespace BiggerBuildingMenu.ModCounter
 		public static string Url = "http://modstats.toolsnotincluded.net/api/hits/hit";
 		public static string ApiKey = "80b9a48acad34a8694d940e938e75dfb";
 		public static string ModName = "Bigger Building Menu";
-		public static int ModVersion = 1;
+		public static int ModVersion = 2;
 	}
 
 	class RequestModel

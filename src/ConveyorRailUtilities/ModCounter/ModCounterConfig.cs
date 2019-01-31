@@ -7,7 +7,7 @@ namespace ConveyorRailUtilities.ModCounter
 		public static string Url = "http://modstats.toolsnotincluded.net/api/hits/hit";
 		public static string ApiKey = "80b9a48acad34a8694d940e938e75dfb";
 		public static string ModName = "Conveyor Rail Utilities";
-		public static int ModVersion = 1;
+		public static int ModVersion = 3;
 	}
 
 	class RequestModel

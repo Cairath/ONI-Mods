@@ -6,7 +6,7 @@ namespace SteelLadder
 	public class SteelLadderConfig : IBuildingConfig
 	{
 		public const string Id = "SteelLadder";
-		public const string DisplayName = "Wallpaper";
+		public const string DisplayName = "Steel Ladder";
 		public const string Description = "Durable steel ladder.";
 		public const string Effect = "Increases Duplicant climbing speed.";
 
@@ -33,7 +33,6 @@ namespace SteelLadder
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.DragBuild = true;
-
 
 			return buildingDef;
 		}

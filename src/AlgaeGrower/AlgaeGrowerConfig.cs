@@ -68,7 +68,7 @@ namespace AlgaeGrower
 			manualDeliveryKg1.requestedItemTag = SimHashes.Fertilizer.CreateTag();
 			manualDeliveryKg1.capacity = 90f;
 			manualDeliveryKg1.refillMass = 18f;
-			manualDeliveryKg1.choreTypeIDHash = Db.Get().ChoreTypes.OperateFetch.IdHash;
+			manualDeliveryKg1.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
 
 			var manualDeliveryKg2 = go.AddComponent<ManualDeliveryKG>();
 			manualDeliveryKg2.SetStorage(storage1);
@@ -76,7 +76,7 @@ namespace AlgaeGrower
 			manualDeliveryKg2.capacity = 360f;
 			manualDeliveryKg2.refillMass = 72f;
 			manualDeliveryKg2.allowPause = true;
-			manualDeliveryKg2.choreTypeIDHash = Db.Get().ChoreTypes.OperateFetch.IdHash;
+			manualDeliveryKg2.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
 
 			var algaeHabitat = go.AddOrGet<AlgaeGrower>();
 			algaeHabitat.PressureSampleOffset = new CellOffset(0, 1);
