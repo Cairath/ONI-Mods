@@ -68,7 +68,7 @@ namespace PipedAlgaeTerrarium
 			manualDeliveryKg1.requestedItemTag = SimHashes.Algae.CreateTag();
 			manualDeliveryKg1.capacity = 90f;
 			manualDeliveryKg1.refillMass = 18f;
-			manualDeliveryKg1.choreTypeIDHash = Db.Get().ChoreTypes.OperateFetch.IdHash;
+			manualDeliveryKg1.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
 
 			var manualDeliveryKg2 = go.AddComponent<ManualDeliveryKG>();
 			manualDeliveryKg2.SetStorage(storage1);
@@ -76,7 +76,7 @@ namespace PipedAlgaeTerrarium
 			manualDeliveryKg2.capacity = 360f;
 			manualDeliveryKg2.refillMass = 72f;
 			manualDeliveryKg2.allowPause = true;
-			manualDeliveryKg2.choreTypeIDHash = Db.Get().ChoreTypes.OperateFetch.IdHash;
+			manualDeliveryKg2.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
 
 			var algaeHabitat = go.AddOrGet<PipedAlgaeTerrarium>();
 			algaeHabitat.LightBonusMultiplier = 1.1f;
@@ -91,8 +91,8 @@ namespace PipedAlgaeTerrarium
 
 			elementConverter.outputElements = new[]
 			{
-				new ElementConverter.OutputElement(0.04f, SimHashes.Oxygen, 303.15f, false, 0.0f, 1f, false, 1f, byte.MaxValue, 0),
-				new ElementConverter.OutputElement(0.2903333f, SimHashes.DirtyWater, 303.15f, true, 0.0f, 1f, false, 1f, byte.MaxValue, 0)
+				new ElementConverter.OutputElement(0.04f, SimHashes.Oxygen, 303.15f, false, 0.0f, 1f),
+				new ElementConverter.OutputElement(0.2903333f, SimHashes.DirtyWater, 303.15f, true, 0.0f, 1f)
 			};
 
 			var conduitDispenser = go.AddOrGet<ConduitDispenser>();
