@@ -73,7 +73,8 @@ namespace RanchingRebalanced.Hatches
 
 				var dietList = new List<Diet.Info>();
 				dietList.AddRange(BaseHatchConfig.BasicRockDiet(SimHashes.Carbon.CreateTag(), calPerDay / kgPerDay, 0.5f, null, 0.0f));
-				dietList.AddRange(DietUtils.CreateFoodDiet(SimHashes.Carbon.CreateTag(), calPerDay, kgPerDay * 0.75f));
+                dietList.AddRange(BaseHatchConfig.MetalDiet(SimHashes.Carbon.CreateTag(), calPerDay / kgPerDay, 0.5f, null, 0.0f));
+                dietList.AddRange(DietUtils.CreateFoodDiet(SimHashes.Carbon.CreateTag(), calPerDay, kgPerDay * 0.75f));
 				DietUtils.AddToDiet(dietList, SimHashes.Regolith.CreateTag(), SimHashes.Carbon.CreateTag(), calPerDay, regolithKgPerDay);
 
 				__result = DietUtils.SetupDiet(__result, dietList, calPerDay / kgPerDay, 25f);
