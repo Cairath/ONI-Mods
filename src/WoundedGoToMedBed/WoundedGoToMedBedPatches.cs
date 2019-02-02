@@ -5,11 +5,22 @@ namespace WoundedGoToMedBed
 {
 	public static class WoundedGoToMedBedPatches
 	{
+		[HarmonyPatch(typeof(SplashMessageScreen))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class SplashMessageScreen_OnPrefabInit_Patch
+		{
+			public static void Postfix()
+			{
+				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
+
 		[HarmonyPatch(typeof(MedicalBedConfig))]
 		[HarmonyPatch("DoPostConfigureComplete")]
 		public static class MedicalBedConfig_DoPostConfigureComplete_Patch
 		{
-			private static void Postfix(ref GameObject go)
+			public static void Postfix(ref GameObject go)
 			{
 				var clinic = go.GetComponent<Clinic>();
 				clinic.healthEffect = "MedicalCot";
@@ -21,7 +32,7 @@ namespace WoundedGoToMedBed
 		[HarmonyPatch("InitializeStates")]
 		public static class WoundMonitor_InitializeStates_Patch
 		{
-			private static void Postfix(ref WoundMonitor __instance)
+			public static void Postfix(ref WoundMonitor __instance)
 			{
 				__instance.wounded
 					.Exit(UnassignClinic);
@@ -49,7 +60,7 @@ namespace WoundedGoToMedBed
 				{
 					return;
 				}
-					
+
 				soleOwner.AutoAssignSlot(clinic);
 			}
 

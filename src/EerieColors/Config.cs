@@ -33,41 +33,8 @@ namespace EerieColors
 
 		public static void InitConfig()
 		{
-			var location = Assembly.GetExecutingAssembly().Location;
-			var directory = Path.GetDirectoryName(location);
-
-			if (directory == null)
-			{
-				return;
-			}
-
-			var configFileName = "Config.json";
-			var configPath = Path.Combine(directory, configFileName);
-
-			try
-			{
-				using (var r = new StreamReader(configPath))
-				{
-					var json = r.ReadToEnd();
-					JsonConvert.DeserializeObject<Config>(json);
-				}
-			}
-			catch (Exception e)
-			{
-				return;
-			}
-
-			Clamp(BiomeBackground, 0, 6);
-		}
-
-		public static T Clamp<T>(T value, T min, T max) where T : IComparable<T>
-		{
-			T result = value;
-			if (value.CompareTo(max) > 0)
-				result = max;
-			if (value.CompareTo(min) < 0)
-				result = min;
-			return result;
+			CaiLib.ConfigReader.ReadConfig<Config>(Assembly.GetExecutingAssembly().Location);		
+			MathUtil.Clamp(BiomeBackground, 0, 6);
 		}
 	}
 }

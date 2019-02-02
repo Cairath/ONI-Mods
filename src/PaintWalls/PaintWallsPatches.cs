@@ -2,29 +2,43 @@
 
 namespace PaintWalls
 {
-	[HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
-	public static class BuildingComplete_OnSpawn_Patch
+	public static class PaintWallPatches
 	{
-		public static void Postfix(BuildingComplete __instance)
+		[HarmonyPatch(typeof(SplashMessageScreen))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class SplashMessageScreen_OnPrefabInit_Patch
 		{
-			if (__instance.name == "ExteriorWallComplete"
-				|| __instance.name == "ThermalBlockComplete")
-
+			public static void Postfix()
 			{
-				var primaryElement = __instance.GetComponent<PrimaryElement>();
-				var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
+				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
 
-				if (primaryElement != null && kAnimBase != null)
+		[HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
+		public static class BuildingComplete_OnSpawn_Patch
+		{
+			public static void Postfix(BuildingComplete __instance)
+			{
+				if (__instance.name == "ExteriorWallComplete"
+					|| __instance.name == "ThermalBlockComplete")
+
 				{
-					var element = primaryElement.Element;
-					var color = element.substance.uiColour;
+					var primaryElement = __instance.GetComponent<PrimaryElement>();
+					var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
 
-					if (element.id == SimHashes.Granite)
+					if (primaryElement != null && kAnimBase != null)
 					{
-						color.a = byte.MaxValue;
-					}
+						var element = primaryElement.Element;
+						var color = element.substance.uiColour;
 
-					kAnimBase.TintColour = color;
+						if (element.id == SimHashes.Granite)
+						{
+							color.a = byte.MaxValue;
+						}
+
+						kAnimBase.TintColour = color;
+					}
 				}
 			}
 		}
