@@ -3,9 +3,20 @@ using Harmony;
 
 namespace PrettierConductiveHeavyWattWire
 {
-    public class PrettierConductiveHeavyWattWirePatches
+    public static class PrettierConductiveHeavyWattWirePatches
     {
-	    [HarmonyPatch(typeof(WireRefinedHighWattageConfig))]
+	    [HarmonyPatch(typeof(SplashMessageScreen))]
+	    [HarmonyPatch("OnPrefabInit")]
+	    public static class SplashMessageScreen_OnPrefabInit_Patch
+	    {
+		    public static void Postfix()
+		    {
+			    CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
+			    CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+		    }
+	    }
+
+		[HarmonyPatch(typeof(WireRefinedHighWattageConfig))]
 	    [HarmonyPatch("CreateBuildingDef")]
 	    [HarmonyPatch(new Type[]{})]
 	    public static class WireRefinedHighWattageConfig_CreateBuildingDef_Patch

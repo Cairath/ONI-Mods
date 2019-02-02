@@ -3,13 +3,24 @@ using UnityEngine;
 
 namespace SuitDockStores75Kg
 {
-	public class SuitDockStores75KgPatches
+	public static class SuitDockStores75KgPatches
 	{
+		[HarmonyPatch(typeof(SplashMessageScreen))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class SplashMessageScreen_OnPrefabInit_Patch
+		{
+			public static void Postfix()
+			{
+				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
+
 		[HarmonyPatch(typeof(SuitLockerConfig))]
 		[HarmonyPatch("ConfigureBuildingTemplate")]
-		public class SuitLockerConfig_ConfigureBuildingTemplate_Patch
+		public static class SuitLockerConfig_ConfigureBuildingTemplate_Patch
 		{
-			private static void Postfix(ref GameObject go)
+			public static void Postfix(ref GameObject go)
 			{
 				var conduitConsumer = go.AddOrGet<ConduitConsumer>();
 				conduitConsumer.capacityKG = 75f;
@@ -18,9 +29,9 @@ namespace SuitDockStores75Kg
 
 		[HarmonyPatch(typeof(JetSuitLockerConfig))]
 		[HarmonyPatch("ConfigureBuildingTemplate")]
-		public class JetSuitLockerConfig_ConfigureBuildingTemplate_Patch
+		public static class JetSuitLockerConfig_ConfigureBuildingTemplate_Patch
 		{
-			private static void Postfix(ref GameObject go)
+			public static void Postfix(ref GameObject go)
 			{
 				var conduitConsumer = go.AddOrGet<ConduitConsumer>();
 				conduitConsumer.capacityKG = 75f;

@@ -10,6 +10,17 @@ namespace GeyserCalculatedAvgOutputTooltip
 		private static readonly LocString GeyserAvgOutput = "Calculated Average Output: {0} g/s";
 		private static readonly LocString GeyserAvgOutputTooltip = "Taking into account its eruption rates and dormant times, this geyser average output is {0} g/s";
 
+		[HarmonyPatch(typeof(SplashMessageScreen))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class SplashMessageScreen_OnPrefabInit_Patch
+		{
+			public static void Postfix()
+			{
+				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
+
 		[HarmonyPatch(typeof(Geyser))]
 		[HarmonyPatch("GetDescriptors")]
 		public static class Geyser_GetDescriptors_Patch
