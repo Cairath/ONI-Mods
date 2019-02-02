@@ -15,6 +15,9 @@ namespace EerieColors
 		public static Color32 TintColor { get; set; } = new Color32(190, 80, 200, 0);
 
 		[JsonProperty]
+		public static bool Darken { get; set; } = true;
+
+		[JsonProperty]
 		public static bool UnifiedBiomeBackgrounds { get; set; } = true;
 
 		[JsonProperty]

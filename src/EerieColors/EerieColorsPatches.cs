@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using Harmony;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 namespace EerieColors
 {
@@ -16,16 +17,6 @@ namespace EerieColors
 			{
 				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
-			}
-		}
-
-		[HarmonyPatch(typeof(CameraController))]
-		[HarmonyPatch("OnPrefabInit")]
-		public static class CameraController_OnPrefabInit_Patch
-		{
-			public static void Prefix(ref CameraController __instance)
-			{
-				__instance.dayColourCube = Texture2D.blackTexture;
 			}
 		}
 
