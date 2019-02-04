@@ -33,6 +33,8 @@ namespace SteelLadder
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.DragBuild = true;
+			buildingDef.TileLayer = ObjectLayer.LadderTile;
+			buildingDef.ReplacementLayer = ObjectLayer.ReplacementLadder;
 
 			return buildingDef;
 		}

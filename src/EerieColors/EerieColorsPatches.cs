@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Reflection.Emit;
 using Harmony;
-using UnityEngine;
-using UnityStandardAssets.ImageEffects;
 
 namespace EerieColors
 {
