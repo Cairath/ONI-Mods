@@ -25,7 +25,7 @@ namespace MosaicTile
 				construction_materials: new[] { SimHashes.Ceramic.ToString() },
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER2,
 				build_location_rule: BuildLocationRule.Tile,
-				decor: DECOR.BONUS.TIER2,
+				decor: DECOR.BONUS.TIER1,
 				noise: NOISE_POLLUTION.NONE);
 
 			buildingDef.Floodable = false;
