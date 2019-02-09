@@ -2,8 +2,8 @@
 # Cairath's Mods for Oxygen Not Included <!-- omit in toc -->
 <div align="center">
 
-[![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/jcZ4M4e)\
-master branch last updated to game version **Q1-303707**
+[![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/7wNFaVd)\
+Q2 branch last updated to game version **Q2-307409**
 
 </div>
 
