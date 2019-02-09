@@ -6,7 +6,7 @@
 [![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/7wNFaVd)\
 master branch last updated to game version **Q1-303707**
 
-**[for preview branch (Q2) mods please go to the Q2 branch!](https://github.com/Cairath/ONI-Mods/tree/Q2)
+**[for preview branch (Q2) mods please go to the Q2 branch! during preview versions all new mods and updates go to the preview branch](https://github.com/Cairath/ONI-Mods/tree/Q2)**
 
 </div>
 
