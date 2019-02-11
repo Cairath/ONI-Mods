@@ -156,6 +156,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "^CaiLib", "CaiLib\^CaiLib.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLeakyWalls", "NoLeakyWalls\NoLeakyWalls.csproj", "{BEF30A03-2598-41CC-897F-A3C4C85CCD10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowIndustrialMachineryTag", "ShowIndustrialMachineryTag\ShowIndustrialMachineryTag.csproj", "{36735139-281B-4A61-BFFD-D12FD187A2EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -318,6 +320,14 @@ Global
 		{BEF30A03-2598-41CC-897F-A3C4C85CCD10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF30A03-2598-41CC-897F-A3C4C85CCD10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEF30A03-2598-41CC-897F-A3C4C85CCD10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD5FA0C-6DA0-43C3-8F8F-334314DB5D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD5FA0C-6DA0-43C3-8F8F-334314DB5D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD5FA0C-6DA0-43C3-8F8F-334314DB5D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD5FA0C-6DA0-43C3-8F8F-334314DB5D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
