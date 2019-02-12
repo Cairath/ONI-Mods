@@ -22,7 +22,7 @@ namespace ShowIndustrialMachineryTag
 		{
 			public static void Postfix(ref ProductInfoScreen __instance, BuildingDef def)
 			{
-				__instance.productFlavourText.text += "\n\n<b>This is a test</b>";
+			//	__instance.productFlavourText.text += "\n\n<b>This is a test</b>";
 			}
 		}
 
