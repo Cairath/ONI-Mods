@@ -16,32 +16,30 @@ namespace ShowIndustrialMachineryTag
 			}
 		}
 
-		[HarmonyPatch(typeof(ProductInfoScreen))]
-		[HarmonyPatch("SetDescription")]
-		public static class ProductInfoScreen_SetDescription_Patch
-		{
-			public static void Postfix(ref ProductInfoScreen __instance, BuildingDef def)
-			{
-			//	__instance.productFlavourText.text += "\n\n<b>This is a test</b>";
-			}
-		}
-
 		[HarmonyPatch(typeof(SimpleInfoScreen))]
 		[HarmonyPatch("SetPanels")]
 		public static class SimpleInfoScreen_SetPanels_Patch
 		{
 			public static void Postfix(ref SimpleInfoScreen __instance, GameObject target)
 			{
-				if (target.GetComponent<KPrefabID>().HasTag(RoomConstraints.ConstraintTags.IndustrialMachinery))
-				{
-					var field = Traverse.Create(__instance).Field("descriptionContainer");
-					var descriptionContainer = field.GetValue<DescriptionContainer>();
-					descriptionContainer.flavour.text += "\n\n<color=\"red\"><b>This is an industrial machine.</b></color>";
+				if (target == null) return;
 
-					field.SetValue(descriptionContainer);
-				}
+				var prefab = target.GetComponent<KPrefabID>();
+				if (prefab == null) return;
+
+				if (!prefab.HasTag(RoomConstraints.ConstraintTags.IndustrialMachinery)) return;
+
+				var field = Traverse.Create(__instance).Field("descriptionContainer");
+				var descriptionContainer = field?.GetValue<DescriptionContainer>();
+				if (descriptionContainer == null)
+					return;
+
+				var text = "\n\n<color=\"red\"><b>This is an industrial machine.</b></color>";
+			
+				descriptionContainer.flavour.text += text;
+
+				field.SetValue(descriptionContainer);
 			}
 		}
-
 	}
 }

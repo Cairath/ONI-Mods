@@ -33,7 +33,7 @@ namespace Wallpaper
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.DefaultAnimState = "off";
 			buildingDef.ObjectLayer = ObjectLayer.Backwall;
-			buildingDef.SceneLayer = Grid.SceneLayer.Paintings;
+			buildingDef.SceneLayer = Grid.SceneLayer.InteriorWall;
 
 			return buildingDef;
 		}
