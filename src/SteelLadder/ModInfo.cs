@@ -3,6 +3,6 @@
 	public static class ModInfo
 	{
 		public static string Name = "Steel Ladder";
-		public static int Version = 3;
+		public static int Version = 2;
 	}
 }
