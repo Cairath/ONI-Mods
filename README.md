@@ -4,7 +4,7 @@
 <div align="center">
 
 [![](https://img.shields.io/discord/522855083151720466.svg?label=Discord&style=flat-square)](https://discord.gg/7wNFaVd)\
-Q2 branch last updated to game version **Q2-307409**
+master branch last updated to game version **Q2-309851**
 
 </div>
 
@@ -126,4 +126,4 @@ For more mods check out:
 \
 \
 \
-Last readme update: Saturday, 9th February 2019, 12:45 pm
+Last readme update: Wednesday, 20th February 2019, 1:50 am
