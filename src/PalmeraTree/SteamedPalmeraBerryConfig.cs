@@ -1,4 +1,5 @@
-﻿using STRINGS;
+﻿using System.Collections.Generic;
+using STRINGS;
 using UnityEngine;
 
 namespace PalmeraTree
@@ -10,6 +11,8 @@ namespace PalmeraTree
 		public static string Description = $"The steamed bud of a {PalmeraBerryConfig.NameWithLink}.\n\nLong exposure to heat and exquisite cooking skills turn the toxic berry into a delicious dessert.";
 		public static string RecipeDescription = $"Delicious steamed {PalmeraBerryConfig.NameWithLink}.";
 		public static LocString NameWithLink = UI.FormatAsLink(Name, Id.ToUpper());
+
+		public ComplexRecipe recipe;
 
 		public GameObject CreatePrefab()
 		{
@@ -41,6 +44,25 @@ namespace PalmeraTree
 			new Recipe(Id, 1f, 0, null, RecipeDescription, 25)
 				.SetFabricator(CookingStationConfig.ID, 100f)
 				.AddIngredient(new Recipe.Ingredient(PalmeraBerryConfig.Id, 1f));
+
+			ComplexRecipe.RecipeElement[] ingredients =
+			{
+				new ComplexRecipe.RecipeElement(PalmeraBerryConfig.Id, 1f)
+			};
+
+			ComplexRecipe.RecipeElement[] results =
+			{
+				new ComplexRecipe.RecipeElement(SteamedPalmeraBerryConfig.Id, 1f)
+			};
+
+			FriedMushroomConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(CookingStationConfig.ID, ingredients, results), ingredients, results)
+			{
+				time = 100f,
+				description = RecipeDescription,
+				useResultAsDescription = true,
+				fabricators = new List<Tag>{CookingStationConfig.ID},
+				sortOrder = 120
+			};
 
 			return food;
 		}

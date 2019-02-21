@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Harmony;
 using TUNING;
+using UnityEngine;
 
 namespace PalmeraTree
 {
@@ -15,6 +16,21 @@ namespace PalmeraTree
 			{
 				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
+
+		[HarmonyPatch(typeof(CookingStationConfig))]
+		[HarmonyPatch("ConfigureBuildingTemplate")]
+		public class CookingStationConfig_ConfigureBuildingTemplate_Patch
+		{
+			private static void Postfix(GameObject go)
+			{
+				var storedItemModifiers = new List<Storage.StoredItemModifier> { Storage.StoredItemModifier.Hide, Storage.StoredItemModifier.Seal };
+
+				var station = go.GetComponent<CookingStation>();
+				station.inStorage.SetDefaultStoredItemModifiers(storedItemModifiers);
+				station.buildStorage.SetDefaultStoredItemModifiers(storedItemModifiers);
+				station.outStorage.SetDefaultStoredItemModifiers(storedItemModifiers);
 			}
 		}
 
