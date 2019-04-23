@@ -12,7 +12,7 @@ namespace PalmeraTree
 		public static string RecipeDescription = $"Delicious steamed {PalmeraBerryConfig.NameWithLink}.";
 		public static LocString NameWithLink = UI.FormatAsLink(Name, Id.ToUpper());
 
-		public ComplexRecipe recipe;
+		public ComplexRecipe Recipe;
 
 		public GameObject CreatePrefab()
 		{
@@ -55,12 +55,12 @@ namespace PalmeraTree
 				new ComplexRecipe.RecipeElement(SteamedPalmeraBerryConfig.Id, 1f)
 			};
 
-			FriedMushroomConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(CookingStationConfig.ID, ingredients, results), ingredients, results)
+			Recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(CookingStationConfig.ID, ingredients, results), ingredients, results)
 			{
 				time = 100f,
 				description = RecipeDescription,
 				useResultAsDescription = true,
-				fabricators = new List<Tag>{CookingStationConfig.ID},
+				fabricators = new List<Tag> { CookingStationConfig.ID },
 				sortOrder = 120
 			};
 
