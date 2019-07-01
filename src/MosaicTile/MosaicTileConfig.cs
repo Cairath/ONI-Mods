@@ -1,4 +1,5 @@
-﻿using TUNING;
+﻿using System.Collections.Generic;
+using TUNING;
 using UnityEngine;
 
 namespace MosaicTile
@@ -47,6 +48,7 @@ namespace MosaicTile
 			buildingDef.DecorBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_POI_tops_decor_info");
 			buildingDef.DecorPlaceBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_POI_tops_decor_info");
 			buildingDef.ConstructionOffsetFilter = new[] { new CellOffset(0, -1) };
+			buildingDef.ReplacementTags = new List<Tag> { GameTags.FloorTiles };
 
 			return buildingDef;
 		}

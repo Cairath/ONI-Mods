@@ -3,6 +3,6 @@
 	public static class ModInfo
 	{
 		public static string Name = "Bigger Camera Zoom Out";
-		public static int Version = 2;
+		public static int Version = 3;
 	}
 }

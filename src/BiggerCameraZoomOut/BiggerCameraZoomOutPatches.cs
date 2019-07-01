@@ -12,7 +12,6 @@ namespace BiggerCameraZoomOut
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -22,7 +21,7 @@ namespace BiggerCameraZoomOut
 		{
 			public static void Prefix(CameraController __instance)
 			{
-				Traverse.Create(__instance).Field("maxOrthographicSize").SetValue(_maxZoom);		
+				Traverse.Create(__instance).Field("maxOrthographicSize").SetValue(_maxZoom);
 			}
 		}
 
@@ -32,6 +31,7 @@ namespace BiggerCameraZoomOut
 		{
 			public static void Prefix(ref float size)
 			{
+				Debug.Log($"fucking prefix called with size {size}");
 				size = _maxZoom;
 			}
 		}
@@ -43,6 +43,17 @@ namespace BiggerCameraZoomOut
 			public static bool Prefix()
 			{
 				return false;
+			}
+		}
+
+		[HarmonyPatch(typeof(WattsonMessage))]
+		[HarmonyPatch("OnDeactivate")]
+		public static class WattsonMessage_OnDeactivate_Patch
+		{
+			public static void Postfix()
+			{
+				UIScheduler.Instance?.Schedule("zoomConfig", 0.7f,
+					data => CameraController.Instance.SetMaxOrthographicSize(_maxZoom));
 			}
 		}
 	}

@@ -44,9 +44,6 @@
   <ItemGroup>
     <Compile Include="ConfigReader.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="ModCounter\Config.cs" />
-    <Compile Include="ModCounter\ModCounter.cs" />
-    <Compile Include="ModCounter\RequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

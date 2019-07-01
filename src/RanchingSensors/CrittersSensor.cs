@@ -1,4 +1,5 @@
-﻿using KSerialization;
+﻿using System;
+using KSerialization;
 using STRINGS;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace RanchingSensors
 
 		private bool _wasOn;
 		private int _currentCritters;
+		private KSelectable selectable;
+		private Guid roomStatusGUID;
 
 		public float CurrentValue => _currentCritters;
 		public LocString Title => "Live Critters Sensor";
@@ -32,6 +35,12 @@ namespace RanchingSensors
 		public float GetRangeMinInputField() => 0.0f;
 		public float GetRangeMaxInputField() => 50.0f;
 
+		protected override void OnPrefabInit()
+		{
+			base.OnPrefabInit();
+			selectable = GetComponent<KSelectable>();
+		}
+
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
@@ -43,29 +52,25 @@ namespace RanchingSensors
 
 		public void Sim200ms(float dt)
 		{
-			_currentCritters = _currentCritters = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(this)).creatures.Count;
+			var roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(gameObject);
+			if (roomOfGameObject != null)
+			{
+				_currentCritters = roomOfGameObject.cavity.creatures.Count;
 
-			if (_activateAboveThreshold)
-			{
-				if (_currentCritters > _threshold && !IsSwitchedOn)
-				{
-					Toggle();
-				}
-				else if (_currentCritters <= _threshold && IsSwitchedOn)
-				{
-					Toggle();
-				}
+				var newState = _activateAboveThreshold ? _currentCritters > _threshold : _currentCritters < _threshold;
+
+				SetState(newState);
+
+				if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+					return;
+				selectable.RemoveStatusItem(roomStatusGUID);
 			}
-			else if (!_activateAboveThreshold)
+			else
 			{
-				if (_currentCritters < _threshold && !IsSwitchedOn)
-				{
-					Toggle();
-				}
-				else if (_currentCritters >= _threshold && IsSwitchedOn)
-				{
-					Toggle();
-				}
+				if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+					roomStatusGUID = selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom);
+
+				SetState(false);
 			}
 		}
 

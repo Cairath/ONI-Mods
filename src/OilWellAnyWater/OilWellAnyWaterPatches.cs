@@ -11,7 +11,6 @@ namespace OilWellAnyWater
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -19,7 +18,7 @@ namespace OilWellAnyWater
 		[HarmonyPatch(typeof(OilWellCapConfig), "ConfigureBuildingTemplate")]
 		public class OilWellCapConfig_ConfigureBuildingTemplate_Patch
 		{
-			private static void Postfix(ref GameObject go)
+			public static void Postfix(ref GameObject go)
 			{
 				var elementConverter = go.AddOrGet<ElementConverter>();
 				elementConverter.consumedElements = new[]

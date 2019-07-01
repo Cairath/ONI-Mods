@@ -6,9 +6,6 @@ namespace WirelessAutomation
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class WirelessAutomationReceiver : Switch, ISim200ms, IIntSliderControl
 	{
-		private static readonly EventSystem.IntraObjectHandler<WirelessAutomationReceiver> OnOperationalChangedDelegate =
-			new EventSystem.IntraObjectHandler<WirelessAutomationReceiver>((component, data) => component.OnOperationalChanged(data));
-
 		[MyCmpAdd]
 		private Operational _operational;
 
@@ -21,31 +18,12 @@ namespace WirelessAutomation
 			set => _receiveChannel = value;
 		}
 
-		protected override void OnPrefabInit()
-		{
-			base.OnPrefabInit();
-			Subscribe((int)GameHashes.OperationalChanged, OnOperationalChangedDelegate);
-		}
-
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
-
-			OnOperationalChanged(WirelessAutomationManager.GetSignalForChannel(_receiveChannel));
+			
 			UpdateVisualState(IsSwitchedOn);
 			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, IsSwitchedOn ? 1 : 0); ;
-		}
-
-		protected override void OnCleanUp()
-		{
-			base.OnCleanUp();
-			Unsubscribe((int)GameHashes.OperationalChanged, OnOperationalChangedDelegate, false);
-		}
-
-		private void OnOperationalChanged(object data)
-		{
-
-
 		}
 
 		private void UpdateVisualState(bool isOn)
@@ -66,13 +44,26 @@ namespace WirelessAutomation
 		private void ChangeState(bool isOn)
 		{
 			UpdateVisualState(isOn);
-			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, isOn ? 1 : 0);
+			var lp = GetComponent<LogicPorts>();
+			if (lp == null)
+			{
+				CaiLib.Logger.Log(ModInfo.Name, "lp null");
+			}
+			else
+			{
+				lp.SendSignal(LogicSwitch.PORT_ID, isOn ? 1 : 0);
+			}
 			Toggle();
 		}
 
 		private void ChangeListeningChannel(int channel)
 		{
 			_receiveChannel = channel;
+		}
+
+		public int SliderDecimalPlaces(int index)
+		{
+			return 0;
 		}
 
 		public float GetSliderMin(int index)

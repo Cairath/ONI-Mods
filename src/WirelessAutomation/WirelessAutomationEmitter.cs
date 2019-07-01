@@ -6,9 +6,6 @@ namespace WirelessAutomation
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class WirelessAutomationEmitter : KMonoBehaviour, IIntSliderControl
 	{
-		private static readonly EventSystem.IntraObjectHandler<WirelessAutomationEmitter> OnOperationalChangedDelegate =
-			new EventSystem.IntraObjectHandler<WirelessAutomationEmitter>((component, data) => component.OnOperationalChanged(data));
-
 		[MyCmpAdd]
 		private Operational _operational;
 
@@ -27,7 +24,7 @@ namespace WirelessAutomation
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
-			Subscribe((int)GameHashes.OperationalChanged, OnOperationalChangedDelegate);
+			Subscribe((int)GameHashes.OperationalChanged, OnOperationalChanged);
 		}
 
 		protected override void OnSpawn()
@@ -41,7 +38,7 @@ namespace WirelessAutomation
 		protected override void OnCleanUp()
 		{
 			base.OnCleanUp();
-			Unsubscribe((int)GameHashes.OperationalChanged, OnOperationalChangedDelegate, false);
+			Unsubscribe((int)GameHashes.OperationalChanged, OnOperationalChanged);
 			WirelessAutomationManager.UnregisterEmitter(_emitterId);
 		}
 
@@ -62,6 +59,11 @@ namespace WirelessAutomation
 		{
 			_emitChannel = channel;
 			WirelessAutomationManager.ChangeEmitterChannel(_emitterId, _emitChannel);
+		}
+
+		public int SliderDecimalPlaces(int index)
+		{
+			return 0;
 		}
 
 		public float GetSliderMin(int index)

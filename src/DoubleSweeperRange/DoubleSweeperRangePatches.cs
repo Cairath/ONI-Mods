@@ -11,21 +11,21 @@ namespace DoubleSweeperRange
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
 		[HarmonyPatch(typeof(SolidTransferArmConfig))]
-		[HarmonyPatch("DoPostConfigurePreview")]
-		public static class SolidTransferArmConfig_DoPostConfigurePreview_Patch
+		[HarmonyPatch("AddVisualizer")]
+		public static class SolidTransferArmConfig_AddVisualizer_Patch
 		{
-			public static void Postfix(ref GameObject go)
+			public static void Postfix(ref GameObject prefab)
 			{
-				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 16;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 16;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
+				var choreRangeVisualizer = prefab.AddOrGet<StationaryChoreRangeVisualizer>();
+				choreRangeVisualizer.x = -8;
+				choreRangeVisualizer.y = -8;
+				choreRangeVisualizer.width = 17;
+				choreRangeVisualizer.height = 17;
 			}
 		}
 
@@ -35,10 +35,6 @@ namespace DoubleSweeperRange
 		{
 			public static void Postfix(ref GameObject go)
 			{
-				go.AddOrGet<StationaryChoreRangeVisualizer>().width = 16;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().height = 16;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().x = -8;
-				go.AddOrGet<StationaryChoreRangeVisualizer>().y = -8;
 				go.AddOrGet<SolidTransferArm>().pickupRange = 8;
 			}
 		}

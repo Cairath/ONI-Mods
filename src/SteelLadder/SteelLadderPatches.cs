@@ -12,7 +12,6 @@ namespace SteelLadder
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -48,7 +47,15 @@ namespace SteelLadder
 			if (index == -1)
 				return;
 
-			(BUILDINGS.PLANORDER[index].data as IList<string>)?.Add(buildingId);
+			var basePlanOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
+			if (basePlanOrderList == null)
+			{
+				CaiLib.Logger.Log(ModInfo.Name, "Could not add Steel Ladder to the building menu.");
+				return;
+			}
+
+			var carpetIdx = basePlanOrderList.IndexOf(LadderFastConfig.ID);
+			basePlanOrderList.Insert(carpetIdx + 1, buildingId);
 		}
 	}
 }

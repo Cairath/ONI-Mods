@@ -12,7 +12,6 @@ namespace FancyTile
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -49,7 +48,15 @@ namespace FancyTile
 			if (index == -1)
 				return;
 
-			(BUILDINGS.PLANORDER[index].data as IList<string>)?.Add(buildingId);
+			var basePlanOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
+			if (basePlanOrderList == null)
+			{
+				CaiLib.Logger.Log(ModInfo.Name, "Could not add Fancy Tile to the building menu.");
+				return;
+			}
+
+			var carpetIdx = basePlanOrderList.IndexOf(CarpetTileConfig.ID);
+			basePlanOrderList.Insert(carpetIdx + 1, buildingId);
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using TUNING;
+﻿using System.Collections.Generic;
+using TUNING;
 using UnityEngine;
 
 namespace FancyTile
@@ -25,7 +26,7 @@ namespace FancyTile
 				construction_materials: MATERIALS.PRECIOUS_ROCKS,
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER2,
 				build_location_rule: BuildLocationRule.Tile,
-				decor: DECOR.BONUS.TIER1,
+				decor: DECOR.BONUS.TIER2,
 				noise: NOISE_POLLUTION.NONE);
 
 			buildingDef.Floodable = false;
@@ -46,6 +47,7 @@ namespace FancyTile
 			buildingDef.BlockTileMaterial = Assets.GetMaterial("tiles_solid");
 			buildingDef.DecorBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_bunker_tops_decor_info");
 			buildingDef.DecorPlaceBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_bunker_tops_decor_place_info");
+			buildingDef.ReplacementTags = new List<Tag> { GameTags.FloorTiles };
 
 			return buildingDef;
 		}
@@ -56,7 +58,7 @@ namespace FancyTile
 			BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 
 			go.AddOrGet<SimCellOccupier>().doReplaceElement = true;
-			go.AddOrGet<SimCellOccupier>().movementSpeedMultiplier = DUPLICANTSTATS.MOVEMENT.BONUS_4;
+			go.AddOrGet<SimCellOccupier>().movementSpeedMultiplier = DUPLICANTSTATS.MOVEMENT.BONUS_3;
 			go.AddOrGet<TileTemperature>();
 			go.AddOrGet<KAnimGridTileVisualizer>().blockTileConnectorID = BlockTileConnectorId; 
 			go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
@@ -67,6 +69,7 @@ namespace FancyTile
 			BuildingTemplates.DoPostConfigure(go);
 			go.AddComponent<SimTemperatureTransfer>();
 			go.GetComponent<Deconstructable>().allowDeconstruction = true;
+			go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles);
 		}
 
 		public override void DoPostConfigureUnderConstruction(GameObject go)

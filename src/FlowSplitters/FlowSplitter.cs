@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Harmony;
 using UnityEngine;
 
 namespace FlowSplitters
@@ -25,7 +24,7 @@ namespace FlowSplitters
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
-			_accumulator = Game.Instance.accumulators.Add("Flow", (KMonoBehaviour)this);
+			_accumulator = Game.Instance.accumulators.Add("Flow", this);
 		}
 
 		protected override void OnSpawn()
@@ -75,7 +74,7 @@ namespace FlowSplitters
 				var contentOutput1 = flowManager.GetContents(_outputCell);
 				var contentOutput2 = flowManager.GetContents(_secondaryOutputCell);
 
-				var maxMass = Traverse.Create(flowManager).Field("MaxMass").GetValue<float>();  //type == ConduitType.Liquid ? 10f : 1f;
+				var maxMass = Type == ConduitType.Liquid ? 10f : 1f;
 				var halfMass = contents.mass / 2f;
 
 				var willFitInOutput1 = maxMass - contentOutput1.mass;

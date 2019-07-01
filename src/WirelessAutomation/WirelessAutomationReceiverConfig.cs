@@ -12,7 +12,11 @@ namespace WirelessAutomation
 		public const string Description = "Listens to signals emitted by Wireless Automation Emitters.";
 		public const string Effect = "The receiver listens to signals transmitted wirelessly on the chosen channel.";
 
-		private static readonly LogicPorts.Port OutputPort = LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, true);
+		public const string PortOn = "Sends an Active signal when there is an active Signal Emitter on the same channel";
+		public const string PortOff = "Sends a Standby signal when there is no active Signal Emitter on the same channel";
+
+		private static readonly LogicPorts.Port OutputPort = LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID,
+			new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, PortOn, PortOff, true);
 
 		public override BuildingDef CreateBuildingDef()
 		{

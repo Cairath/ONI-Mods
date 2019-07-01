@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Harmony;
 
 namespace Fervine
@@ -12,7 +13,6 @@ namespace Fervine
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -27,6 +27,21 @@ namespace Fervine
 					FervineConfig.SeedName);
 				Strings.Add($"STRINGS.CREATURES.SPECIES.SEEDS.{FervineConfig.Id.ToUpperInvariant()}.DESC",
 					FervineConfig.SeedDesc);
+			}
+		}
+
+		[HarmonyPatch(typeof(Immigration))]
+		[HarmonyPatch("ConfigureCarePackages")]
+		public static class Immigration_ConfigureCarePackages_Patch
+		{
+			public static void Postfix(ref Immigration __instance)
+			{
+				var field = Traverse.Create(__instance).Field("carePackages");
+				var list = field.GetValue<CarePackageInfo[]>().ToList();
+
+				list.Add(new CarePackageInfo(FervineConfig.SeedId, 1f, null));
+
+				field.SetValue(list.ToArray());
 			}
 		}
 

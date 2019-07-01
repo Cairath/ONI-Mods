@@ -4,27 +4,41 @@ using Harmony;
 
 namespace WirelessAutomation
 {
-    public static class WirelessAutomationPatches
-    {
-	    [HarmonyPatch(typeof(SplashMessageScreen))]
-	    [HarmonyPatch("OnPrefabInit")]
-	    public static class SplashMessageScreen_OnPrefabInit_Patch
-	    {
-		    public static void Postfix()
-		    {
-			    CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
-			    CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
-		    }
-	    }
+	public static class WirelessAutomationPatches
+	{
+		[HarmonyPatch(typeof(SplashMessageScreen))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class SplashMessageScreen_OnPrefabInit_Patch
+		{
+			public static void Postfix()
+			{
+				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
 
-		[HarmonyPatch(typeof(Game), "OnPrefabInit")]
-	    public static class GameOnPrefabInit
-	    {
-		    public static void Postfix(PauseScreen __instance)
-		    {
-			    WirelessAutomationManager.ResetEmittersList();
-		    }
-	    }
+
+		[HarmonyPatch(typeof(Game))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class GameOnPrefabInit
+		{
+			public static void Postfix(PauseScreen __instance)
+			{
+				CaiLib.Logger.Log("aaaaaa", "GameOnPrefabInit");
+				WirelessAutomationManager.ResetEmittersList();
+			}
+		}
+
+		[HarmonyPatch(typeof(Game))]
+		[HarmonyPatch("OnLoadLevel")]
+		public static class GameOnLoadLevel
+		{
+			public static void Postfix(PauseScreen __instance)
+			{
+				CaiLib.Logger.Log("aaaaaa", "GameOnLoadLevel");
+				WirelessAutomationManager.ResetEmittersList();
+			}
+		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
 		[HarmonyPatch("LoadGeneratedBuildings")]
@@ -53,8 +67,8 @@ namespace WirelessAutomation
 			{
 				public static void Prefix()
 				{
-					var animalTech = new List<string>(Database.Techs.TECH_GROUPING["AnimalControl"]) { WirelessAutomationEmitterConfig.Id, WirelessAutomationReceiverConfig.Id };
-					Database.Techs.TECH_GROUPING["AnimalControl"] = animalTech.ToArray();
+					var tech = new List<string>(Database.Techs.TECH_GROUPING["DupeTrafficControl"]) { WirelessAutomationEmitterConfig.Id, WirelessAutomationReceiverConfig.Id };
+					Database.Techs.TECH_GROUPING["DupeTrafficControl"] = tech.ToArray();
 				}
 			}
 

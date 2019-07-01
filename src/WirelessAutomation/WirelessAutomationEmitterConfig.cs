@@ -12,7 +12,11 @@ namespace WirelessAutomation
 		public const string Description = "Emits received signal that can be listened to by Wireless Receivers.";
 		public const string Effect = "The emitter transmits received signal wirelessly on the chosen channel.";
 
-		private static readonly LogicPorts.Port InputPort = LogicPorts.Port.InputPort(LogicOperationalController.PORT_ID, new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, true);
+		public const string PortOn = "When Active, emits an Active signal wirelessly on the specified channel";
+		public const string PortOff = "When Standby, emits a Standby signal wirelessly on the specified channel";
+
+		private static readonly LogicPorts.Port InputPort = LogicPorts.Port.InputPort(LogicOperationalController.PORT_ID,
+			new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, PortOn, PortOff, true);
 
 		public override BuildingDef CreateBuildingDef()
 		{
@@ -37,7 +41,7 @@ namespace WirelessAutomation
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 
-			buildingDef.RequiresPowerInput = true; 
+			buildingDef.RequiresPowerInput = true;
 			buildingDef.EnergyConsumptionWhenActive = 100f;
 			buildingDef.SelfHeatKilowattsWhenActive = 0f;
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
@@ -62,7 +66,7 @@ namespace WirelessAutomation
 
 		public override void DoPostConfigureUnderConstruction(GameObject go)
 		{
-			GeneratedBuildings.RegisterLogicPorts(go, new[] {InputPort});
+			GeneratedBuildings.RegisterLogicPorts(go, new[] { InputPort });
 		}
 
 		public override void DoPostConfigureComplete(GameObject go)

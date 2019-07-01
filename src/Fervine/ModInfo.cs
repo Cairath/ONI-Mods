@@ -3,6 +3,6 @@
 	public static class ModInfo
 	{
 		public static string Name = "Fervine";
-		public static int Version = 3;
+		public static int Version = 5;
 	}
 }

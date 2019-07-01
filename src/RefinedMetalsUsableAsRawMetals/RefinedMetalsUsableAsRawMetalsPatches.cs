@@ -11,13 +11,12 @@ namespace RefinedMetalsUsableAsRawMetals
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
 		[HarmonyPatch(typeof(ElementLoader))]
-		[HarmonyPatch("LoadUserElementData")]
+		[HarmonyPatch("FinaliseElementsTable")]
 		public static class ElementLoader_LoadUserElementData_Patch
 		{
 			public static void Postfix()
@@ -25,7 +24,6 @@ namespace RefinedMetalsUsableAsRawMetals
 				var copper = ElementLoader.FindElementByHash(SimHashes.Copper);
 				var iron = ElementLoader.FindElementByHash(SimHashes.Iron);
 				var tungsten = ElementLoader.FindElementByHash(SimHashes.Tungsten);
-				var steel = ElementLoader.FindElementByHash(SimHashes.Steel);
 				var gold = ElementLoader.FindElementByHash(SimHashes.Gold);
 
 				var basic = new[] { copper, iron, gold };
@@ -39,10 +37,6 @@ namespace RefinedMetalsUsableAsRawMetals
 				tungsten.oreTags =
 					CreateTags(tungsten.materialCategory, new[] { "Plumbable", "BuildableAny", "RefinedMetal", "Metal" });
 				GameTags.SolidElements.Add(tungsten.tag);
-
-				steel.oreTags =
-					CreateTags(steel.materialCategory, new[] { "RefinedMetal", "BuildableAny", "Metal" });
-				GameTags.SolidElements.Add(steel.tag);
 			}
 		}
 

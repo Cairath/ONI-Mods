@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Database;
 using Harmony;
+using KSerialization;
 
 namespace RanchingSensors
 {
@@ -12,7 +14,6 @@ namespace RanchingSensors
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -41,12 +42,12 @@ namespace RanchingSensors
 			{
 				public static void Prefix()
 				{
-					var animalTech = new List<string>(Database.Techs.TECH_GROUPING["AnimalControl"]) { CrittersSensorConfig.Id, EggsSensorConfig.Id };
-					Database.Techs.TECH_GROUPING["AnimalControl"] = animalTech.ToArray();
+					var animalTech = new List<string>(Techs.TECH_GROUPING["AnimalControl"]) { CrittersSensorConfig.Id, EggsSensorConfig.Id };
+					Techs.TECH_GROUPING["AnimalControl"] = animalTech.ToArray();
 				}
 			}
 
-			[HarmonyPatch(typeof(KSerialization.Manager))]
+			[HarmonyPatch(typeof(Manager))]
 			[HarmonyPatch("GetType")]
 			[HarmonyPatch(new[] { typeof(string) })]
 			public static class KSerializationManager_GetType_Patch
