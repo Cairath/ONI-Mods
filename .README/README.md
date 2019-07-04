@@ -7,14 +7,14 @@ master branch last updated to game version **Q3-327401**
 
 </div>
 
-- [List of mods](#list-of-mods)
-    - [Categories - legend](#categories---legend)
-    - [Mods](#mods)
-- [Instructions](#instructions)
-  - [Download](#download)
-  - [Updates](#updates)
-- [Tools Not Included](#tools-not-included)
-- [Special thanks](#special-thanks)
+- [List of mods](#List-of-mods)
+    - [Categories - legend](#Categories---legend)
+    - [Mods](#Mods)
+- [Instructions](#Instructions)
+  - [Download](#Download)
+  - [Updates](#Updates)
+- [Tools Not Included](#Tools-Not-Included)
+- [Special thanks](#Special-thanks)
 
 ## Forum & Discord
 Klei Forum thread: https://forums.kleientertainment.com/forums/topic/94120-mods-cairaths-mod-corner  
@@ -46,7 +46,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 |         **QoL**         | Bigger Camera Zoomout               | Allows playing with much bigger camera zoom.                                                                                                                                                                                                                                                                               |  [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1718226085) |
 | **Build**<br/>**Decor** | Buildable POI Props                 | Allows building some decorative props that are in Points of Interest. Currently available: chairs, wall clock, computer desk, couch, gravitas monument, table with chairs.                                                                                                                                                 |  [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1718226085)   |
 |        **Decor**        | Colorful Shinebugs                  | A standalone part of Ranching Rebalanced - makes shinebugs' light much more colorful.                                                                                                                                                                                                                                      |  [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1718226085)   |
-| **Build**<br/>**Mech**  | Conveyor Rail Utilities             | Adds 3 new buildings:<br/>**Conveyor Rail Dropoff:** Acts as the end-of-line and can drop items from the conveyor rails on the ground.<br/>**Conveyor Rail Filter:** Allows filtering one or multiple items and sends them to a second output line.<br/>**Conveyor Rail Shutoff:** an automatable conveyor rail shutoff.   |  [soon]   |
+| **Build**<br/>**Mech**  | Conveyor Rail Filter             | Adds a new building, **Conveyor Rail Filter**, which allows filtering one or multiple items and sends them to a second output line.  |  [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1738906344)   |
 |         **QoL**         | Debug Does Not Discover Map         | Enabling debug mode (backspace) does not discover the map and prevents creatures on the entire map from spawning.                                                                                                                                                                                                          |  [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1706080287)   |
 | **Build**<br/>**Decor** | Decor Lights                        | Adds 3 decorative lamps:<br/>**Lava Lamp**, **Salt Lamp** and a **Ceiling Lamp**.                                                                                                                                                                                                                                          |  [soon]   |
 |  **QoL**<br/>**Mech**   | Double Sweeper Range                | Doubles pick-up range of the Auto Sweeper Arms                                                                                                                                                                                                                                                                             |  [soon]   |
