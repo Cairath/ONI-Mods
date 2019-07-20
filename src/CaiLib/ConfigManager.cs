@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CaiLib
 {
-	public class ConfigManager<T> where T : class
+	public class ConfigManager<T> where T : class, new()
 	{
 		public T Config { get; set; }
 
@@ -21,12 +21,13 @@ namespace CaiLib
 
 		public T ReadConfig(Action postReadAction = null)
 		{
+			Config = new T();
+
 			var directory = Path.GetDirectoryName(_executingAssemblyPath);
 
 			if (directory == null)
 			{
 				Logger.Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
-				Config = default(T);
 				return Config;
 			}
 
@@ -44,7 +45,6 @@ namespace CaiLib
 			catch (Exception e)
 			{
 				Logger.Log(_modName, $"Error reading config file {_configFileName} with exception: {e.Message}");
-				Config = default(T);
 				return Config;
 			}
 
@@ -55,7 +55,7 @@ namespace CaiLib
 			return Config;
 		}
 
-		public bool SaveConfig(T config)
+		public bool SaveConfigToFile()
 		{
 			var directory = Path.GetDirectoryName(_executingAssemblyPath);
 
@@ -71,7 +71,7 @@ namespace CaiLib
 			{
 				using (var r = new StreamWriter(configPath))
 				{
-					var serialized = JsonConvert.SerializeObject(config);
+					var serialized = JsonConvert.SerializeObject(Config, Formatting.Indented);
 					r.Write(serialized);
 				}
 			}

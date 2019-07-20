@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using CaiLib;
 using Harmony;
-using Newtonsoft.Json;
 
 namespace EerieColors
 {
@@ -24,8 +23,6 @@ namespace EerieColors
 				{
 					MathUtil.Clamp(_configManager.Config.BiomeBackground, 0, 6);
 				});
-
-				CaiLib.Logger.Log(ModInfo.Name, $"{JsonConvert.SerializeObject(_configManager.Config)}");
 			}
 		}
 
