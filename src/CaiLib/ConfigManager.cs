@@ -1,0 +1,87 @@
+﻿using System;
+using System.IO;
+using Newtonsoft.Json;
+
+namespace CaiLib
+{
+	public class ConfigManager<T> where T : class
+	{
+		public T Config { get; set; }
+
+		private readonly string _executingAssemblyPath;
+		private readonly string _configFileName;
+		private readonly string _modName;
+
+		public ConfigManager(string modName, string executingAssemblyPath, string configFileName = "Config.json")
+		{
+			_executingAssemblyPath = executingAssemblyPath;
+			_configFileName = configFileName;
+			_modName = modName;
+		}
+
+		public T ReadConfig(Action postReadAction = null)
+		{
+			var directory = Path.GetDirectoryName(_executingAssemblyPath);
+
+			if (directory == null)
+			{
+				Logger.Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Config = default(T);
+				return Config;
+			}
+
+			var configPath = Path.Combine(directory, _configFileName);
+
+			T config;
+			try
+			{
+				using (var r = new StreamReader(configPath))
+				{
+					var json = r.ReadToEnd();
+					config = JsonConvert.DeserializeObject<T>(json);
+				}
+			}
+			catch (Exception e)
+			{
+				Logger.Log(_modName, $"Error reading config file {_configFileName} with exception: {e.Message}");
+				Config = default(T);
+				return Config;
+			}
+
+			Config = config;
+
+			postReadAction?.Invoke();
+
+			return Config;
+		}
+
+		public bool SaveConfig(T config)
+		{
+			var directory = Path.GetDirectoryName(_executingAssemblyPath);
+
+			if (directory == null)
+			{
+				Logger.Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				return false;
+			}
+
+			var configPath = Path.Combine(directory, _configFileName);
+
+			try
+			{
+				using (var r = new StreamWriter(configPath))
+				{
+					var serialized = JsonConvert.SerializeObject(config);
+					r.Write(serialized);
+				}
+			}
+			catch (Exception e)
+			{
+				Logger.Log(_modName, $"Error writing to config file {_configFileName} with exception: {e.Message}");
+				return false;
+			}
+
+			return true;
+		}
+	}
+}

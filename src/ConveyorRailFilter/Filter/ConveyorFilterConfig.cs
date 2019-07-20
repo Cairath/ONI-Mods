@@ -74,7 +74,6 @@ namespace ConveyorRailFilter.Filter
 			AttachPort(go);
 
 			var component = go.GetComponent<Constructable>();
-			component.choreTags = GameTags.ChoreTypes.ConveyorChores;
 			component.requiredSkillPerk = Db.Get().SkillPerks.ConveyorBuild.Id;
 		}
 

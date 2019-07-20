@@ -49,7 +49,7 @@ namespace PalmeraTree
 			consumer.consumptionRate = 0.001f;
 
 			var emitter = placedEntity.AddOrGet<ElementEmitter>();
-			emitter.outputElement = new ElementConverter.OutputElement(0.001f, SimHashes.Hydrogen, outputElementOffsety: 2f);
+			emitter.outputElement = new ElementConverter.OutputElement(0.001f, SimHashes.Hydrogen, 0f, true, false, 0f, 2f);
 			emitter.maxPressure = 1.8f;
 
 			var seed = EntityTemplates.CreateAndRegisterSeedForPlant(

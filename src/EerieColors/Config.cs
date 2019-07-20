@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using UnityEngine;
 
 namespace EerieColors
@@ -9,19 +6,19 @@ namespace EerieColors
 	public class Config
 	{
 		[JsonProperty]
-		public static bool CustomBiomeTints { get; set; } = true;
+		public bool CustomBiomeTints { get; set; } = true;
 
 		[JsonProperty]
-		public static Color32 TintColor { get; set; } = new Color32(190, 80, 200, 0);
+		public Color32 TintColor { get; set; } = new Color32(190, 80, 200, 0);
 
 		[JsonProperty]
-		public static bool Darken { get; set; } = true;
+		public bool Darken { get; set; } = true;
 
 		[JsonProperty]
-		public static bool UnifiedBiomeBackgrounds { get; set; } = true;
+		public bool UnifiedBiomeBackgrounds { get; set; } = true;
 
 		[JsonProperty]
-		public static int BiomeBackground { get; set; } = 1;
+		public int BiomeBackground { get; set; } = 1;
 
 		//public static Color32[] OriginalTintColors { get; } = {
 		//    new Color32(145, 198, 213, 0),
@@ -33,11 +30,5 @@ namespace EerieColors
 		//    new Color32(201, 152, 181, 6),
 		//    new Color32(byte.MaxValue, 0, 0, 7)
 		//};
-
-		public static void InitConfig()
-		{
-			CaiLib.ConfigReader.ReadConfig<Config>(Assembly.GetExecutingAssembly().Location);		
-			MathUtil.Clamp(BiomeBackground, 0, 6);
-		}
 	}
 }

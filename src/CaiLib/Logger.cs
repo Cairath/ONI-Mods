@@ -6,6 +6,11 @@ namespace CaiLib
 	{
 		public static void LogInit(string mod, int version)
 		{
+			LogInit(mod, version.ToString());
+		}
+
+		public static void LogInit(string mod, string version)
+		{
 			Console.WriteLine($"{Timestamp()} <<-- CaiLib -->> Loaded << {mod} >> with version << {version} >>");
 		}
 

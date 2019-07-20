@@ -121,7 +121,8 @@ namespace PalmeraTree
 					.EventTransition(GameHashes.Harvest, Alive.Harvest)
 					.EventTransition(GameHashes.Grow, Alive.FruitingLost, smi => !smi.master._growing.ReachedNextHarvest());
 
-				Alive.Fruiting.FruitingIdle.PlayAnim("idle_bloom_loop", KAnim.PlayMode.Loop)
+				Alive.Fruiting.FruitingIdle
+					.PlayAnim("idle_bloom_loop", KAnim.PlayMode.Loop)
 					.Enter(smi => smi.master._harvestable.SetCanBeHarvested(true))
 					.Enter(smi => smi.master._elementConsumer.EnableConsumption(true))
 					.Enter(smi => smi.master._elementEmitter.SetEmitting(true))

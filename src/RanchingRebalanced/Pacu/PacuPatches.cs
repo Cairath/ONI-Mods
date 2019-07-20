@@ -102,7 +102,7 @@ namespace RanchingRebalanced.Pacu
 				};
 				elementConverter.outputElements = new ElementConverter.OutputElement[1]
 				{
-					new ElementConverter.OutputElement(0.2f, SimHashes.DirtyWater, 0.0f, true, 0.0f, 0.5f, true)
+					new ElementConverter.OutputElement(0.2f, SimHashes.DirtyWater, 0.0f, false, true)
 				};
 			}
 		}

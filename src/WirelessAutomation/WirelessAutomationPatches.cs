@@ -12,7 +12,6 @@ namespace WirelessAutomation
 		{
 			public static void Postfix()
 			{
-				CaiLib.ModCounter.ModCounter.Hit(ModInfo.Name, ModInfo.Version);
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
@@ -20,22 +19,20 @@ namespace WirelessAutomation
 
 		[HarmonyPatch(typeof(Game))]
 		[HarmonyPatch("OnPrefabInit")]
-		public static class GameOnPrefabInit
+		public static class Game_OnPrefabInit_Patch
 		{
 			public static void Postfix(PauseScreen __instance)
 			{
-				CaiLib.Logger.Log("aaaaaa", "GameOnPrefabInit");
 				WirelessAutomationManager.ResetEmittersList();
 			}
 		}
 
 		[HarmonyPatch(typeof(Game))]
 		[HarmonyPatch("OnLoadLevel")]
-		public static class GameOnLoadLevel
+		public static class Game_OnLoadLevel_Patch
 		{
 			public static void Postfix(PauseScreen __instance)
 			{
-				CaiLib.Logger.Log("aaaaaa", "GameOnLoadLevel");
 				WirelessAutomationManager.ResetEmittersList();
 			}
 		}

@@ -27,7 +27,7 @@ namespace AlgaeGrower
 				id: Id,
 				width: 1,
 				height: 2,
-				anim: "algaefarm_kanim",
+				anim: "planterbox2",
 				hitpoints: BUILDINGS.HITPOINTS.TIER1,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER4,
@@ -90,8 +90,8 @@ namespace AlgaeGrower
 			};
 			elementConverter.outputElements = new[]
 			{
-				new ElementConverter.OutputElement(0.005f, SimHashes.Oxygen, 303.15f, false, 0.0f, 1f),
-				new ElementConverter.OutputElement(0.015f, SimHashes.Algae, 303.15f, true, 0.0f, 1f)
+				new ElementConverter.OutputElement(0.005f, SimHashes.Oxygen, 303.15f, false, false, 0.0f, 1f),
+				new ElementConverter.OutputElement(0.015f, SimHashes.Algae, 303.15f, false, true, 0.0f, 1f)
 			};
 
 			var elementDropper = go.AddComponent<ElementDropper>();

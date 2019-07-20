@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
+using CaiLib;
 using Harmony;
+using Newtonsoft.Json;
 
 namespace EerieColors
 {
 	public static class EerieColorsPatches
 	{
+		private static ConfigManager<Config> _configManager;
+
 		[HarmonyPatch(typeof(SplashMessageScreen))]
 		[HarmonyPatch("OnPrefabInit")]
 		public static class SplashMessageScreen_OnPrefabInit_Patch
@@ -14,6 +19,13 @@ namespace EerieColors
 			public static void Postfix()
 			{
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager.ReadConfig(() =>
+				{
+					MathUtil.Clamp(_configManager.Config.BiomeBackground, 0, 6);
+				});
+
+				CaiLib.Logger.Log(ModInfo.Name, $"{JsonConvert.SerializeObject(_configManager.Config)}");
 			}
 		}
 
@@ -23,28 +35,33 @@ namespace EerieColors
 		{
 			public static void Prefix(ref SubworldZoneRenderData __instance)
 			{
-				if (Config.CustomBiomeTints)
+				var config = _configManager.Config;
+
+				if (config.CustomBiomeTints)
 				{
 					__instance.zoneColours = new[]
 					{
-						Config.TintColor,
-						Config.TintColor,
-						Config.TintColor,
-						Config.TintColor,
-						Config.TintColor,
-						Config.TintColor,
-						Config.TintColor,
-						Config.TintColor
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor
 					};
 				}
 			}
 
 			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
-				Config.InitConfig();
+				var config = _configManager.Config;
 
 				var codes = new List<CodeInstruction>(instructions);
-				if (Config.UnifiedBiomeBackgrounds)
+				if (config.UnifiedBiomeBackgrounds)
 				{
 					for (var i = 0; i < codes.Count; i++)
 					{
@@ -54,7 +71,7 @@ namespace EerieColors
 							{
 								if (codes[j].opcode == OpCodes.Stelem_I1)
 								{
-									codes.Insert(j, new CodeInstruction(OpCodes.Ldc_I4, Config.BiomeBackground));
+									codes.Insert(j, new CodeInstruction(OpCodes.Ldc_I4, config.BiomeBackground));
 									codes.Insert(j, new CodeInstruction(OpCodes.Pop));
 									break;
 								}

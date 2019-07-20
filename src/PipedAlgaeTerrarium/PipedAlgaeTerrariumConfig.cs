@@ -91,8 +91,8 @@ namespace PipedAlgaeTerrarium
 
 			elementConverter.outputElements = new[]
 			{
-				new ElementConverter.OutputElement(0.04f, SimHashes.Oxygen, 303.15f, false, 0.0f, 1f),
-				new ElementConverter.OutputElement(0.2903333f, SimHashes.DirtyWater, 303.15f, true, 0.0f, 1f)
+				new ElementConverter.OutputElement(0.04f, SimHashes.Oxygen, 303.15f, false, false, 0.0f, 1f),
+				new ElementConverter.OutputElement(0.2903333f, SimHashes.DirtyWater, 303.15f, false, true, 0.0f, 1f)
 			};
 
 			var conduitDispenser = go.AddOrGet<ConduitDispenser>();

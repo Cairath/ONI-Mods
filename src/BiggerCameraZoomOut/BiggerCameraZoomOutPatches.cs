@@ -15,7 +15,7 @@ namespace BiggerCameraZoomOut
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
-
+		
 		[HarmonyPatch(typeof(CameraController), "OnPrefabInit")]
 		public static class CameraController_OnPrefabInit_Patch
 		{
@@ -24,6 +24,19 @@ namespace BiggerCameraZoomOut
 				Traverse.Create(__instance).Field("maxOrthographicSize").SetValue(_maxZoom);
 			}
 		}
+
+		[HarmonyPatch(typeof(PlanterBoxConfig), "CreateBuildingDef")]
+		public static class PlanterBoxConfigCreateBuildingDef
+		{
+			public static void Postfix(ref BuildingDef __result)
+			{
+				__result.AnimFiles = new KAnimFile[]
+				{
+					Assets.GetAnim("planterbox2")
+				};
+			}
+		}
+
 
 		[HarmonyPatch(typeof(CameraController))]
 		[HarmonyPatch("SetMaxOrthographicSize")]
