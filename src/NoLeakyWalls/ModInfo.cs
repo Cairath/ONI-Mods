@@ -3,6 +3,6 @@
 	public class ModInfo
 	{
 		public static string Name = "No Leaky Walls";
-		public static int Version = 2;
+		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
 	}
 }

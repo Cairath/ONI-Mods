@@ -6,11 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <projectUrl>https://github.com/Cairath/ONI-Mods</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes></releaseNotes>
     <copyright>Copyright Cairath 2019</copyright>
-    <tags></tags>
   </metadata>
 </package>

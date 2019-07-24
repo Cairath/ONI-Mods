@@ -72,13 +72,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir merged
-
-$(ILMergeConsolePath) /out:merged/$(TargetName).dll $(TargetName).dll CaiLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
-
-echo F | xcopy /Y /S /R "$(TargetDir)\merged\$(TargetName).dll" "$(SolutionDir)\..\Mods (unzipped)\$(TargetName)\$(TargetName).dll"
-
-$(SolutionDir)lib\7za.exe a "$(SolutionDir)\..\Mods\$(TargetName).zip"  "$(SolutionDir)\..\Mods (unzipped)\$(TargetName)"</PostBuildEvent>
+    <PostBuildEvent>echo F | xcopy /Y /S /R "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
+echo F | xcopy /Y /S /R "$(TargetDir)CaiLib.dll" "$(SolutionDir)..\Mods\$(TargetName)\CaiLib.dll"
+if exist "$(ProjectDir)anims" xcopy /Y /R /I /E /T "$(ProjectDir)anims" "$(SolutionDir)..\Mods\$(TargetName)\anims"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

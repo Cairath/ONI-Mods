@@ -3,6 +3,6 @@
 	public static class ModInfo
 	{
 		public static string Name = "No 'Long Commutes'";
-		public static int Version = 1;
+		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
 	}
 }

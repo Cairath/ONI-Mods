@@ -3,6 +3,6 @@
 	public static class ModInfo
 	{
 		public static string Name = "Improved Gas Overlay";
-		public static int Version = 2;
+		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
 	}
 }

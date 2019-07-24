@@ -68,7 +68,7 @@ namespace RanchingRebalanced.Pacu
 				DietUtils.AddToDiet(dietList, SimHashes.Algae.CreateTag(), SimHashes.ToxicSand.CreateTag(), calPerDay, algaeKgPerDay, 0.75f);
 				DietUtils.AddToDiet(dietList, SimHashes.SlimeMold.CreateTag(), SimHashes.Algae.CreateTag(), calPerDay, kgPerDay, 0.33f);
 				DietUtils.AddToDiet(dietList, FOOD.FOOD_TYPES.MEAT, SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay);
-				DietUtils.AddToDiet(dietList, FOOD.FOOD_TYPES.COOKEDMEAT, SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay);
+				DietUtils.AddToDiet(dietList, FOOD.FOOD_TYPES.COOKED_MEAT, SimHashes.ToxicSand.CreateTag(), calPerDay, kgPerDay);
 
 				__result = DietUtils.SetupDiet(__result, dietList, calPerDay / kgPerDay, 25f);
 
