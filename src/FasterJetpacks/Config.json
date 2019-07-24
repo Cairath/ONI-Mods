@@ -1,0 +1,6 @@
+{
+	// Speed multiplier for Jetsuit speed
+	// Game default: 1 (floor speed)
+	// Default: 3
+	"SpeedMultiplier": 3
+}

@@ -16,7 +16,7 @@ namespace DebugDoesNotDiscoverMap
 
 		[HarmonyPatch(typeof(DebugHandler))]
 		[HarmonyPatch(nameof(DebugHandler.OnKeyDown))]
-		public static class DebugHandler_OnKeyDown
+		public static class DebugHandler_OnKeyDown_Patch
 		{
 			public static bool Prefix(ref DebugHandler __instance, KButtonEvent e)
 			{
