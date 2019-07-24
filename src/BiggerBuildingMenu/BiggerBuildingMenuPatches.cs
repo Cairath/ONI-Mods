@@ -1,9 +1,13 @@
-﻿using Harmony;
+﻿using System.Reflection;
+using CaiLib;
+using Harmony;
 
 namespace BiggerBuildingMenu
 {
 	public class BiggerBuildingMenuPatches
 	{
+		private static ConfigManager<Config> _configManager;
+
 		[HarmonyPatch(typeof(SplashMessageScreen))]
 		[HarmonyPatch("OnPrefabInit")]
 		public static class SplashMessageScreen_OnPrefabInit_Patch
@@ -11,6 +15,8 @@ namespace BiggerBuildingMenu
 			public static void Postfix()
 			{
 				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager.ReadConfig();
 			}
 		}
 
@@ -19,7 +25,7 @@ namespace BiggerBuildingMenu
 		{
 			public static void Postfix(PlanScreen __instance)
 			{
-				Traverse.Create(__instance).Field("buildGrid_maxRowsBeforeScroll").SetValue(8);
+				Traverse.Create(__instance).Field("buildGrid_maxRowsBeforeScroll").SetValue(_configManager.Config.Height);
 			}
 		}
 	}

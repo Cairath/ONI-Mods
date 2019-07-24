@@ -59,11 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BiggerBuildingMenuPatches.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,13 +78,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir merged
+    <PostBuildEvent>echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
+echo F | xcopy /Y /S /R /Q  "$(TargetDir)CaiLib.dll" "$(SolutionDir)..\Mods\$(TargetName)\CaiLib.dll"
+if exist "$(ProjectDir)anims" xcopy /Y /R /I /E /Q  "$(ProjectDir)anims" "$(SolutionDir)..\Mods\$(TargetName)\anims"
+if exist "$(TargetDir)Config.json" echo F | xcopy /Y /S /R /Q "$(TargetDir)Config.json" "$(SolutionDir)..\Mods\$(TargetName)\Config.json"
 
-$(ILMergeConsolePath) /out:merged/$(TargetName).dll $(TargetName).dll CaiLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
-
-echo F | xcopy /Y /S /R "$(TargetDir)\merged\$(TargetName).dll" "$(SolutionDir)\..\Mods (unzipped)\$(TargetName)\$(TargetName).dll"
-
-$(SolutionDir)lib\7za.exe a "$(SolutionDir)\..\Mods\$(TargetName).zip"  "$(SolutionDir)\..\Mods (unzipped)\$(TargetName)"</PostBuildEvent>
+xcopy /Y /R  /I /Q  "$(SolutionDir)..\Mods\$(TargetName)" "C:\Users\Cairath\Documents\Klei\OxygenNotIncluded\mods\dev\$(TargetName)"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
