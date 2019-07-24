@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using CaiLib;
+using CaiLib.Config;
 using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace FasterJetpacks
 {
@@ -14,7 +16,7 @@ namespace FasterJetpacks
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
 				_configManager.ReadConfig();
 			}

@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace BiggerCameraZoomOut
 {
@@ -12,7 +13,7 @@ namespace BiggerCameraZoomOut
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 		

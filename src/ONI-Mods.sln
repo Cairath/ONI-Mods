@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeMedicineBoosterThreshold", "TakeMedicineBoosterThreshold\TakeMedicineBoosterThreshold.csproj", "{56C0573F-6C39-4E14-A53F-7311032C9B44}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipedAlgaeTerrarium", "PipedAlgaeTerrarium\PipedAlgaeTerrarium.csproj", "{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
@@ -119,11 +117,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyTile", "FancyTile\Fanc
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoAutoSave", "NoAutoSave\NoAutoSave.csproj", "{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedGasOverlay", "ImprovedGasOverlay\ImprovedGasOverlay.csproj", "{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
@@ -149,10 +142,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{56C0573F-6C39-4E14-A53F-7311032C9B44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56C0573F-6C39-4E14-A53F-7311032C9B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56C0573F-6C39-4E14-A53F-7311032C9B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56C0573F-6C39-4E14-A53F-7311032C9B44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -261,10 +250,6 @@ Global
 		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7BC98F2-635B-4146-AEA8-60119ED7DDE1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU

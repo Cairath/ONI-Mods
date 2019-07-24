@@ -12,7 +12,7 @@ namespace WirelessAutomation
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 

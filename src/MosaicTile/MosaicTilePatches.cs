@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Harmony;
 using TUNING;
+using static CaiLib.Logger.Logger;
 
 namespace MosaicTile
 {
@@ -12,7 +13,7 @@ namespace MosaicTile
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
@@ -51,7 +52,7 @@ namespace MosaicTile
 			var basePlanOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
 			if (basePlanOrderList == null)
 			{
-				CaiLib.Logger.Log(ModInfo.Name, "Could not add Mosaic Tile to the building menu.");
+				Log(ModInfo.Name, "Could not add Mosaic Tile to the building menu.");
 				return;
 			}
 

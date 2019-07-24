@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using static CaiLib.Logger.Logger;
 
-namespace CaiLib
+namespace CaiLib.Config
 {
 	public class ConfigManager<T> where T : class, new()
 	{
@@ -27,7 +28,7 @@ namespace CaiLib
 
 			if (directory == null)
 			{
-				Logger.Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
 				return Config;
 			}
 
@@ -44,7 +45,7 @@ namespace CaiLib
 			}
 			catch (Exception e)
 			{
-				Logger.Log(_modName, $"Error reading config file {_configFileName} with exception: {e.Message}");
+				Log(_modName, $"Error reading config file {_configFileName} with exception: {e.Message}");
 				return Config;
 			}
 
@@ -61,7 +62,7 @@ namespace CaiLib
 
 			if (directory == null)
 			{
-				Logger.Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
 				return false;
 			}
 
@@ -77,7 +78,7 @@ namespace CaiLib
 			}
 			catch (Exception e)
 			{
-				Logger.Log(_modName, $"Error writing to config file {_configFileName} with exception: {e.Message}");
+				Log(_modName, $"Error writing to config file {_configFileName} with exception: {e.Message}");
 				return false;
 			}
 

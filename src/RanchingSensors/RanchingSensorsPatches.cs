@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Database;
 using Harmony;
 using KSerialization;
+using static CaiLib.Logger.Logger;
 
 namespace RanchingSensors
 {
@@ -14,7 +15,7 @@ namespace RanchingSensors
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 

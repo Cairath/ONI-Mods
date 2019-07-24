@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace PipedAlgaeTerrarium
 {
@@ -12,7 +13,7 @@ namespace PipedAlgaeTerrarium
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 

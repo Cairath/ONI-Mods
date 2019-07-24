@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Harmony;
 using TUNING;
+using static CaiLib.Logger.Logger;
 
 namespace SteelLadder
 {
@@ -12,7 +13,7 @@ namespace SteelLadder
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
@@ -30,7 +31,8 @@ namespace SteelLadder
 			}
 		}
 
-		[HarmonyPatch(typeof(Db), "Initialize")]
+		[HarmonyPatch(typeof(Db))]
+		[HarmonyPatch(nameof(Db.Initialize))]
 		public static class Db_Initialize_Patch
 		{
 			private static void Prefix()
@@ -40,7 +42,7 @@ namespace SteelLadder
 			}
 		}
 
-		private static void AddBuildingToPlanScreen(HashedString category, string buildingId)
+		private static void AddBuildingToPlanScreen(HashedString category, string buildingId, string addAfterBuildingId = null)
 		{
 			var index = BUILDINGS.PLANORDER.FindIndex(x => x.category == category);
 
@@ -50,7 +52,7 @@ namespace SteelLadder
 			var basePlanOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
 			if (basePlanOrderList == null)
 			{
-				CaiLib.Logger.Log(ModInfo.Name, "Could not add Steel Ladder to the building menu.");
+				Log(ModInfo.Name, "Could not add Steel Ladder to the building menu.");
 				return;
 			}
 

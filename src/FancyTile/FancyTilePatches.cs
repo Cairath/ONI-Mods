@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Harmony;
 using TUNING;
+using static CaiLib.Logger.Logger;
 
 namespace FancyTile
 {
@@ -12,7 +13,7 @@ namespace FancyTile
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
@@ -51,7 +52,7 @@ namespace FancyTile
 			var basePlanOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
 			if (basePlanOrderList == null)
 			{
-				CaiLib.Logger.Log(ModInfo.Name, "Could not add Fancy Tile to the building menu.");
+				Log(ModInfo.Name, "Could not add Fancy Tile to the building menu.");
 				return;
 			}
 
