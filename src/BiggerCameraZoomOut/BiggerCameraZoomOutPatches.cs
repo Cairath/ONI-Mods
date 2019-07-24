@@ -4,7 +4,7 @@ namespace BiggerCameraZoomOut
 {
 	public static class BiggerCameraZoomOutPatches
 	{
-		private static float _maxZoom = 200f;
+		private static readonly float _maxZoom = 200f;
 
 		[HarmonyPatch(typeof(SplashMessageScreen))]
 		[HarmonyPatch("OnPrefabInit")]
@@ -16,7 +16,8 @@ namespace BiggerCameraZoomOut
 			}
 		}
 		
-		[HarmonyPatch(typeof(CameraController), "OnPrefabInit")]
+		[HarmonyPatch(typeof(CameraController))]
+		[HarmonyPatch("OnPrefabInit")]
 		public static class CameraController_OnPrefabInit_Patch
 		{
 			public static void Prefix(CameraController __instance)
@@ -25,26 +26,12 @@ namespace BiggerCameraZoomOut
 			}
 		}
 
-		[HarmonyPatch(typeof(PlanterBoxConfig), "CreateBuildingDef")]
-		public static class PlanterBoxConfigCreateBuildingDef
-		{
-			public static void Postfix(ref BuildingDef __result)
-			{
-				__result.AnimFiles = new KAnimFile[]
-				{
-					Assets.GetAnim("planterbox2")
-				};
-			}
-		}
-
-
 		[HarmonyPatch(typeof(CameraController))]
-		[HarmonyPatch("SetMaxOrthographicSize")]
+		[HarmonyPatch(nameof(CameraController.SetMaxOrthographicSize))]
 		public static class CameraController_SetMaxOrthographicSize_Patch
 		{
 			public static void Prefix(ref float size)
 			{
-				Debug.Log($"fucking prefix called with size {size}");
 				size = _maxZoom;
 			}
 		}
