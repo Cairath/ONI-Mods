@@ -1,5 +1,6 @@
 ﻿using KSerialization;
 using UnityEngine;
+using static CaiLib.Logger.Logger;
 
 namespace WirelessAutomation
 {
@@ -47,7 +48,7 @@ namespace WirelessAutomation
 			var lp = GetComponent<LogicPorts>();
 			if (lp == null)
 			{
-				CaiLib.Logger.Log(ModInfo.Name, "lp null");
+				Log(ModInfo.Name, "lp null");
 			}
 			else
 			{

@@ -79,7 +79,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
-echo F | xcopy /Y /S /R /Q  "$(TargetDir)CaiLib.dll" "$(SolutionDir)..\Mods\$(TargetName)\CaiLib.dll"
 if exist "$(ProjectDir)anims" xcopy /Y /R /I /E /Q  "$(ProjectDir)anims" "$(SolutionDir)..\Mods\$(TargetName)\anims"
 if exist "$(TargetDir)Config.json" echo F | xcopy /Y /S /R /Q "$(TargetDir)Config.json" "$(SolutionDir)..\Mods\$(TargetName)\Config.json"
 

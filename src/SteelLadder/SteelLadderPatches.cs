@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Harmony;
+﻿using Harmony;
 using static CaiLib.Logger.Logger;
+using static CaiLib.Utils.BuildingUtils;
 
 namespace SteelLadder
 {
@@ -22,11 +22,8 @@ namespace SteelLadder
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SteelLadderConfig.Id.ToUpperInvariant()}.NAME", SteelLadderConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SteelLadderConfig.Id.ToUpperInvariant()}.DESC", SteelLadderConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SteelLadderConfig.Id.ToUpperInvariant()}.EFFECT", SteelLadderConfig.Effect);
-
-				CaiLib.Utils.BuildingUtils.AddBuildingToPlanScreen("Base", SteelLadderConfig.Id, CarpetTileConfig.ID);
+				AddBuildingStrings(SteelLadderConfig.Id, SteelLadderConfig.DisplayName, SteelLadderConfig.Description, SteelLadderConfig.Effect);
+				AddBuildingToPlanScreen("Base", SteelLadderConfig.Id, LadderFastConfig.ID);
 			}
 		}
 
@@ -36,7 +33,7 @@ namespace SteelLadder
 		{
 			public static void Prefix()
 			{
-				CaiLib.Utils.BuildingUtils.AddBuildingToTechnology("Luxury", SteelLadderConfig.Id);
+				AddBuildingToTechnology("Luxury", SteelLadderConfig.Id);
 			}
 		}
 	}

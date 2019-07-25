@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace RefinedMetalsUsableAsRawMetals
 {
@@ -11,7 +12,7 @@ namespace RefinedMetalsUsableAsRawMetals
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
@@ -25,8 +26,10 @@ namespace RefinedMetalsUsableAsRawMetals
 				var iron = ElementLoader.FindElementByHash(SimHashes.Iron);
 				var tungsten = ElementLoader.FindElementByHash(SimHashes.Tungsten);
 				var gold = ElementLoader.FindElementByHash(SimHashes.Gold);
+				var lead = ElementLoader.FindElementByHash(SimHashes.Lead);
+				var aluminum = ElementLoader.FindElementByHash(SimHashes.Aluminum);
 
-				var basic = new[] { copper, iron, gold };
+				var basic = new[] { copper, iron, gold, lead, aluminum };
 
 				foreach (var element in basic)
 				{

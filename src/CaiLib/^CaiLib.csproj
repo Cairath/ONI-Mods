@@ -58,7 +58,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
+xcopy /Y /R  /I /Q  "$(SolutionDir)..\Mods\$(TargetName)" "C:\Users\Cairath\Documents\Klei\OxygenNotIncluded\mods\dev\$(TargetName)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
