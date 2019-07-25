@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Harmony;
+﻿using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace NoLeakyWalls
 {
@@ -12,7 +11,7 @@ namespace NoLeakyWalls
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
