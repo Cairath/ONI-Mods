@@ -1,5 +1,6 @@
 ﻿using Harmony;
 using UnityEngine;
+using static CaiLib.Logger.Logger;
 
 namespace ColorfulShinebugs
 {
@@ -18,7 +19,7 @@ namespace ColorfulShinebugs
 	    {
 		    public static void Postfix()
 		    {
-			    CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			    LogInit(ModInfo.Name, ModInfo.Version);
 		    }
 	    }
 
