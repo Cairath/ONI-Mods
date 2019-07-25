@@ -1,5 +1,6 @@
 ﻿using Harmony;
 using UnityEngine;
+using static CaiLib.Logger.Logger;
 
 namespace SuitDockStores75Kg
 {
@@ -11,12 +12,12 @@ namespace SuitDockStores75Kg
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
 		[HarmonyPatch(typeof(SuitLockerConfig))]
-		[HarmonyPatch("ConfigureBuildingTemplate")]
+		[HarmonyPatch(nameof(SuitLockerConfig.ConfigureBuildingTemplate))]
 		public static class SuitLockerConfig_ConfigureBuildingTemplate_Patch
 		{
 			public static void Postfix(ref GameObject go)
@@ -27,7 +28,7 @@ namespace SuitDockStores75Kg
 		}
 
 		[HarmonyPatch(typeof(JetSuitLockerConfig))]
-		[HarmonyPatch("ConfigureBuildingTemplate")]
+		[HarmonyPatch(nameof(JetSuitLockerConfig.ConfigureBuildingTemplate))]
 		public static class JetSuitLockerConfig_ConfigureBuildingTemplate_Patch
 		{
 			public static void Postfix(ref GameObject go)
