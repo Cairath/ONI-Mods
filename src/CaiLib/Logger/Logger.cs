@@ -19,6 +19,6 @@ namespace CaiLib.Logger
 			Console.WriteLine($"{Timestamp()} <<-- {mod} -->> " + message);
 		}
 
-		private static string Timestamp() => DateTime.UtcNow.ToString("[HH:mm:ss.fff]");
+		private static string Timestamp() => System.DateTime.UtcNow.ToString("[HH:mm:ss.fff]");
 	}
 }

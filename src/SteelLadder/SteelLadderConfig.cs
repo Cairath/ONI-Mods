@@ -1,4 +1,5 @@
-﻿using TUNING;
+﻿using System.Collections.Generic;
+using TUNING;
 using UnityEngine;
 
 namespace SteelLadder
@@ -35,6 +36,7 @@ namespace SteelLadder
 			buildingDef.DragBuild = true;
 			buildingDef.TileLayer = ObjectLayer.LadderTile;
 			buildingDef.ReplacementLayer = ObjectLayer.ReplacementLadder;
+			buildingDef.ReplacementTags = new List<Tag> { GameTags.Ladders };
 
 			return buildingDef;
 		}

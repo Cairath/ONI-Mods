@@ -20,7 +20,7 @@ namespace CaiLib.Config
 			_modName = modName;
 		}
 
-		public T ReadConfig(Action postReadAction = null)
+		public T ReadConfig(System.Action postReadAction = null)
 		{
 			Config = new T();
 
