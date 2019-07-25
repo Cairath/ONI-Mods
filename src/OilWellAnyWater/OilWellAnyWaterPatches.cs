@@ -1,5 +1,6 @@
 ﻿using Harmony;
 using UnityEngine;
+using static CaiLib.Logger.Logger;
 
 namespace OilWellAnyWater
 {
@@ -11,11 +12,12 @@ namespace OilWellAnyWater
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
-		[HarmonyPatch(typeof(OilWellCapConfig), "ConfigureBuildingTemplate")]
+		[HarmonyPatch(typeof(OilWellCapConfig))]
+		[HarmonyPatch("ConfigureBuildingTemplate")]
 		public class OilWellCapConfig_ConfigureBuildingTemplate_Patch
 		{
 			public static void Postfix(ref GameObject go)
