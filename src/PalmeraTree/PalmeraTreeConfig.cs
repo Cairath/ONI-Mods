@@ -18,17 +18,21 @@ namespace PalmeraTree
 		public static string SeedName = UI.FormatAsLink("Palmera Tree Seed", Id.ToUpper());
 		public static string SeedDescription = $"The {UI.FormatAsLink("Seed", "PLANTS")} of a {Name}.";
 
-		public GameObject CreatePrefab()
+        private const string AnimName = "custom_palmeratree_kanim";
+        private const string AnimNameSeed = "seed_palmeratree_kanim";
+
+
+        public GameObject CreatePrefab()
 		{
 			var placedEntity = EntityTemplates.CreatePlacedEntity(
 				id: Id,
 				name: Name,
 				desc: Description,
 				mass: 1f,
-				anim: Assets.GetAnim("palmeratree_kanim"),
+				anim: Assets.GetAnim(AnimName),
 				initialAnim: "idle_loop",
 				sceneLayer: Grid.SceneLayer.BuildingFront,
-				width: 2,
+				width: 1,
 				height: 3,
 				decor: DECOR.BONUS.TIER2,
 				defaultTemperature: 350f);
@@ -58,9 +62,9 @@ namespace PalmeraTree
 				name: SeedName,
 				desc: SeedDescription,
 				productionType: SeedProducer.ProductionType.Harvest,
-				anim: Assets.GetAnim("seed_palmeratree_kanim"),
+				anim: Assets.GetAnim(AnimNameSeed),
 				numberOfSeeds: 0,
-				additionalTags: new List<Tag> { Utils.CropSeed2TileWide },
+				additionalTags: new List<Tag> { GameTags.CropSeed },
 				sortOrder: 7,
 				domesticatedDescription: CREATURES.SPECIES.JUNGLEGASPLANT.DOMESTICATEDDESC,
 				width: 0.33f,
@@ -69,8 +73,8 @@ namespace PalmeraTree
 			EntityTemplates.CreateAndRegisterPreviewForPlant(
 				seed: seed,
 				id: "PalmeraTree_preview",
-				anim: Assets.GetAnim("palmeratree_kanim"),
-				initialAnim: "clidle_wilt_loopose",
+				anim: Assets.GetAnim(AnimName),
+				initialAnim: "place",
 				width: 2,
 				height: 3);
 

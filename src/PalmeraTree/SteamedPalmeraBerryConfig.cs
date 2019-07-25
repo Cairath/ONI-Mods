@@ -59,11 +59,10 @@ namespace PalmeraTree
 			{
 				time = 100f,
 				description = RecipeDescription,
-				useResultAsDescription = true,
-				fabricators = new List<Tag> { CookingStationConfig.ID },
+                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
+                fabricators = new List<Tag> { CookingStationConfig.ID },
 				sortOrder = 120
 			};
-
 
 			return food;
 		}
