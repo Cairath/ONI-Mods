@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace NoLongCommutes
 {
@@ -10,7 +11,7 @@ namespace NoLongCommutes
 	    {
 		    public static void Postfix()
 		    {
-			    CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			    LogInit(ModInfo.Name, ModInfo.Version);
 		    }
 	    }
 
