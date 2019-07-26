@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using CaiLib.Utils;
 using Harmony;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.GameStrings;
+using static CaiLib.Utils.StringUtils;
 
 namespace WirelessAutomation
 {
@@ -43,19 +47,14 @@ namespace WirelessAutomation
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationEmitterConfig.Id.ToUpperInvariant()}.NAME", WirelessAutomationEmitterConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationEmitterConfig.Id.ToUpperInvariant()}.DESC", WirelessAutomationEmitterConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationEmitterConfig.Id.ToUpperInvariant()}.EFFECT", WirelessAutomationEmitterConfig.Effect);
-
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationReceiverConfig.Id.ToUpperInvariant()}.NAME", WirelessAutomationReceiverConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationReceiverConfig.Id.ToUpperInvariant()}.DESC", WirelessAutomationReceiverConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WirelessAutomationReceiverConfig.Id.ToUpperInvariant()}.EFFECT", WirelessAutomationReceiverConfig.Effect);
+				AddBuildingStrings(WirelessSignalEmitterConfig.Id, WirelessSignalEmitterConfig.DisplayName, WirelessSignalEmitterConfig.Description, WirelessSignalEmitterConfig.Effect);
+				AddBuildingStrings(WirelessSignalReceiverConfig.Id, WirelessSignalReceiverConfig.DisplayName, WirelessSignalReceiverConfig.Description, WirelessSignalReceiverConfig.Effect);
 
 				Strings.Add(WirelessAutomationManager.SliderTooltipKey, WirelessAutomationManager.SliderTooltip);
 				Strings.Add(WirelessAutomationManager.SliderTitleKey, WirelessAutomationManager.SliderTitle);
 
-				ModUtil.AddBuildingToPlanScreen("Automation", WirelessAutomationEmitterConfig.Id);
-				ModUtil.AddBuildingToPlanScreen("Automation", WirelessAutomationReceiverConfig.Id);
+				AddBuildingToPlanScreen(BuildingMenuCategory.Automation, WirelessSignalEmitterConfig.Id);
+				AddBuildingToPlanScreen(BuildingMenuCategory.Automation, WirelessSignalReceiverConfig.Id);
 			}
 
 			[HarmonyPatch(typeof(Db))]
@@ -64,27 +63,8 @@ namespace WirelessAutomation
 			{
 				public static void Prefix()
 				{
-					var tech = new List<string>(Database.Techs.TECH_GROUPING["DupeTrafficControl"]) { WirelessAutomationEmitterConfig.Id, WirelessAutomationReceiverConfig.Id };
-					Database.Techs.TECH_GROUPING["DupeTrafficControl"] = tech.ToArray();
-				}
-			}
-
-			[HarmonyPatch(typeof(KSerialization.Manager))]
-			[HarmonyPatch("GetType")]
-			[HarmonyPatch(new[] { typeof(string) })]
-			public static class KSerializationManager_GetType_Patch
-			{
-				public static void Postfix(string type_name, ref Type __result)
-				{
-					if (type_name == "WirelessAutomation.WirelessAutomationReceiver")
-					{
-						__result = typeof(WirelessAutomationReceiver);
-					}
-
-					if (type_name == "WirelessAutomation.WirelessAutomationEmitter")
-					{
-						__result = typeof(WirelessAutomationEmitter);
-					}
+					AddBuildingToTechnology(GameStrings.Research.Computers.Computing, WirelessSignalEmitterConfig.Id);
+					AddBuildingToTechnology(GameStrings.Research.Computers.Computing, WirelessSignalReceiverConfig.Id);
 				}
 			}
 		}
