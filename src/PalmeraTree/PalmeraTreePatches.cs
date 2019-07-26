@@ -30,11 +30,13 @@ namespace PalmeraTree
                 station.inStorage.SetDefaultStoredItemModifiers(storedItemModifiers);
                 station.buildStorage.SetDefaultStoredItemModifiers(storedItemModifiers);
                 station.outStorage.SetDefaultStoredItemModifiers(storedItemModifiers);
+
+                //todo: change cooking station
             }
         }
 
         [HarmonyPatch(typeof(EntityConfigManager))]
-        [HarmonyPatch("LoadGeneratedEntities")]
+        [HarmonyPatch(nameof(EntityConfigManager.LoadGeneratedEntities))]
         public class EntityConfigManager_LoadGeneratedEntities_Patch
         {
             public static void Prefix()

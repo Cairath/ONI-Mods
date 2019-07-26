@@ -80,11 +80,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
-if exist "$(ProjectDir)anims" xcopy /Y /R /I /E /Q  "$(ProjectDir)anims" "$(SolutionDir)..\Mods\$(TargetName)\anims"
-if exist "$(TargetDir)Config.json" echo F | xcopy /Y /S /R /Q "$(TargetDir)Config.json" "$(SolutionDir)..\Mods\$(TargetName)\Config.json"
-
-xcopy /Y /R  /I /Q  "$(SolutionDir)..\Mods\$(TargetName)" "C:\Users\Cairath\Documents\Klei\OxygenNotIncluded\mods\dev\$(TargetName)"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using CaiLib.Utils;
+using Harmony;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 
@@ -17,12 +18,12 @@ namespace SteelLadder
 		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			public static void Prefix()
 			{
-				AddBuildingStrings(SteelLadderConfig.Id, SteelLadderConfig.DisplayName, SteelLadderConfig.Description, SteelLadderConfig.Effect);
+				StringUtils.AddBuildingStrings(SteelLadderConfig.Id, SteelLadderConfig.DisplayName, SteelLadderConfig.Description, SteelLadderConfig.Effect);
 				AddBuildingToPlanScreen("Base", SteelLadderConfig.Id, LadderFastConfig.ID);
 			}
 		}

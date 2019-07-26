@@ -3,7 +3,7 @@ using TUNING;
 
 namespace CaiLib.Utils
 {
-	public class BuildingUtils
+	public static class BuildingUtils
 	{
 		public static void AddBuildingToPlanScreen(HashedString category, string buildingId, string addAfterBuildingId = null)
 		{
@@ -32,12 +32,5 @@ namespace CaiLib.Utils
 			var techList = new List<string>(Database.Techs.TECH_GROUPING[tech]) { buildingId };
 			Database.Techs.TECH_GROUPING[tech] = techList.ToArray();
 		}
-
-		public static void AddBuildingStrings(string buildingId, string name, string description, string effect)
-		{
-			Strings.Add($"STRINGS.BUILDINGS.PREFABS.{buildingId.ToUpperInvariant()}.NAME", name);
-			Strings.Add($"STRINGS.BUILDINGS.PREFABS.{buildingId.ToUpperInvariant()}.DESC", description);
-			Strings.Add($"STRINGS.BUILDINGS.PREFABS.{buildingId.ToUpperInvariant()}.EFFECT", effect);
-		}
-	}
+    }
 }

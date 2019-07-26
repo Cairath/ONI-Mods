@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection.Emit;
 using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace LessWasteFromJetpacks
 {
@@ -13,12 +14,12 @@ namespace LessWasteFromJetpacks
 		{
 			public static void Postfix()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
 		[HarmonyPatch(typeof(JetSuitMonitor))]
-		[HarmonyPatch("Emit")]
+		[HarmonyPatch(nameof(JetSuitMonitor.Emit))]
 		public static class JetSuitMonitor_Emit_Patch
 		{
 			public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

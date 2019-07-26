@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using CaiLib;
 using CaiLib.Config;
 using Harmony;
 using static CaiLib.Logger.Logger;

@@ -22,7 +22,7 @@ namespace GeyserCalculatedAvgOutputTooltip
 		}
 
 		[HarmonyPatch(typeof(Geyser))]
-		[HarmonyPatch("GetDescriptors")]
+		[HarmonyPatch(nameof(Geyser.GetDescriptors))]
 		public static class Geyser_GetDescriptors_Patch
 		{
 			public static void Postfix(ref Geyser __instance, ref List<Descriptor> __result)

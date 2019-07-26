@@ -102,8 +102,7 @@ namespace PalmeraTree
 					.DefaultState(Alive.Idle)
                     .ToggleComponent<Growing>();
 
-
-				Alive.Idle
+                Alive.Idle
 					.Enter(smi => smi.master.elementConsumer.EnableConsumption(true))
 					.EventTransition(GameHashes.Wilt, Alive.WiltingPre, smi => smi.master.wiltCondition.IsWilting())
 					.EventTransition(GameHashes.Grow, Alive.PreFruiting, smi => smi.master.growing.ReachedNextHarvest())

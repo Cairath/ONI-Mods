@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using CaiLib;
 using CaiLib.Config;
 using Harmony;
 using static CaiLib.Logger.Logger;
@@ -22,7 +21,8 @@ namespace FasterJetpacks
 			}
 		}
 
-		[HarmonyPatch(typeof(BipedTransitionLayer), "BeginTransition")]
+		[HarmonyPatch(typeof(BipedTransitionLayer))]
+        [HarmonyPatch(nameof(BipedTransitionLayer.BeginTransition))]
 		public static class BipedTransitionLayer_BeginTransition_Patch
 		{
 			public static void Prefix(ref BipedTransitionLayer __instance)

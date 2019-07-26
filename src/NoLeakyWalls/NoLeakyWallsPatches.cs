@@ -16,7 +16,7 @@ namespace NoLeakyWalls
 		}
 
 		[HarmonyPatch(typeof(ExteriorWallConfig))]
-		[HarmonyPatch("CreateBuildingDef")]
+		[HarmonyPatch(nameof(ExteriorWallConfig.CreateBuildingDef))]
 		public static class ExteriorWallConfig_CreateBuildingDef_Patch
 		{
 			public static void Postfix(ref BuildingDef __result)
@@ -26,7 +26,7 @@ namespace NoLeakyWalls
 		}
 
 		[HarmonyPatch(typeof(ThermalBlockConfig))]
-		[HarmonyPatch("CreateBuildingDef")]
+		[HarmonyPatch(nameof(ThermalBlockConfig.CreateBuildingDef))]
 		public static class ThermalBlockConfig_CreateBuildingDef_Patch
 		{
 			public static void Postfix(ref BuildingDef __result)

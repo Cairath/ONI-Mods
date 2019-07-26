@@ -17,7 +17,7 @@ namespace OilWellAnyWater
 		}
 
 		[HarmonyPatch(typeof(OilWellCapConfig))]
-		[HarmonyPatch("ConfigureBuildingTemplate")]
+		[HarmonyPatch(nameof(OilWellCapConfig.ConfigureBuildingTemplate))]
 		public class OilWellCapConfig_ConfigureBuildingTemplate_Patch
 		{
 			public static void Postfix(ref GameObject go)

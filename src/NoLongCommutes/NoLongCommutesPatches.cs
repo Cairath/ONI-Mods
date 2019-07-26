@@ -19,7 +19,7 @@ namespace NoLongCommutes
 	    [HarmonyPatch("LongTravelTimes")]
 	    public class Tutorial_LongTravelTimes_Patch
 		{
-		    private static bool Prefix(ref bool __result)
+		    public static bool Prefix(ref bool __result)
 		    {
 			    __result = true;
 			    return false;
