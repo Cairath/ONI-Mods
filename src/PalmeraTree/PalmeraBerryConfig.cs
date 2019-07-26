@@ -8,13 +8,12 @@ namespace PalmeraTree
 		public static string Id = "PalmeraBerry";
 		public static string Name = "Palmera Berry";
 		public static string Description = "A toxic, non-edible bud that emits hydrogen.";
-		public static LocString NameWithLink = UI.FormatAsLink(Name, Id.ToUpper());
 
 		public GameObject CreatePrefab()
 		{
 			var entity = EntityTemplates.CreateLooseEntity(
 				id: Id,
-				name: NameWithLink,
+				name: UI.FormatAsLink(Name, Id),
 				desc: Description,
 				mass: 1f,
 				unitMass: false,

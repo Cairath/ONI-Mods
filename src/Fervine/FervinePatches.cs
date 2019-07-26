@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Harmony;
+using static CaiLib.Utils.CarePackagesUtils;
 
 namespace Fervine
 {
@@ -36,12 +37,7 @@ namespace Fervine
 		{
 			public static void Postfix(ref Immigration __instance)
 			{
-				var field = Traverse.Create(__instance).Field("carePackages");
-				var list = field.GetValue<CarePackageInfo[]>().ToList();
-
-				list.Add(new CarePackageInfo(FervineConfig.SeedId, 1f, null));
-
-				field.SetValue(list.ToArray());
+				AddCarePackage(ref __instance, FervineConfig.SeedId, 1f);
 			}
 		}
 

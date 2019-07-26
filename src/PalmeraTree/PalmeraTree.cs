@@ -1,4 +1,5 @@
 ﻿using STRINGS;
+#pragma warning disable 649
 
 namespace PalmeraTree
 {
