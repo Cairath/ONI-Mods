@@ -2,6 +2,7 @@
 using Harmony;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.GameStrings;
 
 namespace SteelLadder
 {
@@ -24,7 +25,7 @@ namespace SteelLadder
 			public static void Prefix()
 			{
 				StringUtils.AddBuildingStrings(SteelLadderConfig.Id, SteelLadderConfig.DisplayName, SteelLadderConfig.Description, SteelLadderConfig.Effect);
-				AddBuildingToPlanScreen("Base", SteelLadderConfig.Id, LadderFastConfig.ID);
+				AddBuildingToPlanScreen(BuildingMenuCategory.Base, SteelLadderConfig.Id, LadderFastConfig.ID);
 			}
 		}
 
@@ -34,7 +35,7 @@ namespace SteelLadder
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology("Luxury", SteelLadderConfig.Id);
+				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, SteelLadderConfig.Id);
 			}
 		}
 	}
