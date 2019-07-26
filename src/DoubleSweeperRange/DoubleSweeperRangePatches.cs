@@ -30,7 +30,7 @@ namespace DoubleSweeperRange
 		}
 
 		[HarmonyPatch(typeof(SolidTransferArmConfig))]
-		[HarmonyPatch("DoPostConfigureComplete")]
+		[HarmonyPatch(nameof(SolidTransferArmConfig.DoPostConfigureComplete))]
 		public static class SolidTransferArmConfig_DoPostConfigureComplete_Patch
 		{
 			public static void Postfix(ref GameObject go)
