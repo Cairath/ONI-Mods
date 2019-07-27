@@ -8,7 +8,7 @@ namespace DecorLights
 		public const string Id = "LavaLamp";
 		public const string DisplayName = "Lava Lamp";
 		public const string Description = "It's not real lava, is it?";
-		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC;
+		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.EFFECT;
 
 		public override BuildingDef CreateBuildingDef()
 		{

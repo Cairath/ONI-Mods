@@ -38,7 +38,7 @@ namespace WirelessAutomation
 		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			public static void Prefix()

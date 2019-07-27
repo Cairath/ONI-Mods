@@ -1,40 +1,34 @@
-﻿using Database;
-using Harmony;
-using System.Collections.Generic;
+﻿using Harmony;
+using CaiLib.Utils;
+using static CaiLib.Logger.Logger;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace DecorLights
 {
 	public static class Mod_OnLoad
+	{
+		public static void OnLoad()
 		{
-			public static void OnLoad()
-		{
-			CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			LogInit(ModInfo.Name, ModInfo.Version);
 		}
 	}
 
 	public class DecorLightsPatches
 	{
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{LavaLampConfig.Id.ToUpperInvariant()}.NAME", LavaLampConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{LavaLampConfig.Id.ToUpperInvariant()}.DESC", LavaLampConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{LavaLampConfig.Id.ToUpperInvariant()}.EFFECT", LavaLampConfig.Effect);
+				AddBuildingStrings(LavaLampConfig.Id, LavaLampConfig.DisplayName, LavaLampConfig.Description, LavaLampConfig.Effect);
+				AddBuildingStrings(SaltLampConfig.Id, SaltLampConfig.DisplayName, SaltLampConfig.Description, SaltLampConfig.Effect);
+				AddBuildingStrings(CeilingLampConfig.Id, CeilingLampConfig.DisplayName, CeilingLampConfig.Description, CeilingLampConfig.Effect);
 
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SaltLampConfig.Id.ToUpperInvariant()}.NAME", SaltLampConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SaltLampConfig.Id.ToUpperInvariant()}.DESC", SaltLampConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{SaltLampConfig.Id.ToUpperInvariant()}.EFFECT", SaltLampConfig.Effect);
-
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{CeilingLampConfig.Id.ToUpperInvariant()}.NAME", CeilingLampConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{CeilingLampConfig.Id.ToUpperInvariant()}.DESC", CeilingLampConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{CeilingLampConfig.Id.ToUpperInvariant()}.EFFECT", CeilingLampConfig.Effect);
-
-				ModUtil.AddBuildingToPlanScreen("Furniture", LavaLampConfig.Id);
-				ModUtil.AddBuildingToPlanScreen("Furniture", SaltLampConfig.Id);
-				ModUtil.AddBuildingToPlanScreen("Furniture", CeilingLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, LavaLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, SaltLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, CeilingLampConfig.Id);
 			}
 		}
 
@@ -44,8 +38,9 @@ namespace DecorLights
 		{
 			public static void Prefix()
 			{
-				var tech = new List<string>(Techs.TECH_GROUPING["Luxury"]) { LavaLampConfig.Id, SaltLampConfig.Id, CeilingLampConfig.Id };
-				Techs.TECH_GROUPING["Luxury"] = tech.ToArray();
+				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, LavaLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, SaltLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, CeilingLampConfig.Id);
 			}
 		}
 	}

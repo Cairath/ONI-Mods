@@ -7,8 +7,8 @@ namespace DecorLights
 	{
 		public const string Id = "CeilingLamp";
 		public const string DisplayName = "Ceiling Lamp";
-		public const string Description = "Like a normal ceiling light, but prettier.";
-		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC;
+		public static string Description = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC;
+		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.EFFECT;
 
 		public override BuildingDef CreateBuildingDef()
 		{

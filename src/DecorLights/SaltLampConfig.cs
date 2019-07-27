@@ -8,7 +8,7 @@ namespace DecorLights
 		public const string Id = "SaltLamp";
 		public const string DisplayName = "Salt Lamp";
 		public const string Description = "Fake salt. Not edible. Do not lick.";
-		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC;
+		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.EFFECT;
 
 		public override BuildingDef CreateBuildingDef()
 		{

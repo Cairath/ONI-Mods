@@ -112,11 +112,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyTile", "FancyTile\Fanc
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedGasOverlay", "ImprovedGasOverlay\ImprovedGasOverlay.csproj", "{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WirelessAutomation", "WirelessAutomation\WirelessAutomation.csproj", "{E0DD3489-4BAD-4EDE-AF0D-DDEB9E149D19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EerieColors", "EerieColors\EerieColors.csproj", "{67E1F9EE-937F-4017-B3FD-1E7777E3D7AF}"
@@ -127,11 +122,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLeakyWalls", "NoLeakyWall
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowIndustrialMachineryTag", "ShowIndustrialMachineryTag\ShowIndustrialMachineryTag.csproj", "{36735139-281B-4A61-BFFD-D12FD187A2EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorRailFilter", "ConveyorRailFilter\ConveyorRailFilter.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorRailUtilities", "ConveyorRailUtilities\ConveyorRailUtilities.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLongCommutes", "NoLongCommutes\NoLongCommutes.csproj", "{034CAEB1-930B-49AC-8F0C-9451F0345176}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessWasteFromJetpacks", "LessWasteFromJetpacks\LessWasteFromJetpacks.csproj", "{185032E8-0A01-47AC-890D-25281FDDC646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chomper", "Chomper\Chomper.csproj", "{B6005FA8-B4CC-4E18-AAFB-31CCCFD95AD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -243,10 +240,6 @@ Global
 		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6886803-1704-40F7-81F1-0F6BEFF776A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4475E088-4830-4BB4-BC97-FC8ACC18AFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0DD3489-4BAD-4EDE-AF0D-DDEB9E149D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0DD3489-4BAD-4EDE-AF0D-DDEB9E149D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0DD3489-4BAD-4EDE-AF0D-DDEB9E149D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -279,6 +272,10 @@ Global
 		{185032E8-0A01-47AC-890D-25281FDDC646}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185032E8-0A01-47AC-890D-25281FDDC646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185032E8-0A01-47AC-890D-25281FDDC646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6005FA8-B4CC-4E18-AAFB-31CCCFD95AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6005FA8-B4CC-4E18-AAFB-31CCCFD95AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6005FA8-B4CC-4E18-AAFB-31CCCFD95AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6005FA8-B4CC-4E18-AAFB-31CCCFD95AD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

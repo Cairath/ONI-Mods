@@ -18,7 +18,7 @@ namespace Wallpaper
 		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			public static void Prefix()
