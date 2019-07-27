@@ -8,18 +8,11 @@ namespace RanchingSensors
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class CrittersSensor : Switch, IThresholdSwitch, ISim200ms
 	{
-		[SerializeField]
-		[Serialize]
-		private float _threshold;
+		[field: Serialize]
+		public float Threshold { get; set; }
 
-		[SerializeField]
-		[Serialize]
-		private bool _activateAboveThreshold = true;
-
-		private bool _wasOn;
-		private int _currentCritters;
-		private KSelectable selectable;
-		private Guid roomStatusGUID;
+		[field: Serialize]
+		public bool ActivateAboveThreshold { get; set; } = true;
 
 		public float CurrentValue => _currentCritters;
 		public LocString Title => "Live Critters Sensor";
@@ -35,18 +28,23 @@ namespace RanchingSensors
 		public float GetRangeMinInputField() => 0.0f;
 		public float GetRangeMaxInputField() => 50.0f;
 
+		private bool _wasOn;
+		private int _currentCritters;
+		private KSelectable _selectable;
+		private Guid _roomStatusGuid;
+
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
-			selectable = GetComponent<KSelectable>();
+			_selectable = GetComponent<KSelectable>();
 		}
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
 			OnToggle += OnSwitchToggled;
-			UpdateLogicCircuit();
-			UpdateVisualState(true);
+			UpdateLogicCircuit(IsSwitchedOn);
+			UpdateVisualState(IsSwitchedOn, true);
 			_wasOn = IsSwitchedOn;
 		}
 
@@ -57,18 +55,18 @@ namespace RanchingSensors
 			{
 				_currentCritters = roomOfGameObject.cavity.creatures.Count;
 
-				var newState = _activateAboveThreshold ? _currentCritters > _threshold : _currentCritters < _threshold;
+				var newState = ActivateAboveThreshold ? _currentCritters > Threshold : _currentCritters < Threshold;
 
 				SetState(newState);
 
-				if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+				if (!_selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
 					return;
-				selectable.RemoveStatusItem(roomStatusGUID);
+				_selectable.RemoveStatusItem(_roomStatusGuid);
 			}
 			else
 			{
-				if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
-					roomStatusGUID = selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom);
+				if (!_selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+					_roomStatusGuid = _selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom);
 
 				SetState(false);
 			}
@@ -76,52 +74,29 @@ namespace RanchingSensors
 
 		private void OnSwitchToggled(bool toggledOn)
 		{
-			UpdateLogicCircuit();
-			UpdateVisualState();
+			UpdateLogicCircuit(toggledOn);
+			UpdateVisualState(toggledOn);
 		}
 
-		private void UpdateVisualState(bool force = false)
+		private void UpdateVisualState(bool toggledOn, bool force = false)
 		{
 
-			if (_wasOn == switchedOn && !force)
+			if (_wasOn == toggledOn && !force)
 				return;
 			_wasOn = switchedOn;
 
 			var component = GetComponent<KBatchedAnimController>();
-			component.Play(!switchedOn ? "on_pst" : "on_pre");
-			component.Queue(!switchedOn ? "off" : "on");
+			component.Play(!toggledOn ? "on_pst" : "on_pre");
+			component.Queue(!toggledOn ? "off" : "on");
 		}
 
-		public float Threshold
+		private void UpdateLogicCircuit(bool toggledOn)
 		{
-			get => _threshold;
-			set => _threshold = value;
+			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, toggledOn ? 1 : 0);
 		}
 
-		public bool ActivateAboveThreshold
-		{
-			get => _activateAboveThreshold;
-			set => _activateAboveThreshold = value;
-		}
-
-		private void UpdateLogicCircuit()
-		{
-			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, switchedOn ? 1 : 0);
-		}	
-
-		public string Format(float value, bool units)
-		{
-			return GameUtil.GetFormattedInt(Mathf.RoundToInt(value));
-		}
-
-		public float ProcessedSliderValue(float input)
-		{
-			return Mathf.RoundToInt(input);
-		}
-
-		public float ProcessedInputValue(float input)
-		{
-			return Mathf.RoundToInt(input);
-		}
+		public string Format(float value, bool units) => GameUtil.GetFormattedInt(Mathf.RoundToInt(value));
+		public float ProcessedSliderValue(float input) => Mathf.RoundToInt(input);
+		public float ProcessedInputValue(float input) => Mathf.RoundToInt(input);
 	}
 }

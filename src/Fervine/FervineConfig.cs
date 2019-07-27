@@ -2,7 +2,6 @@
 using STRINGS;
 using TUNING;
 using UnityEngine;
-using CREATURES = STRINGS.CREATURES;
 
 namespace Fervine
 {

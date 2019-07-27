@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Database;
+﻿using CaiLib.Utils;
 using Harmony;
-using KSerialization;
 using static CaiLib.Logger.Logger;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace RanchingSensors
 {
@@ -23,16 +22,10 @@ namespace RanchingSensors
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{CrittersSensorConfig.Id.ToUpperInvariant()}.NAME", CrittersSensorConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{CrittersSensorConfig.Id.ToUpperInvariant()}.DESC", CrittersSensorConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{CrittersSensorConfig.Id.ToUpperInvariant()}.EFFECT", CrittersSensorConfig.Effect);
-
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{EggsSensorConfig.Id.ToUpperInvariant()}.NAME", EggsSensorConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{EggsSensorConfig.Id.ToUpperInvariant()}.DESC", EggsSensorConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{EggsSensorConfig.Id.ToUpperInvariant()}.EFFECT", EggsSensorConfig.Effect);
-
-				ModUtil.AddBuildingToPlanScreen("Automation", CrittersSensorConfig.Id);
-				ModUtil.AddBuildingToPlanScreen("Automation", EggsSensorConfig.Id);
+				AddBuildingStrings(CrittersSensorConfig.Id, CrittersSensorConfig.DisplayName, CrittersSensorConfig.Description, CrittersSensorConfig.Effect);
+				AddBuildingStrings(EggsSensorConfig.Id, EggsSensorConfig.DisplayName, EggsSensorConfig.Description, EggsSensorConfig.Effect);
+				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Automation, CrittersSensorConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Automation, EggsSensorConfig.Id);
 			}
 
 			[HarmonyPatch(typeof(Db))]
@@ -41,27 +34,8 @@ namespace RanchingSensors
 			{
 				public static void Prefix()
 				{
-					var animalTech = new List<string>(Techs.TECH_GROUPING["AnimalControl"]) { CrittersSensorConfig.Id, EggsSensorConfig.Id };
-					Techs.TECH_GROUPING["AnimalControl"] = animalTech.ToArray();
-				}
-			}
-
-			[HarmonyPatch(typeof(Manager))]
-			[HarmonyPatch("GetType")]
-			[HarmonyPatch(new[] { typeof(string) })]
-			public static class KSerializationManager_GetType_Patch
-			{
-				public static void Postfix(string type_name, ref Type __result)
-				{
-					if (type_name == "RanchingSensors.CrittersSensor")
-					{
-						__result = typeof(CrittersSensor);
-					}
-
-					if (type_name == "RanchingSensors.EggsSensor")
-					{
-						__result = typeof(EggsSensor);
-					}
+					AddBuildingToTechnology(GameStrings.Research.Food.AnimalControl, CrittersSensorConfig.Id);
+					AddBuildingToTechnology(GameStrings.Research.Food.AnimalControl, EggsSensorConfig.Id);
 				}
 			}
 		}

@@ -1,6 +1,4 @@
-﻿using Harmony;
-
-namespace RanchingRebalanced
+﻿namespace RanchingRebalanced
 {
 	public static class RanchingRebalancedPatches
 	{

@@ -57,31 +57,11 @@ namespace WirelessAutomation
 			WirelessAutomationManager.ChangeEmitterChannel(_emitterId, EmitChannel);
 		}
 
-		public int SliderDecimalPlaces(int index)
-		{
-			return 0;
-		}
-
-		public float GetSliderMin(int index)
-		{
-			return 0;
-		}
-
-		public float GetSliderMax(int index)
-		{
-			return 100;
-		}
-
-		public float GetSliderValue(int index)
-		{
-			return EmitChannel;
-		}
-
-		public void SetSliderValue(float value, int index)
-		{
-			ChangeEmitChannel(Mathf.RoundToInt(value));
-		}
-
+		public int SliderDecimalPlaces(int index) => 0;
+		public float GetSliderMin(int index) => 0;
+		public float GetSliderMax(int index) => 100;
+		public float GetSliderValue(int index) => EmitChannel;
+		public void SetSliderValue(float value, int index) => ChangeEmitChannel(Mathf.RoundToInt(value));
 		public string GetSliderTooltipKey(int index) => WirelessAutomationManager.SliderTooltipKey;
 		public string SliderTitleKey => WirelessAutomationManager.SliderTitleKey;
 		public string SliderUnits => string.Empty;

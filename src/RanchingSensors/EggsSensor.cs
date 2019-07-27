@@ -8,25 +8,18 @@ namespace RanchingSensors
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class EggsSensor : Switch, IThresholdSwitch, ISim200ms
 	{
-		[SerializeField]
-		[Serialize]
-		private float _threshold;
+		[field: Serialize]
+		public float Threshold { get; set; }
 
-		[SerializeField]
-		[Serialize]
-		private bool _activateAboveThreshold = true;
-
-		private bool _wasOn;
-		private int _currentEggs;
-		private KSelectable selectable;
-		private Guid roomStatusGUID;
+		[field: Serialize]
+		public bool ActivateAboveThreshold { get; set; } = true;
 
 		public float CurrentValue => _currentEggs;
 		public LocString Title => "Eggs Sensor";
 		public LocString ThresholdValueName => UI.CODEX.CATEGORYNAMES.CREATURES;
 		public LocString ThresholdValueUnits() => "";
-		public string AboveToolTip => "Sensor will be on if the number of eggs is above {0}";
-		public string BelowToolTip => "Sensor will be on if the number of eggs is below {0}";
+		public string AboveToolTip => "Sensor will be on if the number of eggs in the room is above {0}";
+		public string BelowToolTip => "Sensor will be on if the number of eggs in the room is below {0}";
 		public ThresholdScreenLayoutType LayoutType => ThresholdScreenLayoutType.InputField;
 		public int IncrementScale => 1;
 		public NonLinearSlider.Range[] GetRanges { get; }
@@ -35,18 +28,23 @@ namespace RanchingSensors
 		public float GetRangeMinInputField() => 0.0f;
 		public float GetRangeMaxInputField() => 50.0f;
 
+		private bool _wasOn;
+		private int _currentEggs;
+		private KSelectable _selectable;
+		private Guid _roomStatusGuid;
+
 		protected override void OnPrefabInit()
 		{
 			base.OnPrefabInit();
-			selectable = GetComponent<KSelectable>();
+			_selectable = GetComponent<KSelectable>();
 		}
 
 		protected override void OnSpawn()
 		{
 			base.OnSpawn();
 			OnToggle += OnSwitchToggled;
-			UpdateLogicCircuit();
-			UpdateVisualState(true);
+			UpdateLogicCircuit(IsSwitchedOn);
+			UpdateVisualState(IsSwitchedOn, true);
 			_wasOn = IsSwitchedOn;
 		}
 
@@ -57,18 +55,18 @@ namespace RanchingSensors
 			{
 				_currentEggs = roomOfGameObject.cavity.eggs.Count;
 
-				var newState = _activateAboveThreshold ? _currentEggs > _threshold : _currentEggs < _threshold;
+				var newState = ActivateAboveThreshold ? _currentEggs > Threshold : _currentEggs < Threshold;
 
 				SetState(newState);
 
-				if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+				if (!_selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
 					return;
-				selectable.RemoveStatusItem(roomStatusGUID);
+				_selectable.RemoveStatusItem(_roomStatusGuid);
 			}
 			else
 			{
-				if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
-					roomStatusGUID = selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom);
+				if (!_selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+					_roomStatusGuid = _selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom);
 
 				SetState(false);
 			}
@@ -76,52 +74,30 @@ namespace RanchingSensors
 
 		private void OnSwitchToggled(bool toggledOn)
 		{
-			UpdateLogicCircuit();
-			UpdateVisualState();
+			UpdateLogicCircuit(toggledOn);
+			UpdateVisualState(toggledOn);
 		}
 
-		private void UpdateVisualState(bool force = false)
+		private void UpdateVisualState(bool toggledOn, bool force = false)
 		{
 
-			if (_wasOn == switchedOn && !force)
+			if (_wasOn == toggledOn && !force)
 				return;
-			_wasOn = switchedOn;
+
+			_wasOn = toggledOn;
 
 			var component = GetComponent<KBatchedAnimController>();
-			component.Play(!switchedOn ? "on_pst" : "on_pre");
-			component.Queue(!switchedOn ? "off" : "on");
+			component.Play(!toggledOn ? "on_pst" : "on_pre");
+			component.Queue(!toggledOn ? "off" : "on");
 		}
 
-		public float Threshold
+		private void UpdateLogicCircuit(bool toggledOn)
 		{
-			get => _threshold;
-			set => _threshold = value;
-		}
-
-		public bool ActivateAboveThreshold
-		{
-			get => _activateAboveThreshold;
-			set => _activateAboveThreshold = value;
-		}
-
-		private void UpdateLogicCircuit()
-		{
-			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, switchedOn ? 1 : 0);
+			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, toggledOn ? 1 : 0);
 		}	
 
-		public string Format(float value, bool units)
-		{
-			return GameUtil.GetFormattedInt(Mathf.RoundToInt(value));
-		}
-
-		public float ProcessedSliderValue(float input)
-		{
-			return Mathf.RoundToInt(input);
-		}
-
-		public float ProcessedInputValue(float input)
-		{
-			return Mathf.RoundToInt(input);
-		}
+		public string Format(float value, bool units) => GameUtil.GetFormattedInt(Mathf.RoundToInt(value));
+		public float ProcessedSliderValue(float input) => Mathf.RoundToInt(input);
+		public float ProcessedInputValue(float input) => Mathf.RoundToInt(input);
 	}
 }

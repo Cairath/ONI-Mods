@@ -1,6 +1,4 @@
-﻿using Harmony;
-
-namespace BuildablePOIProps
+﻿namespace BuildablePOIProps
 {
 	public static class BuildablePOIPropsPatches
 	{

@@ -10,7 +10,8 @@ namespace RanchingSensors
 		public static string Id = "CrittersSensor";
 		public const string DisplayName = "Live Critters Sensor";
 		public const string Description = "Counts up the number of critters in the room.";
-		public static string Effect = $"Becomes {UI.FormatAsLink("Active", "LOGIC")} or on {UI.FormatAsLink("Standby", "LOGIC")} depending on the number of live critters (no eggs) in a room.";
+		public static string Effect = $"Sends {UI.FormatAsAutomationState("Green Signal", UI.AutomationState.Active)} " +
+		                              $"or on {UI.FormatAsAutomationState("Red Signal", UI.AutomationState.Standby)} depending on the number of live critters in a room.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
@@ -18,7 +19,7 @@ namespace RanchingSensors
 				id: Id,
 				width: 1,
 				height: 1,
-				anim: "critter_sensor_kanim",
+				anim: "critter_live_sensor_kanim",
 				hitpoints: BUILDINGS.HITPOINTS.TIER1,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER1,

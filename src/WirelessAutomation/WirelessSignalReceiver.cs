@@ -44,31 +44,11 @@ namespace WirelessAutomation
 			ReceiveChannel = channel;
 		}
 
-		public int SliderDecimalPlaces(int index)
-		{
-			return 0;
-		}
-
-		public float GetSliderMin(int index)
-		{
-			return 0;
-		}
-
-		public float GetSliderMax(int index)
-		{
-			return 100;
-		}
-
-		public float GetSliderValue(int index)
-		{
-			return ReceiveChannel;
-		}
-
-		public void SetSliderValue(float value, int index)
-		{
-			ChangeListeningChannel(Mathf.RoundToInt(value));
-		}
-
+		public int SliderDecimalPlaces(int index) => 0;
+		public float GetSliderMin(int index) => 0;
+		public float GetSliderMax(int index) => 100;
+		public float GetSliderValue(int index) => ReceiveChannel;
+		public void SetSliderValue(float value, int index) => ChangeListeningChannel(Mathf.RoundToInt(value));
 		public string GetSliderTooltipKey(int index) => WirelessAutomationManager.SliderTooltipKey;
 		public string SliderTitleKey => WirelessAutomationManager.SliderTitleKey;
 		public string SliderUnits => string.Empty;
