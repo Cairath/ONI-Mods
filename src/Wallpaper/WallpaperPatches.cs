@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using CaiLib.Utils;
 using Harmony;
+using static CaiLib.Logger.Logger;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace Wallpaper
 {
@@ -9,7 +13,7 @@ namespace Wallpaper
 		{
 			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
@@ -17,13 +21,10 @@ namespace Wallpaper
 		[HarmonyPatch("LoadGeneratedBuildings")]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
-			private static void Prefix()
+			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WallpaperConfig.Id.ToUpperInvariant()}.NAME", WallpaperConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WallpaperConfig.Id.ToUpperInvariant()}.DESC", WallpaperConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{WallpaperConfig.Id.ToUpperInvariant()}.EFFECT", WallpaperConfig.Effect);
-
-				ModUtil.AddBuildingToPlanScreen("Utilities", WallpaperConfig.Id);
+				AddBuildingStrings(WallpaperConfig.Id, WallpaperConfig.DisplayName, WallpaperConfig.Description, WallpaperConfig.Effect);
+				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, WallpaperConfig.Id);
 			}
 		}
 
@@ -31,36 +32,34 @@ namespace Wallpaper
 		[HarmonyPatch("Initialize")]
 		public static class Db_Initialize_Patch
 		{
-			private static void Prefix()
+			public static void Prefix()
 			{
-				var luxuryTech = new List<string>(Database.Techs.TECH_GROUPING["Luxury"]) { WallpaperConfig.Id };
-				Database.Techs.TECH_GROUPING["Luxury"] = luxuryTech.ToArray();
+				AddBuildingToTechnology(GameStrings.Research.Decor.ArtisticExpression, WallpaperConfig.Id);
 			}
 		}
 
-		[HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
+		[HarmonyPatch(typeof(BuildingComplete))]
+		[HarmonyPatch("OnSpawn")]
 		public static class BuildingComplete_OnSpawn_Patch
 		{
 			public static void Postfix(BuildingComplete __instance)
 			{
-				if (__instance.name == "WallpaperComplete")
+				if (__instance.name != "WallpaperComplete") return;
+
+
+				var primaryElement = __instance.GetComponent<PrimaryElement>();
+				var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
+				if (primaryElement == null || kAnimBase == null) return;
+
+				var element = primaryElement.Element;
+				var color = element.substance.uiColour;
+
+				if (element.id == SimHashes.Granite)
 				{
-					var primaryElement = __instance.GetComponent<PrimaryElement>();
-					var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
-
-					if (primaryElement != null && kAnimBase != null)
-					{
-						var element = primaryElement.Element;
-						var color = element.substance.uiColour;
-
-						if (element.id == SimHashes.Granite)
-						{
-							color.a = byte.MaxValue;
-						}
-
-						kAnimBase.TintColour = color;
-					}
+					color.a = byte.MaxValue;
 				}
+
+				kAnimBase.TintColour = color;
 			}
 		}
 	}
