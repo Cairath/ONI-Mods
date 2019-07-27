@@ -13,11 +13,9 @@ namespace ColorfulShinebugs
 	    private static readonly Color LightbugColorBlue = new Color(1f, 1.6f, 2.2f);
 	    private static readonly Color LightbugColorCrystal = new Color(2f, 2f, 2f);
 
-	    [HarmonyPatch(typeof(SplashMessageScreen))]
-	    [HarmonyPatch("OnPrefabInit")]
-	    public static class SplashMessageScreen_OnPrefabInit_Patch
-	    {
-		    public static void Postfix()
+	    public static class Mod_OnLoad
+		{
+			public static void OnLoad()
 		    {
 			    LogInit(ModInfo.Name, ModInfo.Version);
 		    }

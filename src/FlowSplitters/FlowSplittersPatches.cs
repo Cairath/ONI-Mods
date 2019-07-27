@@ -6,11 +6,9 @@ namespace FlowSplitters
 {
 	public class FlowSplittersPatches
 	{
-		[HarmonyPatch(typeof(SplashMessageScreen))]
-		[HarmonyPatch("OnPrefabInit")]
-		public static class SplashMessageScreen_OnPrefabInit_Patch
+		public static class Mod_OnLoad
 		{
-			public static void Postfix()
+			public static void OnLoad()
 			{
 				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
 			}

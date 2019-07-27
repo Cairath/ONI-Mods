@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using Database;
 using Harmony;
+using static CaiLib.Logger.Logger;
 
 namespace AlgaeGrower
 {
 	public class AlgaeGrowerPatches
 	{
-		[HarmonyPatch(typeof(SplashMessageScreen))]
-		[HarmonyPatch("OnPrefabInit")]
-		public static class SplashMessageScreen_OnPrefabInit_Patch
+		public static class Mod_OnLoad
 		{
-			public static void Postfix()
+			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 

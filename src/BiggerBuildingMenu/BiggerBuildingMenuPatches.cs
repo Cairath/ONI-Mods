@@ -9,7 +9,7 @@ namespace BiggerBuildingMenu
 	{
 		private static ConfigManager<Config> _configManager;
 
-		public static class BiggerBuildingMenu_OnLoad
+		public static class Mod_OnLoad
 		{
 			public static void OnLoad()
 			{
