@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Harmony;
+﻿using Harmony;
+using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.CarePackagesUtils;
+using static CaiLib.Utils.RecipeUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace Fervine
 {
 	public class FervinePatches
 	{
-		[HarmonyPatch(typeof(SplashMessageScreen))]
-		[HarmonyPatch("OnPrefabInit")]
-		public static class SplashMessageScreen_OnPrefabInit_Patch
+		public static class Mod_OnLoad
 		{
-			public static void Postfix()
+			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
@@ -24,10 +22,8 @@ namespace Fervine
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.CREATURES.SPECIES.SEEDS.{FervineConfig.Id.ToUpperInvariant()}.NAME",
-					FervineConfig.SeedName);
-				Strings.Add($"STRINGS.CREATURES.SPECIES.SEEDS.{FervineConfig.Id.ToUpperInvariant()}.DESC",
-					FervineConfig.SeedDesc);
+				AddPlantStrings(FervineConfig.Id, FervineConfig.Name, FervineConfig.Description, FervineConfig.DomesticatedDescription);
+				AddPlantSeedStrings(FervineConfig.Id, FervineConfig.SeedName, FervineConfig.SeedDesc);
 			}
 		}
 
@@ -41,50 +37,28 @@ namespace Fervine
 			}
 		}
 
-		[HarmonyPatch(typeof(KSerialization.Manager))]
-		[HarmonyPatch("GetType")]
-		[HarmonyPatch(new[] { typeof(string) })]
-		public static class KSerializationManager_GetType_Patch
-		{
-			public static void Postfix(string type_name, ref Type __result)
-			{
-				if (type_name == "Fervine.Fervine")
-				{
-					__result = typeof(Fervine);
-				}
-			}
-		}
-
 		[HarmonyPatch(typeof(SupermaterialRefineryConfig))]
 		[HarmonyPatch("ConfigureBuildingTemplate")]
 		public class SupermaterialRefineryConfig_ConfigureBuildingTemplate_Patch
 		{
-			private const string MolecularForgeId = "SupermaterialRefinery";
-
 			public static void Postfix()
 			{
-				var ingredients = new[]
-				{
-					new ComplexRecipe.RecipeElement(SimHashes.Diamond.CreateTag(), 50f),
-					new ComplexRecipe.RecipeElement(BasicFabricConfig.ID.ToTag(), 10f)
-				};
-
-				var result = new[]
-				{
-					new ComplexRecipe.RecipeElement(TagManager.Create(FervineConfig.SeedId), 1f)
-				};
-
-				new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(MolecularForgeId, ingredients, result), ingredients,
-						result)
-				{
-					time = 50f,
-					description = "Plant + shiny = ?",
-					useResultAsDescription = true
-				}
-					.fabricators = new List<Tag>()
-				{
-					TagManager.Create(MolecularForgeId)
-				};
+				AddComplexRecipe(
+					input: new[]
+					{
+						new ComplexRecipe.RecipeElement(SimHashes.Diamond.CreateTag(), 50f),
+						new ComplexRecipe.RecipeElement(BasicFabricConfig.ID.ToTag(), 10f)
+					},
+					output: new[]
+					{
+						new ComplexRecipe.RecipeElement(TagManager.Create(FervineConfig.SeedId), 1f)
+					},
+					fabricatorId: SupermaterialRefineryConfig.ID,
+					productionTime: 50f,
+					recipeDescription: "Plant + shiny = ?",
+					nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+					sortOrder: 1000
+				);
 			}
 		}
 	}

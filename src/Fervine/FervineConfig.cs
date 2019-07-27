@@ -8,22 +8,29 @@ namespace Fervine
 {
 	public class FervineConfig : IEntityConfig
 	{
-		public const string Id = "Heatbulb";
-		public const string SeedId = "HeatbulbSeed";
+		public const string Id = "Fervine";
+		public const string Name = "Fervine";
+		public static string Description = $"A temperature reactive, subterranean {UI.FormatAsLink("Plant", "PLANTS")}.";
+		public static string DomesticatedDescription = $"Fervine uses tiny amounts of heat energy from the atmosphere to keep its light up. " +
+		                                               $"It won't use any if the temperature falls under {GameUtil.GetFormattedTemperature(293.15f)}.";
 
-		public const string SeedName = "Fervine Seed";
-		public static string SeedDesc = $"The {UI.FormatAsLink("Seed", "PLANTS")} of a {CREATURES.SPECIES.HEATBULB.NAME}.";
+		public const string SeedId = "FervineBulb";
+		public const string SeedName = "Fervine Bulb";
+		public static string SeedDesc = $"The {UI.FormatAsLink("Seed", "PLANTS")} of a {UI.FormatAsLink(Name, Id)}.";
+
+		private const string AnimName = "fervine_kanim";
+		private const string AnimNameSeed = "seed_fervine_kanim";
 
 		public GameObject CreatePrefab()
 		{
 			var plantEntityTemplate = EntityTemplates.CreatePlacedEntity(
 				id: Id,
-				name: CREATURES.SPECIES.HEATBULB.NAME,
-				desc: CREATURES.SPECIES.HEATBULB.DESC,
+				name: UI.FormatAsLink(Name, Id),
+				desc: Description,
 				width: 1,
 				height: 1,
 				mass: 1f,
-				anim: Assets.GetAnim("plantheatbulb_kanim"),
+				anim: Assets.GetAnim(AnimName),
 				initialAnim: "close",
 				sceneLayer: Grid.SceneLayer.BuildingFront,
 				decor: DECOR.BONUS.TIER3,
@@ -48,10 +55,10 @@ namespace Fervine
 			var seed = EntityTemplates.CreateAndRegisterSeedForPlant(
 				plant: plantEntityTemplate,
 				id: SeedId,
-				name: SeedName,
+				name: UI.FormatAsLink(SeedName, Id),
 				desc: SeedDesc,
 				productionType: SeedProducer.ProductionType.Hidden,
-				anim: Assets.GetAnim("seed_swamplily_kanim"),
+				anim: Assets.GetAnim(AnimNameSeed),
 				numberOfSeeds: 0,
 				additionalTags: new List<Tag> { GameTags.DecorSeed },
 				sortOrder: 6,
@@ -61,8 +68,8 @@ namespace Fervine
 			EntityTemplates.CreateAndRegisterPreviewForPlant(
 				seed: seed,
 				id: "Heatbulb_preview",
-				anim: Assets.GetAnim("plantheatbulb_kanim"),
-				initialAnim: "close",
+				anim: Assets.GetAnim(AnimName),
+				initialAnim: "place",
 				width: 1,
 				height: 1);
 

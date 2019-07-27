@@ -6,8 +6,13 @@ namespace Fervine
 {
 	public class Fervine : StateMachineComponent<Fervine.StatesInstance>
 	{
+#pragma warning disable 649
 		[MyCmpGet]
-		private Light2D _lightSource;
+		private Light2D lightSource;
+
+		[MyCmpReq]
+		private ReceptacleMonitor rm;
+#pragma warning restore 649
 
 		[SerializeField]
 		private float _openEnergyThreshold;
@@ -34,7 +39,7 @@ namespace Fervine
 		{
 			base.OnSpawn();
 			smi.Get<KBatchedAnimController>().randomiseLoopedOffset = true;
-			_lightSource.enabled = false;
+			lightSource.enabled = false;
 
 			_openEnergyThreshold = 5;
 			_minTemperature = 293.15f;
@@ -55,10 +60,8 @@ namespace Fervine
 
 		public Notification CreateDeathNotification()
 		{
-			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad,
-				HashedString.Invalid, (notificationList, data) =>
-					 CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + 
-					 notificationList.ReduceMessages(false), "/t• " + gameObject.GetProperName());
+			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad, HashedString.Invalid, 
+				(notificationList, data) => CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), "/t• " + gameObject.GetProperName());
 		}
 
 		public class StatesInstance : GameStateMachine<States, StatesInstance, Fervine, object>.GameInstance
@@ -84,16 +87,14 @@ namespace Fervine
 				var main = Db.Get().StatusItemCategories.Main;
 
 				Dead
-					.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, 0, null, null, main)
+					.ToggleStatusItem(plantname, tooltip, string.Empty, StatusItem.IconType.Info, 0, false, OverlayModes.None.ID, category: main)
 					.Enter(smi =>
 					{
-						if (!UprootedMonitor.IsObjectUprooted(masterTarget.Get(smi)))
-						{
-							smi.master.gameObject.AddOrGet<Notifier>().Add(smi.master.CreateDeathNotification(), string.Empty);
-						}
+						if (smi.master.rm.Replanted && !smi.master.GetComponent<KPrefabID>().HasTag(GameTags.Uprooted))
+							smi.master.gameObject.AddOrGet<Notifier>().Add(smi.master.CreateDeathNotification());
 
-						GameUtil.KInstantiate(Assets.GetPrefab(EffectConfigs.PlantDeathId), smi.master.transform.GetPosition(),
-							Grid.SceneLayer.FXFront).SetActive(true);
+						GameUtil.KInstantiate(Assets.GetPrefab(EffectConfigs.PlantDeathId), smi.master.transform.GetPosition(), Grid.SceneLayer.FXFront).SetActive(true);
+
 						smi.master.Trigger((int)GameHashes.Died);
 						smi.master.GetComponent<KBatchedAnimController>().StopAndClear();
 						Destroy(smi.master.GetComponent<KBatchedAnimController>());
@@ -117,8 +118,9 @@ namespace Fervine
 
 					}, UpdateRate.SIM_1000ms);
 
-				Alive.Open.PlayAnim("open", KAnim.PlayMode.Once)
-					.Enter(smi => smi.master._lightSource.enabled = true)
+				Alive.Open
+					.PlayAnim("open", KAnim.PlayMode.Once)
+					.Enter(smi => smi.master.lightSource.enabled = true)
 					.Update("open", (smi, dt) =>
 					{
 						AbsorbHeat(smi, dt);
@@ -130,7 +132,7 @@ namespace Fervine
 							smi.GoTo(Alive.Closed);
 						}
 					}, UpdateRate.SIM_1000ms)
-					.Exit(smi => smi.master._lightSource.enabled = false);
+					.Exit(smi => smi.master.lightSource.enabled = false);
 			}
 
 			private static void AbsorbHeat(StatesInstance smi, float dt)
