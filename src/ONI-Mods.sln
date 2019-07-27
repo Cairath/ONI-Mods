@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MosaicTile", "MosaicTile\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelLadder", "SteelLadder\SteelLadder.csproj", "{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrettierConductiveHeavyWattWire", "PrettierConductiveHeavyWattWire\PrettierConductiveHeavyWattWire.csproj", "{975D0A22-CD7F-47CD-8E5D-18FA092686BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongerHeaviWattConductiveWire", "StrongerHeaviWattConductiveWire\StrongerHeaviWattConductiveWire.csproj", "{975D0A22-CD7F-47CD-8E5D-18FA092686BD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
