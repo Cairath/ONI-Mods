@@ -8,7 +8,7 @@
             public const string Oxygen = "Oxygen";
             public const string Power = "Power";
             public const string Food = "Food";
-            public const string Plumbing = "Food";
+            public const string Plumbing = "Plumbing";
             public const string Ventilation = "HVAC";
             public const string Refinement = "Refining";
             public const string Medicine = "Medical";

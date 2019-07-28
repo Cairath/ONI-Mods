@@ -12,9 +12,6 @@ namespace FlowSplitters
 		[SerializeField]
 		public ConduitType Type;
 
-		[MyCmpReq]
-		private Operational _operational;
-
 		private HandleVector<int>.Handle _accumulator = HandleVector<int>.InvalidHandle;
 		private int _inputCell;
 		private int _outputCell;
@@ -40,7 +37,7 @@ namespace FlowSplitters
 
 			var networkManager = Conduit.GetNetworkManager(SecondaryPort.conduitType);
 			networkManager.AddToNetworks(_secondaryOutputCell, _secondOutputItem, true);
-			
+
 			Conduit.GetFlowManager(Type).AddConduitUpdater(ConduitUpdate);
 		}
 
@@ -66,67 +63,67 @@ namespace FlowSplitters
 			var flowManager = Conduit.GetFlowManager(Type);
 			if (!flowManager.HasConduit(_inputCell) || !IsOperational)
 				return;
-		
-				var contents = flowManager.GetContents(_inputCell);
-				if (contents.mass <= 0.0)
-					return;
 
-				var contentOutput1 = flowManager.GetContents(_outputCell);
-				var contentOutput2 = flowManager.GetContents(_secondaryOutputCell);
+			var contents = flowManager.GetContents(_inputCell);
+			if (contents.mass <= 0.0)
+				return;
 
-				var maxMass = Type == ConduitType.Liquid ? 10f : 1f;
-				var halfMass = contents.mass / 2f;
+			var contentOutput1 = flowManager.GetContents(_outputCell);
+			var contentOutput2 = flowManager.GetContents(_secondaryOutputCell);
 
-				var willFitInOutput1 = maxMass - contentOutput1.mass;
-				var willFitInOutput2 = maxMass - contentOutput2.mass;
+			var maxMass = Type == ConduitType.Liquid ? 10f : 1f;
+			var halfMass = contents.mass / 2f;
 
-				float delta1 = 0;
-				float delta2 = 0;
+			var willFitInOutput1 = maxMass - contentOutput1.mass;
+			var willFitInOutput2 = maxMass - contentOutput2.mass;
 
-				if (Math.Abs(willFitInOutput1) < 0.001f && Math.Abs(willFitInOutput2) < 0.001f)
-				{
-					//do nothing
-				}
-				else if (!flowManager.HasConduit(_secondaryOutputCell))
-				{
-					delta1 = flowManager.AddElement(_outputCell, contents.element, contents.mass, contents.temperature,
-						contents.diseaseIdx, contents.diseaseCount);
-				}
-				else if (!flowManager.HasConduit(_outputCell))
-				{
-					delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, contents.mass, contents.temperature,
-						contents.diseaseIdx, contents.diseaseCount);
-				}
-				else if (willFitInOutput1 >= halfMass && willFitInOutput2 >= halfMass)
-				{
-					delta1 = flowManager.AddElement(_outputCell, contents.element, halfMass, contents.temperature,
-						contents.diseaseIdx, contents.diseaseCount / 2);
-					delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass, contents.temperature,
-						contents.diseaseIdx, contents.diseaseCount / 2);
-				}
-				else if (willFitInOutput1 < halfMass)
-				{
-					var overflowOutput1 = halfMass - willFitInOutput1;
-					var ratio = (halfMass - overflowOutput1) / halfMass;
-					delta1 = flowManager.AddElement(_outputCell, contents.element, halfMass - overflowOutput1,
-						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * ratio));
-					delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass + overflowOutput1,
-						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * (1f / ratio)));
-				}
-				else
-				{
-					var overflowOutput2 = halfMass - willFitInOutput2;
-					var ratio = (halfMass - overflowOutput2) / halfMass;
-					delta1 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass - overflowOutput2,
-						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * ratio));
-					delta2 = flowManager.AddElement(_outputCell, contents.element, halfMass + overflowOutput2,
-						contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * (1f / ratio)));
-				}
+			float delta1 = 0;
+			float delta2 = 0;
 
-				flowManager.RemoveElement(_inputCell, delta1);
-				flowManager.RemoveElement(_inputCell, delta2);
+			if (Math.Abs(willFitInOutput1) < 0.001f && Math.Abs(willFitInOutput2) < 0.001f)
+			{
+				//do nothing
+			}
+			else if (!flowManager.HasConduit(_secondaryOutputCell))
+			{
+				delta1 = flowManager.AddElement(_outputCell, contents.element, contents.mass, contents.temperature,
+					contents.diseaseIdx, contents.diseaseCount);
+			}
+			else if (!flowManager.HasConduit(_outputCell))
+			{
+				delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, contents.mass, contents.temperature,
+					contents.diseaseIdx, contents.diseaseCount);
+			}
+			else if (willFitInOutput1 >= halfMass && willFitInOutput2 >= halfMass)
+			{
+				delta1 = flowManager.AddElement(_outputCell, contents.element, halfMass, contents.temperature,
+					contents.diseaseIdx, contents.diseaseCount / 2);
+				delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass, contents.temperature,
+					contents.diseaseIdx, contents.diseaseCount / 2);
+			}
+			else if (willFitInOutput1 < halfMass)
+			{
+				var overflowOutput1 = halfMass - willFitInOutput1;
+				var ratio = (halfMass - overflowOutput1) / halfMass;
+				delta1 = flowManager.AddElement(_outputCell, contents.element, halfMass - overflowOutput1,
+					contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * ratio));
+				delta2 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass + overflowOutput1,
+					contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * (1f / ratio)));
+			}
+			else
+			{
+				var overflowOutput2 = halfMass - willFitInOutput2;
+				var ratio = (halfMass - overflowOutput2) / halfMass;
+				delta1 = flowManager.AddElement(_secondaryOutputCell, contents.element, halfMass - overflowOutput2,
+					contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * ratio));
+				delta2 = flowManager.AddElement(_outputCell, contents.element, halfMass + overflowOutput2,
+					contents.temperature, contents.diseaseIdx, (int)((contents.diseaseCount / 2f) * (1f / ratio)));
+			}
 
-				Game.Instance.accumulators.Accumulate(_accumulator, contents.mass);
+			flowManager.RemoveElement(_inputCell, delta1);
+			flowManager.RemoveElement(_inputCell, delta2);
+
+			Game.Instance.accumulators.Accumulate(_accumulator, contents.mass);
 		}
 
 		public ConduitType GetSecondaryConduitType() => SecondaryPort.conduitType;

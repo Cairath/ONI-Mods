@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CaiLib.Utils;
 using Harmony;
+using static CaiLib.Logger.Logger;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace FlowSplitters
 {
@@ -10,26 +12,25 @@ namespace FlowSplitters
 		{
 			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
-			private static void Prefix()
+			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{LiquidSplitterConfig.Id.ToUpperInvariant()}.NAME", LiquidSplitterConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{LiquidSplitterConfig.Id.ToUpperInvariant()}.DESC", LiquidSplitterConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{LiquidSplitterConfig.Id.ToUpperInvariant()}.EFFECT", LiquidSplitterConfig.Effect);
+				AddBuildingStrings(LiquidSplitterAConfig.Id, LiquidSplitterAConfig.DisplayName, LiquidSplitterAConfig.Description, LiquidSplitterAConfig.Effect);
+				AddBuildingStrings(LiquidSplitterBConfig.Id, LiquidSplitterBConfig.DisplayName, LiquidSplitterBConfig.Description, LiquidSplitterBConfig.Effect);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Plumbing, LiquidSplitterAConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Plumbing, LiquidSplitterBConfig.Id);
 
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{GasSplitterConfig.Id.ToUpperInvariant()}.NAME", GasSplitterConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{GasSplitterConfig.Id.ToUpperInvariant()}.DESC", GasSplitterConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{GasSplitterConfig.Id.ToUpperInvariant()}.EFFECT", GasSplitterConfig.Effect);
-
-				ModUtil.AddBuildingToPlanScreen("Plumbing", LiquidSplitterConfig.Id);
-				ModUtil.AddBuildingToPlanScreen("HVAC", GasSplitterConfig.Id);
+				AddBuildingStrings(GasSplitterAConfig.Id, GasSplitterAConfig.DisplayName, GasSplitterAConfig.Description, GasSplitterAConfig.Effect);
+				AddBuildingStrings(GasSplitterBConfig.Id, GasSplitterBConfig.DisplayName, GasSplitterBConfig.Description, GasSplitterBConfig.Effect);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Ventilation, GasSplitterAConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Ventilation, GasSplitterBConfig.Id);
 			}
 		}
 
@@ -37,28 +38,13 @@ namespace FlowSplitters
 		[HarmonyPatch("Initialize")]
 		public class Db_Initialize_Patch
 		{
-			private static void Prefix()
+			public static void Prefix()
 			{
-				var liquid = new List<string>(Database.Techs.TECH_GROUPING["LiquidPiping"]) { LiquidSplitterConfig.Id };
-				Database.Techs.TECH_GROUPING["LiquidPiping"] = liquid.ToArray();
+				AddBuildingToTechnology(GameStrings.Technology.Gases.Ventilation, GasSplitterAConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Gases.Ventilation, GasSplitterBConfig.Id);
 
-				var gas = new List<string>(Database.Techs.TECH_GROUPING["GasPiping"]) { GasSplitterConfig.Id };
-				Database.Techs.TECH_GROUPING["GasPiping"] = gas.ToArray();
-
-			}
-		}
-
-		[HarmonyPatch(typeof(KSerialization.Manager))]
-		[HarmonyPatch("GetType")]
-		[HarmonyPatch(new[] { typeof(string) })]
-		public static class FlowSplittersSerializationPatch
-		{
-			public static void Postfix(string type_name, ref Type __result)
-			{
-				if (type_name == "FlowSplitters.FlowSplitter")
-				{
-					__result = typeof(FlowSplitter);
-				}
+				AddBuildingToTechnology(GameStrings.Technology.Liquids.Plumbing, LiquidSplitterAConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Liquids.Plumbing, LiquidSplitterBConfig.Id);
 			}
 		}
 	}
