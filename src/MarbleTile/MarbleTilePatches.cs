@@ -1,0 +1,39 @@
+﻿using CaiLib.Utils;
+using Harmony;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
+
+namespace MarbleTile
+{
+	public static class MarbleTilePatches
+	{
+		public static class Mod_OnLoad
+		{
+			public static void OnLoad()
+			{
+				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+			}
+		}
+
+		[HarmonyPatch(typeof(GeneratedBuildings))]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
+		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
+		{
+			public static void Prefix()
+			{
+				AddBuildingStrings(MarbleTileConfig.Id, MarbleTileConfig.DisplayName, MarbleTileConfig.Description, MarbleTileConfig.Effect);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Base, MarbleTileConfig.Id, CarpetTileConfig.ID);
+			}
+		}
+
+		[HarmonyPatch(typeof(Db))]
+		[HarmonyPatch("Initialize")]
+		public static class Db_Initialize_Patch
+		{
+			public static void Prefix()
+			{
+				AddBuildingToTechnology(GameStrings.Technology.Decor.FineArt, MarbleTileConfig.Id);
+			}
+		}
+	}
+}

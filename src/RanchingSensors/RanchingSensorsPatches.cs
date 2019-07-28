@@ -24,8 +24,8 @@ namespace RanchingSensors
 			{
 				AddBuildingStrings(CrittersSensorConfig.Id, CrittersSensorConfig.DisplayName, CrittersSensorConfig.Description, CrittersSensorConfig.Effect);
 				AddBuildingStrings(EggsSensorConfig.Id, EggsSensorConfig.DisplayName, EggsSensorConfig.Description, EggsSensorConfig.Effect);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Automation, CrittersSensorConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Automation, EggsSensorConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Automation, CrittersSensorConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Automation, EggsSensorConfig.Id);
 			}
 
 			[HarmonyPatch(typeof(Db))]
@@ -34,8 +34,8 @@ namespace RanchingSensors
 			{
 				public static void Prefix()
 				{
-					AddBuildingToTechnology(GameStrings.Research.Food.AnimalControl, CrittersSensorConfig.Id);
-					AddBuildingToTechnology(GameStrings.Research.Food.AnimalControl, EggsSensorConfig.Id);
+					AddBuildingToTechnology(GameStrings.Technology.Food.AnimalControl, CrittersSensorConfig.Id);
+					AddBuildingToTechnology(GameStrings.Technology.Food.AnimalControl, EggsSensorConfig.Id);
 				}
 			}
 		}

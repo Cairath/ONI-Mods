@@ -26,9 +26,9 @@ namespace DecorLights
 				AddBuildingStrings(SaltLampConfig.Id, SaltLampConfig.DisplayName, SaltLampConfig.Description, SaltLampConfig.Effect);
 				AddBuildingStrings(CeilingLampConfig.Id, CeilingLampConfig.DisplayName, CeilingLampConfig.Description, CeilingLampConfig.Effect);
 
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, LavaLampConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, SaltLampConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, CeilingLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, LavaLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, SaltLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, CeilingLampConfig.Id);
 			}
 		}
 
@@ -38,9 +38,9 @@ namespace DecorLights
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, LavaLampConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, SaltLampConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, CeilingLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, LavaLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, SaltLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, CeilingLampConfig.Id);
 			}
 		}
 	}

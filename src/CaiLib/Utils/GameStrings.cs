@@ -2,7 +2,7 @@
 {
     public static class GameStrings
     {
-        public static class BuildingMenuCategory
+        public static class PlanMenuCategory
         {
             public const string Base = "Base";
             public const string Oxygen = "Oxygen";
@@ -20,7 +20,7 @@
             public const string Rocketry = "Rocketry";
         }
 
-        public static class Research
+        public static class Technology
         {
             public static class Food
             {

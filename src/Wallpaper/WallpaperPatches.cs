@@ -24,7 +24,7 @@ namespace Wallpaper
 			public static void Prefix()
 			{
 				AddBuildingStrings(WallpaperConfig.Id, WallpaperConfig.DisplayName, WallpaperConfig.Description, WallpaperConfig.Effect);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, WallpaperConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, WallpaperConfig.Id);
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace Wallpaper
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology(GameStrings.Research.Decor.ArtisticExpression, WallpaperConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.ArtisticExpression, WallpaperConfig.Id);
 			}
 		}
 

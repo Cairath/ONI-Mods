@@ -23,7 +23,7 @@ namespace SteelLadder
 			public static void Prefix()
 			{
 				StringUtils.AddBuildingStrings(SteelLadderConfig.Id, SteelLadderConfig.DisplayName, SteelLadderConfig.Description, SteelLadderConfig.Effect);
-				AddBuildingToPlanScreen(BuildingMenuCategory.Base, SteelLadderConfig.Id, LadderFastConfig.ID);
+				AddBuildingToPlanScreen(PlanMenuCategory.Base, SteelLadderConfig.Id, LadderFastConfig.ID);
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace SteelLadder
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, SteelLadderConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, SteelLadderConfig.Id);
 			}
 		}
 	}

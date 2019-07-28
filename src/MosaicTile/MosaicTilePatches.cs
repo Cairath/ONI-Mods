@@ -1,6 +1,8 @@
-﻿using Harmony;
+﻿using CaiLib.Utils;
+using Harmony;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace MosaicTile
 {
@@ -15,15 +17,12 @@ namespace MosaicTile
 		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{MosaicTileConfig.Id.ToUpperInvariant()}.NAME", MosaicTileConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{MosaicTileConfig.Id.ToUpperInvariant()}.DESC", MosaicTileConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{MosaicTileConfig.Id.ToUpperInvariant()}.EFFECT", MosaicTileConfig.Effect);
-
+				AddBuildingStrings(MosaicTileConfig.Id, MosaicTileConfig.DisplayName, MosaicTileConfig.Description, MosaicTileConfig.Effect);
 				AddBuildingToPlanScreen("Base", MosaicTileConfig.Id, CarpetTileConfig.ID);
 			}
 		}
@@ -34,7 +33,7 @@ namespace MosaicTile
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology("Luxury", MosaicTileConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HighCulture, MosaicTileConfig.Id);
 			}
 		}
 	}

@@ -29,12 +29,12 @@ namespace BuildablePOIProps
 				AddBuildingStrings(DNAStatueConfig.Id, DNAStatueConfig.DisplayName, DNAStatueConfig.Description, DNAStatueConfig.Effect);
 				AddBuildingStrings(TableWithChairsConfig.Id, TableWithChairsConfig.DisplayName, TableWithChairsConfig.Description, TableWithChairsConfig.Effect);
 
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, ChairConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, ClockConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, ComputerDeskConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, CouchConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, DNAStatueConfig.Id);
-				AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Furniture, TableWithChairsConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, ChairConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, ClockConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, ComputerDeskConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, CouchConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, DNAStatueConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, TableWithChairsConfig.Id);
 			}
 		}
 
@@ -44,12 +44,12 @@ namespace BuildablePOIProps
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology(GameStrings.Research.Decor.TextileProduction, ChairConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, ClockConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, ComputerDeskConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.TextileProduction, CouchConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.RenaissanceArt, DNAStatueConfig.Id);
-				AddBuildingToTechnology(GameStrings.Research.Decor.HomeLuxuries, TableWithChairsConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.TextileProduction, ChairConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, ClockConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, ComputerDeskConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.TextileProduction, CouchConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.RenaissanceArt, DNAStatueConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, TableWithChairsConfig.Id);
 			}
 		}
 	}

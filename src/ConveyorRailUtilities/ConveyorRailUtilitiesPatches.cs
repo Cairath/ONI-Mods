@@ -24,7 +24,7 @@ namespace ConveyorRailUtilities
 			{
 				StringUtils.AddBuildingStrings(ConveyorFilterConfig.Id, ConveyorFilterConfig.DisplayName,
 					ConveyorFilterConfig.Description, ConveyorFilterConfig.Effect);
-				BuildingUtils.AddBuildingToPlanScreen(GameStrings.BuildingMenuCategory.Shipping, ConveyorFilterConfig.Id);
+				BuildingUtils.AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Shipping, ConveyorFilterConfig.Id);
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace ConveyorRailUtilities
 		{
 			public static void Prefix()
 			{
-				BuildingUtils.AddBuildingToTechnology(GameStrings.Research.SolidMaterial.SolidTransport, ConveyorFilterConfig.Id);
+				BuildingUtils.AddBuildingToTechnology(GameStrings.Technology.SolidMaterial.SolidTransport, ConveyorFilterConfig.Id);
 			}
 
 			[HarmonyPatch(typeof(BuildingCellVisualizer))]

@@ -107,7 +107,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintWalls", "PaintWalls\Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallpaper", "Wallpaper\Wallpaper.csproj", "{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyTile", "FancyTile\FancyTile.csproj", "{B6886803-1704-40F7-81F1-0F6BEFF776A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTile", "MarbleTile\MarbleTile.csproj", "{B6886803-1704-40F7-81F1-0F6BEFF776A2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection

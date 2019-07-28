@@ -49,8 +49,8 @@ namespace WirelessAutomation
 				Strings.Add(WirelessAutomationManager.SliderTooltipKey, WirelessAutomationManager.SliderTooltip);
 				Strings.Add(WirelessAutomationManager.SliderTitleKey, WirelessAutomationManager.SliderTitle);
 
-				AddBuildingToPlanScreen(BuildingMenuCategory.Automation, WirelessSignalEmitterConfig.Id);
-				AddBuildingToPlanScreen(BuildingMenuCategory.Automation, WirelessSignalReceiverConfig.Id);
+				AddBuildingToPlanScreen(PlanMenuCategory.Automation, WirelessSignalEmitterConfig.Id);
+				AddBuildingToPlanScreen(PlanMenuCategory.Automation, WirelessSignalReceiverConfig.Id);
 			}
 
 			[HarmonyPatch(typeof(Db))]
@@ -59,8 +59,8 @@ namespace WirelessAutomation
 			{
 				public static void Prefix()
 				{
-					AddBuildingToTechnology(GameStrings.Research.Computers.Computing, WirelessSignalEmitterConfig.Id);
-					AddBuildingToTechnology(GameStrings.Research.Computers.Computing, WirelessSignalReceiverConfig.Id);
+					AddBuildingToTechnology(GameStrings.Technology.Computers.Computing, WirelessSignalEmitterConfig.Id);
+					AddBuildingToTechnology(GameStrings.Technology.Computers.Computing, WirelessSignalReceiverConfig.Id);
 				}
 			}
 		}
