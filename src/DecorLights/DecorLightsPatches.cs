@@ -38,9 +38,9 @@ namespace DecorLights
 		{
 			public static void Prefix()
 			{
-				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, LavaLampConfig.Id);
-				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, SaltLampConfig.Id);
-				AddBuildingToTechnology(GameStrings.Technology.Decor.HomeLuxuries, CeilingLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, LavaLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, SaltLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, CeilingLampConfig.Id);
 			}
 		}
 	}
