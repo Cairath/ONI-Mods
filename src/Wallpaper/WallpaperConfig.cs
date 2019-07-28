@@ -1,5 +1,7 @@
-﻿using TUNING;
+﻿using STRINGS;
+using TUNING;
 using UnityEngine;
+using BUILDINGS = TUNING.BUILDINGS;
 
 namespace Wallpaper
 {
@@ -7,8 +9,8 @@ namespace Wallpaper
 	{
 		public const string Id = "Wallpaper";
 		public const string DisplayName = "Wallpaper";
-		public const string Description = "Bring a little more variety to your base.";
-		public const string Effect = "Wallpapers are purely visual and do not bring the same vacuum insulation as drywalls.";
+		public const string Description = "Bring a little more variety to your base. Wallpapers are purely visual and do not bring the same vacuum insulation as Drywalls.";
+		public static string Effect = $"Increases {UI.FormatAsLink("Decor", "DECOR")}, contributing to {UI.FormatAsLink("Morale", "MORALE")}.";
 
 		public override BuildingDef CreateBuildingDef()
 		{

@@ -56,20 +56,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildablePOIPropsPatches.cs" />
-    <Compile Include="Chair\ChairConfig.cs" />
-    <Compile Include="Chair\ChairPatches.cs" />
-    <Compile Include="Clock\ClockConfig.cs" />
-    <Compile Include="Clock\ClockPatches.cs" />
-    <Compile Include="ComputerDesk\ComputerDeskConfig.cs" />
-    <Compile Include="ComputerDesk\ComputerDeskPatches.cs" />
-    <Compile Include="Couch\CouchConfig.cs" />
-    <Compile Include="Couch\CouchPatches.cs" />
-    <Compile Include="DNAStatue\DNAStatueConfig.cs" />
-    <Compile Include="DNAStatue\DNAStatuePatches.cs" />
+    <Compile Include="ChairConfig.cs" />
+    <Compile Include="ClockConfig.cs" />
+    <Compile Include="ComputerDeskConfig.cs" />
+    <Compile Include="CouchConfig.cs" />
+    <Compile Include="DNAStatueConfig.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TableWithChairs\TableWithChairsConfig.cs" />
-    <Compile Include="TableWithChairs\TableWithChairsPatches.cs" />
+    <Compile Include="TableWithChairsConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -83,8 +77,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>$(ILMergeConsolePath) /out:$(TargetName)-merged.dll $(TargetName).dll CaiLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
+
+echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName)-merged.dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
+if exist "$(ProjectDir)anims" xcopy /Y /R /I /E /Q  "$(ProjectDir)anims" "$(SolutionDir)..\Mods\$(TargetName)\anims"
+if exist "$(TargetDir)Config.json" echo F | xcopy /Y /S /R /Q "$(TargetDir)Config.json" "$(SolutionDir)..\Mods\$(TargetName)\Config.json"
+
+xcopy /Y /R  /I /Q  /E "$(SolutionDir)..\Mods\$(TargetName)" "C:\Users\Cairath\Documents\Klei\OxygenNotIncluded\mods\dev\$(TargetName)"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

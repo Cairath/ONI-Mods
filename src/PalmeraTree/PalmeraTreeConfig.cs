@@ -21,7 +21,6 @@ namespace PalmeraTree
         private const string AnimName = "custom_palmeratree_kanim";
         private const string AnimNameSeed = "seed_palmeratree_kanim";
 
-
         public GameObject CreatePrefab()
         {
             var placedEntity = EntityTemplates.CreatePlacedEntity(
