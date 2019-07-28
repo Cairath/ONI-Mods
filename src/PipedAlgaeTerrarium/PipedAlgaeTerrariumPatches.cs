@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CaiLib.Utils;
 using Harmony;
 using static CaiLib.Logger.Logger;
+using static CaiLib.Utils.BuildingUtils;
+using static CaiLib.Utils.StringUtils;
 
 namespace PipedAlgaeTerrarium
 {
@@ -16,16 +17,13 @@ namespace PipedAlgaeTerrarium
 		}
 
 		[HarmonyPatch(typeof(GeneratedBuildings))]
-		[HarmonyPatch("LoadGeneratedBuildings")]
+		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch
 		{
 			public static void Prefix()
 			{
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{PipedAlgaeTerrariumConfig.Id.ToUpperInvariant()}.NAME", PipedAlgaeTerrariumConfig.DisplayName);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{PipedAlgaeTerrariumConfig.Id.ToUpperInvariant()}.DESC", PipedAlgaeTerrariumConfig.Description);
-				Strings.Add($"STRINGS.BUILDINGS.PREFABS.{PipedAlgaeTerrariumConfig.Id.ToUpperInvariant()}.EFFECT", PipedAlgaeTerrariumConfig.Effect);
-
-				ModUtil.AddBuildingToPlanScreen("Oxygen", PipedAlgaeTerrariumConfig.Id);
+				AddBuildingStrings(PipedAlgaeTerrariumConfig.Id, PipedAlgaeTerrariumConfig.DisplayName, PipedAlgaeTerrariumConfig.Description, PipedAlgaeTerrariumConfig.Effect);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Oxygen, PipedAlgaeTerrariumConfig.Id);
 			}
 		}
 
@@ -35,22 +33,7 @@ namespace PipedAlgaeTerrarium
 		{
 			public static void Prefix()
 			{
-				var tech = new List<string>(Database.Techs.TECH_GROUPING["FarmingTech"]) { PipedAlgaeTerrariumConfig.Id };
-				Database.Techs.TECH_GROUPING["FarmingTech"] = tech.ToArray();
-			}
-		}
-
-		[HarmonyPatch(typeof(KSerialization.Manager))]
-		[HarmonyPatch("GetType")]
-		[HarmonyPatch(new[] { typeof(string) })]
-		public static class KSerializationManager_GetType_Patch
-		{
-			public static void Postfix(string type_name, ref Type __result)
-			{
-				if (type_name == "PipedAlgaeTerrarium.PipedAlgaeTerrarium")
-				{
-					__result = typeof(PipedAlgaeTerrarium);
-				}
+				AddBuildingToTechnology(GameStrings.Technology.Food.BasicFarming, PipedAlgaeTerrariumConfig.Id);
 			}
 		}
 	}
