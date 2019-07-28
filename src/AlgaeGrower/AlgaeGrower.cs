@@ -8,12 +8,9 @@ namespace AlgaeGrower
 		public CellOffset PressureSampleOffset = CellOffset.none;
 
 		[MyCmpGet]
-		private readonly Operational _operational;
-
-		public AlgaeGrower(Operational operational)
-		{
-			_operational = operational;
-		}
+#pragma warning disable 649
+		private readonly Operational operational;
+#pragma warning restore 649
 
 		protected override void OnPrefabInit()
 		{
@@ -75,7 +72,7 @@ namespace AlgaeGrower
 
 				NoLight
 					.QueueAnim("off")
-					.Enter(smi => smi.master._operational.SetActive(false))
+					.Enter(smi => smi.master.operational.SetActive(false))
 					.Update("NoLight", (smi, dt) => { if (smi.HasLight() && smi.HasEnoughMass(GameTags.Fertilizer)) smi.GoTo(GotFert); }, UpdateRate.SIM_1000ms);
 
 				GotFert
@@ -89,7 +86,7 @@ namespace AlgaeGrower
 				NoFert
 					.QueueAnim("off")
 					.EventTransition(GameHashes.OnStorageChange, GotFert, smi => smi.HasEnoughMass(GameTags.Fertilizer))
-					.Enter(smi => smi.master._operational.SetActive(false));
+					.Enter(smi => smi.master.operational.SetActive(false));
 
 				NoWater
 					.QueueAnim("on")
@@ -102,8 +99,8 @@ namespace AlgaeGrower
 					.OnAnimQueueComplete(GeneratingOxygen);
 
 				GeneratingOxygen
-					.Enter(smi => smi.master._operational.SetActive(true))
-					.Exit(smi => smi.master._operational.SetActive(false))
+					.Enter(smi => smi.master.operational.SetActive(true))
+					.Exit(smi => smi.master.operational.SetActive(false))
 					.QueueAnim("working_loop", true)
 					.EventTransition(GameHashes.OnStorageChange, StoppedGeneratingOxygen,
 						smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Fertilizer))

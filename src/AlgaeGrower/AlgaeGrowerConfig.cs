@@ -27,7 +27,7 @@ namespace AlgaeGrower
 				id: Id,
 				width: 1,
 				height: 2,
-				anim: "planterbox2",
+				anim: "algaegrower_kanim",
 				hitpoints: BUILDINGS.HITPOINTS.TIER1,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER4,
