@@ -1,5 +1,6 @@
 ﻿using KSerialization;
 using UnityEngine;
+#pragma warning disable 649
 
 namespace ConveyorRailUtilities.Filter
 {
@@ -14,10 +15,10 @@ namespace ConveyorRailUtilities.Filter
 		private int _filteredCell = -1;
 
 		[MyCmpReq]
-		private TreeFilterable _treeFilterable;
+		private TreeFilterable treeFilterable;
 
 		[MyCmpReq]
-		private Operational _operational;
+		private Operational operational;
 
 		protected override void OnSpawn()
 		{
@@ -43,7 +44,7 @@ namespace ConveyorRailUtilities.Filter
 
 		private void ConduitUpdate(float dt)
 		{
-			if (!_operational.IsOperational) return;
+			if (!operational.IsOperational) return;
 
 			var flowManager = SolidConduit.GetFlowManager();
 			if (!flowManager.HasConduit(_inputCell) || !flowManager.HasConduit(_outputCell) ||
@@ -52,7 +53,7 @@ namespace ConveyorRailUtilities.Filter
 			                                               !flowManager.IsConduitEmpty(_filteredCell)))
 				return;
 
-			var acceptedTags = _treeFilterable.AcceptedTags;
+			var acceptedTags = treeFilterable.AcceptedTags;
 
 			var pickupable = flowManager.RemovePickupable(_inputCell);
 			if (!(bool) pickupable)
@@ -68,7 +69,7 @@ namespace ConveyorRailUtilities.Filter
 			}
 
 			flowManager.AddPickupable(_outputCell, pickupable);
-			_operational.SetActive(false);
+			operational.SetActive(false);
 		}
 
 		public ConduitType GetSecondaryConduitType() => SecondaryPort.conduitType;

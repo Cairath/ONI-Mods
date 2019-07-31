@@ -1,5 +1,6 @@
 ﻿using CaiLib.Utils;
 using Harmony;
+using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.GameStrings;
 using static CaiLib.Utils.StringUtils;
@@ -12,7 +13,7 @@ namespace WirelessAutomation
 		{
 			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit(ModInfo.Name, ModInfo.Version);
 			}
 		}
 

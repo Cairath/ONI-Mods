@@ -60,8 +60,6 @@ namespace DecorLights
 			light2D.shape = LightShape.Circle;
 			light2D.drawOverlay = true;
 
-			BuildingTemplates.DoPostConfigure(go);
-
 			go.AddOrGetDef<LightController.Def>();
 		}
 	}

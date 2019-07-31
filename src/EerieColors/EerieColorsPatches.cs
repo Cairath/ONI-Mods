@@ -8,7 +8,7 @@ using static CaiLib.Logger.Logger;
 
 namespace EerieColors
 {
-	public static class EerieColorsPatches
+	public class EerieColorsPatches
 	{
 		private static ConfigManager<Config> _configManager;
 
@@ -17,11 +17,6 @@ namespace EerieColors
 			public static void OnLoad()
 			{
 				LogInit(ModInfo.Name, ModInfo.Version);
-				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
-				_configManager.ReadConfig(() =>
-				{
-					MathUtil.Clamp(_configManager.Config.BiomeBackground, 0, 6);
-				});
 			}
 		}
 
@@ -33,7 +28,7 @@ namespace EerieColors
 			{
 				var config = _configManager.Config;
 
-				if (config.CustomBiomeTints)
+				if (config.CustomBiomeTintsEnabled)
 				{
 					__instance.zoneColours = new[]
 					{
@@ -54,7 +49,10 @@ namespace EerieColors
 
 			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
-				var config = _configManager.Config;
+				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager.ReadConfig(() => { MathUtil.Clamp(_configManager.Config.BiomeBackground, 0, 6); });
+
+				var config = _configManager?.Config;
 
 				var codes = new List<CodeInstruction>(instructions);
 				if (config.UnifiedBiomeBackgrounds)

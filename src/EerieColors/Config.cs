@@ -6,7 +6,7 @@ namespace EerieColors
 	public class Config
 	{
 		[JsonProperty]
-		public bool CustomBiomeTints { get; set; } = true;
+		public bool CustomBiomeTintsEnabled { get; set; }
 
 		[JsonProperty]
 		public Color32 TintColor { get; set; } = new Color32(190, 80, 200, 0);
@@ -28,7 +28,10 @@ namespace EerieColors
 		//    new Color32(201, 152, 181, 4),
 		//    new Color32(222, 90, 59, 5),
 		//    new Color32(201, 152, 181, 6),
-		//    new Color32(byte.MaxValue, 0, 0, 7)
+		//    new Color32(byte.MaxValue, 0, 0, 7),
+		//	  new Color32((byte) 201, (byte) 201, (byte) 151, (byte) 8),
+		//	  new Color32((byte) 236, (byte) 90, (byte) 110, (byte) 9),
+		//	  new Color32((byte) 110, (byte) 236, (byte) 110, (byte) 10)
 		//};
 	}
 }

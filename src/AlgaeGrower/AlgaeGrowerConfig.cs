@@ -123,7 +123,7 @@ namespace AlgaeGrower
 
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			BuildingTemplates.DoPostConfigure(go);
+
 		}
 	}
 }

@@ -58,8 +58,6 @@ namespace DecorLights
 			light2D.drawOverlay = true;
 			light2D.Lux = 1800;
 
-			BuildingTemplates.DoPostConfigure(go);
-
 			go.GetComponent<KPrefabID>().prefabInitFn += gameObject => new CeilingLamp.Instance(gameObject.GetComponent<KPrefabID>()).StartSM();
 		}
 	}

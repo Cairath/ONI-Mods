@@ -9,7 +9,9 @@ namespace PipedAlgaeTerrarium
 		public CellOffset PressureSampleOffset = CellOffset.none;
 
 		[MyCmpGet]
-		private Operational _operational;
+#pragma warning disable 649
+		private Operational operational;
+#pragma warning restore 649
 
 		protected override void OnPrefabInit()
 		{
@@ -74,7 +76,7 @@ namespace PipedAlgaeTerrarium
 				NoAlgae
 					.QueueAnim("off")
 					.EventTransition(GameHashes.OnStorageChange, GotAlgae, smi => smi.HasEnoughMass(GameTags.Algae))
-					.Enter(smi => smi.master._operational.SetActive(false));
+					.Enter(smi => smi.master.operational.SetActive(false));
 
 				NoWater
 					.QueueAnim("on")
@@ -86,8 +88,8 @@ namespace PipedAlgaeTerrarium
 					.PlayAnim("working_pre").OnAnimQueueComplete(GeneratingOxygen);
 
 				GeneratingOxygen
-					.Enter(smi => smi.master._operational.SetActive(true))
-					.Exit(smi => smi.master._operational.SetActive(false))
+					.Enter(smi => smi.master.operational.SetActive(true))
+					.Exit(smi => smi.master.operational.SetActive(false))
 					.Update("GeneratingOxygen", (smi, dt) =>
 					{
 						var cell = Grid.PosToCell(smi.master.transform.GetPosition());
