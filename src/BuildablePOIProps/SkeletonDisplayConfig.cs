@@ -5,27 +5,27 @@ using BUILDINGS = TUNING.BUILDINGS;
 
 namespace BuildablePOIProps
 {
-	public class CouchConfig : IBuildingConfig
+	public class SkeletonDisplayConfig : IBuildingConfig
 	{
-		public const string Id = "Couch";
-		public const string DisplayName = "Couch";
-		public const string Description = "Perfect for some relaxation. Comfier than it looks!";
+		public const string Id = "SkeletonDisplay";
+		public const string DisplayName = "Skeleton Display";
+		public const string Description = "They warned him not to swim in magma. He did not listen.";
 		public static string Effect = $"Increases {UI.FormatAsLink("Decor", "DECOR")}, contributing to {UI.FormatAsLink("Morale", "MORALE")}.";
 
 		public override BuildingDef CreateBuildingDef()
 		{
 			var buildingDef = BuildingTemplates.CreateBuildingDef(
 				id: Id,
-				width: 5,
-				height: 2,
-				anim: "gravitas_couch_kanim",
+				width: 1,
+				height: 3,
+				anim: "skeleton_poi_kanim",
 				hitpoints: BUILDINGS.HITPOINTS.TIER2,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
-				construction_mass: new[] { 200f, 20f },
-				construction_materials: new[] { MATERIALS.PLASTIC, GameTags.BuildingFiber.ToString() },
-				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
+				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER0,
+				construction_materials: new[] { SimHashes.Fossil.ToString() },
+				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER0,
 				build_location_rule: BuildLocationRule.OnFloor,
-				decor: BUILDINGS.DECOR.BONUS.TIER5,
+				decor: DECOR.BONUS.TIER2,
 				noise: NOISE_POLLUTION.NONE);
 
 			buildingDef.Floodable = true;

@@ -55,15 +55,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeskConfig.cs" />
+    <Compile Include="GlobeConfig.cs" />
+    <Compile Include="BlueprintDisplayCConfig.cs" />
+    <Compile Include="BlueprintDisplayBConfig.cs" />
     <Compile Include="BuildablePOIPropsPatches.cs" />
+    <Compile Include="BlueprintDisplayAConfig.cs" />
+    <Compile Include="SkeletonDisplayConfig.cs" />
     <Compile Include="ChairConfig.cs" />
     <Compile Include="ClockConfig.cs" />
+    <Compile Include="LandscapePaintingConfig.cs" />
+    <Compile Include="ScienceDegreeConfig.cs" />
+    <Compile Include="WindowConfig.cs" />
     <Compile Include="ComputerDeskConfig.cs" />
     <Compile Include="CouchConfig.cs" />
     <Compile Include="DNAStatueConfig.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableWithChairsConfig.cs" />
+    <Compile Include="FakePlant.cs" />
+    <Compile Include="WhiteboardConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
