@@ -19,7 +19,7 @@ master branch last updated to game version **LU-357226**
 <a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc-forum-discord"></a>
 ## Forum &amp; Discord
 Klei Forum thread: https://forums.kleientertainment.com/forums/topic/94120-mods-cairaths-mod-corner  
-Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=1706080287
+Steam Workshop: https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140
 
 <a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc-support"></a>
 ## Support
@@ -31,7 +31,7 @@ If you like my mods (or [Tools Not Included](https://toolsnotincluded.net)) and 
 # Instructions
 <a name="instructions-download"></a>
 ## Download
-Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1706080287) - subscribe/unsubscribe freely there.
+Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140) - subscribe/unsubscribe freely there.
 
 <a name="instructions-updates"></a>
 ## Updates
@@ -100,4 +100,4 @@ To all my Patrons on Patreon who support the development :)
 \
 \
 \
-Last readme update: Saturday, 3rd August 2019, 2:43 am
+Last readme update: Saturday, 3rd August 2019, 3:08 am

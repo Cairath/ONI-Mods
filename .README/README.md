@@ -17,7 +17,7 @@ master branch last updated to game version **LU-357226**
 
 ## Forum & Discord
 Klei Forum thread: https://forums.kleientertainment.com/forums/topic/94120-mods-cairaths-mod-corner  
-Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=1706080287
+Steam Workshop: https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140
 
 ## Support
 If you like my mods (or [Tools Not Included](https://toolsnotincluded.net)) and would like to say thanks and/or contribute to the server costs please consider supporting me on Patreon\
@@ -26,7 +26,7 @@ If you like my mods (or [Tools Not Included](https://toolsnotincluded.net)) and 
 
 # Instructions
 ## Download
-Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1706080287) - subscribe/unsubscribe freely there.
+Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140) - subscribe/unsubscribe freely there.
 
 ## Updates
 Please make sure the mods you use are up to date and remove ones that aren't - they are likely to crash the game. 
