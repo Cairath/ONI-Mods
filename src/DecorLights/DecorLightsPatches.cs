@@ -25,10 +25,12 @@ namespace DecorLights
 				AddBuildingStrings(LavaLampConfig.Id, LavaLampConfig.DisplayName, LavaLampConfig.Description, LavaLampConfig.Effect);
 				AddBuildingStrings(SaltLampConfig.Id, SaltLampConfig.DisplayName, SaltLampConfig.Description, SaltLampConfig.Effect);
 				AddBuildingStrings(CeilingLampConfig.Id, CeilingLampConfig.DisplayName, CeilingLampConfig.Description, CeilingLampConfig.Effect);
+				AddBuildingStrings(BowlLampConfig.Id, BowlLampConfig.DisplayName, BowlLampConfig.Description, BowlLampConfig.Effect);
 
 				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, LavaLampConfig.Id);
 				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, SaltLampConfig.Id);
 				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, CeilingLampConfig.Id);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Furniture, BowlLampConfig.Id);
 			}
 		}
 
@@ -41,6 +43,7 @@ namespace DecorLights
 				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, LavaLampConfig.Id);
 				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, SaltLampConfig.Id);
 				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, CeilingLampConfig.Id);
+				AddBuildingToTechnology(GameStrings.Technology.Decor.GlassBlowing, BowlLampConfig.Id);
 			}
 		}
 	}
