@@ -13,7 +13,7 @@
 				.PlayAnim("misc")
 				.EventTransition(GameHashes.OperationalChanged, On, smi => smi.GetComponent<Operational>().IsOperational);
 			On
-				.Enter("SetActive", smi => smi.GetComponent<Operational>().SetActive(true, false))
+				.Enter("SetActive", smi => smi.GetComponent<Operational>().SetActive(true))
 				.PlayAnim("on")
 				.EventTransition(GameHashes.OperationalChanged, Off, smi => !smi.GetComponent<Operational>().IsOperational)
 				.ToggleStatusItem(Db.Get().BuildingStatusItems.EmittingLight, null);

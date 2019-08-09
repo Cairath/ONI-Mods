@@ -338,3 +338,4 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 Mods
+src/lib/Unity.TextMeshPro.dll

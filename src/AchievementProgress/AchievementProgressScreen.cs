@@ -47,9 +47,7 @@ namespace AchievementProgress
 
 			foreach (var key in Achievements.Keys)
 			{
-				var completed = GetAchievementProgress(key, out var failed, out var progress);
-
-				builder.AppendFormat("<b>{0}</b>: {1}\n", Achievements[key], progress);
+				builder.AppendFormat("<b>{0}</b>: {1}\n", Achievements[key], GetAchievementProgress(key));
 			}
 
 			((ConfirmDialogScreen)GameScreenManager.Instance.StartScreen(
@@ -63,30 +61,30 @@ namespace AchievementProgress
 					cancel_text: "Not Ok");
 		}
 
-		private static bool GetAchievementProgress(Achievement achievement, out bool failed, out string progress)
+		private static string GetAchievementProgress(Achievement achievement)
 		{
 			switch (achievement)
 			{
 				case Achievement.Dress8Dupes:
-					return CheckDress8Dupes(out failed, out progress);
+					return CheckDress8Dupes();
 				case Achievement.Build4Parks:
-					return CheckBuild4NatureReserves(out failed, out progress);
+					return CheckBuild4NatureReserves();
 				case Achievement.Tubular:
-					return CheckTubular(out failed, out progress);
+					return CheckTubular();
 				case Achievement.DiscoverMap:
-					return CheckReveal(out failed, out progress);
+					return CheckReveal();
 				case Achievement.VentOxygen:
-					return CheckOxygenVent(out failed, out progress);
+					return CheckOxygenVent();
 				case Achievement.HatchPoop:
-					return CheckHatchPoop(out failed, out progress);
+					return CheckHatchPoop();
 				case Achievement.SustainablePower:
-					return CheckSustainablePower(out failed, out progress);
+					return CheckSustainablePower();
 				case Achievement.Carnivore:
-					return CheckCarnivore(out failed, out progress);
+					return CheckCarnivore();
 				case Achievement.TuneUp:
-					return CheckTuneUp(out failed, out progress);
+					return CheckTuneUp();
 				case Achievement.Locavore:
-					return CheckLocavore(out failed, out progress);
+					return CheckLocavore();
 				default:
 					throw new ArgumentOutOfRangeException(nameof(achievement), achievement, null);
 			}
@@ -95,25 +93,21 @@ namespace AchievementProgress
 		private static bool IsEligible(out string failReason)
 		{
 			failReason = string.Empty;
-			var eligible = true;
 
 			if (DebugHandler.InstantBuildMode)
 			{
-				eligible = false;
 				failReason += "Instant Build Mode is enabled";
 				return false;
 			}
 
 			if (SaveGame.Instance.sandboxEnabled)
 			{
-				eligible = false;
 				failReason += "sandbox is enabled";
 				return false;
 			}
 
 			if (Game.Instance.debugWasUsed)
 			{
-				eligible = false;
 				failReason += "debug was used";
 				return false;
 			}
@@ -121,7 +115,20 @@ namespace AchievementProgress
 			return true;
 		}
 
-		private static bool CheckDress8Dupes(out bool failed, out string progress)
+		private static string FormatProgress(float current, float goal, string unit)
+		{
+			var percentage = Math.Min(100, current / goal * 100);
+			var progress = $"{current:N0} {unit} / {goal:N0} {unit} ({percentage:0.00}%)";
+
+			if (percentage == 100)
+			{
+				progress = $"<color=#00ff00>{progress}</color>";
+			}
+
+			return progress;
+		}
+
+		private static string CheckDress8Dupes()
 		{
 			var num = 0;
 			var goal = 8;
@@ -133,13 +140,10 @@ namespace AchievementProgress
 					++num;
 			}
 
-			failed = false;
-			progress = $"{num} / {goal} ({(num / (float)goal * 100):N0}%)";
-
-			return num >= 8;
+			return FormatProgress(num, goal, string.Empty);
 		}
 
-		private static bool CheckBuild4NatureReserves(out bool failed, out string progress)
+		private static string CheckBuild4NatureReserves()
 		{
 			var num = 0;
 			var goal = 4;
@@ -150,13 +154,10 @@ namespace AchievementProgress
 					++num;
 			}
 
-			failed = false;
-			progress = $"{num} / {goal} ({(num / (float)goal * 100):N0}%)";
-
-			return num >= 4;
+			return FormatProgress(num, goal, string.Empty);
 		}
 
-		private static bool CheckTubular(out bool failed, out string progress)
+		private static string CheckTubular()
 		{
 			var num = 0;
 			var goal = 10000;
@@ -168,12 +169,10 @@ namespace AchievementProgress
 					num += component2.distanceTravelledByNavType[NavType.Tube];
 			}
 
-			failed = false;
-			progress = $"{num} m / {goal} m ({(num / (float)goal * 100):N0}%)";
-			return num >= goal;
+			return FormatProgress(num, goal, "m");
 		}
 
-		private static bool CheckHatchPoop(out bool failed, out string progress)
+		private static string CheckHatchPoop()
 		{
 			float num = 0;
 			var goal = 10000;
@@ -183,28 +182,46 @@ namespace AchievementProgress
 			if (Game.Instance.savedInfo.creaturePoopAmount.ContainsKey(poopTag))
 				num = Game.Instance.savedInfo.creaturePoopAmount[poopTag];
 
-			failed = false;
-			progress = $"{num} kg / {goal} kg ({(num / (float)goal * 100):N0}%)";
-			return num >= goal;
+			return FormatProgress(num, goal, string.Empty);
 		}
 
-		private static bool CheckSustainablePower(out bool failed, out string progress)
+		private static string CheckSustainablePower()
 		{
-			var num = AchievementProgressPatches.SustainableEnergyCurrent;
+			var num = 0.0f;
 			var goal = 240000f;
 
-			var entry = ReportManager.Instance.TodaysReport.GetEntry(ReportManager.ReportType.EnergyCreated);
+			var disallowedBuildings = new List<Tag> {
+				 "MethaneGenerator",
+				 "PetroleumGenerator",
+				 "WoodGasGenerator",
+				 "Generator"
+			};
 
-			failed = (Math.Abs(entry.Net) > 0.1f && Math.Abs(num) < 1f) || AchievementProgressPatches.SustainableEnergyFailed || AchievementProgressPatches.SustainableEnergyUsedDisallowedBuilding;
+			var failed = false;
 
-			progress = !failed
-				? $"{(num / 1000f):N0} kJ / {goal} kJ ({(num/1000f / goal * 100):N0}%)"
+			foreach (var disallowedBuilding in disallowedBuildings)
+			{
+				if (Game.Instance.savedInfo.powerCreatedbyGeneratorType.ContainsKey(disallowedBuilding))
+					failed = true;
+			}
+
+			if (!failed)
+			{
+				foreach (var keyValuePair in Game.Instance.savedInfo.powerCreatedbyGeneratorType)
+				{
+					if (!disallowedBuildings.Contains(keyValuePair.Key))
+						num += keyValuePair.Value;
+				}
+			}
+
+			var kJ = num / 1000;
+
+			return !failed
+				? FormatProgress(kJ, goal, "kJ")
 				: "<color=#ff0000>failed</color>";
-
-			return !failed && num / 1000f >= goal;
 		}
 
-		private static bool CheckReveal(out bool failed, out string progress)
+		private static string CheckReveal()
 		{
 			var num = 0.0f;
 			var goal = 0.8f;
@@ -215,14 +232,11 @@ namespace AchievementProgress
 					++num;
 			}
 
-			failed = false;
-			var explored = num / (double) Grid.Visible.Length;
-			progress = $"{(explored * 100):0.00}% / {goal * 100}%";
-
-			return explored > goal;
+			var explored = num / (double)Grid.Visible.Length;
+			return $"{(explored * 100):0.00}% / {goal * 100}%";
 		}
 
-		private static bool CheckTuneUp(out bool failed, out string progress)
+		private static string CheckTuneUp()
 		{
 			float num = 0;
 			var goal = 100;
@@ -234,6 +248,7 @@ namespace AchievementProgress
 				if (contextEntry.context == Db.Get().ChoreTypes.PowerTinker.Name)
 					num += contextEntry.Negative;
 			}
+
 			for (var index1 = 0; index1 < ReportManager.Instance.reports.Count; ++index1)
 			{
 				for (var index2 = 0; index2 < ReportManager.Instance.reports[index1].GetEntry(ReportManager.ReportType.ChoreStatus).contextEntries.Count; ++index2)
@@ -244,13 +259,10 @@ namespace AchievementProgress
 				}
 			}
 
-			failed = false;
-			progress = $"{num} / {goal} ({(num / (float)goal * 100):N0}%)";
-
-			return num >= goal;
+			return FormatProgress(Math.Abs(num), goal, string.Empty);
 		}
 
-		private static bool CheckOxygenVent(out bool failed, out string progress)
+		private static string CheckOxygenVent()
 		{
 			float num = 0;
 			var goal = 1000;
@@ -268,12 +280,10 @@ namespace AchievementProgress
 				}
 			}
 
-			failed = false;
-			progress = $"{num:0.00} kg / {goal} kg ({(num / (float)goal * 100):N0}%)";
-			return num >= goal;
+			return FormatProgress(num, goal, "kg");
 		}
 
-		private static bool CheckCarnivore(out bool failed, out string progress)
+		private static string CheckCarnivore()
 		{
 			var goal = 400000;
 			var foods = new List<string>
@@ -291,14 +301,11 @@ namespace AchievementProgress
 
 			var before100 = GameClock.Instance.GetCycle() + 1 <= 100;
 
-			failed = false;
-
-			progress = before100 ? $"{kcal} kcal / {goal} kcal ({(kcal / (float)goal * 100):N0}%)"
-				: $"<color=#ff0000>can no longer be achieved - past cycle 100 </color> - {kcal} kcal / {goal} kcal ({(kcal / (float)goal * 100):N0}%)";
-			return kcal >= goal;
+			return before100 ? FormatProgress(kcal, goal, "kcal")
+				: "<color=#ff0000>failed</color>";
 		}
 
-		private static bool CheckLocavore(out bool failed, out string progress)
+		private static string CheckLocavore()
 		{
 			var goal = 400000;
 
@@ -320,10 +327,8 @@ namespace AchievementProgress
 				}
 			}
 
-			failed = hasPlantables;
-
-			progress = $"{kcal} kcal / {goal} kcal ({(kcal / (float)goal * 100):N0}%)";
-			return kcal >= goal;
+			return hasPlantables ? FormatProgress(kcal, goal, "kcal")
+				: "<color=#ff0000>failed</color>";
 		}
 	}
 }
