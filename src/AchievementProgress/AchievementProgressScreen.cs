@@ -198,7 +198,7 @@ namespace AchievementProgress
 			failed = (Math.Abs(entry.Net) > 0.1f && Math.Abs(num) < 1f) || AchievementProgressPatches.SustainableEnergyFailed || AchievementProgressPatches.SustainableEnergyUsedDisallowedBuilding;
 
 			progress = !failed
-				? $"{num / 1000f} kJ / {goal} kJ ({(num / goal * 100):N0}%)"
+				? $"{(num / 1000f):N0} kJ / {goal} kJ ({(num/1000f / goal * 100):N0}%)"
 				: "<color=#ff0000>failed</color>";
 
 			return !failed && num / 1000f >= goal;
