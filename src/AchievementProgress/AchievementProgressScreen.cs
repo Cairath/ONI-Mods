@@ -327,7 +327,7 @@ namespace AchievementProgress
 				}
 			}
 
-			return hasPlantables ? FormatProgress(kcal, goal, "kcal")
+			return !hasPlantables ? FormatProgress(kcal, goal, "kcal")
 				: "<color=#ff0000>failed</color>";
 		}
 	}
