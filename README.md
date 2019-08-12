@@ -7,14 +7,14 @@ master branch last updated to game version **LU-357226**
 
 </div>
 
-- [Instructions](#Instructions)
-  - [Download](#Download)
-  - [Updates](#Updates)
-- [List of mods](#List-of-mods)
-    - [Categories - legend](#Categories---legend)
-    - [Mods](#Mods)
-- [Tools Not Included](#Tools-Not-Included)
-- [Special thanks](#Special-thanks)
+- [Instructions](#instructions)
+  - [Download](#download)
+  - [Updates](#updates)
+- [List of mods](#list-of-mods)
+    - [Categories - legend](#categories---legend)
+    - [Mods](#mods)
+- [<a href="https://toolsnotincluded.net">Tools Not Included</a>](#a-hrefhttpstoolsnotincludednettools-not-includeda)
+- [Special thanks](#special-thanks)
 
 <a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc-forum-discord"></a>
 ## Forum &amp; Discord
@@ -73,7 +73,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 | **Build**<br/>**Decor** | Mosaic Tile                         | Fully functional mosaic tile (like the ones Points of Interests are built from) built from ceramic.                                                                                                               | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1706080287) |
 |         **QoL**         | No Leaky Walls                      | Reverts Drywall and Tempshift Plate building placement behavior to the original one - can be built behind tiles and doors.                                                                                        | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1766302971) |
 |  **QoL**<br/>**Mech**   | Oil Well - any water                | Oil Wells can use polluted water in addition to clear water.                                                                                                                                                      | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1717526174) |
-|        **Decor**        | Paint Walls                         | Drywalls and Tempshifts are colored with the color of the material used to built them.  Check out the Wallpaper mod for a cheap decorative wallpaper that hides pipes.                                            | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1729816134) |
+|        **Decor**        | Paint Walls                         | Drywalls and Tempshifts are colored with the color of the material used to built them.  Check out the Wallpaper mod for a cheap decorative wallpaper that hides pipes.                                            | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1732578172) |
 | **Build**<br/>**Mech**  | Palmera Tree                        | A new plant - Palmera Tree, includes a new food ingredient: Palmera Berry and its cooked, edible version: Steamed Palmera Berry                                                                                   | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1823182964) |
 |        **Build**        | Piped Algae Terrarium               | Adds a new Algae Terrarium that functions like the basic one, except it has a piped polluted water output.                                                                                                        | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1822186466) |
 |         **QoL**         | Plan Buildings Without Materials    | Allows placing down building plans with materials not present in your inventory (though need to be discovered) to make planning easier.                                                                           | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1717526174) |
@@ -100,4 +100,4 @@ To all my Patrons on Patreon who support the development :)
 \
 \
 \
-Last readme update: Saturday, 3rd August 2019, 3:08 am
+Last readme update: Monday, 12th August 2019, 7:44 pm
