@@ -21,22 +21,55 @@ namespace PaintWalls
 			{
 				if (__instance.name == "ExteriorWallComplete" || __instance.name == "ThermalBlockComplete")
 				{
-					var primaryElement = __instance.GetComponent<PrimaryElement>();
-					var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
-
-					if (primaryElement == null || kAnimBase == null) return;
-
-					var element = primaryElement.Element;
-					var color = element.substance.uiColour;
-
-					if (element.id == SimHashes.Granite)
-					{
-						color.a = byte.MaxValue;
-					}
-
-					kAnimBase.TintColour = color;
+					SetColor(__instance);
 				}
 			}
+		}
+
+		[HarmonyPatch(typeof(OverlayScreen))]
+		[HarmonyPatch("ToggleOverlay")]
+		public static class OverlayMenu_OnOverlayChanged_Patch
+		{
+			public static void Prefix(HashedString newMode, ref OverlayScreen __instance, out bool __state)
+			{
+				var val = Traverse.Create(__instance).Field("currentModeInfo").Field("mode").Method("ViewMode").GetValue<HashedString>();
+
+				__state = val == OverlayModes.Decor.ID && newMode != OverlayModes.Decor.ID;
+			}
+
+			public static void Postfix(bool __state)
+			{
+				if (!__state)
+				{
+					return;
+				}
+
+				foreach (var building in Components.BuildingCompletes.Items)
+				{
+
+					if (building.name == "ExteriorWallComplete" || building.name == "ThermalBlockComplete")
+					{
+						SetColor(building);
+					}
+				}
+			}
+		}
+
+		private static void SetColor(BuildingComplete building)
+		{
+			var primaryElement = building.GetComponent<PrimaryElement>();
+			var kAnimBase = building.GetComponent<KAnimControllerBase>();
+			if (primaryElement == null || kAnimBase == null) return;
+
+			var element = primaryElement.Element;
+			var color = element.substance.uiColour;
+
+			if (element.id == SimHashes.Granite)
+			{
+				color.a = byte.MaxValue;
+			}
+
+			kAnimBase.TintColour = color;
 		}
 	}
 }

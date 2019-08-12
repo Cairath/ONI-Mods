@@ -1,5 +1,7 @@
-﻿using CaiLib.Utils;
+﻿using System;
+using CaiLib.Utils;
 using Harmony;
+using STRINGS;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
@@ -45,21 +47,54 @@ namespace Wallpaper
 			{
 				if (__instance.name != "WallpaperComplete") return;
 
+				SetColor(__instance);
+			}
+		}
 
-				var primaryElement = __instance.GetComponent<PrimaryElement>();
-				var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
-				if (primaryElement == null || kAnimBase == null) return;
+		[HarmonyPatch(typeof(OverlayScreen))]
+		[HarmonyPatch("ToggleOverlay")]
+		public static class OverlayMenu_OnOverlayChanged_Patch
+		{
+			public static void Prefix(HashedString newMode, ref OverlayScreen __instance, out bool __state)
+			{
+				var val = Traverse.Create(__instance).Field("currentModeInfo").Field("mode").Method("ViewMode").GetValue<HashedString>();
 
-				var element = primaryElement.Element;
-				var color = element.substance.uiColour;
+				__state = val == OverlayModes.Decor.ID && newMode != OverlayModes.Decor.ID;
+			}
 
-				if (element.id == SimHashes.Granite)
+			public static void Postfix(bool __state)
+			{
+				if (!__state)
 				{
-					color.a = byte.MaxValue;
+					return;
 				}
 
-				kAnimBase.TintColour = color;
+				foreach (var building in Components.BuildingCompletes.Items)
+				{
+
+					if (UI.StripLinkFormatting(building.GetProperName()) == WallpaperConfig.DisplayName)
+					{
+						SetColor(building);
+					}
+				}
 			}
+		}
+
+		private static void SetColor(BuildingComplete building)
+		{
+			var primaryElement = building.GetComponent<PrimaryElement>();
+			var kAnimBase = building.GetComponent<KAnimControllerBase>();
+			if (primaryElement == null || kAnimBase == null) return;
+
+			var element = primaryElement.Element;
+			var color = element.substance.uiColour;
+
+			if (element.id == SimHashes.Granite)
+			{
+				color.a = byte.MaxValue;
+			}
+
+			kAnimBase.TintColour = color;
 		}
 	}
 }
