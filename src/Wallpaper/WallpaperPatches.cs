@@ -55,19 +55,10 @@ namespace Wallpaper
 		[HarmonyPatch("ToggleOverlay")]
 		public static class OverlayMenu_OnOverlayChanged_Patch
 		{
-			public static void Prefix(HashedString newMode, ref OverlayScreen __instance, out bool __state)
+			public static void Postfix(HashedString newMode)
 			{
-				var val = Traverse.Create(__instance).Field("currentModeInfo").Field("mode").Method("ViewMode").GetValue<HashedString>();
-
-				__state = val == OverlayModes.Decor.ID && newMode != OverlayModes.Decor.ID;
-			}
-
-			public static void Postfix(bool __state)
-			{
-				if (!__state)
-				{
+				if (newMode != OverlayModes.None.ID)
 					return;
-				}
 
 				foreach (var building in Components.BuildingCompletes.Items)
 				{
