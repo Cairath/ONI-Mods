@@ -7,23 +7,22 @@ namespace Darkness
 {
 	public class DarknessPatches
 	{
-		//[HarmonyPatch(typeof(GameInputMapping))]
-		//[HarmonyPatch(nameof(GameInputMapping.SetDefaultKeyBindings))]
-		//public static class Global_GenerateDefaultBindings_Patch
-		//{
-		//	public static void Prefix(ref BindingEntry[] default_keybindings)
-		//	{
-		//		Strings.Add("STRINGS.INPUT_BINDINGS.CAIRATH-DARKNESS.NAME", "Darkness");
+		[HarmonyPatch(typeof(GameInputMapping))]
+		[HarmonyPatch(nameof(GameInputMapping.SetDefaultKeyBindings))]
+		public static class Global_GenerateDefaultBindings_Patch
+		{
+			public static void Prefix(ref BindingEntry[] default_keybindings)
+			{
+				Strings.Add("STRINGS.INPUT_BINDINGS.CAIRATH-DARKNESS.NAME", "Darkness");
 
-		//		var bindings = default_keybindings.ToList();
-		//		bindings.Add(new BindingEntry("Cairath-Darkness", GamepadButton.NumButtons, KKeyCode.BackQuote, Modifier.None,
-		//			(Action)500));
+				var bindings = default_keybindings.ToList();
+				bindings.Add(new BindingEntry("Cairath-Darkness", GamepadButton.NumButtons, KKeyCode.BackQuote,
+					Modifier.None,
+					Action.NumActions));
 
-		//		default_keybindings = bindings.ToArray();
-		//	}
-		//}
-
-
+				default_keybindings = bindings.ToArray();
+			}
+		}
 
 		[HarmonyPatch(typeof(PropertyTextures))]
 		[HarmonyPatch("UpdateFogOfWar")]
@@ -42,25 +41,6 @@ namespace Darkness
 
 
 				var mousePos = DebugHandler.GetMouseCell();
-				//var flashlight = new List<int>();
-				//flashlight.Add(mousePos);
-				//var above = Grid.CellAbove(mousePos);
-				//var right = Grid.CellRight(mousePos);
-				//var below = Grid.CellBelow(mousePos);
-				//var left = Grid.CellLeft(mousePos);
-
-				//flashlight.Add(above);
-				//flashlight.Add(right);
-				//flashlight.Add(left);
-				//flashlight.Add(below);
-				//flashlight.Add(Grid.CellUpRight(mousePos));
-				//flashlight.Add(Grid.CellDownRight(mousePos));
-				//flashlight.Add(Grid.CellDownLeft(mousePos));
-				//flashlight.Add(Grid.CellUpLeft(mousePos));
-				//flashlight.Add(Grid.CellAbove(above));
-				//flashlight.Add(Grid.CellBelow(below));
-				//flashlight.Add(Grid.CellLeft(left));
-				//flashlight.Add(Grid.CellRight(right));
 
 				for (int y = y0; y <= y1; ++y)
 				{
@@ -75,21 +55,20 @@ namespace Darkness
 						}
 
 						var lux = lightIntensityIndexer[cell];
-						var luxMapped = Math.Min(lux, highestLux);
-
-						//var output = flashlight.Contains(cell) ? 255 : Grid.GetCellDistance()
-						//	Remap(luxMapped, lowestLux, highestLux, lowestFog, highestFog);
 
 						var distance = Grid.GetCellDistance(cell, mousePos);
-						var output = cell == mousePos ? 255 :
-							distance <= 2 ? lowestFog + (255 - lowestFog) * (1f / distance)
-							: Remap(luxMapped, lowestLux, highestLux, lowestFog, highestFog);
+						var mouseLight = cell == mousePos ? highestLux :
+							distance <= 4 ? highestLux * (1f / distance)
+							: 0;
+
+						lux += (int)mouseLight;
+
+						var luxMapped = Math.Min(lux, highestLux);
+						var output = Remap(luxMapped, lowestLux, highestLux, lowestFog, highestFog);
 
 						region.SetBytes(x, y, (byte)output);
 					}
 				}
-
-				Debug.Log(DebugHandler.GetMouseCell());
 
 				return false;
 			}
