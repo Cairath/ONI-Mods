@@ -29,13 +29,12 @@ namespace MosaicTile
 				decor: DECOR.BONUS.TIER2,
 				noise: NOISE_POLLUTION.NONE);
 
+			BuildingTemplates.CreateFoundationTileDef(buildingDef);
+
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
 			buildingDef.Overheatable = false;
-			buildingDef.IsFoundation = true;
 			buildingDef.UseStructureTemperature = false;
-			buildingDef.TileLayer = ObjectLayer.FoundationTile;
-			buildingDef.ReplacementLayer = ObjectLayer.ReplacementTile;
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
@@ -47,8 +46,7 @@ namespace MosaicTile
 			buildingDef.BlockTileMaterial = Assets.GetMaterial("tiles_solid");
 			buildingDef.DecorBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_POI_tops_decor_info");
 			buildingDef.DecorPlaceBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_POI_tops_decor_info");
-			buildingDef.ConstructionOffsetFilter = new[] { new CellOffset(0, -1) };
-			buildingDef.ReplacementTags = new List<Tag> { GameTags.FloorTiles };
+			buildingDef.ConstructionOffsetFilter = BuildingDef.ConstructionOffsetFilter_OneDown;
 
 			return buildingDef;
 		}

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace DecorLights
 {
-	public class BowlLampConfig : IBuildingConfig
+	public class LuminiferousSphereConfig : IBuildingConfig
 	{
-		public const string Id = "BowlLamp";
-		public const string DisplayName = "Bowl Lamp";
+		public const string Id = "LuminiferousSphere";
+		public const string DisplayName = "Luminiferous Sphere";
 		public static string Description = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.DESC;
 		public static string Effect = STRINGS.BUILDINGS.PREFABS.CEILINGLIGHT.EFFECT;
 
@@ -23,7 +23,7 @@ namespace DecorLights
 				construction_materials: MATERIALS.TRANSPARENTS,
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER0,
 				build_location_rule: BuildLocationRule.OnCeiling,
-				decor: DECOR.BONUS.TIER5,
+				decor: new EffectorValues(10, 4),
 				noise: NOISE_POLLUTION.NONE);
 
 			buildingDef.RequiresPowerInput = true;
@@ -58,7 +58,7 @@ namespace DecorLights
 			light2D.drawOverlay = true;
 			light2D.Lux = 1800;
 
-			go.GetComponent<KPrefabID>().prefabInitFn += gameObject => new CeilingLamp.Instance(gameObject.GetComponent<KPrefabID>()).StartSM();
+			go.AddOrGetDef<LightController.Def>();
 		}
 	}
 }

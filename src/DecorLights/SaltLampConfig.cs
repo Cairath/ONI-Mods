@@ -23,7 +23,7 @@ namespace DecorLights
 				construction_materials: MATERIALS.TRANSPARENTS,
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER0,
 				build_location_rule: BuildLocationRule.OnFloor,
-				decor: DECOR.BONUS.TIER5,
+				decor: DECOR.BONUS.TIER3,
 				noise: NOISE_POLLUTION.NONE);
 
 			buildingDef.RequiresPowerInput = true;

@@ -29,13 +29,12 @@ namespace MarbleTile
 				decor: DECOR.BONUS.TIER1,
 				noise: NOISE_POLLUTION.NONE);
 
+			BuildingTemplates.CreateFoundationTileDef(buildingDef);
+
 			buildingDef.Floodable = false;
 			buildingDef.Entombable = false;
 			buildingDef.Overheatable = false;
-			buildingDef.IsFoundation = true;
 			buildingDef.UseStructureTemperature = false;
-			buildingDef.TileLayer = ObjectLayer.FoundationTile;
-			buildingDef.ReplacementLayer = ObjectLayer.ReplacementTile;
 			buildingDef.AudioCategory = "Metal";
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
@@ -47,7 +46,7 @@ namespace MarbleTile
 			buildingDef.BlockTileMaterial = Assets.GetMaterial("tiles_solid");
 			buildingDef.DecorBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_bunker_tops_decor_info");
 			buildingDef.DecorPlaceBlockTileInfo = Assets.GetBlockTileDecorInfo("tiles_bunker_tops_decor_place_info");
-			buildingDef.ReplacementTags = new List<Tag> { GameTags.FloorTiles };
+			buildingDef.ConstructionOffsetFilter = BuildingDef.ConstructionOffsetFilter_OneDown;
 
 			return buildingDef;
 		}

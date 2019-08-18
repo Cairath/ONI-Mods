@@ -26,6 +26,8 @@ namespace SteelLadder
 				build_location_rule: BuildLocationRule.Anywhere,
 				decor: DECOR.BONUS.TIER0,
 				noise: NOISE_POLLUTION.NONE);
+			
+			BuildingTemplates.CreateLadderDef(buildingDef);
 
 			buildingDef.Floodable = false;
 			buildingDef.Overheatable = false;
@@ -34,9 +36,6 @@ namespace SteelLadder
 			buildingDef.AudioSize = "small";
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.DragBuild = true;
-			buildingDef.TileLayer = ObjectLayer.LadderTile;
-			buildingDef.ReplacementLayer = ObjectLayer.ReplacementLadder;
-			buildingDef.ReplacementTags = new List<Tag> { GameTags.Ladders };
 
 			return buildingDef;
 		}

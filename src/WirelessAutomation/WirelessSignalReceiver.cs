@@ -1,10 +1,11 @@
 ﻿using KSerialization;
+using STRINGS;
 using UnityEngine;
 
 namespace WirelessAutomation
 {
 	[SerializationConfig(MemberSerialization.OptIn)]
-	public class WirelessSignalReceiver : Switch, ISim33ms, IIntSliderControl
+	public class WirelessSignalReceiver : Switch, ISim200ms, IIntSliderControl
 	{
 		[field: Serialize]
 		public int ReceiveChannel { get; set; }
@@ -22,7 +23,7 @@ namespace WirelessAutomation
 			GetComponent<KBatchedAnimController>().Play(isOn ? "on_pst" : "off", KAnim.PlayMode.Loop);
 		}
 
-		public void Sim33ms(float dt)
+		public void Sim200ms(float dt)
 		{
 			var signal = WirelessAutomationManager.GetSignalForChannel(ReceiveChannel);
 
@@ -50,6 +51,7 @@ namespace WirelessAutomation
 		public float GetSliderValue(int index) => ReceiveChannel;
 		public void SetSliderValue(float value, int index) => ChangeListeningChannel(Mathf.RoundToInt(value));
 		public string GetSliderTooltipKey(int index) => WirelessAutomationManager.SliderTooltipKey;
+		public string GetSliderTooltip() => $"Will listen to signal broadcast on {UI.PRE_KEYWORD}channel {ReceiveChannel}{UI.PST_KEYWORD}";
 		public string SliderTitleKey => WirelessAutomationManager.SliderTitleKey;
 		public string SliderUnits => string.Empty;
 	}

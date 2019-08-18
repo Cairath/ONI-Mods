@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CeilingLamp.cs" />
-    <Compile Include="BowlLampConfig.cs" />
+    <Compile Include="LuminiferousSphereConfig.cs" />
     <Compile Include="CeilingLampConfig.cs" />
     <Compile Include="DecorLightsPatches.cs" />
     <Compile Include="LavaLamp.cs" />
