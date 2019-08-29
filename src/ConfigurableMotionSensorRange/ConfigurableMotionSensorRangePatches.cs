@@ -1,5 +1,6 @@
 ﻿using Harmony;
 using UnityEngine;
+using static CaiLib.Logger.Logger;
 
 namespace ConfigurableMotionSensorRange
 {
@@ -9,7 +10,7 @@ namespace ConfigurableMotionSensorRange
 		{
 			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit();
 			}
 		}
 

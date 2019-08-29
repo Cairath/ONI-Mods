@@ -1,8 +1,9 @@
-﻿namespace ConfigurableMotionSensorRange
+﻿using CaiLib;
+
+namespace ConfigurableMotionSensorRange
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Configurable Motion Sensor Range";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Configurable Motion Sensor Range";
 	}
 }
