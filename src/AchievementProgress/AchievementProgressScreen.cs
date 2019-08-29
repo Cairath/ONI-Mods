@@ -37,9 +37,7 @@ namespace AchievementProgress
 
 		public static void CreateScreen(PauseScreen pauseScreen)
 		{
-
 			var builder = new StringBuilder();
-
 
 			var eligible = IsEligible(out var reason);
 			var eligibleString = eligible ? "<color=#00ff00>eligible</color>" : $"<color=#ff0000>not eligible</color> ({reason}).";
@@ -55,10 +53,9 @@ namespace AchievementProgress
 					pauseScreen.transform.parent.gameObject))
 				.PopupConfirmDialog(builder.ToString(),
 					() => { pauseScreen.gameObject.SetActive(true); },
-					() => { pauseScreen.gameObject.SetActive(true); },
-					confirm_text: "Ok",
-					title_text: "Achievement Progress",
-					cancel_text: "Not Ok");
+					null,
+					confirm_text: "CLOSE",
+					title_text: "Achievement Progress");
 		}
 
 		private static string GetAchievementProgress(Achievement achievement)

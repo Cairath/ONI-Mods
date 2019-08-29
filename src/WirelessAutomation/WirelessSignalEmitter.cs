@@ -65,7 +65,7 @@ namespace WirelessAutomation
 		public float GetSliderValue(int index) => EmitChannel;
 		public void SetSliderValue(float value, int index) => ChangeEmitChannel(Mathf.RoundToInt(value));
 		public string GetSliderTooltipKey(int index) => WirelessAutomationManager.SliderTooltipKey;
-		public string GetSliderTooltip() => $"Will broadcast received signal on {UI.PRE_KEYWORD}channel {EmitChannel}{UI.PST_KEYWORD}";
+		public string GetSliderTooltip() => $"Will broadcast received signal on {UI.FormatAsKeyWord($"channel {EmitChannel}")}";
 		public string SliderTitleKey => WirelessAutomationManager.SliderTitleKey;
 		public string SliderUnits => string.Empty;
 	}
