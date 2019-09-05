@@ -1,8 +1,9 @@
-﻿namespace BiggerBuildingMenu
+﻿using CaiLib;
+
+namespace BiggerBuildingMenu
 {
-	public static class ModInfo
-	{
-		public static string Name = "Bigger Building Menu";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
-	}
+    public class ModInfo : IModInfo
+    {
+        public string Name { get; } = "Bigger Building Menu";
+    }
 }

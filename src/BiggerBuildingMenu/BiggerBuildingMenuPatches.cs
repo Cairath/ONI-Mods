@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using CaiLib.Config;
+﻿using CaiLib.Config;
 using Harmony;
 using static CaiLib.Logger.Logger;
 
@@ -14,7 +13,7 @@ namespace BiggerBuildingMenu
 			public static void OnLoad()
 			{
 				LogInit();
-				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager = new ConfigManager<Config>();
 				_configManager.ReadConfig();
 			}
 		}
@@ -27,5 +26,5 @@ namespace BiggerBuildingMenu
 				Traverse.Create(__instance).Field("buildGrid_maxRowsBeforeScroll").SetValue(_configManager.Config.Height);
 			}
 		}
-	}
+    }
 }
