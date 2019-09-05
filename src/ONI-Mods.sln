@@ -299,11 +299,10 @@ Global
 		SolutionGuid = {A891E594-F383-4A36-B723-E43117F7F1B4}
 	EndGlobalSection
 	GlobalSection(AutomaticVersions) = postSolution
-		PrimaryVersionType = AssemblyVersionAttribute
 		UpdateAssemblyVersion = True
 		UpdateAssemblyFileVersion = True
 		UpdateAssemblyInfoVersion = False
-		AdvancedSettingsExpanded = True
+		ShouldCreateLogs = True
 		AssemblyVersionSettings = YearStamp.Quarter.DayStamp.IncrementWithResetOnIncrease
 		AssemblyFileVersionSettings = YearStamp.MonthStamp.DayStamp.IncrementWithResetOnIncrease
 		UpdatePackageVersion = False
