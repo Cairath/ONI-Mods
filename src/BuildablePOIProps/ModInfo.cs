@@ -1,8 +1,9 @@
-﻿namespace BuildablePOIProps
+﻿using CaiLib;
+
+namespace BuildablePOIProps
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Buildable POI Props";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Buildable POI Props";
 	}
 }
