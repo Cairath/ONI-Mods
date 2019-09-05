@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Database;
 using Harmony;
 using static CaiLib.Logger.Logger;
 
@@ -13,7 +12,7 @@ namespace AchievementProgress
 		{
 			public static void OnLoad()
 			{
-				LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit();
 			}
 		}
 

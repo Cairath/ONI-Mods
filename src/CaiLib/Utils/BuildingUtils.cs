@@ -15,7 +15,7 @@ namespace CaiLib.Utils
 			var planOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
 			if (planOrderList == null)
 			{
-				Logger.Logger.Log("CaiLibUtils", $"Could not add {buildingId} to the building menu.");
+				Logger.Logger.Log($"Could not add {buildingId} to the building menu.");
 				return;
 			}
 			

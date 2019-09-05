@@ -13,7 +13,7 @@ namespace FasterJetpacks
 		{
 			public static void OnLoad()
 			{
-				LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit();
 				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
 				_configManager.ReadConfig();
 			}

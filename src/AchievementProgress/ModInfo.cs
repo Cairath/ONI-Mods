@@ -1,8 +1,9 @@
-﻿namespace AchievementProgress
+﻿using CaiLib;
+
+namespace AchievementProgress
 {
-	public static class ModInfo
-	{
-		public static string Name = "Achievement Progress";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
-	}
+    public class ModInfo : IModInfo
+    {
+        public string Name { get; } = "Achievement Progress";
+    }
 }

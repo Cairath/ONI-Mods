@@ -11,7 +11,7 @@ namespace MarbleTile
 		{
 			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit(ModInfo.Name, ModInfo.Version);
+				CaiLib.Logger.Logger.LogInit();
 			}
 		}
 

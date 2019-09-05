@@ -11,13 +11,11 @@ namespace CaiLib.Config
 
 		private readonly string _executingAssemblyPath;
 		private readonly string _configFileName;
-		private readonly string _modName;
 
 		public ConfigManager(string modName, string executingAssemblyPath, string configFileName = "Config.json")
 		{
 			_executingAssemblyPath = executingAssemblyPath;
 			_configFileName = configFileName;
-			_modName = modName;
 		}
 
 		public T ReadConfig(System.Action postReadAction = null)
@@ -28,7 +26,7 @@ namespace CaiLib.Config
 
 			if (directory == null)
 			{
-				Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Log($"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
 				return Config;
 			}
 
@@ -45,7 +43,7 @@ namespace CaiLib.Config
 			}
 			catch (Exception e)
 			{
-				Log(_modName, $"Error reading config file {_configFileName} with exception: {e.Message}");
+				Log($"Error reading config file {_configFileName} with exception: {e.Message}");
 				return Config;
 			}
 
@@ -62,7 +60,7 @@ namespace CaiLib.Config
 
 			if (directory == null)
 			{
-				Log(_modName, $"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Log($"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
 				return false;
 			}
 
@@ -78,7 +76,7 @@ namespace CaiLib.Config
 			}
 			catch (Exception e)
 			{
-				Log(_modName, $"Error writing to config file {_configFileName} with exception: {e.Message}");
+				Log($"Error writing to config file {_configFileName} with exception: {e.Message}");
 				return false;
 			}
 

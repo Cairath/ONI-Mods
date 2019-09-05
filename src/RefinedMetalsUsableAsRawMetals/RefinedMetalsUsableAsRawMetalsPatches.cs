@@ -10,7 +10,7 @@ namespace RefinedMetalsUsableAsRawMetals
 		{
 			public static void OnLoad()
             {
-                LogInit(ModInfo.Name, ModInfo.Version);
+                LogInit();
             }
         }
 
