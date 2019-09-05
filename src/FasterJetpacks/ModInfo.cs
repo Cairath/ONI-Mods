@@ -1,8 +1,9 @@
-﻿namespace FasterJetpacks
+﻿using CaiLib;
+
+namespace FasterJetpacks
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Faster Jetpacks";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Faster Jetpacks";
 	}
 }

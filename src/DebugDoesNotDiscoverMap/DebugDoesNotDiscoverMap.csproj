@@ -76,7 +76,7 @@
     <PostBuildEvent>$(ILMergeConsolePath) /out:$(TargetName)-merged.dll $(TargetName).dll CaiLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
 
 echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName)-merged.dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
-if exist "$(ProjectDir)anims" xcopy /Y /R /I /E /Q  "$(ProjectDir)anim" "$(SolutionDir)..\Mods\$(TargetName)\anim"
+if exist "$(ProjectDir)anim" xcopy /Y /R /I /E /Q  "$(ProjectDir)anim" "$(SolutionDir)..\Mods\$(TargetName)\anim"
 if exist "$(ProjectDir)previews" xcopy /Y /R /I /E /Q  "$(ProjectDir)previews" "$(SolutionDir)..\Mods\$(TargetName)\"
 if exist "$(TargetDir)Config.json" echo F | xcopy /Y /S /R /Q "$(TargetDir)Config.json" "$(SolutionDir)..\Mods\$(TargetName)\Config.json"
 

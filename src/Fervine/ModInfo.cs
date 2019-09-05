@@ -1,8 +1,9 @@
-﻿namespace Fervine
+﻿using CaiLib;
+
+namespace Fervine
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Fervine";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Fervine";
 	}
 }

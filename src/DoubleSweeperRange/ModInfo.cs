@@ -1,8 +1,9 @@
-﻿namespace DoubleSweeperRange
+﻿using CaiLib;
+
+namespace DoubleSweeperRange
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Double Sweeper Range";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Double Sweeper Range";
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Harmony;
 using UnityEngine;
+using static CaiLib.Logger.Logger;
 
 namespace DoubleSweeperRange
 {
@@ -9,7 +10,7 @@ namespace DoubleSweeperRange
 		{
 			public static void OnLoad()
 			{
-				CaiLib.Logger.Logger.LogInit();
+				LogInit();
 			}
 		}
 

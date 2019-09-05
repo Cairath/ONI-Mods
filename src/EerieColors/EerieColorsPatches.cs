@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using CaiLib.Config;
 using Harmony;
@@ -49,7 +48,8 @@ namespace EerieColors
 
 			public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
-				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				//todo: move this to prepatch
+				_configManager = new ConfigManager<Config>();
 				_configManager.ReadConfig(() => { MathUtil.Clamp(_configManager.Config.BiomeBackground, 0, 6); });
 
 				var config = _configManager?.Config;

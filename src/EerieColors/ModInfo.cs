@@ -1,8 +1,9 @@
-﻿namespace EerieColors
+﻿using CaiLib;
+
+namespace EerieColors
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Eerie Colors";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Eerie Colors";
 	}
 }
