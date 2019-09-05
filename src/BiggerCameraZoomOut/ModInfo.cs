@@ -1,8 +1,9 @@
-﻿namespace BiggerCameraZoomOut
+﻿using CaiLib;
+
+namespace BiggerCameraZoomOut
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Bigger Camera Zoom Out";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Bigger Camera Zoom Out";
 	}
 }
