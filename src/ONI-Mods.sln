@@ -303,7 +303,7 @@ Global
 		UpdateAssemblyFileVersion = True
 		UpdateAssemblyInfoVersion = False
 		ShouldCreateLogs = True
-		AssemblyVersionSettings = YearStamp.Quarter.DayStamp.IncrementWithResetOnIncrease
+		AssemblyVersionSettings = YearStamp.MonthStamp.DayStamp.IncrementWithResetOnIncrease
 		AssemblyFileVersionSettings = YearStamp.MonthStamp.DayStamp.IncrementWithResetOnIncrease
 		UpdatePackageVersion = False
 		AssemblyInfoVersionType = SettingsVersion

@@ -1,8 +1,9 @@
-﻿namespace WoundedGoToMedBed
+﻿using CaiLib;
+
+namespace WoundedGoToMedBed
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Wounded Go To Med Bed";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Wounded Go To Med Bed";
 	}
 }

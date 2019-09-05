@@ -1,8 +1,9 @@
-﻿namespace SuitDockStores75Kg
+﻿using CaiLib;
+
+namespace SuitDockStores75Kg
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Suit Dock Stores 75kg";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Suit Dock Stores 75kg";
 	}
 }

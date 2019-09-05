@@ -1,8 +1,9 @@
-﻿namespace RefinedMetalsUsableAsRawMetals
+﻿using CaiLib;
+
+namespace RefinedMetalsUsableAsRawMetals
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Refined Metals Usable As Raw Metals";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Refined Metals Usable As Raw Metals";
 	}
 }

@@ -1,4 +1,5 @@
-﻿using STRINGS;
+﻿using System.Linq;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 using BUILDINGS = TUNING.BUILDINGS;
@@ -25,7 +26,7 @@ namespace Wallpaper
 				construction_materials: MATERIALS.ANY_BUILDABLE,
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER0,
 				build_location_rule: BuildLocationRule.Anywhere,
-				decor: new EffectorValues {amount = 5,radius = 1},
+				decor: new EffectorValues { amount = 5, radius = 1 },
 				noise: NOISE_POLLUTION.NONE);
 
 			buildingDef.Floodable = false;

@@ -1,8 +1,9 @@
-﻿namespace SteelLadder
+﻿using CaiLib;
+
+namespace SteelLadder
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Steel Ladder";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Steel Ladder";
 	}
 }

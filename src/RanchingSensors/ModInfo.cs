@@ -1,8 +1,9 @@
-﻿namespace RanchingSensors
+﻿using CaiLib;
+
+namespace RanchingSensors
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Ranching Sensors";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Ranching Sensors";
 	}
 }

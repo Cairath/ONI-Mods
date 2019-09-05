@@ -1,8 +1,9 @@
-﻿namespace PalmeraTree
+﻿using CaiLib;
+
+namespace PalmeraTree
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Palmera Tree";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Palmera Tree";
 	}
 }

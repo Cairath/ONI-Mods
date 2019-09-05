@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TUNING;
+﻿using TUNING;
 using UnityEngine;
 
 namespace SteelLadder

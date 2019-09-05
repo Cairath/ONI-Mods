@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TUNING;
+﻿using TUNING;
 using UnityEngine;
 
 namespace MarbleTile
@@ -26,7 +25,7 @@ namespace MarbleTile
 				construction_materials: MATERIALS.PRECIOUS_ROCKS,
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER2,
 				build_location_rule: BuildLocationRule.Tile,
-				decor: DECOR.BONUS.TIER1,
+				decor: new EffectorValues { amount = 15, radius = 3 },
 				noise: NOISE_POLLUTION.NONE);
 
 			BuildingTemplates.CreateFoundationTileDef(buildingDef);

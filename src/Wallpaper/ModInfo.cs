@@ -1,8 +1,9 @@
-﻿namespace Wallpaper
+﻿using CaiLib;
+
+namespace Wallpaper
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Wallpaper";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Wallpaper";
 	}
 }

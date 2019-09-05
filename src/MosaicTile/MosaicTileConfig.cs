@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TUNING;
+﻿using TUNING;
 using UnityEngine;
 
 namespace MosaicTile
@@ -26,7 +25,7 @@ namespace MosaicTile
 				construction_materials: new[] { SimHashes.Ceramic.ToString() },
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER2,
 				build_location_rule: BuildLocationRule.Tile,
-				decor: DECOR.BONUS.TIER2,
+				decor: new EffectorValues { amount = 15, radius = 3 },
 				noise: NOISE_POLLUTION.NONE);
 
 			BuildingTemplates.CreateFoundationTileDef(buildingDef);

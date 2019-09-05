@@ -1,8 +1,9 @@
-﻿namespace ShowIndustrialMachineryTag
+﻿using CaiLib;
+
+namespace ShowIndustrialMachineryTag
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Show Industrial Machinery Tag";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Show Industrial Machinery Tag";
 	}
 }

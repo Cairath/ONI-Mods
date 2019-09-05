@@ -1,8 +1,9 @@
-﻿namespace WirelessAutomation
+﻿using CaiLib;
+
+namespace WirelessAutomation
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Wireless Automation";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Wireless Automation";
 	}
 }

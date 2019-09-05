@@ -1,5 +1,4 @@
-﻿using System;
-using KSerialization;
+﻿using KSerialization;
 using STRINGS;
 using UnityEngine;
 

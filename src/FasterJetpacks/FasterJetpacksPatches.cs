@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using CaiLib.Config;
+﻿using CaiLib.Config;
 using Harmony;
 using static CaiLib.Logger.Logger;
 
@@ -14,7 +13,7 @@ namespace FasterJetpacks
 			public static void OnLoad()
 			{
 				LogInit();
-				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager = new ConfigManager<Config>();
 				_configManager.ReadConfig();
 			}
 		}
