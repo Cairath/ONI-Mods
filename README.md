@@ -3,7 +3,7 @@
 # Cairath&#39;s Mods for Oxygen Not Included <!-- omit in toc -->
 <div align="center">
 
-master branch last updated to game version **LU-357226**
+master branch last updated to game version **LU-364722**
 
 </div>
 
@@ -61,6 +61,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 |         **QoL**         | Bigger Camera Zoomout               | Allows playing with much bigger camera zoom.                                                                                                                                                                      | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1718226085) |
 | **Build**<br/>**Decor** | Buildable POI Props                 | Allows building many of the decorative props that can be seen in Points of Interest.                                                                                                                              | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1704376369) |
 |        **Decor**        | Colorful Shinebugs                  | A standalone part of Ranching Rebalanced - makes shinebugs' light much more colorful.                                                                                                                             | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1702980293) |
+|  **QoL**<br/>**Mech**   | Configurable Motion Sensor Range    | Allows configuring the range on Duplicant Motion Sensors.                                                                                                                                                         | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1842284802) |
 | **Build**<br/>**Mech**  | Conveyor Rail Filter                | Adds a new building, **Conveyor Rail Filter**, which allows filtering one or multiple items and sends them to a second output line.                                                                               | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1708823360) |
 |         **QoL**         | Debug Does Not Discover Map         | Enabling debug mode (backspace) does not discover the map and prevents creatures on the entire map from spawning.                                                                                                 | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1703400426) |
 | **Build**<br/>**Decor** | Decor Lights                        | Adds 3 decorative lamps:<br/>**Lava Lamp**, **Salt Lamp** and a **Ceiling Lamp**.                                                                                                                                 | [click](https://steamcommunity.com/sharedfiles/filedetails/?id=1732501619) |
@@ -90,7 +91,7 @@ Some mods have more than one category, for example mod with categories `Decor, B
 
 <a name="tools-not-included-https-toolsnotincluded-net"></a>
 # <a href="https://toolsnotincluded.net">Tools Not Included</a>
-I am also an author of [Tools Not Included](https://toolsnotincluded.net) - a website with game tools, currently featuring a seed database with over 22 000 seeds uploaded. Check it out!
+I am also an author of [Tools Not Included](https://toolsnotincluded.net) - a website with game tools, currently featuring a seed database with over 70 000 seeds uploaded. Check it out!
 
 <a name="special-thanks"></a>
 # Special thanks
@@ -101,4 +102,4 @@ To all my Patrons on Patreon who support the development :)
 \
 \
 \
-Last readme update: Monday, 12th August 2019, 8:00 pm
+Last readme update: Thursday, 5th September 2019, 3:38 pm
