@@ -1,8 +1,9 @@
-﻿namespace ColorfulShinebugs
+﻿using CaiLib;
+
+namespace ColorfulShinebugs
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Colorful Shinebugs";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Colorful Shinebugs";
 	}
 }

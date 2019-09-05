@@ -1,8 +1,9 @@
-﻿namespace ConveyorRailUtilities
+﻿using CaiLib;
+
+namespace ConveyorRailUtilities
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Conveyor Rail Filter";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Conveyor Rail Filter";
 	}
 }

@@ -1,8 +1,9 @@
-﻿namespace DebugDoesNotDisableAchievements
+﻿using CaiLib;
+
+namespace DebugDoesNotDisableAchievements
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Debug Does Not Disable Achievements";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Debug Does Not Disable Achievements";
 	}
 }
