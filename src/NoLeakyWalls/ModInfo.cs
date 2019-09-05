@@ -1,8 +1,9 @@
-﻿namespace NoLeakyWalls
+﻿using CaiLib;
+
+namespace NoLeakyWalls
 {
-	public class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "No Leaky Walls";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "No Leaky Walls";
 	}
 }

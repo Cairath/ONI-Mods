@@ -1,8 +1,9 @@
-﻿namespace NotificationTrigger
+﻿using CaiLib;
+
+namespace NotificationTrigger
 {
-	public class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Notification Trigger";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Notification Trigger";
 	}
 }

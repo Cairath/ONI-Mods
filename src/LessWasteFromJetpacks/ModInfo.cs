@@ -1,8 +1,9 @@
-﻿namespace LessWasteFromJetpacks
+﻿using CaiLib;
+
+namespace LessWasteFromJetpacks
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Less Waste From Jetpacks";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Less Waste From Jetpacks";
 	}
 }

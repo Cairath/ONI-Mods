@@ -1,8 +1,9 @@
-﻿namespace GeyserCalculatedAvgOutputTooltip
+﻿using CaiLib;
+
+namespace GeyserCalculatedAvgOutputTooltip
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Geyser Calculated Avg Output Tooltip";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Geyser Calculated Avg Output Tooltip";
 	}
 }

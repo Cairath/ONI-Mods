@@ -1,8 +1,9 @@
-﻿namespace MarbleTile
+﻿using CaiLib;
+
+namespace MarbleTile
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Marble Tile";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Marble Tile";
 	}
 }

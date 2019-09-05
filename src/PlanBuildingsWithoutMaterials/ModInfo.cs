@@ -1,8 +1,9 @@
-﻿namespace PlanBuildingsWithoutMaterials
+﻿using CaiLib;
+
+namespace PlanBuildingsWithoutMaterials
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Draw Buildings Without Materials";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Draw Buildings Without Materials";
 	}
 }

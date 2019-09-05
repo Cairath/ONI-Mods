@@ -1,8 +1,9 @@
-﻿namespace OilWellAnyWater
+﻿using CaiLib;
+
+namespace OilWellAnyWater
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Oil Well Any Water";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Oil Well Any Water";
 	}
 }

@@ -1,8 +1,9 @@
-﻿namespace PaintWalls
+﻿using CaiLib;
+
+namespace PaintWalls
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Paint Walls";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Paint Walls";
 	}
 }

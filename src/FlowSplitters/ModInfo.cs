@@ -1,8 +1,9 @@
-﻿namespace FlowSplitters
+﻿using CaiLib;
+
+namespace FlowSplitters
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "Flow Splitters";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "Flow Splitters";
 	}
 }

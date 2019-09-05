@@ -1,8 +1,9 @@
-﻿namespace NoLongCommutes
+﻿using CaiLib;
+
+namespace NoLongCommutes
 {
-	public static class ModInfo
+	public class ModInfo : IModInfo
 	{
-		public static string Name = "No 'Long Commutes'";
-		public static string Version = System.DateTime.UtcNow.ToString("yyyy.MM.dd");
+		public string Name { get; } = "No 'Long Commutes'";
 	}
 }
