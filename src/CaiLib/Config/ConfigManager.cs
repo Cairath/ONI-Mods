@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using Newtonsoft.Json;
 using static CaiLib.Logger.Logger;
 
@@ -12,8 +13,13 @@ namespace CaiLib.Config
 		private readonly string _executingAssemblyPath;
 		private readonly string _configFileName;
 
-		public ConfigManager(string modName, string executingAssemblyPath, string configFileName = "Config.json")
+		public ConfigManager(string executingAssemblyPath = null, string configFileName = "Config.json")
 		{
+            if (executingAssemblyPath == null)
+            {
+                executingAssemblyPath = Assembly.GetExecutingAssembly().Location;
+            }
+
 			_executingAssemblyPath = executingAssemblyPath;
 			_configFileName = configFileName;
 		}
