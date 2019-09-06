@@ -31,7 +31,9 @@ If you like my mods (or [Tools Not Included](https://toolsnotincluded.net)) and 
 # Instructions
 <a name="instructions-download"></a>
 ## Download
-Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140) - subscribe/unsubscribe freely there.
+Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140) - subscribe/unsubscribe freely there.  
+Since Steam has extreme issues with updating mods and often serves old files, you can download mods directly [here](https://static.toolsnotincluded.net/Mods.zip). Choosen mod folder has to be placed in `...Documents\Klei\Oxygen Not Included\mods\local`
+
 
 <a name="instructions-updates"></a>
 ## Updates
@@ -102,4 +104,4 @@ To all my Patrons on Patreon who support the development :)
 \
 \
 \
-Last readme update: Thursday, 5th September 2019, 3:38 pm
+Last readme update: Friday, 6th September 2019, 5:11 pm

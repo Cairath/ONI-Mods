@@ -26,7 +26,9 @@ If you like my mods (or [Tools Not Included](https://toolsnotincluded.net)) and 
 
 # Instructions
 ## Download
-Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140) - subscribe/unsubscribe freely there.
+Starting with the QoL3 update mods are distributed via [Steam Workshop](https://steamcommunity.com/profiles/76561198076768290/myworkshopfiles/?appid=457140) - subscribe/unsubscribe freely there.  
+Since Steam has extreme issues with updating mods and often serves old files, you can download mods directly [here](https://static.toolsnotincluded.net/Mods.zip). Choosen mod folder has to be placed in `...Documents\Klei\Oxygen Not Included\mods\local`
+
 
 ## Updates
 Please make sure the mods you use are up to date and remove ones that aren't - they are likely to crash the game. 
