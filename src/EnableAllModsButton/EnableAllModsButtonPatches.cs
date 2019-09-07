@@ -1,4 +1,7 @@
-﻿using Harmony;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Harmony;
+using KMod;
 using static CaiLib.Logger.Logger;
 
 namespace EnableAllModsButton
@@ -41,7 +44,8 @@ namespace EnableAllModsButton
 
 				if (!hasDisableAll)
 				{
-					var disableAllButton = Util.KInstantiateUI<KButton>(___workshopButton.gameObject, ___workshopButton.transform.parent.gameObject);
+					var disableAllButton = Util.KInstantiateUI<KButton>(___workshopButton.gameObject,
+						___workshopButton.transform.parent.gameObject);
 					disableAllButton.name = DisableAllButtonName;
 					disableAllButton.transform.GetComponentInChildren<LocText>().text = "DISABLE ALL";
 					disableAllButton.transform.SetAsFirstSibling();
@@ -51,13 +55,38 @@ namespace EnableAllModsButton
 
 				if (!hasEnableAll)
 				{
-					var enableAllButton = Util.KInstantiateUI<KButton>(___workshopButton.gameObject, ___workshopButton.transform.parent.gameObject);
+					var enableAllButton = Util.KInstantiateUI<KButton>(___workshopButton.gameObject,
+						___workshopButton.transform.parent.gameObject);
 					enableAllButton.name = EnableAllButtonName;
 					enableAllButton.transform.GetComponentInChildren<LocText>().text = "ENABLE ALL";
 					enableAllButton.transform.SetAsFirstSibling();
 					enableAllButton.gameObject.SetActive(true);
 					enableAllButton.onClick += (() => ToggleAllMods(__instance, true));
 				}
+			}
+		}
+
+		[HarmonyPatch(typeof(KMod.Manager))]
+		[HarmonyPatch(nameof(KMod.Manager.HandleCrash))]
+		public static class KModManager_HandleCrash_Patch
+		{
+			public static void Prefix(List<Mod> ___mods, out bool __state)
+			{
+				var mod = ___mods.FirstOrDefault(m => m.label.id == "EnableAllModsButton");
+
+				__state = mod != null && mod.enabled;
+			}
+
+			public static void Postfix(KMod.Manager __instance, List<Mod> ___mods, ref bool ___dirty)
+			{
+				var mod = ___mods.FirstOrDefault(m => m.label.id == "EnableAllModsButton");
+				if (mod == null)
+					return;
+
+				mod.enabled = true;
+				___dirty = true;
+
+				__instance.Update(__instance);
 			}
 		}
 
