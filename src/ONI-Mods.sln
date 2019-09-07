@@ -135,6 +135,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationTrigger", "Noti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurableMotionSensorRange", "ConfigurableMotionSensorRange\ConfigurableMotionSensorRange.csproj", "{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnableAllModsButton", "EnableAllModsButton\EnableAllModsButton.csproj", "{3497FEC5-10B6-4BCA-9A5F-0939BC048597}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -297,11 +299,25 @@ Global
 		{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A891E594-F383-4A36-B723-E43117F7F1B4}
+	EndGlobalSection
+	GlobalSection(AutomaticVersions) = postSolution
+		UpdateAssemblyVersion = True
+		UpdateAssemblyFileVersion = True
+		UpdateAssemblyInfoVersion = False
+		AssemblyVersionSettings = YearStamp.MonthStamp.DayStamp.IncrementWithResetOnIncrease
+		AssemblyFileVersionSettings = YearStamp.MonthStamp.DayStamp.IncrementWithResetOnIncrease
+		UpdatePackageVersion = False
+		AssemblyInfoVersionType = SettingsVersion
+		InheritWinAppVersionFrom = None
 	EndGlobalSection
 EndGlobal
