@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Harmony;
 using KMod;
@@ -10,6 +11,11 @@ namespace EnableAllModsButton
 	{
 		private const string DisableAllButtonName = "DisableAllButton";
 		private const string EnableAllButtonName = "EnableAllButton";
+
+		private const string LocalId = "EnableAllModsButton";
+		private const string SteamId = "1855960639";
+
+		private static bool WasActive = false;
 
 		public static class Mod_OnLoad
 		{
@@ -72,14 +78,14 @@ namespace EnableAllModsButton
 		{
 			public static void Prefix(List<Mod> ___mods, out bool __state)
 			{
-				var mod = ___mods.FirstOrDefault(m => m.label.id == "EnableAllModsButton");
+				var mod = ___mods.FirstOrDefault(m => m.label.id == LocalId || m.label.id == SteamId);
 
 				__state = mod != null && mod.enabled;
 			}
 
 			public static void Postfix(KMod.Manager __instance, List<Mod> ___mods, ref bool ___dirty)
 			{
-				var mod = ___mods.FirstOrDefault(m => m.label.id == "EnableAllModsButton");
+				var mod = ___mods.FirstOrDefault(m => m.label.id == LocalId || m.label.id == SteamId);
 				if (mod == null)
 					return;
 
@@ -87,6 +93,46 @@ namespace EnableAllModsButton
 				___dirty = true;
 
 				__instance.Update(__instance);
+			}
+		}
+
+		[HarmonyPatch(typeof(Mod))]
+		[HarmonyPatch(nameof(Mod.Crash))]
+		public static class Mod_Crash_Patch
+		{
+			public static bool Prefix(Mod __instance)
+			{
+				return __instance.label.id != SteamId && __instance.label.id != LocalId;
+			}
+		}
+
+		[HarmonyPatch(typeof(KMod.Manager))]
+		[HarmonyPatch("DevRestartDialog")]
+		public static class Manager_DevRestartDialog_Patch
+		{
+			public static void Prefix(List<Mod> ___mods)
+			{
+				if (___mods.Any(m => m.label.id == SteamId || m.label.id == LocalId))
+					WasActive = true;
+			}
+		}
+
+		[HarmonyPatch(typeof(KMod.Manager))]
+		[HarmonyPatch(nameof(KMod.Manager.Update))]
+		[HarmonyPatch(new Type[] { typeof(object) })]
+		public static class Manager_Update_Patch
+		{
+			public static void Prefix(List<Mod> ___mods)
+			{
+				if (WasActive == false)
+					return;
+
+				var mod = ___mods.FirstOrDefault(m => m.label.id == SteamId || m.label.id == LocalId);
+				if (mod == null)
+					return;
+
+				mod.enabled = true;
+				WasActive = false;
 			}
 		}
 
