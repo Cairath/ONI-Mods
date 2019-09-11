@@ -130,7 +130,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessWasteFromJetpacks", "Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoundedGoToMedBed", "WoundedGoToMedBed\WoundedGoToMedBed.csproj", "{85A32D56-D00E-4703-8066-7BF30EBE1566}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Darkness", "Darkness\Darkness.csproj", "{3882537B-867B-4C09-9B02-832F005E20BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOut", "Darkness\LightsOut.csproj", "{3882537B-867B-4C09-9B02-832F005E20BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDisableAchievements", "DebugDoesNotDisableAchievements\DebugDoesNotDisableAchievements.csproj", "{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}"
 EndProject
