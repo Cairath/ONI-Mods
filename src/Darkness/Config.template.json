@@ -1,0 +1,23 @@
+// THIS IS A TEMPLATE FILE. IT WILL HAVE NO EFFECT ON THE GAME AND WILL BE OVERRIDEN ON EVERY UPDATE.
+// TO USE CUSTOM CONFIG, COPY THIS FILE, NAME IT Config.json AND EDIT VALUES TO YOUR LIKING
+{
+    //Light options
+
+    //Amount of Lux at which the world cell will be considered as fully lit
+    "LuxThreshold": 1800,
+
+    //The lowest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
+    "LowestFog": 0,
+
+    //The lowest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
+    "HighestFog": 0,
+
+    //Whether the duplicants should emit light. Useful for pitch-black scenarios.
+    "DupeLight": false,
+
+    //Lux of the dupe-light
+    "DupeLightLux": 200,
+
+    //How much lux is needed for the Lit Workspace buff. Game default value: 1. Warning: light emitted by dupes counts.
+    "LitWorkspaceLux":  1000 
+}

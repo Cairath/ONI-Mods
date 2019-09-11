@@ -48,9 +48,11 @@ namespace EerieColors
 
 			public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
-				//todo: move this to prepatch
-				_configManager = new ConfigManager<Config>();
-				_configManager.ReadConfig(() => { MathUtil.Clamp(_configManager.Config.BiomeBackground, 0, 6); });
+				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager.ReadConfig(() =>
+				{
+					_configManager.Config.BiomeBackground = MathUtil.Clamp(0, 6, _configManager.Config.BiomeBackground);
+				});
 
 				var config = _configManager?.Config;
 
