@@ -6,13 +6,10 @@ namespace EerieColors
 	public class Config
 	{
 		[JsonProperty]
-		public bool CustomBiomeTintsEnabled { get; set; }
+		public bool CustomBiomeTints { get; set; }
 
 		[JsonProperty]
 		public Color32 TintColor { get; set; } = new Color32(190, 80, 200, 0);
-
-		[JsonProperty]
-		public bool Darken { get; set; } = true;
 
 		[JsonProperty]
 		public bool UnifiedBiomeBackgrounds { get; set; } = true;

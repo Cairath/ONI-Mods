@@ -125,7 +125,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessWasteFromJetpacks", "Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoundedGoToMedBed", "WoundedGoToMedBed\WoundedGoToMedBed.csproj", "{85A32D56-D00E-4703-8066-7BF30EBE1566}"
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDisableAchievements", "DebugDoesNotDisableAchievements\DebugDoesNotDisableAchievements.csproj", "{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementProgress", "AchievementProgress\AchievementProgress.csproj", "{A28E0A6E-BA94-4E5C-AD40-CC18B520F974}"
@@ -135,11 +134,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurableMotionSensorRange", "ConfigurableMotionSensorRange\ConfigurableMotionSensorRange.csproj", "{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnableAllModsButton", "EnableAllModsButton\EnableAllModsButton.csproj", "{3497FEC5-10B6-4BCA-9A5F-0939BC048597}"
-=======
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOut", "Darkness\LightsOut.csproj", "{3882537B-867B-4C09-9B02-832F005E20BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDisableAchievements", "DebugDoesNotDisableAchievements\DebugDoesNotDisableAchievements.csproj", "{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}"
->>>>>>> darkness
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOut", "LightsOut\LightsOut.csproj", "{3882537B-867B-4C09-9B02-832F005E20BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -283,18 +279,10 @@ Global
 		{85A32D56-D00E-4703-8066-7BF30EBE1566}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85A32D56-D00E-4703-8066-7BF30EBE1566}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85A32D56-D00E-4703-8066-7BF30EBE1566}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-=======
-		{3882537B-867B-4C09-9B02-832F005E20BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3882537B-867B-4C09-9B02-832F005E20BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3882537B-867B-4C09-9B02-832F005E20BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3882537B-867B-4C09-9B02-832F005E20BD}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> darkness
 		{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{A28E0A6E-BA94-4E5C-AD40-CC18B520F974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A28E0A6E-BA94-4E5C-AD40-CC18B520F974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A28E0A6E-BA94-4E5C-AD40-CC18B520F974}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -311,8 +299,10 @@ Global
 		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3497FEC5-10B6-4BCA-9A5F-0939BC048597}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
->>>>>>> darkness
+		{3882537B-867B-4C09-9B02-832F005E20BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3882537B-867B-4C09-9B02-832F005E20BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3882537B-867B-4C09-9B02-832F005E20BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3882537B-867B-4C09-9B02-832F005E20BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

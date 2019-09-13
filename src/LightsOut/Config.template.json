@@ -7,10 +7,10 @@
     "LuxThreshold": 1800,
 
     //The lowest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
-    "LowestFog": 0,
+    "LowestFog": 30,
 
-    //The lowest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
-    "HighestFog": 0,
+    //The highest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
+    "HighestFog": 255,
 
     //Whether the duplicants should emit light. Useful for pitch-black scenarios.
     "DupeLight": false,
@@ -18,6 +18,6 @@
     //Lux of the dupe-light
     "DupeLightLux": 200,
 
-    //How much lux is needed for the Lit Workspace buff. Game default value: 1. Warning: light emitted by dupes counts.
-    "LitWorkspaceLux":  1000 
+    //Above how much lux is needed for the Lit Workspace buff. Game default value: 0. Warning: light emitted by dupes counts.
+    "LitWorkspaceLux":  999
 }

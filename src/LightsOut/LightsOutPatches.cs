@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using CaiLib.Config;
 using Harmony;
@@ -19,7 +18,7 @@ namespace LightsOut
 		{
 			public static void PrePatch(HarmonyInstance instance)
 			{
-				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
+				_configManager = new ConfigManager<Config>();
 				_configManager.ReadConfig(() =>
 				{
 					_configManager.Config.LowestFog = MathUtil.Clamp(0, 255, _configManager.Config.LowestFog);
@@ -30,7 +29,7 @@ namespace LightsOut
 
 			public static void OnLoad()
 			{
-				LogInit(ModInfo.Name, ModInfo.Version);
+				LogInit();
 			}
 		}
 
@@ -52,7 +51,6 @@ namespace LightsOut
 		[HarmonyPatch(nameof(Workable.GetEfficiencyMultiplier))]
 		public static class Workable_GetEfficiencyMultiplier_Patch
 		{
-
 			public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
 				var codes = new List<CodeInstruction>(instructions);

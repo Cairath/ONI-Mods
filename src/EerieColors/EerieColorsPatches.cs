@@ -13,6 +13,15 @@ namespace EerieColors
 
 		public static class Mod_OnLoad
 		{
+			public static void PrePatch(HarmonyInstance instance)
+			{
+				_configManager = new ConfigManager<Config>();
+				_configManager.ReadConfig(() =>
+				{
+					_configManager.Config.BiomeBackground = MathUtil.Clamp(0, 6, _configManager.Config.BiomeBackground);
+				});
+			}
+
 			public static void OnLoad()
 			{
 				LogInit();
@@ -27,7 +36,7 @@ namespace EerieColors
 			{
 				var config = _configManager.Config;
 
-				if (config.CustomBiomeTintsEnabled)
+				if (config.CustomBiomeTints)
 				{
 					__instance.zoneColours = new[]
 					{
@@ -48,13 +57,7 @@ namespace EerieColors
 
 			public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
-				_configManager = new ConfigManager<Config>(ModInfo.Name, Assembly.GetExecutingAssembly().Location);
-				_configManager.ReadConfig(() =>
-				{
-					_configManager.Config.BiomeBackground = MathUtil.Clamp(0, 6, _configManager.Config.BiomeBackground);
-				});
-
-				var config = _configManager?.Config;
+				var config = _configManager.Config;
 
 				var codes = new List<CodeInstruction>(instructions);
 				if (config.UnifiedBiomeBackgrounds)
