@@ -21,5 +21,8 @@ namespace LightsOut
 
 		[JsonProperty]
 		public int LitWorkspaceLux { get; set; } = 500;
+
+		[JsonProperty]
+		public int DisturbSleepLux { get; set; } = 500;
 	}
 }

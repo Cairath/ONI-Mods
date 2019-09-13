@@ -18,6 +18,9 @@
     //Lux of the dupe-light
     "DupeLightLux": 200,
 
-    //Above how much lux is needed for the Lit Workspace buff. Game default value: 0. Warning: light emitted by dupes counts.
-    "LitWorkspaceLux":  999
+    //How much lux (+1) is needed for the Lit Workspace buff. Game default value: 0. Warning: light emitted by dupes counts.
+    "LitWorkspaceLux": 999,
+
+    //Maximum lux is before dupe's sleep is interrupted. Game default value: 0. Warning: light emitted by dupes counts.
+    "DisturbSleepLux": 500
 }

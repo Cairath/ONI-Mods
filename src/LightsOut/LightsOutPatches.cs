@@ -33,17 +33,62 @@ namespace LightsOut
 			}
 		}
 
-		[HarmonyPatch(typeof(MinionConfig))]
+		[HarmonyPatch(typeof(MinionIdentity))]
+		[HarmonyPatch("Sim1000ms")]
+		public static class MinionConfig_Sim1000ms_Patch
+		{
+			public static void Postfix(MinionIdentity __instance)
+			{
+				var light = __instance.FindOrAddComponent<Light2D>();
+
+				light.enabled = __instance.GetComponent<SuitEquipper>().IsWearingAirtightSuit();
+			}
+		}
+	
+
+		[HarmonyPatch(typeof(MinionIdentity))]
 		[HarmonyPatch("OnSpawn")]
 		public static class MinionConfig_Patch
 		{
-			public static void Postfix(GameObject go)
+			public static void Postfix(MinionIdentity __instance)
 			{
-				if (!_configManager.Config.DupeLight) return;
+				var light = __instance.FindOrAddComponent<Light2D>();
+				light.Color = Color.yellow;
+				light.Offset = new Vector2(0f, 1f);
+				light.Range = 10;
+				light.Lux = 3000;
+				light.shape = LightShape.Circle;
 
-				var light = go.AddOrGet<Light2D>();
-				light.Range = 2;
-				light.Lux = _configManager.Config.DupeLightLux;
+				light.enabled = true;
+
+
+
+
+				//if (!_configManager.Config.DupeLight) return;
+
+				//var light = go.AddOrGet<Light2D>();
+				//light.Range = 2;
+				//light.Lux = _configManager.Config.DupeLightLux;
+			}
+		}
+
+		//[HarmonyPatch(typeof(AtmoSuitConfig))]
+		//[HarmonyPatch("DoPostConfigure")]
+		//public static class AtmoSuitConfig_DoPostConfigure_Patch
+		//{
+		//	public static void Postfix(GameObject go)
+		//	{
+
+		//	}
+		//}
+
+		[HarmonyPatch(typeof(SleepChore))]
+		[HarmonyPatch(nameof(SleepChore.IsLightLevelOk))]
+		public static class SleepChore_IsLightLevelOk_Patch
+		{
+			public static void Postfix(int cell, ref bool __result)
+			{
+				__result = Grid.LightIntensity[cell] <= _configManager.Config.DisturbSleepLux;
 			}
 		}
 
