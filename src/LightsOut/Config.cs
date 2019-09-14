@@ -24,5 +24,15 @@ namespace LightsOut
 
 		[JsonProperty]
 		public int DisturbSleepLux { get; set; } = 500;
+
+		[JsonProperty]
+		public DebuffTier DebuffTier { get; set; } = DebuffTier.Harsh;
+	}
+
+	public enum DebuffTier
+	{
+		None,
+		Light,
+		Harsh
 	}
 }

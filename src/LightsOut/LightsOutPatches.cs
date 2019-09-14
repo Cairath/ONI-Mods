@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection.Emit;
 using CaiLib.Config;
 using Harmony;
+using Klei.AI;
+using Newtonsoft.Json;
 using UnityEngine;
 using static CaiLib.Logger.Logger;
 
@@ -11,19 +13,19 @@ namespace LightsOut
 {
 	public class LightsOutPatches
 	{
-		private static ConfigManager<Config> _configManager;
+		public static ConfigManager<Config> ConfigManager;
 		private static bool _lightsOut = true;
 
 		public static class Mod_OnLoad
 		{
 			public static void PrePatch(HarmonyInstance instance)
 			{
-				_configManager = new ConfigManager<Config>();
-				_configManager.ReadConfig(() =>
+				ConfigManager = new ConfigManager<Config>();
+				ConfigManager.ReadConfig(() =>
 				{
-					_configManager.Config.LowestFog = MathUtil.Clamp(0, 255, _configManager.Config.LowestFog);
-					_configManager.Config.HighestFog = MathUtil.Clamp(0, 255, _configManager.Config.HighestFog);
-					_configManager.Config.LuxThreshold = MathUtil.Clamp(0, int.MaxValue, _configManager.Config.LuxThreshold);
+					ConfigManager.Config.LowestFog = MathUtil.Clamp(0, 255, ConfigManager.Config.LowestFog);
+					ConfigManager.Config.HighestFog = MathUtil.Clamp(0, 255, ConfigManager.Config.HighestFog);
+					ConfigManager.Config.LuxThreshold = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LuxThreshold);
 				});
 			}
 
@@ -42,9 +44,20 @@ namespace LightsOut
 				var light = __instance.FindOrAddComponent<Light2D>();
 
 				light.enabled = __instance.GetComponent<SuitEquipper>().IsWearingAirtightSuit();
+
+				var effects = __instance.FindOrAddComponent<Effects>();
+				effects.Add("PitchBlack", true);
 			}
 		}
-	
+
+		//[HarmonyPatch(typeof(MinionConfig))]
+		//[HarmonyPatch("OnSpawn")]
+		//public static class MinionConfig_Patch
+		//{
+		//	public static void Postfix(MinionIdentity __instance)
+		//	{
+		//	}
+		//}
 
 		[HarmonyPatch(typeof(MinionIdentity))]
 		[HarmonyPatch("OnSpawn")]
@@ -55,12 +68,9 @@ namespace LightsOut
 				var light = __instance.FindOrAddComponent<Light2D>();
 				light.Color = Color.yellow;
 				light.Offset = new Vector2(0f, 1f);
-				light.Range = 10;
-				light.Lux = 3000;
+				light.Range = 6;
+				light.Lux = 2000;
 				light.shape = LightShape.Circle;
-
-				light.enabled = true;
-
 
 
 
@@ -88,7 +98,7 @@ namespace LightsOut
 		{
 			public static void Postfix(int cell, ref bool __result)
 			{
-				__result = Grid.LightIntensity[cell] <= _configManager.Config.DisturbSleepLux;
+				__result = Grid.LightIntensity[cell] <= ConfigManager.Config.DisturbSleepLux;
 			}
 		}
 
@@ -104,7 +114,7 @@ namespace LightsOut
 					if (codes[i].opcode == OpCodes.Ldc_I4_0 && codes[i+1].opcode == OpCodes.Ble)
 					{
 						codes[i].opcode = OpCodes.Ldc_I4;
-						codes[i].operand = _configManager.Config.LitWorkspaceLux;
+						codes[i].operand = ConfigManager.Config.LitWorkspaceLux;
 						break;
 					}
 				}
@@ -130,6 +140,18 @@ namespace LightsOut
 			}
 		}
 
+		[HarmonyPatch(typeof(ModifierSet))]
+		[HarmonyPatch(nameof(ModifierSet.Initialize))]
+		public static class ModifierSet_Initialize_Patch
+		{
+			public static void Postfix(ModifierSet __instance)
+			{
+				__instance.effects.Add();
+
+				CaiLib.Logger.Logger.Log(JsonConvert.SerializeObject(__instance.effects));
+			}
+		}
+
 		[HarmonyPatch(typeof(PropertyTextures))]
 		[HarmonyPatch("UpdateFogOfWar")]
 		public static class EntityConfigManager_LoadGeneratedEntities_Patch
@@ -138,7 +160,7 @@ namespace LightsOut
 			{
 				if (!_lightsOut) return true;
 
-				var config = _configManager.Config;
+				var config = ConfigManager.Config;
 				byte[] visible = Grid.Visible;
 				var lightIntensityIndexer = Grid.LightIntensity;
 
