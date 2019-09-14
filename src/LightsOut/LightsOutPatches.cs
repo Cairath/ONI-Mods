@@ -4,8 +4,6 @@ using System.Linq;
 using System.Reflection.Emit;
 using CaiLib.Config;
 using Harmony;
-using Klei.AI;
-using Newtonsoft.Json;
 using UnityEngine;
 using static CaiLib.Logger.Logger;
 
@@ -45,8 +43,8 @@ namespace LightsOut
 
 				light.enabled = __instance.GetComponent<SuitEquipper>().IsWearingAirtightSuit();
 
-				var effects = __instance.FindOrAddComponent<Effects>();
-				effects.Add("PitchBlack", true);
+				//var effects = __instance.FindOrAddComponent<Effects>();
+				//effects.Add("PitchBlack", true);
 			}
 		}
 
@@ -58,6 +56,16 @@ namespace LightsOut
 		//	{
 		//	}
 		//}
+
+		[HarmonyPatch(typeof(RationalAi))]
+		[HarmonyPatch("InitializeStates")]
+		public static class RationalAi_InitializeStates_Patch
+		{
+			public static void Postfix(RationalAi __instance)
+			{
+				__instance.alive.ToggleStateMachine(smi => new LightsOutMonitor.Instance(smi.master));
+			}
+		}
 
 		[HarmonyPatch(typeof(MinionIdentity))]
 		[HarmonyPatch("OnSpawn")]
@@ -71,8 +79,6 @@ namespace LightsOut
 				light.Range = 6;
 				light.Lux = 2000;
 				light.shape = LightShape.Circle;
-
-
 
 				//if (!_configManager.Config.DupeLight) return;
 
@@ -146,9 +152,14 @@ namespace LightsOut
 		{
 			public static void Postfix(ModifierSet __instance)
 			{
-				__instance.effects.Add();
+				var effects = Effects.GenerateEffectsList(ConfigManager.Config.DebuffTier);
 
-				CaiLib.Logger.Logger.Log(JsonConvert.SerializeObject(__instance.effects));
+				foreach (var e in effects)
+				{
+					__instance.effects.Add(e);
+				}
+
+				//CaiLib.Logger.Logger.Log(JsonConvert.SerializeObject(__instance.effects));
 			}
 		}
 

@@ -22,5 +22,7 @@
     "LitWorkspaceLux": 999,
 
     //Maximum lux is before dupe's sleep is interrupted. Game default value: 0. Warning: light emitted by dupes counts.
-    "DisturbSleepLux": 500
+    "DisturbSleepLux": 500,
+
+    "DebuffTier": 2
 }

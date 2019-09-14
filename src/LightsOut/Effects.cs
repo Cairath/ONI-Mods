@@ -8,6 +8,7 @@ namespace LightsOut
 		public const string PitchBlackId = "PitchBlack";
 		public const string DarkId = "Dark";
 
+		#region attributes
 		//StressDelta
 		//StaminaDelta
 		//QualityOfLife -- new hope --morale?
@@ -20,8 +21,14 @@ namespace LightsOut
 		//DoctoredLevel
 		//"GermResistance"
 
-		//Athletics
+		//MaturityDelta (plants)
+		//"MachinerySpeed" (engies tune up)
+		//WildnessDelta (ranching)
+		//IncubationDelta
+
 		//Decor
+
+		//Athletics
 		//Learning
 		//Machinery
 		//Cooking
@@ -31,24 +38,10 @@ namespace LightsOut
 		//Art
 		//Botanist
 		//Ranching
+		//Digging
+		#endregion
 
-		//MaturityDelta (plants)
-		//"MachinerySpeed" (engies tune up)
-		//WildnessDelta (ranching)
-		//IncubationDelta
-		//public Attribute Construction;
-		//public Attribute Digging;
-		//public Attribute Machinery;
-		//public Attribute Athletics;
-		//public Attribute Learning;
-		//public Attribute Cooking;
-		//public Attribute Caring;
-		//public Attribute Strength;
-		//public Attribute Art;
-		//public Attribute Botanist;
-		//public Attribute Ranching;
-
-		private static List<string> AttributeIds = new List<string>
+		private static readonly List<string> AttributeIds = new List<string>
 		{
 			"Construction",
 			"Digging",
@@ -58,21 +51,22 @@ namespace LightsOut
 			"Strength",
 			"Art",
 			"Botanist",
-			"Ranching"
+			"Ranching",
+			"Caring"
 		};
 
 		private static class DebuffValues
 		{
 			public static class PitchBlack
 			{
-				public static Dictionary<DebuffTier, int> AthleticsDebuff = new Dictionary<DebuffTier, int>
+				public static readonly Dictionary<DebuffTier, int> AthleticsDebuff = new Dictionary<DebuffTier, int>
 				{
 					{DebuffTier.None, 0},
 					{DebuffTier.Light, -5},
 					{DebuffTier.Harsh, -10}
 				};
 
-				public static Dictionary<DebuffTier, int> OtherStatsDebuff = new Dictionary<DebuffTier, int>
+				public static readonly Dictionary<DebuffTier, int> OtherStatsDebuff = new Dictionary<DebuffTier, int>
 				{
 					{DebuffTier.None, 0},
 					{DebuffTier.Light, -3},
@@ -98,48 +92,44 @@ namespace LightsOut
 			}
 		}
 
-		public List<Effect> GenerateEffectsList()
-		{
+		public static List<Effect> GenerateEffectsList(DebuffTier tier)
+		{	
 			return new List<Effect>
 			{
-				CreatePitchBlack(),
-				CreateDark()
+				CreatePitchBlack(tier),
+				CreateDark(tier)
 			};
 		}
 
-		private Effect CreatePitchBlack()
+		private static Effect CreatePitchBlack(DebuffTier tier)
 		{
-			var config = LightsOutPatches.ConfigManager.Config;
-
 			var pitchBlack = new Effect(PitchBlackId, "Pitch Black", "This Duplicant can't see anything!", 0f, true, true, true)
 			{
 				SelfModifiers = new List<AttributeModifier>()
 			};
 
-			pitchBlack.SelfModifiers.Add(new AttributeModifier("Athletics", DebuffValues.PitchBlack.AthleticsDebuff[config.DebuffTier]));
+			pitchBlack.SelfModifiers.Add(new AttributeModifier("Athletics", DebuffValues.PitchBlack.AthleticsDebuff[tier]));
 
 			foreach (var attributeId in AttributeIds)
 			{
-				pitchBlack.SelfModifiers.Add(new AttributeModifier(attributeId, DebuffValues.PitchBlack.OtherStatsDebuff[config.DebuffTier]));
+				pitchBlack.SelfModifiers.Add(new AttributeModifier(attributeId, DebuffValues.PitchBlack.OtherStatsDebuff[tier]));
 			}
 
 			return pitchBlack;
 		}
 
-		private Effect CreateDark()
+		private static Effect CreateDark(DebuffTier tier)
 		{
-			var config = LightsOutPatches.ConfigManager.Config;
-
-			var dark = new Effect(DarkId, "Dark", "This Duplicant is in a hard place and can't see well!", 0f, true, true, true)
+			var dark = new Effect(DarkId, "Dark", "This Duplicant is in a dark place and can't see well!", 0f, true, true, true)
 			{
 				SelfModifiers = new List<AttributeModifier>()
 			};
 
-			dark.SelfModifiers.Add(new AttributeModifier("Athletics", DebuffValues.Dark.AthleticsDebuff[config.DebuffTier]));
+			dark.SelfModifiers.Add(new AttributeModifier("Athletics", DebuffValues.Dark.AthleticsDebuff[tier]));
 
 			foreach (var attributeId in AttributeIds)
 			{
-				dark.SelfModifiers.Add(new AttributeModifier(attributeId, DebuffValues.Dark.OtherStatsDebuff[config.DebuffTier]));
+				dark.SelfModifiers.Add(new AttributeModifier(attributeId, DebuffValues.Dark.OtherStatsDebuff[tier]));
 			}
 
 			return dark;
