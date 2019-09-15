@@ -14,19 +14,16 @@ namespace LightsOut
 		public int HighestFog { get; set; } = 255;
 
 		[JsonProperty]
-		public bool DupeLight { get; set; } = true;
-
-		[JsonProperty]
-		public int DupeLightLux { get; set; } = 200;
-
-		[JsonProperty]
 		public int LitWorkspaceLux { get; set; } = 500;
+
+		[JsonProperty]
+		public int LitDecorLux { get; set; } = 1000;
 
 		[JsonProperty]
 		public int DisturbSleepLux { get; set; } = 500;
 
 		[JsonProperty]
-		public DebuffTier DebuffTier { get; set; } = DebuffTier.Harsh;
+		public DebuffTier DebuffTier { get; set; } = DebuffTier.Light;
 	}
 
 	public enum DebuffTier

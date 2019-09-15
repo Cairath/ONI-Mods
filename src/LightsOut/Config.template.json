@@ -12,11 +12,8 @@
     //The highest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
     "HighestFog": 255,
 
-    //Whether the duplicants should emit light. Useful for pitch-black scenarios.
-    "DupeLight": false,
-
-    //Lux of the dupe-light
-    "DupeLightLux": 200,
+    //How much lux is needed for the decor from light. Game default: 1
+    "LitDecorLux": 1000,
 
     //How much lux (+1) is needed for the Lit Workspace buff. Game default value: 0. Warning: light emitted by dupes counts.
     "LitWorkspaceLux": 999,
@@ -24,5 +21,11 @@
     //Maximum lux is before dupe's sleep is interrupted. Game default value: 0. Warning: light emitted by dupes counts.
     "DisturbSleepLux": 500,
 
-    "DebuffTier": 2
+    //The level of "consequences" for unlit areas.
+    //Possible values: 0, 1, 2
+
+    //NONE: 0 - the debuffs will apply no negative stats
+    //LIGHT: 1 - the "Dark" debuff applies -3 to Athletics and -2 to all other attributes. "Pitch Black" applies -5 to Athletics and -3 to all other attributes.
+    //HARSH: 2 - the "Dark" debuff applies -5 to Athletics and -3 to all other attributes. "Pitch Black" applies -10 to Athletics and -5 to all other attributes.
+    "DebuffTier": 1
 }

@@ -24,6 +24,10 @@ namespace LightsOut
 					ConfigManager.Config.LowestFog = MathUtil.Clamp(0, 255, ConfigManager.Config.LowestFog);
 					ConfigManager.Config.HighestFog = MathUtil.Clamp(0, 255, ConfigManager.Config.HighestFog);
 					ConfigManager.Config.LuxThreshold = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LuxThreshold);
+					ConfigManager.Config.DisturbSleepLux = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.DisturbSleepLux);
+					ConfigManager.Config.LitWorkspaceLux = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LitWorkspaceLux);
+					ConfigManager.Config.LitDecorLux = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LitDecorLux);
+					ConfigManager.Config.DebuffTier = (DebuffTier)MathUtil.Clamp(0, 2, (int)ConfigManager.Config.DebuffTier);
 				});
 			}
 
@@ -39,23 +43,10 @@ namespace LightsOut
 		{
 			public static void Postfix(MinionIdentity __instance)
 			{
-				var light = __instance.FindOrAddComponent<Light2D>();
-
-				light.enabled = __instance.GetComponent<SuitEquipper>().IsWearingAirtightSuit();
-
-				//var effects = __instance.FindOrAddComponent<Effects>();
-				//effects.Add("PitchBlack", true);
+				var headlight = __instance.FindOrAddComponent<Light2D>();
+				headlight.enabled = __instance.GetComponent<SuitEquipper>().IsWearingAirtightSuit();
 			}
 		}
-
-		//[HarmonyPatch(typeof(MinionConfig))]
-		//[HarmonyPatch("OnSpawn")]
-		//public static class MinionConfig_Patch
-		//{
-		//	public static void Postfix(MinionIdentity __instance)
-		//	{
-		//	}
-		//}
 
 		[HarmonyPatch(typeof(RationalAi))]
 		[HarmonyPatch("InitializeStates")]
@@ -67,36 +58,32 @@ namespace LightsOut
 			}
 		}
 
+		[HarmonyPatch(typeof(DecorProvider))]
+		[HarmonyPatch(nameof(DecorProvider.GetLightDecorBonus))]
+		public static class DecorProvider_GetLightDecorBonus_Patch
+		{
+			public static void Postfix(int cell, ref int __result)
+			{
+				if (Grid.LightIntensity[cell] >= ConfigManager.Config.LitDecorLux)
+					__result = TUNING.DECOR.LIT_BONUS;
+				__result = 0;
+			}
+		}
+
 		[HarmonyPatch(typeof(MinionIdentity))]
 		[HarmonyPatch("OnSpawn")]
-		public static class MinionConfig_Patch
+		public static class MinionIdentity_OnSpawn_Patch
 		{
 			public static void Postfix(MinionIdentity __instance)
 			{
 				var light = __instance.FindOrAddComponent<Light2D>();
 				light.Color = Color.yellow;
 				light.Offset = new Vector2(0f, 1f);
-				light.Range = 6;
+				light.Range = 10;
 				light.Lux = 2000;
 				light.shape = LightShape.Circle;
-
-				//if (!_configManager.Config.DupeLight) return;
-
-				//var light = go.AddOrGet<Light2D>();
-				//light.Range = 2;
-				//light.Lux = _configManager.Config.DupeLightLux;
 			}
 		}
-
-		//[HarmonyPatch(typeof(AtmoSuitConfig))]
-		//[HarmonyPatch("DoPostConfigure")]
-		//public static class AtmoSuitConfig_DoPostConfigure_Patch
-		//{
-		//	public static void Postfix(GameObject go)
-		//	{
-
-		//	}
-		//}
 
 		[HarmonyPatch(typeof(SleepChore))]
 		[HarmonyPatch(nameof(SleepChore.IsLightLevelOk))]
@@ -117,7 +104,7 @@ namespace LightsOut
 				var codes = new List<CodeInstruction>(instructions);
 				for (var i = 0; i < codes.Count - 1; i++)
 				{
-					if (codes[i].opcode == OpCodes.Ldc_I4_0 && codes[i+1].opcode == OpCodes.Ble)
+					if (codes[i].opcode == OpCodes.Ldc_I4_0 && codes[i + 1].opcode == OpCodes.Ble)
 					{
 						codes[i].opcode = OpCodes.Ldc_I4;
 						codes[i].operand = ConfigManager.Config.LitWorkspaceLux;
@@ -139,8 +126,9 @@ namespace LightsOut
 				var buttons = instance.Field("buttons").GetValue<KButtonMenu.ButtonInfo[]>();
 				var buttonsList = buttons.ToList();
 
-				buttonsList.Insert(buttonsList.Count - 2, new KButtonMenu.ButtonInfo("Toggle Lights Out", Action.NumActions,
-					() => { _lightsOut = !_lightsOut; }));
+				buttonsList.Insert(buttonsList.Count - 2, new KButtonMenu.ButtonInfo("Toggle Lights Out",
+					Action.NumActions,
+					() => _lightsOut = !_lightsOut));
 
 				instance.Field("buttons").SetValue(buttonsList.ToArray());
 			}
@@ -158,8 +146,6 @@ namespace LightsOut
 				{
 					__instance.effects.Add(e);
 				}
-
-				//CaiLib.Logger.Logger.Log(JsonConvert.SerializeObject(__instance.effects));
 			}
 		}
 
@@ -175,11 +161,18 @@ namespace LightsOut
 				byte[] visible = Grid.Visible;
 				var lightIntensityIndexer = Grid.LightIntensity;
 
+				var lowestFogVal = config.LowestFog;
+				var gameCycle = GameClock.Instance.GetCycle();
+				if (lowestFogVal == 0 && gameCycle < 3)
+				{
+					lowestFogVal = Math.Max(0, (3 - gameCycle) * 10);
+				}
+
 				for (var y = y0; y <= y1; ++y)
 				{
 					for (var x = x0; x <= x1; ++x)
 					{
-						int cell = Grid.XYToCell(x, y);
+						var cell = Grid.XYToCell(x, y);
 
 						if (visible[cell] == 0)
 						{
@@ -188,8 +181,24 @@ namespace LightsOut
 						}
 
 						var lux = lightIntensityIndexer[cell];
+
+						if (lux == 0)
+						{
+							var light = (Grid.LightIntensity[Grid.CellAbove(cell)]
+										 + Grid.LightIntensity[Grid.CellUpRight(cell)]
+										 + Grid.LightIntensity[Grid.CellRight(cell)]
+										 + Grid.LightIntensity[Grid.CellDownRight(cell)]
+										 + Grid.LightIntensity[Grid.CellBelow(cell)]
+										 + Grid.LightIntensity[Grid.CellDownLeft(cell)]
+										 + Grid.LightIntensity[Grid.CellLeft(cell)]
+										 + Grid.LightIntensity[Grid.CellUpLeft(cell)])
+										/ 8;
+
+							lux = light;
+						}
+
 						var luxMapped = Math.Min(lux, config.LuxThreshold);
-						var output = Remap(luxMapped, 0, config.LuxThreshold, config.LowestFog, config.HighestFog);
+						var output = Remap(luxMapped, 0, config.LuxThreshold, lowestFogVal, config.HighestFog);
 
 						region.SetBytes(x, y, (byte)output);
 					}
@@ -205,3 +214,4 @@ namespace LightsOut
 		}
 	}
 }
+
