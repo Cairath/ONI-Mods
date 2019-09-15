@@ -37,6 +37,40 @@ namespace LightsOut
 			}
 		}
 
+		[HarmonyPatch(typeof(PauseScreen))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class PauseScreen_OnPrefabInit_Patch
+		{
+			public static void Postfix(PauseScreen __instance)
+			{
+				var instance = Traverse.Create(__instance);
+				var buttons = instance.Field("buttons").GetValue<KButtonMenu.ButtonInfo[]>();
+				var buttonsList = buttons.ToList();
+
+				buttonsList.Insert(buttonsList.Count - 2, new KButtonMenu.ButtonInfo("Toggle Lights Out",
+					Action.NumActions,
+					() => _lightsOut = !_lightsOut));
+
+				instance.Field("buttons").SetValue(buttonsList.ToArray());
+			}
+		}
+
+		[HarmonyPatch(typeof(MinionConfig))]
+		[HarmonyPatch("CreatePrefab")]
+		public static class MinionIdentity_OnSpawn_Patch
+		{
+			public static void Postfix(GameObject __result)
+			{
+				var light = __result.AddOrGet<Light2D>();
+				light.Color = Color.yellow;
+				light.Offset = new Vector2(0f, 1f);
+				light.Range = 10;
+				light.Lux = 2000;
+				light.shape = LightShape.Circle;
+				light.enabled = false;
+			}
+		}
+
 		[HarmonyPatch(typeof(MinionIdentity))]
 		[HarmonyPatch("Sim1000ms")]
 		public static class MinionConfig_Sim1000ms_Patch
@@ -67,21 +101,6 @@ namespace LightsOut
 				if (Grid.LightIntensity[cell] >= ConfigManager.Config.LitDecorLux)
 					__result = TUNING.DECOR.LIT_BONUS;
 				__result = 0;
-			}
-		}
-
-		[HarmonyPatch(typeof(MinionIdentity))]
-		[HarmonyPatch("OnSpawn")]
-		public static class MinionIdentity_OnSpawn_Patch
-		{
-			public static void Postfix(MinionIdentity __instance)
-			{
-				var light = __instance.FindOrAddComponent<Light2D>();
-				light.Color = Color.yellow;
-				light.Offset = new Vector2(0f, 1f);
-				light.Range = 10;
-				light.Lux = 2000;
-				light.shape = LightShape.Circle;
 			}
 		}
 
@@ -116,23 +135,7 @@ namespace LightsOut
 			}
 		}
 
-		[HarmonyPatch(typeof(PauseScreen))]
-		[HarmonyPatch("OnPrefabInit")]
-		public static class PauseScreen_OnPrefabInit_Patch
-		{
-			public static void Postfix(PauseScreen __instance)
-			{
-				var instance = Traverse.Create(__instance);
-				var buttons = instance.Field("buttons").GetValue<KButtonMenu.ButtonInfo[]>();
-				var buttonsList = buttons.ToList();
-
-				buttonsList.Insert(buttonsList.Count - 2, new KButtonMenu.ButtonInfo("Toggle Lights Out",
-					Action.NumActions,
-					() => _lightsOut = !_lightsOut));
-
-				instance.Field("buttons").SetValue(buttonsList.ToArray());
-			}
-		}
+	
 
 		[HarmonyPatch(typeof(ModifierSet))]
 		[HarmonyPatch(nameof(ModifierSet.Initialize))]
