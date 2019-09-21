@@ -187,17 +187,25 @@ namespace LightsOut
 
 						if (lux == 0)
 						{
-							var light = (Grid.LightIntensity[Grid.CellAbove(cell)]
-										 + Grid.LightIntensity[Grid.CellUpRight(cell)]
-										 + Grid.LightIntensity[Grid.CellRight(cell)]
-										 + Grid.LightIntensity[Grid.CellDownRight(cell)]
-										 + Grid.LightIntensity[Grid.CellBelow(cell)]
-										 + Grid.LightIntensity[Grid.CellDownLeft(cell)]
-										 + Grid.LightIntensity[Grid.CellLeft(cell)]
-										 + Grid.LightIntensity[Grid.CellUpLeft(cell)])
-										/ 8;
+							var neighboringCells = new List<int>();
 
-							lux = light;
+							if (Grid.IsValidCell(Grid.CellAbove(cell))) neighboringCells.Add(Grid.CellAbove(cell));
+							if (Grid.IsValidCell(Grid.CellUpRight(cell))) neighboringCells.Add(Grid.CellUpRight(cell));
+							if (Grid.IsValidCell(Grid.CellRight(cell))) neighboringCells.Add(Grid.CellRight(cell));
+							if (Grid.IsValidCell(Grid.CellDownRight(cell))) neighboringCells.Add(Grid.CellDownRight(cell));
+							if (Grid.IsValidCell(Grid.CellBelow(cell))) neighboringCells.Add(Grid.CellBelow(cell));
+							if (Grid.IsValidCell(Grid.CellDownLeft(cell))) neighboringCells.Add(Grid.CellDownLeft(cell));
+							if (Grid.IsValidCell(Grid.CellLeft(cell))) neighboringCells.Add(Grid.CellLeft(cell));
+							if (Grid.IsValidCell(Grid.CellUpLeft(cell))) neighboringCells.Add(Grid.CellUpLeft(cell));
+
+							var light = 0;
+
+							foreach (var c in neighboringCells)
+							{
+								light += Grid.LightIntensity[c];
+							}
+
+							lux = light / neighboringCells.Count;
 						}
 
 						var luxMapped = Math.Min(lux, config.LuxThreshold);
