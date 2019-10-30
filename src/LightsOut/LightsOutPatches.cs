@@ -98,9 +98,9 @@ namespace LightsOut
 		{
 			public static void Postfix(int cell, ref int __result)
 			{
+				__result = 0;
 				if (Grid.LightIntensity[cell] >= ConfigManager.Config.LitDecorLux)
 					__result = TUNING.DECOR.LIT_BONUS;
-				__result = 0;
 			}
 		}
 
