@@ -57,28 +57,11 @@ namespace LightsOut
 
 		[HarmonyPatch(typeof(MinionConfig))]
 		[HarmonyPatch("CreatePrefab")]
-		public static class MinionIdentity_OnSpawn_Patch
+		public static class MinionConfig_CreatePrefab_Patch
 		{
 			public static void Postfix(GameObject __result)
 			{
-				var light = __result.AddOrGet<Light2D>();
-				light.Color = Color.yellow;
-				light.Offset = new Vector2(0f, 1f);
-				light.Range = 10;
-				light.Lux = 2000;
-				light.shape = LightShape.Circle;
-				light.enabled = false;
-			}
-		}
-
-		[HarmonyPatch(typeof(MinionIdentity))]
-		[HarmonyPatch("Sim1000ms")]
-		public static class MinionConfig_Sim1000ms_Patch
-		{
-			public static void Postfix(MinionIdentity __instance)
-			{
-				var headlight = __instance.FindOrAddComponent<Light2D>();
-				headlight.enabled = __instance.GetComponent<SuitEquipper>().IsWearingAirtightSuit();
+				__result.AddOrGet<DupeLights>();
 			}
 		}
 
@@ -134,8 +117,6 @@ namespace LightsOut
 				return codes.AsEnumerable();
 			}
 		}
-
-	
 
 		[HarmonyPatch(typeof(ModifierSet))]
 		[HarmonyPatch(nameof(ModifierSet.Initialize))]

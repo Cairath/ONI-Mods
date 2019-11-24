@@ -23,7 +23,19 @@ namespace LightsOut
 		public int DisturbSleepLux { get; set; } = 500;
 
 		[JsonProperty]
+		public bool DupeLight { get; set; } = false;
+
+		[JsonProperty]
+		public int DupeLightLux { get; set; } = 200;
+
+		[JsonProperty]
 		public DebuffTier DebuffTier { get; set; } = DebuffTier.Light;
+
+		[JsonProperty]
+		public int PitchBlackLuxThreshold { get; set; } = 0;
+
+		[JsonProperty]
+		public int DarkLuxThreshold { get; set; } = 1000;
 	}
 
 	public enum DebuffTier

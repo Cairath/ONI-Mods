@@ -1,6 +1,7 @@
-﻿using CaiLib.Utils;
+﻿using System.Collections.Generic;
+using CaiLib.Config;
+using CaiLib.Utils;
 using Harmony;
-using STRINGS;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
@@ -9,11 +10,46 @@ namespace Wallpaper
 {
 	public static class WallpaperPatches
 	{
+		public static ConfigManager<Config> ConfigManager;
+		private static ConfigWatcher _configWatcher;
+		private static ColorRefresher _colorRefresher;
+
 		public static class Mod_OnLoad
 		{
+			public static void PrePatch(HarmonyInstance instance)
+			{
+				ConfigManager = new ConfigManager<Config>();
+				ConfigManager.ReadConfig();
+
+				if (ConfigManager.Config.Colors == null)
+				{
+					ConfigManager.Config.Colors = new Dictionary<string, string>();
+				}
+
+				_configWatcher = new ConfigWatcher(OnConfigChanged);
+
+			}
+
 			public static void OnLoad()
 			{
 				LogInit();
+			}
+
+			private static void OnConfigChanged()
+			{
+				ConfigManager.ReadConfig();
+				_colorRefresher.MarkDirty();
+			}
+		}
+
+		[HarmonyPatch(typeof(Game))]
+		[HarmonyPatch("OnSpawn")]
+		public static class Game_OnSpawn_Patch
+		{
+			public static void Postfix()
+			{
+				_colorRefresher = new ColorRefresher();
+				SimAndRenderScheduler.instance.sim1000ms.Add(_colorRefresher);
 			}
 		}
 
@@ -46,7 +82,7 @@ namespace Wallpaper
 			{
 				if (__instance.name != "WallpaperComplete") return;
 
-				SetColor(__instance);
+				ColorTools.SetColor(__instance);
 			}
 		}
 
@@ -59,32 +95,8 @@ namespace Wallpaper
 				if (newMode != OverlayModes.None.ID)
 					return;
 
-				foreach (var building in Components.BuildingCompletes.Items)
-				{
-
-					if (UI.StripLinkFormatting(building.GetProperName()) == WallpaperConfig.DisplayName)
-					{
-						SetColor(building);
-					}
-				}
+				ColorTools.RecolorWalls();
 			}
-		}
-
-		private static void SetColor(BuildingComplete building)
-		{
-			var primaryElement = building.GetComponent<PrimaryElement>();
-			var kAnimBase = building.GetComponent<KAnimControllerBase>();
-			if (primaryElement == null || kAnimBase == null) return;
-
-			var element = primaryElement.Element;
-			var color = element.substance.uiColour;
-
-			if (element.id == SimHashes.Granite)
-			{
-				color.a = byte.MaxValue;
-			}
-
-			kAnimBase.TintColour = color;
 		}
 	}
 }

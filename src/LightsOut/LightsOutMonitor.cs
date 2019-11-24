@@ -8,26 +8,27 @@
 
 		public FloatParameter LightLevel;
 
-		public int DarkThreshold = 1000;
-
 		public override void InitializeStates(out StateMachine.BaseState default_state)
 		{
+			var darkThreshold = LightsOutPatches.ConfigManager.Config.DarkLuxThreshold;
+			var pitchBlackTreshold = LightsOutPatches.ConfigManager.Config.PitchBlackLuxThreshold;
+
 			default_state = EnoughLight;
 
 			root.Update(CheckLightLevel);
 
-			EnoughLight.ParamTransition(LightLevel, Dark, (smi, lux) => lux < DarkThreshold);
+			EnoughLight.ParamTransition(LightLevel, Dark, (smi, lux) => lux < darkThreshold);
 
 			Dark
 				.Enter(smi => smi.Effects.Add(Effects.DarkId, false))
 				.Exit(smi => smi.Effects.Remove(Effects.DarkId))
-				.ParamTransition(LightLevel, PitchBlack, IsZero)
-				.ParamTransition(LightLevel, EnoughLight, (smi, lux) => lux >= DarkThreshold);
+				.ParamTransition(LightLevel, PitchBlack, (smi, lux) => lux <= pitchBlackTreshold)
+				.ParamTransition(LightLevel, EnoughLight, (smi, lux) => lux >= darkThreshold);
 
 			PitchBlack
 				.Enter(smi => smi.Effects.Add(Effects.PitchBlackId, false))
 				.Exit(smi => smi.Effects.Remove(Effects.PitchBlackId))
-				.ParamTransition(LightLevel, Dark, IsGTZero);
+				.ParamTransition(LightLevel, Dark, (smi, lux) => lux > pitchBlackTreshold);
 		}
 
 		private void CheckLightLevel(Instance smi, float dt)

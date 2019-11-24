@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="DupeLights.cs" />
     <Compile Include="Effects.cs" />
     <Compile Include="LightsOutMonitor.cs" />
     <Compile Include="LightsOutPatches.cs" />

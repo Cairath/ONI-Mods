@@ -103,7 +103,7 @@ namespace LightsOut
 
 		private static Effect CreatePitchBlack(DebuffTier tier)
 		{
-			var pitchBlack = new Effect(PitchBlackId, "Pitch Black", "This Duplicant can't see anything!", 0f, true, true, true)
+			var pitchBlack = new Effect(PitchBlackId, "Pitch Black", "This Duplicant can't see anything!", 0f, true, false, true)
 			{
 				SelfModifiers = new List<AttributeModifier>()
 			};
@@ -120,7 +120,7 @@ namespace LightsOut
 
 		private static Effect CreateDark(DebuffTier tier)
 		{
-			var dark = new Effect(DarkId, "Dark", "This Duplicant is in a dark place and can't see well!", 0f, true, true, true)
+			var dark = new Effect(DarkId, "Dark", "This Duplicant is in a dark place and can't see well!", 0f, true, false, true)
 			{
 				SelfModifiers = new List<AttributeModifier>()
 			};

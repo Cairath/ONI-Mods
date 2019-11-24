@@ -3,7 +3,8 @@
 {
     //Light options
 
-    //Amount of Lux at which the world cell will be considered as fully lit
+    /* VISUAL */
+    //Amount of Lux at which the world cell will be considered as fully lit (visually)
     "LuxThreshold": 1800,
 
     //The lowest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
@@ -11,6 +12,8 @@
 
     //The highest brightness of the world's darkness. 0 = fully black. 255 = normal lighting
     "HighestFog": 255,
+
+    /* GAMEPLAY */
 
     //How much lux is needed for the decor from light. Game default: 1
     "LitDecorLux": 1000,
@@ -21,11 +24,19 @@
     //Maximum lux is before dupe's sleep is interrupted. Game default value: 0. Warning: light emitted by dupes counts.
     "DisturbSleepLux": 500,
 
+    //Whether dupe emits light around it (range: 3). Values: true or false (LOWERCASE!)
+    "DupeLight": false,
+
+    //If true, how much lux should the dupe emit. Keep in mind this does affect actual brightness so adjust the buff thresholds.
+    "DupeLightLux": 200,
+
     //The level of "consequences" for unlit areas.
     //Possible values: 0, 1, 2
 
     //NONE: 0 - the debuffs will apply no negative stats
     //LIGHT: 1 - the "Dark" debuff applies -3 to Athletics and -2 to all other attributes. "Pitch Black" applies -5 to Athletics and -3 to all other attributes.
     //HARSH: 2 - the "Dark" debuff applies -5 to Athletics and -3 to all other attributes. "Pitch Black" applies -10 to Athletics and -5 to all other attributes.
-    "DebuffTier": 1
+    "DebuffTier": 1,
+    "PitchBlackLuxThreshold": 0,
+    "DarkLuxThreshold": 1000
 }
