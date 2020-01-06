@@ -27,7 +27,7 @@ namespace NotificationTrigger
 				id: Id,
 				width: 1,
 				height: 1,
-				anim: "switchpower_kanim",
+				anim: "alarm_lamp_kanim",
 				hitpoints: BUILDINGS.HITPOINTS.TIER1,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER1,
@@ -45,6 +45,7 @@ namespace NotificationTrigger
 			buildingDef.SceneLayer = Grid.SceneLayer.Building;
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.DefaultAnimState = "off";
+			buildingDef.PermittedRotations = PermittedRotations.R360;
 
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER1);
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER1);

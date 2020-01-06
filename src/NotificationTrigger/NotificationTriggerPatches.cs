@@ -1,6 +1,7 @@
 ﻿using CaiLib.Utils;
 using Harmony;
 using STRINGS;
+using UnityEngine;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
@@ -29,6 +30,19 @@ namespace NotificationTrigger
 				Strings.Add($"STRINGS.MISC.STATUSITEMS.{NotificationTriggerConfig.Id.ToUpperInvariant()}.NAME", "Notification Triggered");
 				Strings.Add($"STRINGS.MISC.STATUSITEMS.{NotificationTriggerConfig.Id.ToUpperInvariant()}.TOOLTIP", "Custom notification has been triggered");
 				Strings.Add($"STRINGS.MISC.STATUSITEMS.{NotificationTriggerConfig.Id.ToUpperInvariant()}.NOTIFICATION_TOOLTIP", "Custom notification has been triggered");
+			}
+		}
+
+		[HarmonyPatch(typeof(BasicSingleHarvestPlantConfig))]
+		[HarmonyPatch("OnPrefabInit")]
+		public static class Plant
+		{
+			public static void Postfix(ref GameObject prefab)
+			{
+				prefab.GetComponent<PressureVulnerable>()
+					
+					.safe_atmospheres
+					.Add(ElementLoader.FindElementByHash(SimHashes.SourGas));
 			}
 		}
 
