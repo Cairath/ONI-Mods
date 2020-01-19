@@ -29,6 +29,12 @@ namespace LightsOut
 		public int DupeLightLux { get; set; } = 200;
 
 		[JsonProperty]
+		public bool SuitLight { get; set; } = true;
+
+		[JsonProperty]
+		public int SuitLightLux { get; set; } = 2000;
+
+		[JsonProperty]
 		public DebuffTier DebuffTier { get; set; } = DebuffTier.Light;
 
 		[JsonProperty]

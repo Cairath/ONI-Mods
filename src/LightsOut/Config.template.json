@@ -30,6 +30,12 @@
     //If true, how much lux should the dupe emit. Keep in mind this does affect actual brightness so adjust the buff thresholds.
     "DupeLightLux": 200,
 
+    //Whether atmo suits and jet suits emit light
+    "SuitLight": true,
+
+    //If true, how much lux should the suit emit.
+    "SuitLightLux": 2000,
+
     //The level of "consequences" for unlit areas.
     //Possible values: 0, 1, 2
 

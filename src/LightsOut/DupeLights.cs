@@ -19,7 +19,7 @@ namespace LightsOut
 			SuitLamp.Color = Color.yellow;
 			SuitLamp.Offset = new Vector2(0f, 1f);
 			SuitLamp.Range = 10;
-			SuitLamp.Lux = 2000;
+			SuitLamp.Lux = LightsOutPatches.ConfigManager.Config.SuitLightLux;
 			SuitLamp.shape = LightShape.Circle;
 			SuitLamp.enabled = false;
 
@@ -34,7 +34,7 @@ namespace LightsOut
 
 		public void Sim1000ms(float dt)
 		{
-			SuitLamp.enabled = _suitEquipper.IsWearingAirtightSuit();
+			SuitLamp.enabled = LightsOutPatches.ConfigManager.Config.SuitLight && _suitEquipper.IsWearingAirtightSuit();
 		}
 	}
 }
