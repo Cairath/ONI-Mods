@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fervine</RootNamespace>
     <AssemblyName>Fervine</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -44,7 +44,7 @@
       <HintPath>..\lib\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine">
@@ -73,7 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ILMergeConsolePath) /out:$(TargetName)-merged.dll $(TargetName).dll CaiLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
+    <PostBuildEvent>$(ILMergeConsolePath) /out:$(TargetName)-merged.dll $(TargetName).dll CaiLib.dll /targetplatform:v4,C:/Windows/Microsoft.NET/Framework64/v4.0.30319
 
 echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName)-merged.dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
 if exist "$(ProjectDir)anim" xcopy /Y /R /I /E /Q  "$(ProjectDir)anim" "$(SolutionDir)..\Mods\$(TargetName)\anim"

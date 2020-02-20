@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ConfigurableMotionSensorRange</RootNamespace>
     <AssemblyName>ConfigurableMotionSensorRange</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -66,23 +66,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CaiLib\^CaiLib.csproj">
       <Project>{2ded5b57-fd32-4f67-88b5-924ac4300952}</Project>
       <Name>^CaiLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
-  </Target>
   <PropertyGroup>
-    <PostBuildEvent>$(ILMergeConsolePath) /out:$(TargetName)-merged.dll $(TargetName).dll CaiLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
+    <PostBuildEvent>$(ILMergeConsolePath) /out:$(TargetName)-merged.dll $(TargetName).dll CaiLib.dll /targetplatform:v4,C:/Windows/Microsoft.NET/Framework64/v4.0.30319
 
 echo F | xcopy /Y /S /R /Q "$(TargetDir)$(TargetName)-merged.dll" "$(SolutionDir)..\Mods\$(TargetName)\$(TargetName).dll"
 if exist "$(ProjectDir)anim" xcopy /Y /R /I /E /Q  "$(ProjectDir)anim" "$(SolutionDir)..\Mods\$(TargetName)\anim"
@@ -91,4 +86,10 @@ if exist "$(TargetDir)Config.json" echo F | xcopy /Y /S /R /Q "$(TargetDir)Confi
 
 xcopy /Y /R  /I /Q  /E "$(SolutionDir)..\Mods\$(TargetName)" "C:\Users\Cairath\Documents\Klei\OxygenNotIncluded\mods\dev\$(TargetName)"</PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+  </Target>
 </Project>
