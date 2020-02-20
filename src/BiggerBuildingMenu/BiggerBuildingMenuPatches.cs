@@ -18,10 +18,12 @@ namespace BiggerBuildingMenu
 			}
 		}
 
-		[HarmonyPatch(typeof(PlanScreen), MethodType.Constructor)]
-		public static class PlanScreen_Patch
+		[HarmonyPatch(typeof(PlanScreen))]
+		[HarmonyPatch("ConfigurePanelSize")]
+
+		public static class PlanScreen_ConfigurePanelSize_Patch
 		{
-			public static void Postfix(PlanScreen __instance)
+			public static void Prefix(PlanScreen __instance)
 			{
 				Traverse.Create(__instance).Field("buildGrid_maxRowsBeforeScroll").SetValue(_configManager.Config.Height);
 			}

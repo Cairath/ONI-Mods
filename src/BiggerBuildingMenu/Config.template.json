@@ -1,0 +1,7 @@
+// THIS IS A TEMPLATE FILE. IT WILL HAVE NO EFFECT ON THE GAME AND WILL BE OVERRIDEN ON EVERY UPDATE.
+// TO USE CUSTOM CONFIG, COPY THIS FILE, NAME IT Config.json AND EDIT VALUES TO YOUR LIKING
+{
+    // Row height of the building menu.
+    // Default: 8, default in game: 5
+    "Height": 8
+}
