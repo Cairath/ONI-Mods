@@ -44,6 +44,7 @@ namespace BuildablePOIProps
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 		{
 			go.GetComponent<KPrefabID>().AddTag(GameTags.Decoration);
+			go.AddOrGet<ZoneTile>();
 		}
 
 		public override void DoPostConfigureComplete(GameObject go)
