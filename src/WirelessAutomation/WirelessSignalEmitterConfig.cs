@@ -1,4 +1,5 @@
-﻿using STRINGS;
+﻿using System.Collections.Generic;
+using STRINGS;
 using TUNING;
 using UnityEngine;
 using BUILDINGS = TUNING.BUILDINGS;
@@ -24,9 +25,6 @@ namespace WirelessAutomation
 			= $"{UI.FormatAsAutomationState("Red Signal", UI.AutomationState.Standby)}:" +
 			  $" emit {UI.FormatAsAutomationState("Red Signal", UI.AutomationState.Standby)} " +
 			  $"signal wirelessly allowing it to be received by {UI.FormatAsLink(WirelessSignalReceiverConfig.DisplayName, WirelessSignalReceiverConfig.Id)}";
-
-		private static readonly LogicPorts.Port InputPort = LogicPorts.Port.InputPort(LogicOperationalController.PORT_ID,
-			new CellOffset(0, 0), UI.LOGIC_PORTS.CONTROL_OPERATIONAL, PortOn, PortOff, true);
 
 		public override BuildingDef CreateBuildingDef()
 		{
@@ -55,6 +53,11 @@ namespace WirelessAutomation
 			buildingDef.EnergyConsumptionWhenActive = 50f;
 			buildingDef.SelfHeatKilowattsWhenActive = 0f;
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
+			buildingDef.LogicInputPorts = new List<LogicPorts.Port>
+			{
+				LogicPorts.Port.InputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
+					UI.LOGIC_PORTS.CONTROL_OPERATIONAL, PortOn, PortOff, true)
+			};
 
 			GeneratedBuildings.RegisterWithOverlay(OverlayModes.Logic.HighlightItemIDs, Id);
 
@@ -66,20 +69,8 @@ namespace WirelessAutomation
 			BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 		}
 
-		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-		{
-			GeneratedBuildings.RegisterLogicPorts(go, new[] { InputPort });
-		}
-
-		public override void DoPostConfigureUnderConstruction(GameObject go)
-		{
-			GeneratedBuildings.RegisterLogicPorts(go, new[] { InputPort });
-		}
-
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			GeneratedBuildings.RegisterLogicPorts(go, new[] { InputPort });
-
 			go.AddOrGet<WirelessSignalEmitter>().EmitChannel = 0;
 			go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
 		}
