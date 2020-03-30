@@ -51,6 +51,9 @@ namespace WirelessAutomation
 			buildingDef.SelfHeatKilowattsWhenActive = 0f;
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
 
+			buildingDef.LogicOutputPorts = new System.Collections.Generic.List<LogicPorts.Port>();
+			buildingDef.LogicOutputPorts.Add(OutputPort);
+
 			GeneratedBuildings.RegisterWithOverlay(OverlayModes.Logic.HighlightItemIDs, Id);
 
 			return buildingDef;
@@ -61,20 +64,8 @@ namespace WirelessAutomation
 			BuildingConfigManager.Instance.IgnoreDefaultKComponent(typeof(RequiresFoundation), prefab_tag);
 		}
 
-		public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-		{
-			GeneratedBuildings.RegisterLogicPorts(go, OutputPort);
-		}
-
-		public override void DoPostConfigureUnderConstruction(GameObject go)
-		{
-			GeneratedBuildings.RegisterLogicPorts(go, OutputPort);
-		}
-
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			GeneratedBuildings.RegisterLogicPorts(go, OutputPort);
-
 			go.AddOrGet<WirelessSignalReceiver>().ReceiveChannel = 0;
 		}
 	}

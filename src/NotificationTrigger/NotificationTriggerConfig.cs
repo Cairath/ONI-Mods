@@ -46,6 +46,7 @@ namespace NotificationTrigger
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.DefaultAnimState = "off";
 			buildingDef.PermittedRotations = PermittedRotations.R360;
+			buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(0, 0));
 
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER1);
 			SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER1);
@@ -57,18 +58,11 @@ namespace NotificationTrigger
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 		{
 			go.AddOrGet<NotificationTrigger>();
-			GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_0);
 		}
 
-		public override void DoPostConfigureUnderConstruction(GameObject go)
-		{
-			GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_0);
-		}
 
 		public override void DoPostConfigureComplete(GameObject go)
 		{
-			GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_0_0);
-
 			go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
 		}
 	}
