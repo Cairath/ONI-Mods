@@ -33,8 +33,15 @@ namespace CaiLib.Utils
 
 		public static void AddBuildingToTechnology(string tech, string buildingId)
 		{
-			var techList = new List<string>(Database.Techs.TECH_GROUPING[tech]) { buildingId };
-			Database.Techs.TECH_GROUPING[tech] = techList.ToArray();
+			if ( !Database.Techs.TECH_GROUPING.ContainsKey( tech ) )
+			{
+				Log( $"[WARNING] Technology {tech} does not exist!" );
+			}
+			else
+			{
+				var techList = new List<string>(Database.Techs.TECH_GROUPING[tech]) { buildingId };
+				Database.Techs.TECH_GROUPING[tech] = techList.ToArray();
+			}
 		}
     }
 }
