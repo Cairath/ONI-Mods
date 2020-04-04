@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TUNING;
+using static CaiLib.Logger.Logger;
 
 namespace CaiLib.Utils
 {
@@ -9,16 +10,19 @@ namespace CaiLib.Utils
 		{
 			var index = BUILDINGS.PLANORDER.FindIndex(x => x.category == category);
 
-			if (index == -1)
+			if ( index == -1 )
+			{
+				Log($"Invalid building category {category}");
 				return;
+			}
 
 			var planOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
 			if (planOrderList == null)
 			{
-				Logger.Logger.Log($"Could not add {buildingId} to the building menu.");
+				Log($"Could not add {buildingId} to the building menu.");
 				return;
 			}
-			
+
 			var neighborIdx = planOrderList.IndexOf(addAfterBuildingId);
 
 			if (neighborIdx != -1)
