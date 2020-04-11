@@ -17,7 +17,6 @@ namespace WirelessAutomation
 			}
 		}
 
-
 		[HarmonyPatch(typeof(Game))]
 		[HarmonyPatch("OnPrefabInit")]
 		public static class Game_OnPrefabInit_Patch
@@ -25,6 +24,7 @@ namespace WirelessAutomation
 			public static void Postfix(PauseScreen __instance)
 			{
 				WirelessAutomationManager.ResetEmittersList();
+				WirelessAutomationManager.ResetReceiversList();
 			}
 		}
 
@@ -35,6 +35,7 @@ namespace WirelessAutomation
 			public static void Postfix(PauseScreen __instance)
 			{
 				WirelessAutomationManager.ResetEmittersList();
+				WirelessAutomationManager.ResetReceiversList();
 			}
 		}
 

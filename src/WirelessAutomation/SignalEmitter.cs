@@ -4,9 +4,9 @@
 	{
 		public int Id { get; set; }
 		public int EmitChannel { get; set; }
-		public bool Signal { get; set; }
+		public int Signal { get; set; }
 
-		public SignalEmitter(int emitChannel, bool signal)
+		public SignalEmitter(int emitChannel, int signal)
 		{
 			Signal = signal;
 			EmitChannel = emitChannel;

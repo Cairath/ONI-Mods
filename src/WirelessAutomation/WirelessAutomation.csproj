@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="ModInfo.cs" />
     <Compile Include="SignalEmitter.cs" />
+    <Compile Include="SignalReceiver.cs" />
+    <Compile Include="WirelessLogicValueChanged.cs" />
     <Compile Include="WirelessSignalEmitter.cs" />
     <Compile Include="WirelessSignalEmitterConfig.cs" />
     <Compile Include="WirelessAutomationManager.cs" />

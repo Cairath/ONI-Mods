@@ -50,7 +50,7 @@ namespace WirelessAutomation
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
 			buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
 			{
-				LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
+				LogicPorts.Port.RibbonOutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
 					UI.LOGIC_PORTS.CONTROL_OPERATIONAL, PortOn, PortOff, true)
 			};
 

@@ -5,17 +5,28 @@ using UnityEngine;
 namespace WirelessAutomation
 {
 	[SerializationConfig(MemberSerialization.OptIn)]
-	public class WirelessSignalReceiver : Switch, ISim200ms, IIntSliderControl
+	public class WirelessSignalReceiver : KMonoBehaviour, IIntSliderControl
 	{
 		[field: Serialize]
 		public int ReceiveChannel { get; set; }
 
+		[field: Serialize]
+		public int Signal { get; set; }
+
+		[Serialize]
+		private int _receiverId;
+
+		[MyCmpGet]
+		private readonly LogicPorts _logicPorts;
+
 		protected override void OnSpawn()
 		{
-			base.OnSpawn();
-			
-			UpdateVisualState(IsSwitchedOn);
-			GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, IsSwitchedOn ? 1 : 0); ;
+			_receiverId = WirelessAutomationManager.RegisterReceiver(new SignalReceiver(ReceiveChannel, gameObject));
+		
+			UpdateVisualState(Signal > 0);
+			_logicPorts.SendSignal(LogicSwitch.PORT_ID, Signal);
+
+			Subscribe(WirelessAutomationManager.WirelessLogicEvent, OnWirelessLogicEventChanged);
 		}
 
 		private void UpdateVisualState(bool isOn)
@@ -23,26 +34,33 @@ namespace WirelessAutomation
 			GetComponent<KBatchedAnimController>().Play(isOn ? "on_pst" : "off", KAnim.PlayMode.Loop);
 		}
 
-		public void Sim200ms(float dt)
+		protected override void OnCleanUp()
 		{
-			var signal = WirelessAutomationManager.GetSignalForChannel(ReceiveChannel);
+			Unsubscribe((int)GameHashes.OperationalChanged, OnWirelessLogicEventChanged);
+			WirelessAutomationManager.UnregisterReceiver(_receiverId);
+		}
 
-			if (IsSwitchedOn != signal)
+		private void OnWirelessLogicEventChanged(object data)
+		{
+			var ev = (WirelessLogicValueChanged)data;
+
+			if (Signal != ev.Signal && ev.Channel == ReceiveChannel)
 			{
-				ChangeState(signal);
+				ChangeState(ev.Signal);
 			}
 		}
 
-		private void ChangeState(bool isOn)
+		private void ChangeState(int signal)
 		{
-			UpdateVisualState(isOn);
-			GetComponent<LogicPorts>()?.SendSignal(LogicSwitch.PORT_ID, isOn ? 1 : 0);
-			Toggle();
+			Signal = signal;
+			UpdateVisualState(signal > 0);
+			_logicPorts?.SendSignal(LogicSwitch.PORT_ID, signal);
 		}
 
 		private void ChangeListeningChannel(int channel)
 		{
 			ReceiveChannel = channel;
+			WirelessAutomationManager.ChangeReceiverChannel(_receiverId, ReceiveChannel);
 		}
 
 		public int SliderDecimalPlaces(int index) => 0;

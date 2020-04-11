@@ -7,44 +7,37 @@ namespace WirelessAutomation
 	[SerializationConfig(MemberSerialization.OptIn)]
 	public class WirelessSignalEmitter : KMonoBehaviour, IIntSliderControl
 	{
-		[MyCmpAdd]
-#pragma warning disable 649
-		private Operational operational;
-#pragma warning restore 649
+		[field: Serialize]
+		public int EmitChannel { get; set; }
 
 		[Serialize]
 		private int _emitterId;
 
-		[field: Serialize]
-		public int EmitChannel { get; set; }
+		[MyCmpGet]
+		private LogicPorts _logicPorts;
 
 		protected override void OnPrefabInit()
 		{
-			base.OnPrefabInit();
-			Subscribe((int)GameHashes.OperationalChanged, OnOperationalChanged);
+			Subscribe((int)GameHashes.LogicEvent, OnLogicEventChanged);
 		}
 
 		protected override void OnSpawn()
 		{
-			OnOperationalChanged(operational.IsOperational);
-			base.OnSpawn();
-
-			_emitterId = WirelessAutomationManager.RegisterEmitter(new SignalEmitter(EmitChannel, operational.IsOperational));
+			_emitterId = WirelessAutomationManager.RegisterEmitter(new SignalEmitter(EmitChannel, _logicPorts.GetInputValue(LogicSwitch.PORT_ID)));
 		}
 
 		protected override void OnCleanUp()
 		{
-			base.OnCleanUp();
-			Unsubscribe((int)GameHashes.OperationalChanged, OnOperationalChanged);
+			Unsubscribe((int)GameHashes.OperationalChanged, OnLogicEventChanged);
 			WirelessAutomationManager.UnregisterEmitter(_emitterId);
 		}
 
-		private void OnOperationalChanged(object data)
+		private void OnLogicEventChanged(object data)
 		{
-			var isOn = (bool)data;
+			var signal = ((LogicValueChanged)data).newValue;
 
-			UpdateVisualState(isOn);
-			WirelessAutomationManager.SetEmitterSignal(_emitterId, isOn);
+			UpdateVisualState(signal > 0);
+			WirelessAutomationManager.SetEmitterSignal(_emitterId, signal);
 		}
 
 		private void UpdateVisualState(bool isOn)

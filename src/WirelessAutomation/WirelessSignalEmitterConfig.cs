@@ -55,7 +55,7 @@ namespace WirelessAutomation
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
 			buildingDef.LogicInputPorts = new List<LogicPorts.Port>
 			{
-				LogicPorts.Port.InputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
+				LogicPorts.Port.RibbonInputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
 					UI.LOGIC_PORTS.CONTROL_OPERATIONAL, PortOn, PortOff, true)
 			};
 
