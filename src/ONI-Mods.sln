@@ -107,6 +107,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLeakyWalls", "NoLeakyWall
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowIndustrialMachineryTag", "ShowIndustrialMachineryTag\ShowIndustrialMachineryTag.csproj", "{36735139-281B-4A61-BFFD-D12FD187A2EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorRailUtilities", "ConveyorRailUtilities\ConveyorRailUtilities.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLongCommutes", "NoLongCommutes\NoLongCommutes.csproj", "{034CAEB1-930B-49AC-8F0C-9451F0345176}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessWasteFromJetpacks", "LessWasteFromJetpacks\LessWasteFromJetpacks.csproj", "{185032E8-0A01-47AC-890D-25281FDDC646}"
@@ -243,6 +245,10 @@ Global
 		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36735139-281B-4A61-BFFD-D12FD187A2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{034CAEB1-930B-49AC-8F0C-9451F0345176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{034CAEB1-930B-49AC-8F0C-9451F0345176}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034CAEB1-930B-49AC-8F0C-9451F0345176}.Release|Any CPU.ActiveCfg = Release|Any CPU
