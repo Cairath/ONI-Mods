@@ -3,7 +3,7 @@
 # Cairath&#39;s Mods for Oxygen Not Included <!-- omit in toc -->
 <div align="center">
 
-master branch last updated to game version **LU-364722**
+master branch last updated to game version **AP-39948-D**
 
 </div>
 
@@ -13,7 +13,7 @@ master branch last updated to game version **LU-364722**
 - [List of mods](#list-of-mods)
     - [Categories - legend](#categories---legend)
     - [Mods](#mods)
-- [Tools Not Included](#tools-not-included)
+- [<a href="https://toolsnotincluded.net">Tools Not Included</a>](#tools-not-included)
 - [Special thanks](#special-thanks)
 
 <a name="cairath-s-mods-for-oxygen-not-included-omit-in-toc-forum-discord"></a>
@@ -103,4 +103,4 @@ To all my Patrons on Patreon who support the development :)
 \
 \
 \
-Last readme update: Sunday, 19th January 2020, 3:47 am
+Last readme update: Friday, 24th April 2020, 7:41 pm
