@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lux.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DupeLights.cs" />
     <Compile Include="Effects.cs" />
