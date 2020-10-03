@@ -17,7 +17,7 @@ namespace SteelLadder
 				width: 1,
 				height: 1,
 				anim: "ladder_poi_kanim",
-				hitpoints: BUILDINGS.HITPOINTS.TIER2,
+				hitpoints: BUILDINGS.HITPOINTS.TIER4,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER1,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER1,
 				construction_materials: new[] { SimHashes.Steel.ToString() },
