@@ -12,11 +12,17 @@ namespace AlgaeGrower
 		public const string DisplayName = "Algae Grower";
 		public const string Description = "Algae colony, Duplicant colony... we're more alike than we are different.";
 		public static string Effect =
-			$"Consumes {ELEMENTS.FERTILIZER.NAME}, {ELEMENTS.CARBONDIOXIDE.NAME} and {ELEMENTS.WATER.NAME} " +
-			$"to grow {ELEMENTS.ALGAE.NAME} and emit some {ELEMENTS.OXYGEN.NAME}.\n\nRequires {UI.FormatAsLink("Light", "LIGHT")}  to grow.";
+			$"Consumes {GameTags.Agriculture.Name}, {ELEMENTS.CARBONDIOXIDE.NAME} and {ELEMENTS.WATER.NAME} " +
+			$"to grow {ELEMENTS.ALGAE.NAME} and emit {ELEMENTS.OXYGEN.NAME}.\n\nRequires {UI.FormatAsLink("Light", "LIGHT")}  to grow.";
+		
+		private const float MATERIAL_RATE = 0.01125f;
+		private const float OXYGEN_RATE = 0.04f;
+		private const float CO2_RATE = 0.01375f;
+		private const float BASE_CAPACITY = 9f;
+		private const float BASE_REFILL_MASS = 3f;
+		private const float BASE_TEMPERATURE = 303.15f;
 
-		private static readonly List<Storage.StoredItemModifier> PollutedWaterStorageModifiers = new List<Storage.StoredItemModifier>
-		{
+		private static readonly List<Storage.StoredItemModifier> hiddenStorageModifiers = new List<Storage.StoredItemModifier>{
 			Storage.StoredItemModifier.Hide,
 			Storage.StoredItemModifier.Seal
 		};
@@ -53,72 +59,87 @@ namespace AlgaeGrower
 
 		public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
 		{
-			var storage1 = go.AddOrGet<Storage>();
-			storage1.showInUI = true;
-
-			var storage2 = go.AddComponent<Storage>();
-			storage2.capacityKg = 5f;
-			storage2.showInUI = true;
-			storage2.SetDefaultStoredItemModifiers(PollutedWaterStorageModifiers);
-			storage2.allowItemRemoval = false;
-			storage2.storageFilters = new List<Tag> { SimHashes.Algae.CreateTag(), SimHashes.CarbonDioxide.CreateTag() };
-
-			var manualDeliveryKg1 = go.AddOrGet<ManualDeliveryKG>();
-			manualDeliveryKg1.SetStorage(storage1);
-			manualDeliveryKg1.requestedItemTag = SimHashes.Fertilizer.CreateTag();
-			manualDeliveryKg1.capacity = 90f;
-			manualDeliveryKg1.refillMass = 18f;
-			manualDeliveryKg1.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
-
-			var manualDeliveryKg2 = go.AddComponent<ManualDeliveryKG>();
-			manualDeliveryKg2.SetStorage(storage1);
-			manualDeliveryKg2.requestedItemTag = SimHashes.Water.CreateTag();
-			manualDeliveryKg2.capacity = 360f;
-			manualDeliveryKg2.refillMass = 72f;
-			manualDeliveryKg2.allowPause = true;
-			manualDeliveryKg2.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
+			configureStorage(go);
 
 			var algaeHabitat = go.AddOrGet<AlgaeGrower>();
 			algaeHabitat.PressureSampleOffset = new CellOffset(0, 1);
 
-			var elementConverter = go.AddComponent<ElementConverter>();
-			elementConverter.consumedElements = new[]
-			{
-				new ElementConverter.ConsumedElement(SimHashes.CarbonDioxide.CreateTag(), 0.01375f),
-				new ElementConverter.ConsumedElement(SimHashes.Fertilizer.CreateTag(), 0.000625f),
-				new ElementConverter.ConsumedElement(SimHashes.Water.CreateTag(), 0.005625f)
-			};
-			elementConverter.outputElements = new[]
-			{
-				new ElementConverter.OutputElement(0.005f, SimHashes.Oxygen, 303.15f, false, false, 0.0f, 1f),
-				new ElementConverter.OutputElement(0.015f, SimHashes.Algae, 303.15f, false, true, 0.0f, 1f)
-			};
-
-			var elementDropper = go.AddComponent<ElementDropper>();
-			elementDropper.emitMass = 5;
-			elementDropper.emitTag = SimHashes.Algae.CreateTag();
-
-			var elementConsumer = go.AddOrGet<ElementConsumer>();
-			elementConsumer.elementToConsume = SimHashes.CarbonDioxide;
-			elementConsumer.consumptionRate = 0.01375f;
-			elementConsumer.consumptionRadius = 3;
-			elementConsumer.showInStatusPanel = true;
-			elementConsumer.storeOnConsume = true;
-			elementConsumer.sampleCellOffset = new Vector3(0.0f, 1f, 0.0f);
-			elementConsumer.isRequired = true;
-
-			var passiveElementConsumer = go.AddComponent<PassiveElementConsumer>();
-			passiveElementConsumer.elementToConsume = SimHashes.Water;
-			passiveElementConsumer.consumptionRate = 1.2f;
-			passiveElementConsumer.consumptionRadius = 1;
-			passiveElementConsumer.showDescriptor = false;
-			passiveElementConsumer.storeOnConsume = true;
-			passiveElementConsumer.capacityKG = 360f;
-			passiveElementConsumer.showInStatusPanel = false;
+			configureItemConversions(go);
 
 			go.AddOrGet<AnimTileable>();
 
 			Prioritizable.AddRef(go);
+		}
+
+		private void configureStorage(GameObject go)
+        {
+			var storageBase = go.AddOrGet<Storage>();
+			storageBase.showInUI = true;
+
+			//Algae
+			var storageAlgea = go.AddComponent<Storage>();
+			storageAlgea.capacityKg = BASE_CAPACITY;
+			storageAlgea.showInUI = true;
+			storageAlgea.SetDefaultStoredItemModifiers(hiddenStorageModifiers);
+			storageAlgea.allowItemRemoval = false;
+			storageAlgea.storageFilters = new List<Tag> { GameTags.Algae };
+
+			//Agriculture
+			var manualDeliveryFertilizer = go.AddOrGet<ManualDeliveryKG>();
+			manualDeliveryFertilizer.SetStorage(storageBase);
+			manualDeliveryFertilizer.requestedItemTag = GameTags.Agriculture;
+			manualDeliveryFertilizer.capacity = BASE_CAPACITY;
+			manualDeliveryFertilizer.refillMass = BASE_REFILL_MASS;
+			manualDeliveryFertilizer.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
+
+			//Water
+			var manualDeliveryWater = go.AddComponent<ManualDeliveryKG>();
+			manualDeliveryWater.SetStorage(storageBase);
+			manualDeliveryWater.requestedItemTag = GameTags.Water;
+			manualDeliveryWater.capacity = BASE_CAPACITY;
+			manualDeliveryWater.refillMass = BASE_REFILL_MASS;
+			manualDeliveryWater.allowPause = true;
+			manualDeliveryWater.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
+		}
+
+		private void configureItemConversions(GameObject go)
+        {
+			var elementConverter = go.AddComponent<ElementConverter>();
+			elementConverter.consumedElements = new[]
+			{
+				new ElementConverter.ConsumedElement(GameTags.Agriculture, MATERIAL_RATE),
+				new ElementConverter.ConsumedElement(GameTags.Water, MATERIAL_RATE)
+			};
+			elementConverter.outputElements = new[]
+			{
+				new ElementConverter.OutputElement(OXYGEN_RATE, SimHashes.Oxygen, BASE_TEMPERATURE, storeOutput: false),
+				new ElementConverter.OutputElement(MATERIAL_RATE*2, SimHashes.Algae, BASE_TEMPERATURE, storeOutput: true)
+			};
+
+			//Drop algea
+			var elementDropperAlgae = go.AddComponent<ElementDropper>();
+			elementDropperAlgae.emitMass = BASE_CAPACITY;
+			elementDropperAlgae.emitTag = GameTags.Algae;
+
+			//Consume Co2
+			var elementConsumerCarbonDioxide = go.AddOrGet<ElementConsumer>();
+			elementConsumerCarbonDioxide.elementToConsume = SimHashes.CarbonDioxide;
+			elementConsumerCarbonDioxide.consumptionRate = CO2_RATE;
+			elementConsumerCarbonDioxide.consumptionRadius = 3;
+			elementConsumerCarbonDioxide.showInStatusPanel = true;
+			elementConsumerCarbonDioxide.storeOnConsume = false;
+			elementConsumerCarbonDioxide.sampleCellOffset = new Vector3(0.0f, 1f, 0.0f);
+			elementConsumerCarbonDioxide.isRequired = false;
+
+			//Store water from environment
+			var passiveElementConsumerWater = go.AddComponent<PassiveElementConsumer>();
+			passiveElementConsumerWater.elementToConsume = SimHashes.Water;
+			passiveElementConsumerWater.consumptionRate = 1.5f;
+			passiveElementConsumerWater.consumptionRadius = 1;
+			passiveElementConsumerWater.showDescriptor = false;
+			passiveElementConsumerWater.storeOnConsume = true;
+			passiveElementConsumerWater.capacityKG = BASE_CAPACITY;
+			passiveElementConsumerWater.showInStatusPanel = false;
 		}
 
 		public override void DoPostConfigureComplete(GameObject go)

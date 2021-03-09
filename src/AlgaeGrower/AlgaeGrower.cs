@@ -73,7 +73,7 @@ namespace AlgaeGrower
 				NoLight
 					.QueueAnim("off")
 					.Enter(smi => smi.master.operational.SetActive(false))
-					.Update("NoLight", (smi, dt) => { if (smi.HasLight() && smi.HasEnoughMass(GameTags.Fertilizer)) smi.GoTo(GotFert); }, UpdateRate.SIM_1000ms);
+					.Update("NoLight", (smi, dt) => { if (smi.HasLight() && smi.HasEnoughMass(GameTags.Agriculture)) smi.GoTo(GotFert); }, UpdateRate.SIM_1000ms);
 
 				GotFert
 					.PlayAnim("on_pre")
@@ -85,14 +85,14 @@ namespace AlgaeGrower
 
 				NoFert
 					.QueueAnim("off")
-					.EventTransition(GameHashes.OnStorageChange, GotFert, smi => smi.HasEnoughMass(GameTags.Fertilizer))
+					.EventTransition(GameHashes.OnStorageChange, GotFert, smi => smi.HasEnoughMass(GameTags.Agriculture))
 					.Enter(smi => smi.master.operational.SetActive(false));
 
 				NoWater
 					.QueueAnim("on")
 					.Enter(smi => smi.master.GetComponent<PassiveElementConsumer>().EnableConsumption(true))
-					.EventTransition(GameHashes.OnStorageChange, LostFert, smi => !smi.HasEnoughMass(GameTags.Fertilizer))
-					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Fertilizer) && smi.HasEnoughMass(GameTags.Water));
+					.EventTransition(GameHashes.OnStorageChange, LostFert, smi => !smi.HasEnoughMass(GameTags.Agriculture))
+					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Agriculture) && smi.HasEnoughMass(GameTags.Water));
 
 				GotWater
 					.PlayAnim("working_pre")
@@ -103,7 +103,7 @@ namespace AlgaeGrower
 					.Exit(smi => smi.master.operational.SetActive(false))
 					.QueueAnim("working_loop", true)
 					.EventTransition(GameHashes.OnStorageChange, StoppedGeneratingOxygen,
-						smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Fertilizer))
+						smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Agriculture))
 					.Update("GeneratingOxygen", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(StoppedGeneratingOxygen); }, UpdateRate.SIM_1000ms);
 
 				StoppedGeneratingOxygen
@@ -113,9 +113,9 @@ namespace AlgaeGrower
 				StoppedGeneratingOxygenTransition
 					.Update("StoppedGeneratingOxygenTransition", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(NoLight); }, UpdateRate.SIM_200ms)
 					.EventTransition(GameHashes.OnStorageChange, NoWater, smi => !smi.HasEnoughMass(GameTags.Water) && smi.HasLight())
-					.EventTransition(GameHashes.OnStorageChange, LostFert, smi => !smi.HasEnoughMass(GameTags.Fertilizer) && smi.HasLight())
+					.EventTransition(GameHashes.OnStorageChange, LostFert, smi => !smi.HasEnoughMass(GameTags.Agriculture) && smi.HasLight())
 					.EventTransition(GameHashes.OnStorageChange, GotWater, smi => smi.HasEnoughMass(GameTags.Water) && smi.HasLight() &&
-					                                                              smi.HasEnoughMass(GameTags.Fertilizer));
+					                                                              smi.HasEnoughMass(GameTags.Agriculture));
 			}
 		}
 	}
