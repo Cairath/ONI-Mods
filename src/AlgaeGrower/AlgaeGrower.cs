@@ -44,6 +44,14 @@ namespace AlgaeGrower
 				var cell = Grid.PosToCell(smi.master.transform.GetPosition());
 				return Grid.LightCount[cell] > 0;
 			}
+
+			public void convertCo2InStorage(){
+				Storage storage = smi.master.GetComponent<Storage>();
+				float carbonMass = storage.GetMassAvailable(GameTags.CarbonDioxide);
+				storage.ConsumeIgnoringDisease(GameTags.CarbonDioxide, carbonMass);
+				storage.AddGasChunk(SimHashes.Oxygen, carbonMass, 303.15f, byte.MaxValue, 0, true);
+				storage.Drop(GameTags.Oxygen);
+			}
 		}
 
 		public class States : GameStateMachine<States, SMInstance, AlgaeGrower>
@@ -104,7 +112,14 @@ namespace AlgaeGrower
 					.QueueAnim("working_loop", true)
 					.EventTransition(GameHashes.OnStorageChange, StoppedGeneratingOxygen,
 						smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Agriculture))
-					.Update("GeneratingOxygen", (smi, dt) => { if (!smi.HasLight()) smi.GoTo(StoppedGeneratingOxygen); }, UpdateRate.SIM_1000ms);
+					.Update("GeneratingOxygen", (smi, dt) => {
+						if (!smi.HasLight()){
+							smi.GoTo(StoppedGeneratingOxygen);
+                        }
+						else{
+							smi.convertCo2InStorage();
+						}
+					}, UpdateRate.SIM_1000ms);
 
 				StoppedGeneratingOxygen
 					.PlayAnim("working_pst")

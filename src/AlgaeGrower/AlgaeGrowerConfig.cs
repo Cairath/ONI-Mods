@@ -16,8 +16,8 @@ namespace AlgaeGrower
 			$"to grow {ELEMENTS.ALGAE.NAME} and emit {ELEMENTS.OXYGEN.NAME}.\n\nRequires {UI.FormatAsLink("Light", "LIGHT")}  to grow.";
 		
 		private const float MATERIAL_RATE = 0.01125f;
-		private const float OXYGEN_RATE = 0.04f;
-		private const float CO2_RATE = 0.01375f;
+		private const float OXYGEN_RATE = 0.02f;
+		private const float CO2_RATE_Intake = 0.01375f;
 		private const float BASE_CAPACITY = 9f;
 		private const float BASE_REFILL_MASS = 3f;
 		private const float BASE_TEMPERATURE = 303.15f;
@@ -29,6 +29,10 @@ namespace AlgaeGrower
 
 		public override BuildingDef CreateBuildingDef()
 		{
+			string[] construction_materials = new string[]{
+				GameTags.Dirt.Name,
+				GameTags.Algae.Name
+			};
 			var buildingDef = BuildingTemplates.CreateBuildingDef(
 				id: Id,
 				width: 1,
@@ -37,7 +41,7 @@ namespace AlgaeGrower
 				hitpoints: BUILDINGS.HITPOINTS.TIER1,
 				construction_time: BUILDINGS.CONSTRUCTION_TIME_SECONDS.TIER2,
 				construction_mass: BUILDINGS.CONSTRUCTION_MASS_KG.TIER4,
-				construction_materials: MATERIALS.FARMABLE,
+				construction_materials: construction_materials,
 				melting_point: BUILDINGS.MELTING_POINT_KELVIN.TIER1,
 				build_location_rule: BuildLocationRule.OnFloor,
 				decor: BUILDINGS.DECOR.PENALTY.TIER1,
@@ -124,11 +128,12 @@ namespace AlgaeGrower
 			//Consume Co2
 			var elementConsumerCarbonDioxide = go.AddOrGet<ElementConsumer>();
 			elementConsumerCarbonDioxide.elementToConsume = SimHashes.CarbonDioxide;
-			elementConsumerCarbonDioxide.consumptionRate = CO2_RATE;
+			elementConsumerCarbonDioxide.consumptionRate = CO2_RATE_Intake;
 			elementConsumerCarbonDioxide.consumptionRadius = 3;
-			elementConsumerCarbonDioxide.showInStatusPanel = true;
-			elementConsumerCarbonDioxide.storeOnConsume = false;
 			elementConsumerCarbonDioxide.sampleCellOffset = new Vector3(0.0f, 1f, 0.0f);
+			elementConsumerCarbonDioxide.showDescriptor = false;
+			elementConsumerCarbonDioxide.showInStatusPanel = true;
+			elementConsumerCarbonDioxide.storeOnConsume = true;
 			elementConsumerCarbonDioxide.isRequired = false;
 
 			//Store water from environment
