@@ -50,7 +50,9 @@ namespace AlgaeGrower
 				float carbonMass = storage.GetMassAvailable(GameTags.CarbonDioxide);
 				storage.ConsumeIgnoringDisease(GameTags.CarbonDioxide, carbonMass);
 				storage.AddGasChunk(SimHashes.Oxygen, carbonMass, 303.15f, byte.MaxValue, 0, true);
-				storage.Drop(GameTags.Oxygen);
+				int cell = Grid.PosToCell(smi.master.transform.GetPosition());
+				int elementIndex = SimMessages.GetElementIndex(SimHashes.Oxygen);
+				SimMessages.ModifyCell(cell, elementIndex, 303.15f, carbonMass, 255, 0);
 			}
 		}
 
