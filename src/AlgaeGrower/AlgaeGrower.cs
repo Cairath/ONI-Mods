@@ -114,11 +114,11 @@ namespace AlgaeGrower
 					.EventTransition(GameHashes.OnStorageChange, StoppedGeneratingOxygen,
 						smi => !smi.HasEnoughMass(GameTags.Water) || !smi.HasEnoughMass(GameTags.Agriculture))
 					.Update("GeneratingOxygen", (smi, dt) => {
-						if (!smi.HasLight()){
-							smi.GoTo(StoppedGeneratingOxygen);
+						if (smi.HasLight()){
+							smi.convertCo2InStorage();
                         }
 						else{
-							smi.convertCo2InStorage();
+							smi.GoTo(StoppedGeneratingOxygen);
 						}
 					}, UpdateRate.SIM_1000ms);
 
