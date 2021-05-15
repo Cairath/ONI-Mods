@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <OutputType>Library</OutputType>
+    <LangVersion>7.3</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Copyright>Cairath &#169; 2018-2021</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameContentType Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'VanillaDebug'">Vanilla</GameContentType>
+    <GameContentType Condition="'$(Configuration)' == 'SpacedOutRelease' Or '$(Configuration)' == 'SpacedOutDebug'">SpacedOut</GameContentType>
+    <BuildType Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'SpacedOutRelease'">Release</BuildType>
+    <BuildType Condition="'$(Configuration)' == 'VanillaDebug' Or '$(Configuration)' == 'SpacedOutDebug'">Debug</BuildType>
+    <LibFolder>..\lib\$(GameContentType)</LibFolder>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DistributionFolder Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'VanillaDebug'">\archived_versions\vanilla</DistributionFolder>
+    <DistributionFolder Condition="'$(Configuration)' == 'SpacedOutRelease' Or '$(Configuration)' == 'SpacedOutDebug'"></DistributionFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BuildType)' == 'Release'">
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BuildType)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>$(LibFolder)\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(LibFolder)\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(LibFolder)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(LibFolder)\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(LibFolder)\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(LibFolder)\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(LibFolder)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(AssemblyName)' != 'CaiLib'">
+    <ProjectReference Include="..\CaiLib\^CaiLib.csproj">
+      <Project>{2ded5b57-fd32-4f67-88b5-924ac4300952}</Project>
+      <Name>^CaiLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  
+</Project>
