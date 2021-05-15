@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <PropertyGroup>
     <TargetFramework>net40</TargetFramework>
     <OutputType>Library</OutputType>
@@ -33,6 +32,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ILMerge" Version="3.0.41" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
       <Reference Include="Newtonsoft.Json">
@@ -56,6 +59,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>$(LibFolder)\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(LibFolder)\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup Condition="'$(AssemblyName)' != 'CaiLib'">
@@ -64,5 +70,4 @@
       <Name>^CaiLib</Name>
     </ProjectReference>
   </ItemGroup>
-  
 </Project>

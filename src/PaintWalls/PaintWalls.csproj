@@ -7,14 +7,10 @@
     <RootNamespace>PaintWalls</RootNamespace>
     <AssemblyName>PaintWalls</AssemblyName>
     <AssemblyVersion>2021.5.15.0</AssemblyVersion>
-    <FileVersion>2021.5.15.1</FileVersion>
+    <FileVersion>2021.5.15.3</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'SpacedOutRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'SpacedOutDebug'" />
-
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>

@@ -3,15 +3,20 @@ using KSerialization;
 
 namespace NotificationTrigger
 {
-	public class NotificationTrigger : StateMachineComponent<NotificationTrigger.SMInstance>
+	public class NotificationTrigger : KMonoBehaviour
 	{
-		[Serialize]
-		public string Name = string.Empty;
+		[MyCmpGet]
+		private UserNameable userNameable;
 
 		[Serialize]
 		public bool WillPause;
 
 		public StatusItem _statusItem;
+
+		private static readonly EventSystem.IntraObjectHandler<NotificationTrigger> OnNameUpdatedDelegate = new EventSystem.IntraObjectHandler<NotificationTrigger>((component, data) => component.OnNameUpdated(data));
+		private static readonly EventSystem.IntraObjectHandler<NotificationTrigger> OnLogicValueChangedDelegate = new EventSystem.IntraObjectHandler<NotificationTrigger>((component, data) => component.OnLogicValueChanged(data));
+
+		private bool wasOn;
 
 		protected override void OnPrefabInit()
 		{
@@ -31,29 +36,61 @@ namespace NotificationTrigger
 
 		protected override void OnSpawn()
 		{
-			smi.StartSM();
+			//smi.StartSM();
 
-			if (Name.IsNullOrWhiteSpace())
-			{
-				Name = NotificationTriggerConfig.DisplayName;
-			}
+			//if (userNameable.savedName.IsNullOrWhiteSpace())
+			//{
+			//	userNameable.SetName(NotificationTriggerConfig.DisplayName);
+			//}
 
-			var trimmed = Name.Trim();
+
+			Subscribe((int)GameHashes.NameChanged, OnNameUpdatedDelegate);
+			Subscribe((int)GameHashes.LogicEvent, OnLogicValueChangedDelegate);
+
+			var trimmed = userNameable.savedName.Trim();
 			WillPause = trimmed.StartsWith("[P]");
 
-			SetName(trimmed);
+			//userNameable.SetName(trimmed);
 		}
 
-		public void SetName(string name)
+		public void OnLogicValueChanged(object data)
 		{
-			var component = GetComponent<KSelectable>();
+			var logicValueChanged = (LogicValueChanged) data;
 
-			if (string.IsNullOrEmpty(name))
+			if (logicValueChanged.portID != NotificationTriggerConfig.InputPortId)
+				return;
+
+			if (LogicCircuitNetwork.IsBitActive(0, logicValueChanged.newValue))
 			{
-				name = NotificationTriggerConfig.DisplayName;
+				if (this.wasOn)
+					return;
+			//	this.Toggle; ???
+				this.wasOn = true;
+				if (WillPause && !SpeedControlScreen.Instance.IsPaused)
+					SpeedControlScreen.Instance.Pause(false);
+				
+				this.UpdateVisualState();
 			}
+			else
+			{
+				if (!this.wasOn)
+					return;
+				this.wasOn = false;
+				this.UpdateVisualState();
+			}
+		}
+		
+		public void OnNameUpdated(object data)
+		{
+			var newName = (string) data;
+			//var component = GetComponent<KSelectable>();
 
-			var trimmed = name.Trim();
+			//if (string.IsNullOrEmpty(newName))
+			//{
+			//	newName = NotificationTriggerConfig.DisplayName;
+			//}
+
+			var trimmed = newName.Trim();
 
 			var regexp = new Regex(@"[^\[]+(?=\])");
 			var match = regexp.Match(trimmed);
@@ -65,18 +102,18 @@ namespace NotificationTrigger
 			{
 				_statusItem.notificationType = NotificationType.Good;
 			}
-			else if (flags == "!")
+			else switch (flags)
 			{
-				_statusItem.notificationType = NotificationType.Tutorial;
-			}
-			else if (flags == "!!")
-			{
-				_statusItem.notificationType = NotificationType.Bad;
-			}
-			else if (flags == "!!!")
-			{
-				_statusItem.notificationType = NotificationType.Bad;
-				WillPause = true;
+				case "!":
+					_statusItem.notificationType = NotificationType.Tutorial;
+					break;
+				case "!!":
+					_statusItem.notificationType = NotificationType.Bad;
+					break;
+				case "!!!":
+					_statusItem.notificationType = NotificationType.Bad;
+					WillPause = true;
+					break;
 			}
 
 			var notificationText = trimmed;
@@ -88,50 +125,14 @@ namespace NotificationTrigger
 
 			notificationText = notificationText.Replace("[]", string.Empty);
 
-			this.name = trimmed;
-			Name = trimmed;
-			
-			if (component != null)
-			{
-				component.SetName(name);
-			}
-
-			gameObject.name = name;
-			NameDisplayScreen.Instance.UpdateName(gameObject);
+			//NameDisplayScreen.Instance.UpdateName(gameObject);
 
 			_statusItem.notificationText = notificationText.TrimStart();
 		}
 
-		public class SMInstance : GameStateMachine<States, SMInstance, NotificationTrigger, object>.GameInstance
+		private void UpdateVisualState()
 		{
-			public SMInstance(NotificationTrigger master) : base(master) { }
-		}
-
-		public class States : GameStateMachine<States, SMInstance, NotificationTrigger>
-		{
-			public State Off;
-			public State On;
-
-			public override void InitializeStates(out BaseState defaultState)
-			{
-				defaultState = Off;
-
-				Off
-					.PlayAnim("off")
-					.EventTransition(GameHashes.OperationalChanged, On, smi => smi.GetComponent<Operational>().IsOperational);
-				On
-					.PlayAnim("on")
-					.Enter(smi =>
-					{
-						smi.GetComponent<Operational>().SetActive(true);
-						if (smi.master.WillPause)
-						{
-							SpeedControlScreen.Instance.Pause();
-						}
-					})
-					.ToggleStatusItem(smi => smi.master._statusItem)
-					.EventTransition(GameHashes.OperationalChanged, Off, smi => !smi.GetComponent<Operational>().IsOperational);
-			}
+			GetComponent<KBatchedAnimController>().Play(wasOn ? "on" : "off");
 		}
 	}
 }

@@ -7,7 +7,7 @@
     <RootNamespace>CaiLib</RootNamespace>
     <AssemblyName>CaiLib</AssemblyName>
     <AssemblyVersion>2021.5.15.0</AssemblyVersion>
-    <FileVersion>2021.5.15.11</FileVersion>
+    <FileVersion>2021.5.15.22</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />
