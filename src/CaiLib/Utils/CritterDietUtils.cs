@@ -60,7 +60,7 @@ namespace CaiLib.Utils
 		public static List<Diet.Info> CreateFoodDiet(Tag poopTag, float calPerDay, float poopKgPerDay)
 		{
 			var dietList = new List<Diet.Info>();
-			foreach (var foodType in FOOD.FOOD_TYPES_LIST)
+			foreach (var foodType in EdiblesManager.GetAllFoodTypes())
 			{
 				if (foodType.CaloriesPerUnit > 0.0)
 					AddToDiet(dietList, foodType, poopTag, calPerDay, poopKgPerDay);

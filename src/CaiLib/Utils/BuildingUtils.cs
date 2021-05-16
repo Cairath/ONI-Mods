@@ -12,8 +12,7 @@ namespace CaiLib.Utils
 			if (index == -1)
 				return;
 
-			var planOrderList = BUILDINGS.PLANORDER[index].data as IList<string>;
-			if (planOrderList == null)
+			if (!(BUILDINGS.PLANORDER[index].data is IList<string> planOrderList))
 			{
 				Logger.Logger.Log($"Could not add {buildingId} to the building menu.");
 				return;
@@ -27,10 +26,9 @@ namespace CaiLib.Utils
 				planOrderList.Add(buildingId);
 		}
 
-		public static void AddBuildingToTechnology(string tech, string buildingId)
+		public static void AddBuildingToTechnology(string techId, string buildingId)
 		{
-			var techList = new List<string>(Database.Techs.TECH_GROUPING[tech]) { buildingId };
-			Database.Techs.TECH_GROUPING[tech] = techList.ToArray();
+			Db.Get().Techs.Get(techId).unlockedItemIDs.Add(buildingId);
 		}
     }
 }

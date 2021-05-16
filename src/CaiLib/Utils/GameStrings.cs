@@ -26,6 +26,8 @@
             {
                 public const string BasicFarming = "FarmingTech";
                 public const string MealPreparation = "FineDining";
+                public const string GourmetMealPreparation = "FinerDining";
+                public const string FoodRepurposing = "FoodRepurposing";
                 public const string Agriculture = "Agriculture";
                 public const string Ranching = "Ranching";
                 public const string AnimalControl = "AnimalControl";
@@ -43,6 +45,8 @@
                 public const string LowResistanceConductors = "PrettyGoodConductors";
                 public const string ValveMiniaturization = "ValveMiniaturization";
                 public const string RenewableEnergy = "RenewableEnergy";
+                public const string SpacePower = "SpacePower";
+                public const string HydrocarbonPropulsion = "HydrocarbonPropulsion";
             }
 
             public static class SolidMaterial
@@ -53,12 +57,25 @@
                 public const string Smelting = "Smelting";
                 public const string SolidTransport = "SolidTransport";
                 public const string SuperheatedForging = "HighTempForging";
+                public const string SolidSpaceTransport = "SolidSpace";
+                public const string SolidManagement = "SolidManagement";
+                public const string HighVelocityTransport = "HighVelocityTransport";
             }
 
             public static class ColonyDevelopment
             {
                 public const string Employment = "Jobs";
                 public const string AdvancedResearch = "AdvancedResearch";
+                public const string RadiationRefinement = "NuclearRefinement";
+                public const string CryoFuelPropulsion = "CryoFuelPropulsion";
+                public const string SpaceProgram = "SpaceProgram";
+                public const string CrashPlan = "CrashPlan";
+                public const string DurableLifeSupport = "DurableLifeSupport";
+                public const string AtomicResearch = "NuclearResearch";
+                public const string RadboltPropulsion = "NuclearPropulsion";
+                public const string NotificationSystems = "NotificationSystems";
+                public const string ArtificialFriends = "ArtificialFriends";
+                public const string RoboticTools = "RoboticTools";
             }
 
             public static class Medicine
@@ -67,6 +84,7 @@
                 public const string MedicalEquipment = "MedicineII";
                 public const string PathogenDiagnostics = "MedicineIII";
                 public const string MicroTargetedMedicine = "MedicineIV";
+                public const string RadiationProtection = "RadiationProtection";
             }
 
             public static class Liquids
@@ -74,12 +92,16 @@
                 public const string Plumbing = "LiquidPiping";
                 public const string AirSystems = "ImprovedOxygen";
                 public const string Sanitation = "SanitationSciences";
+                public const string AdvancedSanitation = "AdvancedSanitation";
                 public const string Filtration = "AdvancedFiltration";
                 public const string LiquidBasedRefinementProcess = "LiquidFiltering";
                 public const string Distillation = "Distillation";
                 public const string ImprovedPlumbing = "ImprovedLiquidPiping";
                 public const string LiquidTuning = "LiquidTemperature";
                 public const string AdvancedCaffeination = "PrecisionPlumbing";
+                public const string FlowRedirection = "FlowRedirection";
+                public const string LiquidDistribution = "LiquidDistribution";
+                public const string Jetpacks = "Jetpacks";
             }
 
             public static class Gases
@@ -91,13 +113,14 @@
                 public const string ImprovedVentilation = "ImprovedGasPiping";
                 public const string HVAC = "HVAC";
                 public const string Catalytics = "Catalytics";
+                public const string PortableGasses = "PortableGasses";
+                public const string GasDistribution = "GasDistribution";
             }
 
             public static class Exosuits
             {
                 public const string HazardProtection = "Suits";
                 public const string TransitTubes = "TravelTubes";
-                public const string Jetpacks = "Jetpacks";
             }
 
             public static class Decor
@@ -110,6 +133,9 @@
                 public const string HighCulture = "RefractiveDecor";
                 public const string GlassBlowing = "GlassFurnishings";
                 public const string RenaissanceArt = "RenaissanceArt";
+                public const string EnvironmentalAppreciation = "EnvironmentalAppreciation";
+                public const string NewMedia = "Screens";
+                public const string Monuments = "Monuments";
             }
 
             public static class Computers
@@ -118,6 +144,9 @@
                 public const string GenericSensors = "GenericSensors";
                 public const string AdvancedAutomation = "LogicCircuits";
                 public const string Computing = "DupeTrafficControl";
+                public const string ParallelAutomation = "ParallelAutomation";
+                public const string SensitiveMicroimaging = "AdvancedScanners";
+                public const string Multiplexing = "Multiplexing";
             }
 
             public static class Rocketry
@@ -130,6 +159,8 @@
                 public const string LiquidAndGasCargo = "CargoII";
                 public const string CryofuelCombustion = "EnginesIII";
                 public const string UniqueCargo = "CargoIII";
+               
+                
             }
         }
     }

@@ -28,7 +28,7 @@ namespace CaiLib.Utils
 
 		public static bool DiscoveredCondition(Tag tag)
 		{
-			return WorldInventory.Instance.IsDiscovered(tag);
+			return DiscoveredResources.Instance.IsDiscovered(tag);
 		}
 	}
 }
