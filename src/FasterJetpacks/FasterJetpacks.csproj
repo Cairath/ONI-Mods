@@ -7,7 +7,7 @@
     <RootNamespace>FasterJetpacks</RootNamespace>
     <AssemblyName>FasterJetpacks</AssemblyName>
     <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.4</FileVersion>
+    <FileVersion>2021.5.26.6</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

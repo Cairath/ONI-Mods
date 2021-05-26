@@ -7,7 +7,7 @@
     <RootNamespace>AchievementProgress</RootNamespace>
     <AssemblyName>AchievementProgress</AssemblyName>
     <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.7</FileVersion>
+    <FileVersion>2021.5.26.9</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />
