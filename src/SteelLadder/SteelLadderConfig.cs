@@ -53,6 +53,7 @@ namespace SteelLadder
 		public override void DoPostConfigureComplete(GameObject go)
 		{
 			BuildingTemplates.DoPostConfigure(go);
+			go.GetComponent<KPrefabID>().AddTag(GameTags.Bunker);
 		}
 	}
 }

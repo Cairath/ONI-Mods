@@ -38,7 +38,7 @@ namespace FlowSplitters
 		[HarmonyPatch("Initialize")]
 		public class Db_Initialize_Patch
 		{
-			public static void Prefix()
+			public static void Postfix()
 			{
 				AddBuildingToTechnology(GameStrings.Technology.Gases.Ventilation, GasSplitterAConfig.Id);
 				AddBuildingToTechnology(GameStrings.Technology.Gases.Ventilation, GasSplitterBConfig.Id);

@@ -25,6 +25,9 @@ namespace OilWellAnyWater
 				{
 					new ElementConverter.ConsumedElement(GameTags.AnyWater, 1f)
 				};
+
+				var conduitConsumer = go.AddOrGet<ConduitConsumer>();
+				conduitConsumer.capacityTag = GameTags.AnyWater;
 			}
 		}
 	}

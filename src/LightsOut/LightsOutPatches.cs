@@ -93,8 +93,8 @@ namespace LightsOut
 		}
 
 		[HarmonyPatch(typeof(SleepChore))]
-		[HarmonyPatch(nameof(SleepChore.IsLightLevelOk))]
-		public static class SleepChore_IsLightLevelOk_Patch
+		[HarmonyPatch(nameof(SleepChore.IsDarkAtCell))]
+		public static class SleepChore_IsDarkAtCell_Patch
 		{
 			public static void Postfix(int cell, ref bool __result)
 			{

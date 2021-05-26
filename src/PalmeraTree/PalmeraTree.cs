@@ -45,7 +45,7 @@ namespace PalmeraTree
 
 		public Notification CreateDeathNotification()
 		{
-			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad, HashedString.Invalid, (notificationList, data) =>
+			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad, (notificationList, data) =>
 					 CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), "/t• " + gameObject.GetProperName());
 		}
 
@@ -74,7 +74,7 @@ namespace PalmeraTree
 
 			public override void InitializeStates(out BaseState defaultState)
 			{
-				serializable = true;
+				serializable = SerializeType.Both_DEPRECATED;
 				defaultState = Alive;
 
 				var dead = CREATURES.STATUSITEMS.DEAD.NAME;
@@ -90,7 +90,7 @@ namespace PalmeraTree
 
                         GameUtil.KInstantiate(Assets.GetPrefab(EffectConfigs.PlantDeathId), smi.master.transform.GetPosition(), Grid.SceneLayer.FXFront).SetActive(true);
                         if (smi.master.harvestable != null && smi.master.harvestable.CanBeHarvested && GameScheduler.Instance != null)
-                            GameScheduler.Instance.Schedule("SpawnFruit", 0.2f, smi.master.crop.SpawnFruit);
+                            GameScheduler.Instance.Schedule("SpawnFruit", 0.2f, smi.master.crop.SpawnConfiguredFruit);
 
                         smi.master.Trigger((int)GameHashes.Died);
 						smi.master.GetComponent<KBatchedAnimController>().StopAndClear();
@@ -167,7 +167,7 @@ namespace PalmeraTree
 					{
 						if (GameScheduler.Instance == null || smi.master == null) return;
 
-						GameScheduler.Instance.Schedule("SpawnFruit", 0.2f, smi.master.crop.SpawnFruit);
+						GameScheduler.Instance.Schedule("SpawnFruit", 0.2f, smi.master.crop.SpawnConfiguredFruit);
 						smi.master.harvestable.SetCanBeHarvested(false);
 					})
 					.OnAnimQueueComplete(Alive.Idle);

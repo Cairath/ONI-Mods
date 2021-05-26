@@ -30,7 +30,7 @@ namespace MarbleTile
 		[HarmonyPatch("Initialize")]
 		public static class Db_Initialize_Patch
 		{
-			public static void Prefix()
+			public static void Postfix()
 			{
 				AddBuildingToTechnology(GameStrings.Technology.Decor.FineArt, MarbleTileConfig.Id);
 			}

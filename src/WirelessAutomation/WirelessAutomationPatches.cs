@@ -59,7 +59,7 @@ namespace WirelessAutomation
 			[HarmonyPatch("Initialize")]
 			public static class Db_Initialize_Patch
 			{
-				public static void Prefix()
+				public static void Postfix()
 				{
 					AddBuildingToTechnology(GameStrings.Technology.Computers.Computing, WirelessSignalEmitterConfig.Id);
 					AddBuildingToTechnology(GameStrings.Technology.Computers.Computing, WirelessSignalReceiverConfig.Id);

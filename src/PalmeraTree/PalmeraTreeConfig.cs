@@ -43,7 +43,9 @@ namespace PalmeraTree
                 temperature_warning_high: 363.15f,
                 temperature_lethal_high: 373.15f,
                 safe_elements: new[] { SimHashes.ChlorineGas },
-                crop_id: PalmeraBerryConfig.Id);
+                crop_id: PalmeraBerryConfig.Id,
+                baseTraitId: $"{Id}Original",
+                baseTraitName: Name);
 
             placedEntity.AddOrGet<PalmeraTree>();
 
@@ -88,6 +90,11 @@ namespace PalmeraTree
 
         public void OnSpawn(GameObject inst)
         {
+        }
+
+        public string GetDlcId()
+        {
+	        return DlcManager.VANILLA_ID;
         }
     }
 }

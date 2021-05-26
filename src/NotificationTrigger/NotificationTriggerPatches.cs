@@ -50,7 +50,7 @@ namespace NotificationTrigger
 		[HarmonyPatch("Initialize")]
 		public static class Db_Initialize_Patch
 		{
-			public static void Prefix()
+			public static void Postfix()
 			{
 				AddBuildingToTechnology(GameStrings.Technology.Computers.SmartHome, NotificationTriggerConfig.Id);
 			}

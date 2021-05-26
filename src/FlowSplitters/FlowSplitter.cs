@@ -126,10 +126,6 @@ namespace FlowSplitters
 			Game.Instance.accumulators.Accumulate(_accumulator, contents.mass);
 		}
 
-		public ConduitType GetSecondaryConduitType() => SecondaryPort.conduitType;
-
-		public CellOffset GetSecondaryConduitOffset() => SecondaryPort.offset;
-
 		public void AddNetworks(ICollection<UtilityNetwork> networks)
 		{
 			var networkManager = Conduit.GetNetworkManager(Type);
@@ -157,6 +153,16 @@ namespace FlowSplitters
 		public int GetNetworkCell()
 		{
 			return _inputCell;
+		}
+
+		public bool HasSecondaryConduitType(ConduitType type)
+		{
+			return Type == type;
+		}
+
+		public CellOffset GetSecondaryConduitOffset(ConduitType type)
+		{
+			return SecondaryPort.offset;
 		}
 	}
 }

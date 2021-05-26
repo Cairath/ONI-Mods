@@ -6,8 +6,8 @@
     <TargetFramework>net40</TargetFramework>
     <RootNamespace>CaiLib</RootNamespace>
     <AssemblyName>CaiLib</AssemblyName>
-    <AssemblyVersion>2021.5.16.0</AssemblyVersion>
-    <FileVersion>2021.5.16.5</FileVersion>
+    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
+    <FileVersion>2021.5.26.16</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

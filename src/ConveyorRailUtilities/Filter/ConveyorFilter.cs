@@ -70,10 +70,16 @@ namespace ConveyorRailUtilities.Filter
 
 			flowManager.AddPickupable(_outputCell, pickupable);
 			operational.SetActive(false);
+		} 
+
+		public bool HasSecondaryConduitType(ConduitType type)
+		{
+			return type == ConduitType.Solid;
 		}
 
-		public ConduitType GetSecondaryConduitType() => SecondaryPort.conduitType;
-
-		public CellOffset GetSecondaryConduitOffset() => SecondaryPort.offset;
+		public CellOffset GetSecondaryConduitOffset(ConduitType type)
+		{
+			return SecondaryPort.offset;
+		}
 	}
 }

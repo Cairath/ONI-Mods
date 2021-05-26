@@ -6,8 +6,8 @@
     <TargetFramework>net40</TargetFramework>
     <RootNamespace>WirelessAutomation</RootNamespace>
     <AssemblyName>WirelessAutomation</AssemblyName>
-    <AssemblyVersion>2021.5.15.0</AssemblyVersion>
-    <FileVersion>2021.5.15.3</FileVersion>
+    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
+    <FileVersion>2021.5.26.3</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

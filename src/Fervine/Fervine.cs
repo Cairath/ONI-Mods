@@ -60,8 +60,9 @@ namespace Fervine
 
 		public Notification CreateDeathNotification()
 		{
-			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad, HashedString.Invalid, 
-				(notificationList, data) => CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), "/t• " + gameObject.GetProperName());
+			return new Notification(CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION, NotificationType.Bad, 
+				(notificationList, data) => CREATURES.STATUSITEMS.PLANTDEATH.NOTIFICATION_TOOLTIP + notificationList.ReduceMessages(false), 
+				"/t• " + gameObject.GetProperName());
 		}
 
 		public class StatesInstance : GameStateMachine<States, StatesInstance, Fervine, object>.GameInstance
@@ -79,7 +80,7 @@ namespace Fervine
 
 			public override void InitializeStates(out BaseState defaultState)
 			{
-				serializable = true;
+				serializable = SerializeType.Both_DEPRECATED;
 				defaultState = Alive;
 				
 				var plantname = CREATURES.STATUSITEMS.DEAD.NAME;
