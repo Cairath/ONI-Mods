@@ -57,8 +57,8 @@ namespace NotificationTrigger
 		{
 			var logicValueChanged = (LogicValueChanged) data;
 
-			if (logicValueChanged.portID != NotificationTriggerConfig.InputPortId)
-				return;
+			//if (logicValueChanged.portID != NotificationTriggerConfig.InputPortId)
+			//	return;
 
 			if (LogicCircuitNetwork.IsBitActive(0, logicValueChanged.newValue))
 			{

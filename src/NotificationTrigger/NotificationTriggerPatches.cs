@@ -90,7 +90,7 @@ namespace NotificationTrigger
 				if (notificationTrigger == null)
 					return;
 
-				notificationTrigger.SetName(newName);
+				//notificationTrigger.SetName(newName);
 			}
 		}
 

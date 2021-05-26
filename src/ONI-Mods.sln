@@ -3,127 +3,132 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipedAlgaeTerrarium", "PipedAlgaeTerrarium\PipedAlgaeTerrarium.csproj", "{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PipedAlgaeTerrarium", "PipedAlgaeTerrarium\PipedAlgaeTerrarium.csproj", "{D2D396F8-6A3C-45AE-B56F-2E27E33ECDAE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MosaicTile", "MosaicTile\MosaicTile.csproj", "{49AAD1B7-5895-40C3-96AA-92F169F66B98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MosaicTile", "MosaicTile\MosaicTile.csproj", "{49AAD1B7-5895-40C3-96AA-92F169F66B98}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelLadder", "SteelLadder\SteelLadder.csproj", "{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SteelLadder", "SteelLadder\SteelLadder.csproj", "{8A9E219D-EF57-4493-92E4-5E509BFFA4E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerCameraZoomOut", "BiggerCameraZoomOut\BiggerCameraZoomOut.csproj", "{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiggerCameraZoomOut", "BiggerCameraZoomOut\BiggerCameraZoomOut.csproj", "{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDiscoverMap", "DebugDoesNotDiscoverMap\DebugDoesNotDiscoverMap.csproj", "{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DebugDoesNotDiscoverMap", "DebugDoesNotDiscoverMap\DebugDoesNotDiscoverMap.csproj", "{9A77C55D-CF9C-4E16-ACA4-9844821F67DA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowSplitters", "FlowSplitters\FlowSplitters.csproj", "{26766715-4733-45CB-BDFE-4A544091AEBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlowSplitters", "FlowSplitters\FlowSplitters.csproj", "{26766715-4733-45CB-BDFE-4A544091AEBC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefinedMetalsUsableAsRawMetals", "RefinedMetalsUsableAsRawMetals\RefinedMetalsUsableAsRawMetals.csproj", "{B732436D-6C87-487B-86D2-10E3F270E4B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefinedMetalsUsableAsRawMetals", "RefinedMetalsUsableAsRawMetals\RefinedMetalsUsableAsRawMetals.csproj", "{B732436D-6C87-487B-86D2-10E3F270E4B5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecorLights", "DecorLights\DecorLights.csproj", "{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecorLights", "DecorLights\DecorLights.csproj", "{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildablePOIProps", "BuildablePOIProps\BuildablePOIProps.csproj", "{172D2D02-9391-4913-92CE-2E77EE5980BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildablePOIProps", "BuildablePOIProps\BuildablePOIProps.csproj", "{172D2D02-9391-4913-92CE-2E77EE5980BB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgaeGrower", "AlgaeGrower\AlgaeGrower.csproj", "{5260D58E-F491-4BDD-B05C-EB545EE5F89A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgaeGrower", "AlgaeGrower\AlgaeGrower.csproj", "{5260D58E-F491-4BDD-B05C-EB545EE5F89A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalmeraTree", "PalmeraTree\PalmeraTree.csproj", "{E0E13C69-5124-446D-AE9A-81C844C49830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PalmeraTree", "PalmeraTree\PalmeraTree.csproj", "{E0E13C69-5124-446D-AE9A-81C844C49830}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleSweeperRange", "DoubleSweeperRange\DoubleSweeperRange.csproj", "{6BC6635F-12EE-4CD9-B26D-05FBB53DB940}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleSweeperRange", "DoubleSweeperRange\DoubleSweeperRange.csproj", "{6BC6635F-12EE-4CD9-B26D-05FBB53DB940}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorfulShinebugs", "ColorfulShinebugs\ColorfulShinebugs.csproj", "{2D9FE5B8-ABA8-4689-A3FE-398CF3291A2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorfulShinebugs", "ColorfulShinebugs\ColorfulShinebugs.csproj", "{2D9FE5B8-ABA8-4689-A3FE-398CF3291A2E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fervine", "Fervine\Fervine.csproj", "{CABB3EF6-E62F-4932-9544-6B852143230A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fervine", "Fervine\Fervine.csproj", "{CABB3EF6-E62F-4932-9544-6B852143230A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeyserCalculatedAvgOutputTooltip", "GeyserCalculatedAvgOutputTooltip\GeyserCalculatedAvgOutputTooltip.csproj", "{B046A213-8AF8-4CA1-8024-B3F8209D24CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeyserCalculatedAvgOutputTooltip", "GeyserCalculatedAvgOutputTooltip\GeyserCalculatedAvgOutputTooltip.csproj", "{B046A213-8AF8-4CA1-8024-B3F8209D24CA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuitDockStores75Kg", "SuitDockStores75Kg\SuitDockStores75Kg.csproj", "{00887A44-0EB3-455B-956D-1FBCA9A2B7FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuitDockStores75Kg", "SuitDockStores75Kg\SuitDockStores75Kg.csproj", "{00887A44-0EB3-455B-956D-1FBCA9A2B7FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FasterJetpacks", "FasterJetpacks\FasterJetpacks.csproj", "{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FasterJetpacks", "FasterJetpacks\FasterJetpacks.csproj", "{B0312AD8-CAB1-4FD3-9EE7-EB41208CA537}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanBuildingsWithoutMaterials", "PlanBuildingsWithoutMaterials\PlanBuildingsWithoutMaterials.csproj", "{75BDFADD-CE37-42C3-869D-F3EB2C064170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanBuildingsWithoutMaterials", "PlanBuildingsWithoutMaterials\PlanBuildingsWithoutMaterials.csproj", "{75BDFADD-CE37-42C3-869D-F3EB2C064170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OilWellAnyWater", "OilWellAnyWater\OilWellAnyWater.csproj", "{C8970347-23A9-4950-839F-A8ECE55E25CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OilWellAnyWater", "OilWellAnyWater\OilWellAnyWater.csproj", "{C8970347-23A9-4950-839F-A8ECE55E25CE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerBuildingMenu", "BiggerBuildingMenu\BiggerBuildingMenu.csproj", "{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiggerBuildingMenu", "BiggerBuildingMenu\BiggerBuildingMenu.csproj", "{0CB63A70-9FA0-4A92-A9BD-C88F4B08F9D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintWalls", "PaintWalls\PaintWalls.csproj", "{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaintWalls", "PaintWalls\PaintWalls.csproj", "{A7DFF257-A10A-4574-9A6E-70D0DFF52FF3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallpaper", "Wallpaper\Wallpaper.csproj", "{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallpaper", "Wallpaper\Wallpaper.csproj", "{4D49609F-40B3-4A26-BA6F-1DB0E14D4F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTile", "MarbleTile\MarbleTile.csproj", "{B6886803-1704-40F7-81F1-0F6BEFF776A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleTile", "MarbleTile\MarbleTile.csproj", "{B6886803-1704-40F7-81F1-0F6BEFF776A2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2DED5B57-FD32-4F67-88B5-924AC4300952} = {2DED5B57-FD32-4F67-88B5-924AC4300952}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WirelessAutomation", "WirelessAutomation\WirelessAutomation.csproj", "{E0DD3489-4BAD-4EDE-AF0D-DDEB9E149D19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WirelessAutomation", "WirelessAutomation\WirelessAutomation.csproj", "{E0DD3489-4BAD-4EDE-AF0D-DDEB9E149D19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EerieColors", "EerieColors\EerieColors.csproj", "{67E1F9EE-937F-4017-B3FD-1E7777E3D7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EerieColors", "EerieColors\EerieColors.csproj", "{67E1F9EE-937F-4017-B3FD-1E7777E3D7AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "^CaiLib", "CaiLib\^CaiLib.csproj", "{2DED5B57-FD32-4F67-88B5-924AC4300952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLeakyWalls", "NoLeakyWalls\NoLeakyWalls.csproj", "{BEF30A03-2598-41CC-897F-A3C4C85CCD10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoLeakyWalls", "NoLeakyWalls\NoLeakyWalls.csproj", "{BEF30A03-2598-41CC-897F-A3C4C85CCD10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowIndustrialMachineryTag", "ShowIndustrialMachineryTag\ShowIndustrialMachineryTag.csproj", "{36735139-281B-4A61-BFFD-D12FD187A2EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowIndustrialMachineryTag", "ShowIndustrialMachineryTag\ShowIndustrialMachineryTag.csproj", "{36735139-281B-4A61-BFFD-D12FD187A2EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConveyorRailUtilities", "ConveyorRailUtilities\ConveyorRailUtilities.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConveyorRailUtilities", "ConveyorRailUtilities\ConveyorRailUtilities.csproj", "{D47BE3E7-1B19-4120-8BA4-60BC31AAF0F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLongCommutes", "NoLongCommutes\NoLongCommutes.csproj", "{034CAEB1-930B-49AC-8F0C-9451F0345176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoLongCommutes", "NoLongCommutes\NoLongCommutes.csproj", "{034CAEB1-930B-49AC-8F0C-9451F0345176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessWasteFromJetpacks", "LessWasteFromJetpacks\LessWasteFromJetpacks.csproj", "{185032E8-0A01-47AC-890D-25281FDDC646}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LessWasteFromJetpacks", "LessWasteFromJetpacks\LessWasteFromJetpacks.csproj", "{185032E8-0A01-47AC-890D-25281FDDC646}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoundedGoToMedBed", "WoundedGoToMedBed\WoundedGoToMedBed.csproj", "{85A32D56-D00E-4703-8066-7BF30EBE1566}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoundedGoToMedBed", "WoundedGoToMedBed\WoundedGoToMedBed.csproj", "{85A32D56-D00E-4703-8066-7BF30EBE1566}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugDoesNotDisableAchievements", "DebugDoesNotDisableAchievements\DebugDoesNotDisableAchievements.csproj", "{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DebugDoesNotDisableAchievements", "DebugDoesNotDisableAchievements\DebugDoesNotDisableAchievements.csproj", "{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AchievementProgress", "AchievementProgress\AchievementProgress.csproj", "{A28E0A6E-BA94-4E5C-AD40-CC18B520F974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationTrigger", "NotificationTrigger\NotificationTrigger.csproj", "{A1A13E01-96CE-403B-B80E-486A34959A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationTrigger", "NotificationTrigger\NotificationTrigger.csproj", "{A1A13E01-96CE-403B-B80E-486A34959A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurableMotionSensorRange", "ConfigurableMotionSensorRange\ConfigurableMotionSensorRange.csproj", "{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurableMotionSensorRange", "ConfigurableMotionSensorRange\ConfigurableMotionSensorRange.csproj", "{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightsOut", "LightsOut\LightsOut.csproj", "{3882537B-867B-4C09-9B02-832F005E20BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightsOut", "LightsOut\LightsOut.csproj", "{3882537B-867B-4C09-9B02-832F005E20BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30EA0E28-B2F3-4E5D-9F97-6C1DF3F149C6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

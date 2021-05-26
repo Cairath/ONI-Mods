@@ -6,8 +6,8 @@
     <TargetFramework>net40</TargetFramework>
     <RootNamespace>AlgaeGrower</RootNamespace>
     <AssemblyName>AlgaeGrower</AssemblyName>
-    <AssemblyVersion>2021.5.15.0</AssemblyVersion>
-    <FileVersion>2021.5.15.18</FileVersion>
+    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
+    <FileVersion>2021.5.26.5</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />
