@@ -3,11 +3,11 @@
   <PropertyGroup>
     <ProjectGuid>{4E2A1264-18B9-46E8-83EC-06616ED3E8FE}</ProjectGuid>
     <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <RootNamespace>DebugDoesNotDisableAchievements</RootNamespace>
     <AssemblyName>DebugDoesNotDisableAchievements</AssemblyName>
-    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.5</FileVersion>
+    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
+    <FileVersion>2021.6.12.6</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

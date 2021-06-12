@@ -3,11 +3,11 @@
   <PropertyGroup>
     <ProjectGuid>{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}</ProjectGuid>
     <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <RootNamespace>DecorLights</RootNamespace>
     <AssemblyName>DecorLights</AssemblyName>
-    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.5</FileVersion>
+    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
+    <FileVersion>2021.6.12.6</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

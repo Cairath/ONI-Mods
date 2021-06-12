@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CaiLib.Config;
 using CaiLib.Utils;
-using Harmony;
+using HarmonyLib;
 using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
@@ -16,7 +16,7 @@ namespace Wallpaper
 
 		public static class Mod_OnLoad
 		{
-			public static void PrePatch(HarmonyInstance instance)
+			public static void PrePatch(Harmony instance)
 			{
 				ConfigManager = new ConfigManager<Config>();
 				ConfigManager.ReadConfig();

@@ -3,11 +3,11 @@
   <PropertyGroup>
     <ProjectGuid>{8AFBB895-9E85-49A8-BAA2-009B836C4BB8}</ProjectGuid>
     <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <RootNamespace>BiggerCameraZoomOut</RootNamespace>
     <AssemblyName>BiggerCameraZoomOut</AssemblyName>
-    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.5</FileVersion>
+    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
+    <FileVersion>2021.6.12.6</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

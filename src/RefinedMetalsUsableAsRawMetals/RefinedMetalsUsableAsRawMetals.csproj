@@ -3,11 +3,11 @@
   <PropertyGroup>
     <ProjectGuid>{B732436D-6C87-487B-86D2-10E3F270E4B5}</ProjectGuid>
     <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <RootNamespace>RefinedMetalsUsableAsRawMetals</RootNamespace>
     <AssemblyName>RefinedMetalsUsableAsRawMetals</AssemblyName>
-    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.5</FileVersion>
+    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
+    <FileVersion>2021.6.12.6</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

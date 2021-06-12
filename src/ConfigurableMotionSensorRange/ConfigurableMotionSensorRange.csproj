@@ -3,11 +3,11 @@
   <PropertyGroup>
     <ProjectGuid>{5FA2D8E4-A656-4B1F-B3A9-33F7823DDAFD}</ProjectGuid>
     <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <RootNamespace>ConfigurableMotionSensorRange</RootNamespace>
     <AssemblyName>ConfigurableMotionSensorRange</AssemblyName>
-    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.5</FileVersion>
+    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
+    <FileVersion>2021.6.12.6</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

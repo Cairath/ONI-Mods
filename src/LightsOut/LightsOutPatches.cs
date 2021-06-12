@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using CaiLib.Config;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using static CaiLib.Logger.Logger;
 
@@ -16,7 +16,7 @@ namespace LightsOut
 
 		public static class Mod_OnLoad
 		{
-			public static void PrePatch(HarmonyInstance instance)
+			public static void PrePatch(Harmony instance)
 			{
 				ConfigManager = new ConfigManager<Config>();
 				ConfigManager.ReadConfig(() =>

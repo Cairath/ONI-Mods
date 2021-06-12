@@ -92,9 +92,9 @@ namespace PalmeraTree
         {
         }
 
-        public string GetDlcId()
+        public string[] GetDlcIds()
         {
-	        return DlcManager.VANILLA_ID;
+	        return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
     }
 }

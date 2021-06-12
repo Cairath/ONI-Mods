@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection.Emit;
 using CaiLib.Config;
-using Harmony;
+using HarmonyLib;
 using static CaiLib.Logger.Logger;
 
 namespace EerieColors
@@ -13,7 +13,7 @@ namespace EerieColors
 
 		public static class Mod_OnLoad
 		{
-			public static void PrePatch(HarmonyInstance instance)
+			public static void PrePatch(Harmony instance)
 			{
 				_configManager = new ConfigManager<Config>();
 				_configManager.ReadConfig(() =>

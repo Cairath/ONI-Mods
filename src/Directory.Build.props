@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <OutputType>Library</OutputType>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Copyright>Cairath &#169; 2018-2021</Copyright>

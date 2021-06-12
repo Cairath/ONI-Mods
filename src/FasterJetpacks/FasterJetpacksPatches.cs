@@ -1,5 +1,5 @@
 ﻿using CaiLib.Config;
-using Harmony;
+using HarmonyLib;
 using static CaiLib.Logger.Logger;
 
 namespace FasterJetpacks
