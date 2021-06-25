@@ -32,6 +32,9 @@
                 public const string Ranching = "Ranching";
                 public const string AnimalControl = "AnimalControl";
                 public const string GourmetMealPrep = "FinerDining";
+
+                // Spaced Out!
+                public const string Bioengineering = "Bioengineering";
             }
 
             public static class Power
@@ -47,6 +50,10 @@
                 public const string RenewableEnergy = "RenewableEnergy";
                 public const string SpacePower = "SpacePower";
                 public const string HydrocarbonPropulsion = "HydrocarbonPropulsion";
+                public const string ImprovedHydrocarbonPropulsion = "BetterHydroCarbonPropulsion";
+
+                // Spaced Out!
+                public const string AdvancedCombustion = "SpaceCombustion";
             }
 
             public static class SolidMaterial
@@ -57,9 +64,13 @@
                 public const string Smelting = "Smelting";
                 public const string SolidTransport = "SolidTransport";
                 public const string SuperheatedForging = "HighTempForging";
+                public const string PressurizedForging = "HighPressureForging";
                 public const string SolidSpaceTransport = "SolidSpace";
                 public const string SolidManagement = "SolidManagement";
                 public const string HighVelocityTransport = "HighVelocityTransport";
+
+                // Spaced Out!
+                public const string HighVelocityDestruction = "HighVelocityDestruction";
             }
 
             public static class ColonyDevelopment
@@ -114,6 +125,9 @@
                 public const string HVAC = "HVAC";
                 public const string Catalytics = "Catalytics";
                 public const string PortableGasses = "PortableGasses";
+
+                // Spaced Out!
+                public const string AdvancedGasFlow = "SpaceGas";
                 public const string GasDistribution = "GasDistribution";
             }
 
@@ -145,8 +159,10 @@
                 public const string AdvancedAutomation = "LogicCircuits";
                 public const string Computing = "DupeTrafficControl";
                 public const string ParallelAutomation = "ParallelAutomation";
-                public const string SensitiveMicroimaging = "AdvancedScanners";
                 public const string Multiplexing = "Multiplexing";
+
+                // Spaced Out!
+                public const string SensitiveMicroimaging = "AdvancedScanners";
             }
 
             public static class Rocketry
@@ -159,8 +175,8 @@
                 public const string LiquidAndGasCargo = "CargoII";
                 public const string CryofuelCombustion = "EnginesIII";
                 public const string UniqueCargo = "CargoIII";
-               
-                
+
+
             }
         }
     }
