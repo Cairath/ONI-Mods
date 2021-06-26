@@ -19,7 +19,7 @@ namespace LightsOut
 			SuitLamp.Color = Color.yellow;
 			SuitLamp.Offset = new Vector2(0f, 1f);
 			SuitLamp.Range = 10;
-			SuitLamp.Lux = LightsOutPatches.ConfigManager.Config.SuitLightLux;
+			SuitLamp.Lux = LightsOutMod.ConfigManager.Config.SuitLightLux;
 			SuitLamp.shape = LightShape.Circle;
 			SuitLamp.enabled = false;
 
@@ -27,14 +27,14 @@ namespace LightsOut
 			DupeLight.Color = Color.white;
 			DupeLight.Offset = new Vector2(0f, 1f);
 			DupeLight.Range = 3;
-			DupeLight.Lux = LightsOutPatches.ConfigManager.Config.DupeLightLux;
+			DupeLight.Lux = LightsOutMod.ConfigManager.Config.DupeLightLux;
 			DupeLight.shape = LightShape.Circle;
-			DupeLight.enabled = LightsOutPatches.ConfigManager.Config.DupeLight;
+			DupeLight.enabled = LightsOutMod.ConfigManager.Config.DupeLight;
 		}
 
 		public void Sim1000ms(float dt)
 		{
-			SuitLamp.enabled = LightsOutPatches.ConfigManager.Config.SuitLight && _suitEquipper.IsWearingAirtightSuit();
+			SuitLamp.enabled = LightsOutMod.ConfigManager.Config.SuitLight && _suitEquipper.IsWearingAirtightSuit();
 		}
 	}
 }

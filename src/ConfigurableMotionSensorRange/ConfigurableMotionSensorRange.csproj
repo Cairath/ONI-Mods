@@ -6,8 +6,12 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>ConfigurableMotionSensorRange</RootNamespace>
     <AssemblyName>ConfigurableMotionSensorRange</AssemblyName>
-    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
-    <FileVersion>2021.6.12.6</FileVersion>
+    <AssemblyVersion>2021.6.26.0</AssemblyVersion>
+    <FileVersion>2021.6.26.2</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ModName>Configurable Motion Sensor Range</ModName>
+    <ModDescription></ModDescription>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

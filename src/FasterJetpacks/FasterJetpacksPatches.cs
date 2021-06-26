@@ -1,23 +1,9 @@
-﻿using CaiLib.Config;
-using HarmonyLib;
-using static CaiLib.Logger.Logger;
+﻿using HarmonyLib;
 
 namespace FasterJetpacks
 {
 	public class FasterJetpacksPatches
 	{
-		private static ConfigManager<Config> _configManager;
-
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-				_configManager = new ConfigManager<Config>();
-				_configManager.ReadConfig();
-			}
-		}
-
 		[HarmonyPatch(typeof(BipedTransitionLayer))]
         [HarmonyPatch(nameof(BipedTransitionLayer.BeginTransition))]
 		public static class BipedTransitionLayer_BeginTransition_Patch
@@ -28,7 +14,7 @@ namespace FasterJetpacks
 
 				var floorSpeed = instance.Field("floorSpeed").GetValue<float>();
 				var jetpackSpeed = instance.Field("jetPackSpeed");
-				jetpackSpeed.SetValue(floorSpeed * _configManager.Config.SpeedMultiplier);
+				jetpackSpeed.SetValue(floorSpeed * FasterJetpacksMod.ConfigManager.Config.SpeedMultiplier);
 			}
 		}
 	}

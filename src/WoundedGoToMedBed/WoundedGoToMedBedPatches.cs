@@ -1,18 +1,9 @@
 ﻿using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace WoundedGoToMedBed
 {
 	public class WoundedGoToMedBedPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(WoundMonitor))]
 		[HarmonyPatch(nameof(WoundMonitor.InitializeStates))]
 		public class WoundMonitorInitializeStates

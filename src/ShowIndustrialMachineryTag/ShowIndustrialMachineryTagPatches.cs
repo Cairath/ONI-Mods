@@ -1,19 +1,10 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using static CaiLib.Logger.Logger;
 
 namespace ShowIndustrialMachineryTag
 {
 	public static class ShowIndustrialMachineryTagPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(SimpleInfoScreen))]
 		[HarmonyPatch("SetPanels")]
 		public static class SimpleInfoScreen_SetPanels_Patch

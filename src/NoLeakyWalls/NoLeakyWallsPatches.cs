@@ -1,18 +1,9 @@
 ﻿using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace NoLeakyWalls
 {
 	public class NoLeakyWallsPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(ExteriorWallConfig))]
 		[HarmonyPatch(nameof(ExteriorWallConfig.CreateBuildingDef))]
 		public static class ExteriorWallConfig_CreateBuildingDef_Patch

@@ -1,6 +1,5 @@
 ﻿using Database;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace DebugDoesNotDisableAchievements
 {
@@ -10,14 +9,6 @@ namespace DebugDoesNotDisableAchievements
 		[HarmonyPatch("UnlockPlatformAchievement")]
 		public static class ColonyAchievementTracker_UnlockPlatformAchievement_Patch
 		{
-			public static class Mod_OnLoad
-			{
-				public static void OnLoad()
-				{
-					LogInit();
-				}
-			}
-
 			public static bool Prefix(string achievement_id)
 			{
 				if (DebugHandler.InstantBuildMode)

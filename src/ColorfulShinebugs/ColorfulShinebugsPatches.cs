@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using static CaiLib.Logger.Logger;
 
 namespace ColorfulShinebugs
 {
@@ -12,15 +11,7 @@ namespace ColorfulShinebugs
 	    private static readonly Color LightbugColorPink = new Color(2f, 1.2f, 2f);
 	    private static readonly Color LightbugColorBlue = new Color(1f, 1.6f, 2.2f);
 	    private static readonly Color LightbugColorCrystal = new Color(2f, 2f, 2f);
-
-	    public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-		    {
-			    LogInit();
-		    }
-	    }
-
+		
 		[HarmonyPatch(typeof(LightBugConfig))]
 		[HarmonyPatch("CreateLightBug")]
 		public static class LightBugConfig_CreateLightBug_Patch

@@ -1,5 +1,4 @@
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.CarePackagesUtils;
 using static CaiLib.Utils.PlantUtils;
 using static CaiLib.Utils.RecipeUtils;
@@ -9,14 +8,6 @@ namespace PalmeraTree
 {
 	public class PalmeraTreePatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(EntityConfigManager))]
 		[HarmonyPatch(nameof(EntityConfigManager.LoadGeneratedEntities))]
 		public class EntityConfigManager_LoadGeneratedEntities_Patch

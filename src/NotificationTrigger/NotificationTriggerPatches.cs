@@ -2,7 +2,6 @@
 using HarmonyLib;
 using STRINGS;
 using UnityEngine;
-using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
 
@@ -10,14 +9,6 @@ namespace NotificationTrigger
 {
 	public static class NotificationTriggerPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(GeneratedBuildings))]
 		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch

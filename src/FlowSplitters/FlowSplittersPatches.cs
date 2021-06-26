@@ -1,6 +1,5 @@
 ﻿using CaiLib.Utils;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
 
@@ -8,14 +7,6 @@ namespace FlowSplitters
 {
 	public class FlowSplittersPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(GeneratedBuildings))]
 		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public class GeneratedBuildings_LoadGeneratedBuildings_Patch

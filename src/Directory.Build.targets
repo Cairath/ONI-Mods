@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  
 
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild" Condition="'$(AssemblyName)' != 'CaiLib'">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(PkgILMerge)\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '$(PkgILMerge)\build\ILMerge.props'))" />
+    <Error Condition="!Exists('$(PkgCairath_ONIMetadataFileGenerator)\build\Cairath.ONIMetadataFileGenerator.props')" Text="$([System.String]::Format('$(ErrorText)', '$(PkgCairath_ONIMetadataFileGenerator)\build\Cairath.ONIMetadataFileGenerator.props'))" />
+  </Target>
+
+  <Target Name="GenerateMetadataFiles" BeforeTargets="Build" Condition="'$(AssemblyName)' != 'CaiLib'">
+    <GenerateMetadataFiles
+      OutputPath="$(TargetDir)"
+
+      Title="$(ModName)"
+      Description="$(ModDescription)"
+      StaticID="Cairath.$(AssemblyName)"
+      
+      SupportedContent="$(SupportedContent)"
+      MinimumSupportedBuild="$(MinimumSupportedBuild)"
+      Version="$(FileVersion)"
+      APIVersion="$(APIVersion)"
+    />
   </Target>
 
   <Target Name="ILMerge" AfterTargets="Build" Condition="'$(AssemblyName)' != 'CaiLib'">
     <Exec Command="$(ILMergeConsolePath) /out:&quot;$(TargetDir)$(TargetName)-merged.dll&quot; &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(TargetDir)CaiLib.dll&quot; /targetplatform:v4,C:/Windows/Microsoft.NET/Framework64/v4.0.30319 /log"/>
     <Exec Command="echo F | xcopy /Y /S /R /Q &quot;$(TargetDir)$(TargetName)-merged.dll&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\$(TargetName).dll&quot;"/>
-    <Exec Command="echo F | xcopy /Y /S /R /Q &quot;$(ProjectDir)mod_info.yaml&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\mod_info.yaml&quot;"/>
+    <Exec Command="echo F | xcopy /Y /S /R /Q &quot;$(TargetDir)mod_info.yaml&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\mod_info.yaml&quot;"/>
+    <Exec Command="echo F | xcopy /Y /S /R /Q &quot;$(TargetDir)mod.yaml&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)\mod.yaml&quot;"/>
     <Exec Command="if exist &quot;$(ProjectDir)anim&quot; xcopy /Y /R /I /E /Q  &quot;$(ProjectDir)anim&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\anim&quot;"/>
     <Exec Command="if exist &quot;$(ProjectDir)previews&quot; xcopy /Y /R /I /E /Q  &quot;$(ProjectDir)previews&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\&quot;"/>
     <Exec Command="if exist &quot;$(TargetDir)Config.json&quot; echo F | xcopy /Y /S /R /Q &quot;$(TargetDir)Config.json&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\Config.json&quot;"/>

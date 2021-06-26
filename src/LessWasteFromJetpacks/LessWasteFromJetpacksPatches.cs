@@ -2,20 +2,11 @@
 using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace LessWasteFromJetpacks
 {
 	public class LessWasteFromJetpacksPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(JetSuitMonitor))]
 		[HarmonyPatch(nameof(JetSuitMonitor.Emit))]
 		public static class JetSuitMonitor_Emit_Patch

@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <SupportedContent>ALL</SupportedContent>
+    <MinimumSupportedBuild>469112</MinimumSupportedBuild>
+    <APIVersion>2</APIVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <GameContentType Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'VanillaDebug'">Vanilla</GameContentType>
     <GameContentType Condition="'$(Configuration)' == 'SpacedOutRelease' Or '$(Configuration)' == 'SpacedOutDebug'">SpacedOut</GameContentType>
     <BuildType Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'SpacedOutRelease'">Release</BuildType>
@@ -31,8 +37,9 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(AssemblyName)' != 'CaiLib'">
     <PackageReference Include="ILMerge" Version="3.0.41" GeneratePathProperty="true" />
+    <PackageReference Include="Cairath.ONIMetadataFileGenerator" Version="1.0.0" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup>

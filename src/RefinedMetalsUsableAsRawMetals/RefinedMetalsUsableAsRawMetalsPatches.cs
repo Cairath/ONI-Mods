@@ -1,19 +1,10 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace RefinedMetalsUsableAsRawMetals
 {
     public static class RefinedMetalsUsableAsRawMetalsPatches
     {
-        public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-            {
-                LogInit();
-            }
-        }
-
         [HarmonyPatch(typeof(ElementLoader))]
         [HarmonyPatch("FinaliseElementsTable")]
         public static class ElementLoader_LoadUserElementData_Patch

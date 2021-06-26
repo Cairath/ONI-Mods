@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace BiggerCameraZoomOut
 {
@@ -7,14 +6,6 @@ namespace BiggerCameraZoomOut
 	{
 		private static readonly float _maxZoom = 200f;
 
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-		
 		[HarmonyPatch(typeof(CameraController))]
 		[HarmonyPatch("OnPrefabInit")]
 		public static class CameraController_OnPrefabInit_Patch

@@ -24,7 +24,7 @@ namespace Wallpaper
 			var element = primaryElement.Element;
 			var elementName = UI.StripLinkFormatting(element.name);
 
-			var colorDictionary = WallpaperPatches.ConfigManager.Config.Colors;
+			var colorDictionary = WallpaperMod.ConfigManager.Config.Colors;
 			var color = colorDictionary.ContainsKey(elementName) ? colorDictionary[elementName].ToColor() : element.substance.uiColour;
 
 			if (element.id == SimHashes.Granite && !colorDictionary.ContainsKey(SimHashes.Granite.ToString()))

@@ -1,18 +1,9 @@
 ﻿using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace DebugDoesNotDiscoverMap
 {
 	public class DebugDoesNotDiscoverMapPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(DebugHandler))]
 		[HarmonyPatch(nameof(DebugHandler.OnKeyDown))]
 		public static class DebugHandler_OnKeyDown_Patch

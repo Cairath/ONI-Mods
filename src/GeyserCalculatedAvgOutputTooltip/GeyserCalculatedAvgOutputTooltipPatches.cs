@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace GeyserCalculatedAvgOutputTooltip
 {
@@ -10,15 +9,7 @@ namespace GeyserCalculatedAvgOutputTooltip
 		private static readonly LocString GeyserAvgOutputAnalyseTooltip = "A researcher must analyze this geyser to determine its average output.";
 		private static readonly LocString GeyserAvgOutput = "Calculated Average Output: {0} {1}";
 		private static readonly LocString GeyserAvgOutputTooltip = "Taking into account its eruption rates and dormant times, this geyser average output is {0} {1}";
-
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
+		
 		[HarmonyPatch(typeof(Geyser))]
 		[HarmonyPatch(nameof(Geyser.GetDescriptors))]
 		public static class Geyser_GetDescriptors_Patch

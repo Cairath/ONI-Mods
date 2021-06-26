@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.CarePackagesUtils;
 using static CaiLib.Utils.RecipeUtils;
 using static CaiLib.Utils.StringUtils;
@@ -8,14 +7,6 @@ namespace Fervine
 {
 	public class FervinePatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(EntityConfigManager))]
 		[HarmonyPatch("LoadGeneratedEntities")]
 		public static class EntityConfigManager_LoadGeneratedEntities_Patch

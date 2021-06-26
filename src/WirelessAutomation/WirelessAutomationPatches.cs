@@ -1,6 +1,5 @@
 ﻿using CaiLib.Utils;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.GameStrings;
 using static CaiLib.Utils.StringUtils;
@@ -9,13 +8,6 @@ namespace WirelessAutomation
 {
 	public static class WirelessAutomationPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
 
 		[HarmonyPatch(typeof(Game))]
 		[HarmonyPatch("OnPrefabInit")]

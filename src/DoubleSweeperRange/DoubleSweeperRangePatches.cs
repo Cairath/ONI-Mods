@@ -1,19 +1,10 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using static CaiLib.Logger.Logger;
 
 namespace DoubleSweeperRange
 {
 	public class DoubleSweeperRangePatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(SolidTransferArmConfig))]
 		[HarmonyPatch("AddVisualizer")]
 		public static class SolidTransferArmConfig_AddVisualizer_Patch

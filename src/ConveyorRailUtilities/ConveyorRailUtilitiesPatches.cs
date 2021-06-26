@@ -6,14 +6,6 @@ namespace ConveyorRailUtilities
 {
 	public static class ConveyorRailUtilitiesPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				CaiLib.Logger.Logger.LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(GeneratedBuildings))]
 		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public static class GeneratedBuildings_LoadGeneratedBuildings_Patch

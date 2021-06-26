@@ -1,19 +1,10 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using static CaiLib.Logger.Logger;
 
 namespace ConfigurableMotionSensorRange
 {
 	public class ConfigurableMotionSensorRangePatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(GeneratedBuildings))]
 		[HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
 		public class GeneratedBuildings_LoadGeneratedBuildings_Patch

@@ -1,20 +1,11 @@
 ﻿using System.Linq;
 using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace AchievementProgress
 {
 	public class AchievementProgressPatches
 	{
 		public static PauseScreen Instance;
-
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
 
 		[HarmonyPatch(typeof(PauseScreen))]
 		[HarmonyPatch("OnPrefabInit")]

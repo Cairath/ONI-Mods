@@ -2,40 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
-using CaiLib.Config;
 using HarmonyLib;
 using UnityEngine;
-using static CaiLib.Logger.Logger;
 
 namespace LightsOut
 {
 	public class LightsOutPatches
 	{
-		public static ConfigManager<Config> ConfigManager;
 		private static bool _lightsOut = true;
-
-		public static class Mod_OnLoad
-		{
-			public static void PrePatch(Harmony instance)
-			{
-				ConfigManager = new ConfigManager<Config>();
-				ConfigManager.ReadConfig(() =>
-				{
-					ConfigManager.Config.LowestFog = MathUtil.Clamp(0, 255, ConfigManager.Config.LowestFog);
-					ConfigManager.Config.HighestFog = MathUtil.Clamp(0, 255, ConfigManager.Config.HighestFog);
-					ConfigManager.Config.LuxThreshold = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LuxThreshold);
-					ConfigManager.Config.DisturbSleepLux = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.DisturbSleepLux);
-					ConfigManager.Config.LitWorkspaceLux = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LitWorkspaceLux);
-					ConfigManager.Config.LitDecorLux = MathUtil.Clamp(0, int.MaxValue, ConfigManager.Config.LitDecorLux);
-					ConfigManager.Config.DebuffTier = (DebuffTier)MathUtil.Clamp(0, 2, (int)ConfigManager.Config.DebuffTier);
-				});
-			}
-
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
 
 		[HarmonyPatch(typeof(PauseScreen))]
 		[HarmonyPatch("OnPrefabInit")]
@@ -81,7 +55,7 @@ namespace LightsOut
 		{
 			public static void Postfix(int cell, ref int __result)
 			{
-				if (Grid.LightIntensity[cell] >= ConfigManager.Config.LitDecorLux)
+				if (Grid.LightIntensity[cell] >= LightsOutMod.ConfigManager.Config.LitDecorLux)
 				{
 					__result = TUNING.DECOR.LIT_BONUS;
 				}
@@ -98,7 +72,7 @@ namespace LightsOut
 		{
 			public static void Postfix(int cell, ref bool __result)
 			{
-				__result = Grid.LightIntensity[cell] <= ConfigManager.Config.DisturbSleepLux;
+				__result = Grid.LightIntensity[cell] <= LightsOutMod.ConfigManager.Config.DisturbSleepLux;
 			}
 		}
 
@@ -114,7 +88,7 @@ namespace LightsOut
 					if (codes[i].opcode == OpCodes.Ldc_I4_0 && codes[i + 1].opcode == OpCodes.Ble)
 					{
 						codes[i].opcode = OpCodes.Ldc_I4;
-						codes[i].operand = ConfigManager.Config.LitWorkspaceLux;
+						codes[i].operand = LightsOutMod.ConfigManager.Config.LitWorkspaceLux;
 						break;
 					}
 				}
@@ -129,7 +103,7 @@ namespace LightsOut
 		{
 			public static void Postfix(ModifierSet __instance)
 			{
-				var effects = Effects.GenerateEffectsList(ConfigManager.Config.DebuffTier);
+				var effects = Effects.GenerateEffectsList(LightsOutMod.ConfigManager.Config.DebuffTier);
 
 				foreach (var e in effects)
 				{
@@ -146,7 +120,7 @@ namespace LightsOut
 			{
 				if (!_lightsOut) return true;
 
-				var config = ConfigManager.Config;
+				var config = LightsOutMod.ConfigManager.Config;
 				byte[] visible = Grid.Visible;
 				var lightIntensityIndexer = Grid.LightIntensity;
 

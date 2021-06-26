@@ -1,19 +1,10 @@
 ﻿using HarmonyLib;
 using CaiLib.Utils;
-using static CaiLib.Logger.Logger;
 using static CaiLib.Utils.BuildingUtils;
 using static CaiLib.Utils.StringUtils;
 
 namespace DecorLights
 {
-	public static class Mod_OnLoad
-	{
-		public static void OnLoad()
-		{
-			LogInit();
-		}
-	}
-
 	public class DecorLightsPatches
 	{
 		[HarmonyPatch(typeof(GeneratedBuildings))]

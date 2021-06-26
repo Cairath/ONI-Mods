@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
+using KMod;
 using Newtonsoft.Json;
 using static CaiLib.Logger.Logger;
 
@@ -10,17 +10,13 @@ namespace CaiLib.Config
 	{
 		public T Config { get; set; }
 
-		private readonly string _executingAssemblyPath;
+		private readonly string _modPath;
 		private readonly string _configFileName;
 
-		public ConfigManager(string executingAssemblyPath = null, string configFileName = "Config.json")
+		public ConfigManager(Mod mod, string configFileName = "Config.json")
 		{
-            if (executingAssemblyPath == null)
-            {
-                executingAssemblyPath = Assembly.GetExecutingAssembly().Location;
-            }
-
-			_executingAssemblyPath = executingAssemblyPath;
+			_modPath = mod.label.install_path;
+			Debug.Log(_modPath);
 			_configFileName = configFileName;
 		}
 
@@ -28,11 +24,11 @@ namespace CaiLib.Config
 		{
 			Config = new T();
 
-			var directory = Path.GetDirectoryName(_executingAssemblyPath);
+			var directory = Path.GetDirectoryName(_modPath);
 
 			if (directory == null)
 			{
-				Log($"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Log($"Failed to read config file {_configFileName} - cannot get directory name for executing assembly path {_modPath}.");
 				return Config;
 			}
 
@@ -49,7 +45,7 @@ namespace CaiLib.Config
 			}
 			catch (Exception e)
 			{
-				Log($"Error reading config file {_configFileName} with exception: {e.Message}");
+				Log($"Failed to read config file {_configFileName} with exception: {e.Message}");
 				return Config;
 			}
 
@@ -62,11 +58,11 @@ namespace CaiLib.Config
 
 		public bool SaveConfigToFile()
 		{
-			var directory = Path.GetDirectoryName(_executingAssemblyPath);
+			var directory = Path.GetDirectoryName(_modPath);
 
 			if (directory == null)
 			{
-				Log($"Error reading config file {_configFileName} - cannot get directory name for executing assembly path {_executingAssemblyPath}.");
+				Log($"Failed to read file {_configFileName} - cannot get directory name for executing assembly path {_modPath}.");
 				return false;
 			}
 
@@ -82,7 +78,7 @@ namespace CaiLib.Config
 			}
 			catch (Exception e)
 			{
-				Log($"Error writing to config file {_configFileName} with exception: {e.Message}");
+				Log($"Failed to write to config file {_configFileName} with exception: {e.Message}");
 				return false;
 			}
 

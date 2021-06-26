@@ -6,8 +6,13 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>AchievementProgress</RootNamespace>
     <AssemblyName>AchievementProgress</AssemblyName>
-    <AssemblyVersion>2021.6.12.0</AssemblyVersion>
-    <FileVersion>2021.6.12.6</FileVersion>
+    <AssemblyTitle>Achievement Progress</AssemblyTitle>
+    <AssemblyVersion>2021.6.26.0</AssemblyVersion>
+    <FileVersion>2021.6.26.5</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ModName>Achievement Progress</ModName>
+    <ModDescription></ModDescription>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

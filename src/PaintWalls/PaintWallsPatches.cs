@@ -1,18 +1,9 @@
 ﻿using HarmonyLib;
-using static CaiLib.Logger.Logger;
 
 namespace PaintWalls
 {
 	public static class PaintWallPatches
 	{
-		public static class Mod_OnLoad
-		{
-			public static void OnLoad()
-			{
-				LogInit();
-			}
-		}
-
 		[HarmonyPatch(typeof(BuildingComplete))]
 		[HarmonyPatch("OnSpawn")]
 		public static class BuildingComplete_OnSpawn_Patch
