@@ -2,7 +2,8 @@
 # Cairath's Mods for Oxygen Not Included <!-- omit in toc -->
 <div align="center">
 
-master branch last updated to game version **AP-39948-D**
+master branch last updated to game version **EX1 S13-469369**    
+vanilla branch last updated for build **469300**
 
 </div>
 

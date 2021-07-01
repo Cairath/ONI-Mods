@@ -15,26 +15,18 @@ namespace CaiLib.Config
 
 		public ConfigManager(Mod mod, string configFileName = "Config.json")
 		{
-			_modPath = mod.label.install_path;
-			Debug.Log(_modPath);
+			_modPath = mod.ContentPath;
 			_configFileName = configFileName;
 		}
 
 		public T ReadConfig(System.Action postReadAction = null)
 		{
 			Config = new T();
-
-			var directory = Path.GetDirectoryName(_modPath);
-
-			if (directory == null)
-			{
-				Log($"Failed to read config file {_configFileName} - cannot get directory name for executing assembly path {_modPath}.");
-				return Config;
-			}
-
-			var configPath = Path.Combine(directory, _configFileName);
-
+			
+			var configPath = Path.Combine(_modPath, _configFileName);
+			Debug.Log(configPath);
 			T config;
+
 			try
 			{
 				using (var r = new StreamReader(configPath))

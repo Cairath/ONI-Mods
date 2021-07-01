@@ -3,7 +3,8 @@
 # Cairath&#39;s Mods for Oxygen Not Included <!-- omit in toc -->
 <div align="center">
 
-master branch last updated to game version **AP-39948-D**
+master branch last updated to game version **EX1 S13-469369**    
+vanilla branch last updated for build **469300**
 
 </div>
 
@@ -103,4 +104,4 @@ To all my Patrons on Patreon who support the development :)
 \
 \
 \
-Last readme update: Friday, 24th April 2020, 7:41 pm
+Last readme update: Sunday, 27th June 2021, 9:57 pm
