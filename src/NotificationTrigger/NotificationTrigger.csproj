@@ -6,8 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>NotificationTrigger</RootNamespace>
     <AssemblyName>NotificationTrigger</AssemblyName>
-    <AssemblyVersion>2021.6.26.0</AssemblyVersion>
-    <FileVersion>2021.6.26.2</FileVersion>
+    <AssemblyVersion>2021.7.1.0</AssemblyVersion>
+    <FileVersion>2021.7.1.1</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ModName>Notification Trigger</ModName>
