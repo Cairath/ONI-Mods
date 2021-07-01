@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <SupportedContent>ALL</SupportedContent>
-    <MinimumSupportedBuild>469112</MinimumSupportedBuild>
+    <MinimumSupportedBuild>469369</MinimumSupportedBuild>
     <APIVersion>2</APIVersion>
   </PropertyGroup>
 
@@ -39,15 +39,15 @@
 
   <ItemGroup Condition="'$(AssemblyName)' != 'CaiLib'">
     <PackageReference Include="ILMerge" Version="3.0.41" GeneratePathProperty="true" />
-    <PackageReference Include="Cairath.ONIMetadataFileGenerator" Version="1.0.0" GeneratePathProperty="true" />
+    <PackageReference Include="Cairath.ONIMetadataFileGenerator" Version="1.0.0" GeneratePathProperty="true"/>
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-      <Reference Include="Newtonsoft.Json">
-        <HintPath>$(LibFolder)\Newtonsoft.Json.dll</HintPath>
-      </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(LibFolder)\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="0Harmony">
       <HintPath>$(LibFolder)\0Harmony.dll</HintPath>
     </Reference>
