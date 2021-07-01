@@ -13,7 +13,7 @@
     <Exec Command="echo F | xcopy /Y /S /R /Q &quot;$(ProjectDir)mod_info.yaml&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\mod_info.yaml&quot;"/>
     <Exec Command="if exist &quot;$(ProjectDir)anim&quot; xcopy /Y /R /I /E /Q  &quot;$(ProjectDir)anim&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\anim&quot;"/>
     <Exec Command="if exist &quot;$(ProjectDir)previews&quot; xcopy /Y /R /I /E /Q  &quot;$(ProjectDir)previews&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\&quot;"/>
-    <Exec Command="if exist &quot;$(TargetDir)Config.json&quot; echo F | xcopy /Y /S /R /Q &quot;$(TargetDir)Config.json&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\Config.json&quot;"/>
+    <Exec Command="if exist &quot;$(ProjectDir)Config.template.json&quot; echo F | xcopy /Y /S /R /Q &quot;$(ProjectDir)Config.template.json&quot; &quot;$(SolutionDir)..\Mods\$(TargetName)$(DistributionFolder)\Config.template.json&quot;"/>
     <Exec Command="xcopy /Y /R /I /Q /E &quot;$(SolutionDir)..\Mods\$(TargetName)&quot; &quot;$(UserProfile)\Documents\Klei\OxygenNotIncluded\mods\dev\$(TargetName)&quot;"/>
   </Target>
 </Project>
