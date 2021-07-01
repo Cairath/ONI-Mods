@@ -6,8 +6,8 @@
     <TargetFramework>net40</TargetFramework>
     <RootNamespace>FlowSplitters</RootNamespace>
     <AssemblyName>FlowSplitters</AssemblyName>
-    <AssemblyVersion>2021.5.26.0</AssemblyVersion>
-    <FileVersion>2021.5.26.5</FileVersion>
+    <AssemblyVersion>2021.7.1.0</AssemblyVersion>
+    <FileVersion>2021.7.1.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />
