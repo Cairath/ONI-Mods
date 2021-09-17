@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
+using Newtonsoft.Json;
+using UnityEngine;
 
 namespace EerieColors
 {
@@ -17,8 +19,15 @@ namespace EerieColors
 
 				if (config.CustomBiomeTints)
 				{
-					__instance.zoneColours = new[]
+					__instance.zoneColours = new Color32[]
 					{
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
+						config.TintColor,
 						config.TintColor,
 						config.TintColor,
 						config.TintColor,
@@ -38,25 +47,27 @@ namespace EerieColors
 			{
 				var config = EerieColorsMod.ConfigManager.Config;
 
+				UnityEngine.Debug.Log(JsonConvert.SerializeObject(instructions));
 				var codes = new List<CodeInstruction>(instructions);
 				if (config.UnifiedBiomeBackgrounds)
 				{
 					for (var i = 0; i < codes.Count; i++)
 					{
-						if (codes[i].opcode == OpCodes.Bne_Un)
+						if (codes[i].opcode == OpCodes.Beq_S)
 						{
 							for (var j = i; j < codes.Count; j++)
 							{
-								if (codes[j].opcode == OpCodes.Stelem_I1)
+								if (codes[j].opcode == OpCodes.Stelem_I4)
 								{
-									codes.Insert(j, new CodeInstruction(OpCodes.Ldc_I4, config.BiomeBackground));
-									codes.Insert(j, new CodeInstruction(OpCodes.Pop));
+									UnityEngine.Debug.Log("i executed");
+									codes[j-1] = new CodeInstruction(OpCodes.Ldc_I4, config.BiomeBackground);
 									break;
 								}
 							}
 						}
 					}
 				}
+				UnityEngine.Debug.Log(JsonConvert.SerializeObject(instructions));
 
 				return codes.AsEnumerable();
 			}

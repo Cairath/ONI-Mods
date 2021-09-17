@@ -14,5 +14,18 @@ namespace PlanBuildingsWithoutMaterials
 				return false;
 			}
 		}
+
+		[HarmonyPatch(typeof(PlanScreen))]
+		[HarmonyPatch("GetBuildableStateForDef")]
+		public static class PlanScreen_GetBuildableStateForDef_Patch
+		{
+			public static void Postfix(ref PlanScreen.RequirementsState __result)
+			{
+				if (__result == PlanScreen.RequirementsState.Materials)
+				{
+					__result = PlanScreen.RequirementsState.Complete;
+				}
+			}
+		}
 	}
 }

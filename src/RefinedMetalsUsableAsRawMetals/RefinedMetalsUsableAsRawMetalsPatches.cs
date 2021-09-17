@@ -17,8 +17,15 @@ namespace RefinedMetalsUsableAsRawMetals
                 var gold = ElementLoader.FindElementByHash(SimHashes.Gold);
                 var lead = ElementLoader.FindElementByHash(SimHashes.Lead);
                 var aluminum = ElementLoader.FindElementByHash(SimHashes.Aluminum);
+              
 
                 var elements = new[] { copper, iron, gold, lead, aluminum, tungsten };
+
+                if (DlcManager.IsExpansion1Active())
+                {
+	                var cobalt = ElementLoader.FindElementByHash(SimHashes.Cobalt);
+	                elements.AddItem(cobalt);
+                }
 
                 foreach (var element in elements)
                 {

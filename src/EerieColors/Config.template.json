@@ -1,44 +1,64 @@
 // THIS IS A TEMPLATE FILE. IT WILL HAVE NO EFFECT ON THE GAME AND WILL BE OVERRIDEN ON EVERY UPDATE.
 // TO USE CUSTOM CONFIG, COPY THIS FILE, NAME IT Config.json AND EDIT VALUES TO YOUR LIKING
 {
-    //Enables or disables single custom tint on world elements set per biome. Default: true
-    //You can change this setting and reload the game for it to take an effect.
-    "CustomBiomeTints": true,
+  //Enables or disables single custom tint on world elements set per biome. Default: true
+  //You can change this setting and reload the game for it to take an effect.
+  "CustomBiomeTints": true,
 
-    //Color of the custom biome tint, one for all biomes. Default: {190, 80, 200, 0}. Possible values: 0-255
-    //You can change this setting and reload the game for it to take an effect.
-    // Default game value for biomes:
-    //   Frozen: (145, 198, 213),
-    //   Crystal: (135, 82, 160),
-    //   Slime: (123, 151, 75),
-    //   Sandstone: (236, 189, 89),
-    //   Caustic: (201, 152, 18),
-    //   Magma: (222, 90, 59),
-    //   Oil: (201, 152, 181),
-    //	 Ocean: (201, 201, 151),
-    //	 Rust: (236, 90, 110),
-    //	 Forest: (110, 236, 110)
-    "TintColor": {
-        "r": 155,
-        "g": 82,
-        "b": 243,
-        "a": 0
-    },
+  //Color of the custom biome tint, one for all biomes. Default: {190, 80, 200, 0}. Possible values: 0-255
+  //You can change this setting and reload the game for it to take an effect.
+  // Default game value for biomes:
+  //   Frozen: (157, 201, 214),
+  //   Crystal: (172, 114, 193),
+  //   Slime: (123, 151, 75),
+  //   Sandstone: (242, 187, 71),
+  //   Caustic: (203, 149, 163),
+  //   Magma: (222, 90, 59),
+  //   Oil: (63, 28, 6),
+  //   Space: (36, 36, 36),
+  //   Ocean: (211, 152, 152),
+  //   Rust: (255, 160, 7),
+  //   Forest: (142, 192, 57),
+  //   Radioactive: (74, 228, 88),
+  //   Swamp: (235, 155, 63),
+  //   Wasteland: (204, 54, 54),
+  //   Rocket Interior: (158, 72, 224),
+  //   Metallic: (255, 160, 7),
+  //   Barren: (242, 187, 71),
+  //   Moo: (142, 192, 57)
+  "TintColor": {
+    "r": 155,
+    "g": 82,
+    "b": 243,
+    "a": 0
+  },
 
-    //Enables or disables setting a single background for the entire map instead of background per biome. Default: true
-    //Changing this setting requires fully restarting the game.
-    "UnifiedBiomeBackgrounds": true,
+  //Enables or disables setting a single background for the entire map instead of background per biome. Default: true
+  //Changing this setting requires fully restarting the game.
+  "UnifiedBiomeBackgrounds": true,
 
-    //Specifies which biome background to use. Default: 1
-    //Changing this setting requires fully restarting the game.
-    
-    //Possible values:
-    //Cold Biome: 0
-    //Crystal Biome (unused in the default game): 1
-    //Slime Biome: 2
-    //Starting Biome: 3
-    //Caustic Biome: 4
-    //Magma Biome (same as Oil Biome, unused in game): 5,
-    //Oil Biome: 6
-    "BiomeBackground": 1
+  //Specifies which biome background to use. Default: 1
+  //Changing this setting requires fully restarting the game.
+
+  //Possible values:
+  //Cold Biome: 0
+  //Crystal Biome (unused in the default game): 1
+  //Slime Biome: 2
+  //Starting Biome: 3
+  //Caustic Biome: 4
+  //Magma Biome (same as Oil Biome, unused in game): 5
+  //Oil Biome: 6
+  //Space: 7 - DO NOT USE, WILL CAUSE SPACE EXPOSURE
+  //Ocean: 8
+  //Rust": 9
+  //Forest: 10
+  //Radioactive: 11
+  //Swamp: 12
+  //Wasteland: 13
+  //RocketInterior: 14
+  //Metallic: 15
+  //Barren: 16
+  //Moo: 17
+
+  "BiomeBackground": 1
 }

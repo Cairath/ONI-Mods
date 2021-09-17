@@ -6,8 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>PlanBuildingsWithoutMaterials</RootNamespace>
     <AssemblyName>PlanBuildingsWithoutMaterials</AssemblyName>
-    <AssemblyVersion>2021.7.1.0</AssemblyVersion>
-    <FileVersion>2021.7.1.1</FileVersion>
+    <AssemblyVersion>2021.9.12.0</AssemblyVersion>
+    <FileVersion>2021.9.12.3</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ModName>Plan Buildings Without Materials</ModName>
