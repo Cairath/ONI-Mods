@@ -39,7 +39,6 @@ namespace MarbleTile
 			buildingDef.BaseTimeUntilRepair = -1f;
 			buildingDef.SceneLayer = Grid.SceneLayer.TileMain;
 			buildingDef.isKAnimTile = true;
-			buildingDef.isSolidTile = true;
 			buildingDef.BlockTileAtlas = Assets.GetTextureAtlas("tiles_moulding");
 			buildingDef.BlockTilePlaceAtlas = Assets.GetTextureAtlas("tiles_moulding_place");
 			buildingDef.BlockTileMaterial = Assets.GetMaterial("tiles_solid");
