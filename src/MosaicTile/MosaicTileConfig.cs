@@ -57,7 +57,6 @@ namespace MosaicTile
 			go.AddOrGet<SimCellOccupier>().doReplaceElement = true;
 			go.AddOrGet<SimCellOccupier>().movementSpeedMultiplier = DUPLICANTSTATS.MOVEMENT.BONUS_3;
 			go.AddOrGet<TileTemperature>();
-			go.AddOrGet<KAnimGridTileVisualizer>();
 			go.AddOrGet<BuildingHP>().destroyOnDamaged = true;
 			go.AddOrGet<KAnimGridTileVisualizer>().blockTileConnectorID = BlockTileConnectorId;
 		}
@@ -67,6 +66,7 @@ namespace MosaicTile
 			BuildingTemplates.DoPostConfigure(go);
 			go.AddComponent<SimTemperatureTransfer>();
 			go.GetComponent<Deconstructable>().allowDeconstruction = true;
+			go.GetComponent<KPrefabID>().AddTag(GameTags.FloorTiles);
 		}
 
 		public override void DoPostConfigureUnderConstruction(GameObject go)
