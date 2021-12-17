@@ -48,6 +48,7 @@ namespace WirelessAutomation
 			buildingDef.EnergyConsumptionWhenActive = 50f;
 			buildingDef.SelfHeatKilowattsWhenActive = 0f;
 			buildingDef.PowerInputOffset = new CellOffset(0, 0);
+			buildingDef.LogicInputPorts = new List<LogicPorts.Port>();
 			buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
 			{
 				LogicPorts.Port.RibbonOutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
@@ -66,6 +67,7 @@ namespace WirelessAutomation
 		
 		public override void DoPostConfigureComplete(GameObject go)
 		{
+			go.AddOrGetDef<PoweredController.Def>();
 			go.AddOrGet<WirelessSignalReceiver>().ReceiveChannel = 0;
 		}
 	}

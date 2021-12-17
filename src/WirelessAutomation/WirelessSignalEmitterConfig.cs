@@ -71,6 +71,7 @@ namespace WirelessAutomation
 
 		public override void DoPostConfigureComplete(GameObject go)
 		{
+			go.AddOrGetDef<PoweredController.Def>();
 			go.AddOrGet<WirelessSignalEmitter>().EmitChannel = 0;
 			go.AddOrGet<LogicOperationalController>().unNetworkedValue = 0;
 		}

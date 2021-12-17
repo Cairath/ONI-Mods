@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <SupportedContent>ALL</SupportedContent>
-    <MinimumSupportedBuild>477203</MinimumSupportedBuild>
+    <MinimumSupportedBuild>490405</MinimumSupportedBuild>
     <APIVersion>2</APIVersion>
   </PropertyGroup>
 
