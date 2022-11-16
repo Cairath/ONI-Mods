@@ -14,7 +14,7 @@ namespace MosaicTile
 			public static void Prefix()
 			{
 				AddBuildingStrings(MosaicTileConfig.Id, MosaicTileConfig.DisplayName, MosaicTileConfig.Description, MosaicTileConfig.Effect);
-				AddBuildingToPlanScreen("Base", MosaicTileConfig.Id, CarpetTileConfig.ID);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Base, MosaicTileConfig.Id, "Tiles", CarpetTileConfig.ID);
 			}
 		}
 

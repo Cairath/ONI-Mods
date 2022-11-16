@@ -26,13 +26,20 @@ namespace DebugDoesNotDisableAchievements
 				else
 				{
 					ColonyAchievement colonyAchievement = Db.Get().ColonyAchievements.Get(achievement_id);
-					if (colonyAchievement == null || string.IsNullOrEmpty(colonyAchievement.steamAchievementId))
+					if (colonyAchievement == null || string.IsNullOrEmpty(colonyAchievement.platformAchievementId))
+					{
 						return false;
+					}
+
 					if ((bool)SteamAchievementService.Instance)
-						SteamAchievementService.Instance.Unlock(colonyAchievement.steamAchievementId);
+					{
+						SteamAchievementService.Instance.Unlock(colonyAchievement.platformAchievementId);
+					}
 					else
+					{
 						Debug.LogWarningFormat("Steam achievement [{0}] was achieved, but achievement service was null",
-							(object)colonyAchievement.steamAchievementId);
+							(object)colonyAchievement.platformAchievementId);
+					}
 				}
 
 				return false;

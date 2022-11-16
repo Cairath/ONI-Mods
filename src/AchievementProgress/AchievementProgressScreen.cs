@@ -311,15 +311,18 @@ namespace AchievementProgress
 
 			var hasPlantables = false;
 
-			foreach (var plantablePlot in Components.PlantablePlots.Items)
+			foreach (var worldContainer in (IEnumerable<WorldContainer>)ClusterManager.Instance.WorldContainers)
 			{
-				if (plantablePlot.Occupant != null)
+				foreach (var plantablePlot in Components.PlantablePlots.GetItems(worldContainer.id))
 				{
-					foreach (var depositObjectTag in plantablePlot.possibleDepositObjectTags)
+					if (plantablePlot.Occupant != null)
 					{
-						if (depositObjectTag != GameTags.DecorSeed)
-							hasPlantables = true;
-						break;
+						foreach (var depositObjectTag in plantablePlot.possibleDepositObjectTags)
+						{
+							if (depositObjectTag != GameTags.DecorSeed)
+								hasPlantables = true;
+							break;
+						}
 					}
 				}
 			}

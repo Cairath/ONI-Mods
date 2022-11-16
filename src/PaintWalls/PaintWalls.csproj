@@ -6,8 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>PaintWalls</RootNamespace>
     <AssemblyName>PaintWalls</AssemblyName>
-    <AssemblyVersion>2021.7.1.0</AssemblyVersion>
-    <FileVersion>2021.7.1.1</FileVersion>
+    <AssemblyVersion>2022.10.10.0</AssemblyVersion>
+    <FileVersion>2022.10.10.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ModName>Paint Walls</ModName>

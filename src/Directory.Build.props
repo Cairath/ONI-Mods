@@ -6,12 +6,12 @@
     <LangVersion>8.0</LangVersion>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Copyright>Cairath &#169; 2018-2021</Copyright>
+    <Copyright>Cairath &#169; 2018-2022</Copyright>
   </PropertyGroup>
 
   <PropertyGroup>
     <SupportedContent>ALL</SupportedContent>
-    <MinimumSupportedBuild>490405</MinimumSupportedBuild>
+    <MinimumSupportedBuild>525812</MinimumSupportedBuild>
     <APIVersion>2</APIVersion>
   </PropertyGroup>
 
@@ -22,7 +22,7 @@
     <BuildType Condition="'$(Configuration)' == 'VanillaDebug' Or '$(Configuration)' == 'SpacedOutDebug'">Debug</BuildType>
     <LibFolder>..\lib\$(GameContentType)</LibFolder>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <DistributionFolder Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'VanillaDebug'">\archived_versions\vanilla</DistributionFolder>
+    <DistributionFolder Condition="'$(Configuration)' == 'VanillaRelease' Or '$(Configuration)' == 'VanillaDebug'">\archived_versions\previous</DistributionFolder>
     <DistributionFolder Condition="'$(Configuration)' == 'SpacedOutRelease' Or '$(Configuration)' == 'SpacedOutDebug'"></DistributionFolder>
   </PropertyGroup>
 

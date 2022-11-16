@@ -5,8 +5,8 @@
     <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
     <RootNamespace>CaiLib</RootNamespace>
     <AssemblyName>CaiLib</AssemblyName>
-    <AssemblyVersion>2021.12.17.0</AssemblyVersion>
-    <FileVersion>2021.12.17.0</FileVersion>
+    <AssemblyVersion>2022.10.10.0</AssemblyVersion>
+    <FileVersion>2022.10.10.2</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
   <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />

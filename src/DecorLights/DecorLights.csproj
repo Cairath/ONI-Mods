@@ -6,8 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>DecorLights</RootNamespace>
     <AssemblyName>DecorLights</AssemblyName>
-    <AssemblyVersion>2021.7.1.0</AssemblyVersion>
-    <FileVersion>2021.7.1.1</FileVersion>
+    <AssemblyVersion>2022.10.10.0</AssemblyVersion>
+    <FileVersion>2022.10.10.1</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ModName>Decor Lights</ModName>

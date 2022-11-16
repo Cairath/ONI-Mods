@@ -14,7 +14,7 @@ namespace SteelLadder
 			public static void Prefix()
 			{
 				StringUtils.AddBuildingStrings(SteelLadderConfig.Id, SteelLadderConfig.DisplayName, SteelLadderConfig.Description, SteelLadderConfig.Effect);
-				AddBuildingToPlanScreen(PlanMenuCategory.Base, SteelLadderConfig.Id, LadderFastConfig.ID);
+				AddBuildingToPlanScreen(PlanMenuCategory.Base, SteelLadderConfig.Id, "Ladders", LadderFastConfig.ID);
 			}
 		}
 

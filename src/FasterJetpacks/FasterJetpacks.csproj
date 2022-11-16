@@ -6,8 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>FasterJetpacks</RootNamespace>
     <AssemblyName>FasterJetpacks</AssemblyName>
-    <AssemblyVersion>2021.7.1.0</AssemblyVersion>
-    <FileVersion>2021.7.1.1</FileVersion>
+    <AssemblyVersion>2022.10.7.0</AssemblyVersion>
+    <FileVersion>2022.10.7.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ModName>Faster Jetpacks</ModName>

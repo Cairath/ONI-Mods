@@ -1,4 +1,7 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
+using HarmonyLib;
 
 namespace BiggerCameraZoomOut
 {
@@ -44,6 +47,27 @@ namespace BiggerCameraZoomOut
 			{
 				UIScheduler.Instance?.Schedule("zoomConfig", 0.7f,
 					data => CameraController.Instance.SetMaxOrthographicSize(_maxZoom));
+			}
+		}
+
+		[HarmonyPatch(typeof(ClusterMapScreen))]
+		[HarmonyPatch(nameof(ClusterMapScreen.OnKeyDown))]
+		public static class ClusterMapScreen_OnKeyDown_Patch
+		{
+			public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+			{
+				var codes = new List<CodeInstruction>(instructions);
+				for (var i = 1; i < codes.Count; i++)
+				{
+
+					if (codes[i].opcode == OpCodes.Ldc_R4 && (float) codes[i].operand == 50f)
+					{
+						codes[i].operand = 20f;
+						break;
+					}
+				}
+
+				return codes.AsEnumerable();
 			}
 		}
 	}

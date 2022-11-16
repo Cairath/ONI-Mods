@@ -22,6 +22,7 @@ namespace AchievementProgress
 					() => { AchievementProgressScreen.CreateScreen(Instance); }));
 
 				instance.Field("buttons").SetValue(buttonsList.ToArray());
+
 			}
 		}
 	}

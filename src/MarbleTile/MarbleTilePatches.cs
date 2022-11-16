@@ -14,7 +14,7 @@ namespace MarbleTile
 			public static void Prefix()
 			{
 				AddBuildingStrings(MarbleTileConfig.Id, MarbleTileConfig.DisplayName, MarbleTileConfig.Description, MarbleTileConfig.Effect);
-				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Base, MarbleTileConfig.Id, CarpetTileConfig.ID);
+				AddBuildingToPlanScreen(GameStrings.PlanMenuCategory.Base, MarbleTileConfig.Id, "Tiles", CarpetTileConfig.ID);
 			}
 		}
 

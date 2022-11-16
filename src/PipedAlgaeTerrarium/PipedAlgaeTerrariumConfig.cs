@@ -65,14 +65,14 @@ namespace PipedAlgaeTerrarium
 
 			var manualDeliveryKg1 = go.AddOrGet<ManualDeliveryKG>();
 			manualDeliveryKg1.SetStorage(storage1);
-			manualDeliveryKg1.requestedItemTag = SimHashes.Algae.CreateTag();
+			manualDeliveryKg1.RequestedItemTag = SimHashes.Algae.CreateTag();
 			manualDeliveryKg1.capacity = 90f;
 			manualDeliveryKg1.refillMass = 18f;
 			manualDeliveryKg1.choreTypeIDHash = Db.Get().ChoreTypes.Fetch.IdHash;
 
 			var manualDeliveryKg2 = go.AddComponent<ManualDeliveryKG>();
 			manualDeliveryKg2.SetStorage(storage1);
-			manualDeliveryKg2.requestedItemTag = SimHashes.Water.CreateTag();
+			manualDeliveryKg2.RequestedItemTag = SimHashes.Water.CreateTag();
 			manualDeliveryKg2.capacity = 360f;
 			manualDeliveryKg2.refillMass = 72f;
 			manualDeliveryKg2.allowPause = true;

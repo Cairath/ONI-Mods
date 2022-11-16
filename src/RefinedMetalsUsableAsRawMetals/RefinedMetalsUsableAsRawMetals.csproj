@@ -6,8 +6,8 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>RefinedMetalsUsableAsRawMetals</RootNamespace>
     <AssemblyName>RefinedMetalsUsableAsRawMetals</AssemblyName>
-    <AssemblyVersion>2021.9.17.0</AssemblyVersion>
-    <FileVersion>2021.9.17.0</FileVersion>
+    <AssemblyVersion>2022.10.10.0</AssemblyVersion>
+    <FileVersion>2022.10.10.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ModName>Refined Metals Usable As Raw Metals</ModName>
